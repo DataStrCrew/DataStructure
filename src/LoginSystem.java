@@ -1,3 +1,7 @@
+/**
+ * Registration of the library
+ * @author Mustafa Gurler
+ */
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -1,3 +1,7 @@
+/**
+ * Reader of the library
+ * @author Mustafa Gurler
+ */
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +13,10 @@ import java.util.ArrayList;
 
 public class StandartReader  extends JFrame implements ActionListener{
     JPanel panel1;
+    /**
+     * Reader of the library
+     * @author Mustafa Gurler
+     */
     JButton searchBook;
     JButton borrowBook;
     JButton returnTheBook;

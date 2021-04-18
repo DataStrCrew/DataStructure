@@ -1,3 +1,8 @@
+/**
+ * Janitor of the library
+ * @author Mustafa Gurler
+ */
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,17 +13,23 @@ import java.net.URL;
 import java.util.ArrayList;
 
 
-public class Janitor extends JFrame implements ActionListener {
+public class Janitor extends User implements ActionListener{
     JPanel panel1;
+    /**
+     * Tasks of Janitor
+     */
     JButton viewTask;
     JButton updateTask;
 
     URL book = new URL("https://i.pinimg.com/originals/2c/fc/93/2cfc93d7665f5d7728782700e50596e3.png");
     final ArrayList<Image> icons = new ArrayList<Image>();
 
-
+    /**
+     * Constructor of Janitor and GUI
+     * @throws Exception
+     */
     public Janitor() throws Exception {
-        super("Janitor System");
+        setTitle("Janitor System");
         panel1 = new JPanel();
         panel1.setLayout(new GridLayout(0,1));
         setLocationRelativeTo( null );
@@ -47,4 +58,6 @@ public class Janitor extends JFrame implements ActionListener {
             Admin admin = new Admin();
         }*/
     }
+
+
 }

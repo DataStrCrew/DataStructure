@@ -1,3 +1,7 @@
+/**
+ * Manager of the library
+ * @author Mustafa Gurler
+ */
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +13,9 @@ import java.util.ArrayList;
 
 public class Manager extends JFrame implements ActionListener {
     JPanel panel1;
+    /*
+        Features of Manager
+     */
     JButton addJanitor;
     JButton removeJanitor;
     JButton addJanitorTask;

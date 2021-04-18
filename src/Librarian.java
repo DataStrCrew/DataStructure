@@ -1,3 +1,7 @@
+/**
+ * Librarian of the library
+ * @author Mustafa Gurler
+ */
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -8,10 +12,17 @@ import java.util.ArrayList;
 
 public class Librarian extends JFrame implements ActionListener {
     JPanel panel1;
+
+    /*
+        Features of all librarian
+     */
     JButton lendBook;
     JButton relendBook;
     JButton searchBook;
     JButton demandBook;
+    /*
+        Icon for title
+     */
     URL book = new URL("https://i.pinimg.com/originals/2c/fc/93/2cfc93d7665f5d7728782700e50596e3.png");
     final ArrayList<Image> icons = new ArrayList<Image>();
 

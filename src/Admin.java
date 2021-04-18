@@ -1,3 +1,7 @@
+/**
+ * Administrator of the libraries.
+ * @author Mustafa Gurler
+ * */
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,21 +11,31 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class Admin extends JFrame implements ActionListener {
+public class Admin extends User implements ActionListener{
 
     JPanel panel1;
+
+    /*
+        Buttons for GUI and features of all admin
+     */
     JButton addLibrary;
     JButton removeLibrary;
     JButton addManager;
     JButton removeManager;
     JButton searchLibrary;
     JButton searchManager;
+    /*
+        Icon for title
+     */
     URL book = new URL("https://i.pinimg.com/originals/2c/fc/93/2cfc93d7665f5d7728782700e50596e3.png");
     final ArrayList<Image> icons = new ArrayList<Image>();
 
-
+    /**
+     * Constructor of Admin and GUI
+     * @throws Exception
+     */
     public Admin() throws Exception {
-        super("Admin System");
+        setTitle("Admin System");
         panel1 = new JPanel();
         panel1.setLayout(new GridLayout(0,1));
         setLocationRelativeTo( null );
@@ -56,10 +70,16 @@ public class Admin extends JFrame implements ActionListener {
 
     }
 
+    /**
+     * Action of GUI
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         /*if(e.getSource() == ){
             Admin admin = new Admin();
         }*/
     }
+
+
 }

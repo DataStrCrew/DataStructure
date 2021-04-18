@@ -1,56 +1,80 @@
+import javax.swing.*;
 
 /**
- * User interface for all users of the Library Automation System.
+ * User general class for all users of the Library Automation System.
  * @author gokbey_gazi_keskin
+ * @author Mustafa Gurler
  * */
-public interface User{
+public abstract class User extends JFrame implements Human{
+
+    String name;
+    String surname;
+    String ID;
+    String password;
+
     /**
      * Setter for Name
      * @param name Name of the User
      */
-    void setName(String name);
+    public void setName(String name){
+        this.name = name;
+    }
 
     /**
      * Getter for Name
      * @return Name of the User
      */
-    String getName();
+    public String getName(){
+        return name;
+    }
 
     /**
      * Setter for Surname
      * @param surname Surname of the User
      */
-    void setSurname(String surname);
+    public void setSurname(String surname){
+        this.surname = surname;
+    }
 
     /**
      * Getter for Surname
      * @return Surname of the User
      */
-    String getSurname();
+    public String getSurname(){
+        return surname;
+    }
 
     /**
      * Setter for ID
      * @param id ID of the User
      */
-    void setID(String id);
+    public void setID(String id){
+        this.ID = id;
+    }
 
     /**
      * Getter for ID
      * @return ID of the User
      */
-    String getID();
+    public String getID(){
+        return ID;
+    }
 
     /**
      * Setter for Password
      * @param pw Password of the User
      */
-    void setPW(String pw);
+    public void setPW(String pw){
+        this.password = pw;
+    }
 
     /**
      * Getter for Password
      * @return Password of the User
      */
-    String getPW();
+    public String getPW(){
+        return password;
+    }
 
 
     /**
@@ -59,7 +83,9 @@ public interface User{
      * @param pw Password of the User
      * @return true if login is successful,false otherwise;
      */
-    boolean login(String id,String pw);
+    public boolean login(String id,String pw){
+        return id == this.ID && pw == this.password;
+    }
 
 
 
@@ -68,11 +94,20 @@ public interface User{
      * @param other Another User Object
      * @return true if they are the same User, false otherwise.
      */
-    boolean equals(User other);
+    public boolean equals(User other){
+        return other.getID() == ID && other.getPW() == password;
+    }
 
     /**
      * toString implementation for User Class
      * @return String representation of User.
      */
-    String toString();
+    public String toString(){
+        StringBuilder str = new StringBuilder();
+        str.append("User Information\n");
+        str.append("Name:").append(getName());
+        str.append("\nSurname:").append((getSurname()));
+        str.append("\nID:").append(getID());
+        return str.toString();
+    }
 }

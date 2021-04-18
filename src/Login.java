@@ -1,3 +1,7 @@
+/**
+ * Entrance of the library
+ * @author Mustafa Gurler
+ */
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,12 +19,19 @@ public class Login extends JFrame{
     JLabel label;
     JPanel panel1;
     JPanel panel2;
+
+    /*
+        Users of Library
+     */
     JButton admin;
     JButton manager;
     JButton librarian;
     JButton janitor;
     JButton reader;
     JButton register;
+    /*
+        Icon for title
+     */
     URL book = new URL("https://i.pinimg.com/originals/2c/fc/93/2cfc93d7665f5d7728782700e50596e3.png");
     final ArrayList<Image> icons = new ArrayList<Image>();
 

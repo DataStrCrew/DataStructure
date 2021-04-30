@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class Librarian extends JFrame implements ActionListener {
+public class Librarian extends User implements ActionListener {
     JPanel panel1;
 
     /*

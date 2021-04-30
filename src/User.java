@@ -13,6 +13,20 @@ public abstract class User extends JFrame implements Human{
     String password;
 
     /**
+     * Constructor of User
+     * @param name Name of the User
+     * @param surname Surname of the User
+     * @param ID ID of the User
+     * @param password Password of the User
+     */
+    public User(String name,String surname,String ID,String password){
+        this.name = name;
+        this.surname = surname;
+        this.ID = ID;
+        this.password = password;
+    }
+
+    /**
      * Setter for Name
      * @param name Name of the User
      */
@@ -97,6 +111,7 @@ public abstract class User extends JFrame implements Human{
     public boolean equals(User other){
         return other.getID() == ID && other.getPW() == password;
     }
+
 
     /**
      * toString implementation for User Class

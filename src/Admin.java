@@ -13,6 +13,71 @@ import java.util.ArrayList;
 
 public class Admin extends User implements ActionListener{
 
+    Data data;
+
+    /**
+     * To add library in Data
+     * @param 
+     */
+    public boolean addLibrary()
+    {
+        data.addLibrary();
+    }
+    /**
+     * To remove library from Data
+     * @param 
+     */
+    public boolean removeLibrary()
+    {
+        data.removeLibrary();
+    }
+    /**
+     * To add manager in Data
+     * @param 
+     */
+    public boolean addManager()
+    {
+        data.addManager();
+    }
+    /**
+     * To remove manager in Data
+     * @param 
+     */
+    public boolean removeManager()
+    {
+        data.removeManager();
+    }
+    /**
+     * To search library information in Data
+     * @param 
+     */
+    public boolean searchLibrary()
+    {
+        data.searchLibrary();
+    }
+    /**
+     * To search manager information in Data
+     * @param 
+     */
+    public boolean searchManager()
+    {
+        data.searchManager();
+    }
+    
+    /**
+     * Constructor For Admin
+     * @param data Class of data control
+     * @param name Name of the User
+     * @param surname Surname of the User
+     * @param ID ID of the User
+     * @param password Password of the User
+     */
+    public Admin(Data data,String name,String surname,String ID,String password)
+    {
+        super(name,surname,ID,password);
+        this.data = data;
+    }
+
     JPanel panel1;
 
     /*
@@ -67,7 +132,6 @@ public class Admin extends User implements ActionListener{
         setLocationByPlatform(true);
         setResizable(false);
         setVisible(true);
-
     }
 
     /**

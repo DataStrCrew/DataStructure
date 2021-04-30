@@ -11,7 +11,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class Manager extends JFrame implements ActionListener {
+public class Manager extends User implements ActionListener {
     JPanel panel1;
     /*
         Features of Manager

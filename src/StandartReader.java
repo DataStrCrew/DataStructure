@@ -11,7 +11,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class StandartReader  extends JFrame implements ActionListener{
+public class StandartReader extends User implements ActionListener{
     JPanel panel1;
     /**
      * Reader of the library

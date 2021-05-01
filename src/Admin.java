@@ -16,50 +16,56 @@ public class Admin extends User implements ActionListener{
     /**
      * To add library in Data
      * @param Library Library to add
+     * @return
      */
     public boolean addLibrary(Library Library)
     {
-        Database.addLibrary(Library);
+        return Database.addLibrary(Library);
     }
     /**
      * To remove library from Data
      * @param ID Librarys' id
+     * @return
      */
     public boolean removeLibrary(String ID)
     {
-        Database.removeLibrary(ID);
+        return Database.removeLibrary(ID);
     }
     /**
      * To add manager in Data
      * @param Manager Manager to add
+     * @return
      */
     public boolean addManager(Manager Manager)
     {
-        Database.addManager(Manager);
+        return Database.addManager(Manager);
     }
     /**
      * To remove manager in Data
      * @param ID Managers' id
+     * @return
      */
     public boolean removeManager(String ID)
     {
-        Database.removeManager(ID);
+        return Database.removeManager(ID);
     }
     /**
      * To search library information in Data
      * @param ID Librarys' id
+     * @return
      */
     public boolean searchLibrary(String ID)
     {
-        Database.searchLibrary(ID);
+        return Database.searchLibrary(ID);
     }
     /**
      * To search manager information in Data
      * @param ID Managers' id
+     * @return
      */
     public boolean searchManager(String ID)
     {
-        Database.searchManager(ID);
+        return Database.searchManager(ID);
     }
     
 

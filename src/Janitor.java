@@ -16,11 +16,27 @@ import java.util.PriorityQueue;
 
 public class Janitor extends User implements ActionListener{
 
-	PriorityQueue<Task> Task;
+	PriorityQueue<Task> Task ;
 	
+    /**
+     * It views all of the task that belongs to janitor
+     * @param
+     */
     public void viewTask(){}
-    public boolean updateTask(){}
-
+    /**
+     * It updates specific task that belongs to janitor
+     * @param TaskId TaskId for specific task
+     * @return
+     */
+    public boolean updateTask(String TaskId){}
+    /**
+     * Adds the task to the janitors' task
+     * @param Ta New Task
+     * @return
+     */
+    public boolean addTask(Task Ta){}
+    
+    
     JPanel panel1;
     /**
      * Tasks of Janitor

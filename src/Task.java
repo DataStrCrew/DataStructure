@@ -5,16 +5,16 @@ public class Task implements Comparable
 	 private Integer TaskId;
 	 private boolean doneTask;
 	 
-	 public Task(Ineteger ID, Integer level)
+	 public Task(Integer ID, Integer level)
 	 {
-			taskID=ID;
+			TaskId=ID;
 			taskDifficulty=level;
 			doneTask=false;
 	 }
 	 
 	 public Task(Integer ID, Integer level, boolean isDone)
 	 {
-		 	taskID=ID;
+		 	TaskId=ID;
 			taskDifficulty=level;
 			doneTask=isDone;
 	 }

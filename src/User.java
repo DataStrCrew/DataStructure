@@ -13,6 +13,11 @@ public abstract class User extends JFrame implements Human{
     String password;
 
     /**
+     * Default Constructor of User
+     * @param
+     */
+    public User() {}
+    /**
      * Constructor of User
      * @param name Name of the User
      * @param surname Surname of the User

@@ -85,6 +85,7 @@ public class Admin extends User implements ActionListener{
      * @throws Exception
      */
     public Admin() throws Exception {
+    	super();
         setTitle("Admin System");
         panel1 = new JPanel();
         panel1.setLayout(new GridLayout(0,1));

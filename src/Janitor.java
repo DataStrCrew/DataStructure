@@ -11,9 +11,16 @@ import javax.swing.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 
 
 public class Janitor extends User implements ActionListener{
+
+	PriorityQueue<Task> Task;
+	
+    public void viewTask(){}
+    public boolean updateTask(){}
+
     JPanel panel1;
     /**
      * Tasks of Janitor

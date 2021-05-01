@@ -11,7 +11,63 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class StandartReader extends User implements ActionListener{
+public class StandartReader extends User implements ActionListener
+{
+    /**Holds the information of the library that this StandartUser is a member of*/
+    Library lib;
+
+    /**
+	 * Searches for a specific book in the library stock.
+	 * @return true if the book is found in the stock, false if not.
+	 */
+	public boolean searchBook(String searchedBook, Language bookLanguage)
+	{
+		/*
+		 * Assumed that there is an isInStock method in library class that returns
+		 * -1 if the book is not found and the index number if it is found.
+		 * DELETE THIS COMMENT LATER ON
+		 */
+		if(lib.isInStock(searchedBook, bookLanguage)!=-1)
+			return true;
+		else
+			return false;	
+	}
+
+    /**
+	 * borrowing the requested book if it is available in the library stocks
+	 * @return the Book that is borrowed, null if no books is borrowed.
+	 */
+	public Book borrowBook(Book borrowBook)
+	{
+		if(!searchBook(givenBook.getName(), givenBook.getLang()))
+		{
+			return null;
+		}
+		else
+		{
+			lib.changeStock(borrowBook, -1);
+			return borrowBook;
+		}
+	}
+
+     /**
+	 * returning the borrowed book
+	 * @return true if the returning is successful, false otherwise
+	 */
+	public boolean returnTheBook(int index)
+	{
+		int index=isBorrowed(returnedBook.getName(), returnedBook.getLang());
+		if(index==-1)
+			return false;
+		else
+		{
+			lib.changeStock(returnedBook, 1);
+		}
+	}
+
+
+
+
     JPanel panel1;
     /**
      * Reader of the library

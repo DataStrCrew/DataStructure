@@ -1,21 +1,21 @@
 
 public class Task implements Comparable
 {
-	 private int taskDifficulty;
-	 private int TaskId;
+	 private Integer taskDifficulty;
+	 private Integer TaskId;
 	 private boolean doneTask;
 	 
-	 public Task(String name, Integer level)
+	 public Task(Ineteger ID, Integer level)
 	 {
-			taskName=name;
-			difficultyLevel=level;
+			taskID=ID;
+			taskDifficulty=level;
 			doneTask=false;
 	 }
 	 
-	 public Task(String name, Integer level, boolean isDone)
+	 public Task(Integer ID, Integer level, boolean isDone)
 	 {
-		 	taskName=name;
-			difficultyLevel=level;
+		 	taskID=ID;
+			taskDifficulty=level;
 			doneTask=isDone;
 	 }
 	 
@@ -75,10 +75,10 @@ public class Task implements Comparable
 	 */
 	public int compareTo(Object o) 
 	{
-		int levelComparison=difficultyLevel.compareTo(((Task) o).getLevel());
+		int levelComparison=taskDifficulty.compareTo(((Task) o).getTaskDifficulty());
 		
 		if(levelComparison==0)
-			levelComparison=taskName.compareTo(((Task) o).getTask());
+			levelComparison=TaskId.compareTo(((Task) o).getTaskId());
 		
 		return levelComparison;
 	}

@@ -157,29 +157,78 @@ public class Manager extends User implements ActionListener
 			return lib.getJanitor(janitorID).addTask(theTask);
 	}
 	
+	/**
+	 * Gets all the demands from the demandedBooks data field of library and adds them to
+	 * the stock of the library. At the end demandedBooks data field must be empty and all
+	 * the books must be added to the stock.
+	 */
 	public void arrangeBookDemands()
 	{
-		
+		//Assumed that there is a demandedBooks data field in the library
+		//DELETE THIS LATER ON
 	}
 	
+	/**
+	 * Prints out all the past events in the library.
+	 */
 	public void listPastEvents()
 	{
-		
+		//Fill later
 	}
 	
+	/**
+	 * Prints out all the upcoming events in the library.
+	 */
 	public void listUpcomingEvents()
 	{
-		
+		//Fill later
 	}
 	
-	public void acceptEvent()
+	/**
+	 * Accepts an event and adds it to upcoming event list.
+	 * @param newEvent is the event that will be added to the upcoming events list.
+	 * @return true if added, false if not.
+	 */
+	public boolean acceptEvent(Event newEvent)
 	{
-		
+		/*
+		 * Assumed there is a addUpcomingEvent(Event addedEvent) method in library class
+		 * This method should return true after adding to upcomingEvenets data field. 
+		 * It should return false if the event is already in the upcoming events list.
+		 * DELETE THIS LATER ON
+		 */
+		return lib.addUpcomingEvent(newEvent);
 	}
 	
-	public void declineEvent()
+	public boolean declineEvent(Event newEvent)
 	{
-		
+		/*
+		 * Assumed there is a offeredEvents data field in library class.
+		 */
+		/*
+		 * Assumed there is a removeEvent(Event removedEvent) method in library class
+		 * This method should return true after removing from offeredEvents data field. 
+		 * It should return false if the event is not in the offeredEvents list.
+		 * DELETE THIS LATER ON
+		 */
+		return lib.removeEvent(newEvent);
+	}
+	
+	/**
+	 * Moves an element from upcoming events to past events meaning it has ended.
+	 * @param endedEvent is the event that will be moved to pastEvenets
+	 * @return the removed event, null if nothing is removed
+	 */
+	public Event endEvent(Event endedEvent)
+	{
+		/*
+		 * Assumed there is a endEvent(Event endedEvent) method in library class.
+		 * This method should remove the endedEvent from upcomingEvents and move it to pastEvents data field of library class.
+		 * Returns the removed event.
+		 * If the event is not found in upcomingEvents data field returns null.
+		 * DELETE THIS LATER ON
+		 */
+		return lib.endEvent(endedEvent);
 	}
 	
 	/**
@@ -194,9 +243,12 @@ public class Manager extends User implements ActionListener
 			return true;
 	}
 	
-	public void searchCategory()
+	/**
+	 * Prints out all the books with this genre in the library.
+	 */
+	public void searchGenre(BookGenre searchedGenre)
 	{
-		
+		//Fill later
 	}
 	
 	/**

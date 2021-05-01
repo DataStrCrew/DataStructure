@@ -36,5 +36,9 @@ public class Magazine extends AbstractPublication{
         return issue;
     }
 
+    @Override
+    public String toString(){
+        return super.toString() + "\nIssue: " + issue;
+    }
 
 }

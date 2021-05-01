@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 
 /**
- * Publication interface for all publications of the Library Automation System. (publication,E-publication,Encyclopedia,Magazine)
+ * Publication interface for all publications of the Library Automation System. (publication,Encyclopedia,Magazine)
  * @author gokbey_gazi_keskin
  * */
 public interface Publication {

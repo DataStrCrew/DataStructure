@@ -136,4 +136,10 @@ public class AbstractPublication implements Publication {
     public void addComment(String comment){
         comments.add(comment);
     }
+
+    @Override
+    public String toString(){
+        return "Name: " + name + "\nPage Amount: " + page + "\nLanguage: " + lang + "\nID: " + id +
+                "\nAuthor's info:" + author + "\nComments: " + comments;
+    }
 }

@@ -40,4 +40,9 @@ public class Encyclopedia extends AbstractPublication{
     public void addSection(Integer pg, String heading){
         sections.put(pg,heading);
     }
+
+    @Override
+    public String toString(){
+        return super.toString() + "\nSections: " + sections;
+    }
 }

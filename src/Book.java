@@ -30,4 +30,8 @@ public class Book extends AbstractPublication {
      */
     public BookGenre getGenre(){return genre;}
 
+    @Override
+    public String toString() {
+        return super.toString() + "\nGenre: " + genre;
+    }
 }

@@ -30,17 +30,6 @@ public interface Publication {
      */
     Author getAuthor();
 
-    /**
-     * Setter for Edition.
-     * @param edition Edition number of the publication.
-     */
-    void setEdition(Integer edition);
-
-    /**
-     * Getter for Edition.
-     * @return Edition number of the publication.
-     */
-    Integer getEdition();
 
     /**
      * Setter for ID.
@@ -58,13 +47,13 @@ public interface Publication {
      * Setter for Language.
      * @param language Language of the publication.
      */
-    void setLang(String language);
+    void setLang(Language language);
 
     /**
      * Getter for Language.
      * @return Language o the publication.
      */
-    String getLang();
+    Language getLang();
 
     /**
      * Setter for page count.
@@ -83,6 +72,12 @@ public interface Publication {
      * @return An array list of comments.
      */
     ArrayList<String> getComments();
+
+    /**
+     * Add a new comment to publication.
+     * @param comment New comment.
+     */
+     void addComment(String comment);
 
 
 }

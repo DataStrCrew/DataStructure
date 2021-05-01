@@ -1,6 +1,7 @@
 /**
  * Manager of the library
  * @author Mustafa Gurler
+ * @author yesimyalc
  */
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,8 +15,6 @@ import java.util.ArrayList;
 public class Manager extends User implements ActionListener 
 {
 	Library lib;
-	DataStruct<Librarian> librarians;
-	DataStruct<Janitor> janitors;
 	
 	/**
 	 * Adds a book to the library stock
@@ -44,29 +43,118 @@ public class Manager extends User implements ActionListener
 		}
 	}
 	
-	public void addLibrarian()
+	/**
+	 * Adds a librarian to the library. If the librarian already exists does not add again.
+	 * @param newLibrarian is the librarian that will be added.
+	 * @return true if added, false if not
+	 */
+	public boolean addLibrarian(Librarian newLibrarian)
 	{
-		
+		/**
+		 * Assumed that there is a method named addLibrarian(Librarian addedLibrarian) inside library class
+		 * This method adds the librarian to the librarians data field of library class
+		 * If the librarian already exists, throws an exception ?
+		 * DELETE THIS LATER ON
+		 */
+		if(searchLibrarian(newLibrarian.getID()))
+			return false;
+		else
+		{
+			lib.addLibrarian(newLibrarian);
+			return true;
+		}
 	}
 	
-	public void removeLibrarian()
+	/**
+	 * Removes a librarian from the library. If the librarian does not exist, doesnt do anything.
+	 * @param oldLibrarian is the librarian that will be removed
+	 * @return the removed librarian, null if no one is removed
+	 */
+	public Librarian removeLibrarian(Librarian oldLibrarian)
 	{
-		
+		/**
+		 * Assumed that there is a method names removeLibrarian(Librarian removedLibrarian) inside library class
+		 * This method removes the librarian from the librarians data field of library class.
+		 * If the librarian doesnt exists throws an exception ?
+		 */
+		if(!searchLibrarian(oldLibrarian.getID()))
+			return null;
+		else
+		{
+			lib.removeLibrarian(oldLibrarian);
+			return oldLibrarian;
+		}
+			
 	}
 	
-	public void removeJanitor()
+	/**
+	 * Adds a janitor to the library. If the janitor already exists does not add again.
+	 * @param newJanitor is the janitor that will be added.
+	 * @return true if added, false if not
+	 */
+	public boolean addJanitor(Janitor newJanitor)
 	{
-		
+		/**
+		 * Assumed that there is a method named addJanitor(Janitor addedJanitor) inside library class
+		 * This method adds the janitor to the janitors data field of library class
+		 * If the janitor already exists, throws an exception ?
+		 * DELETE THIS LATER ON
+		 */
+		if(searchJanitor(newJanitor.getID()))
+			return false;
+		else
+		{
+			lib.addJanitor(newJanitor);
+			return true;
+		}
 	}
 	
-	public void addJanitor()
+	/**
+	 * Removes a janitor from the library. If the janitor does not exist, doesnt do anything.
+	 * @param oldJanitor is the janitor that will be removed
+	 * @return the removed janitor, null if no one is removed
+	 */
+	public Janitor removeJanitor(Janitor oldJanitor)
 	{
-		
+		/**
+		 * Assumed that there is a method names removeJanitor(Janitor removedJanitor) inside library class
+		 * This method removes the janitor from the janitors data field of library class.
+		 * If the janitor doesnt exists throws an exception ?
+		 * DELETE THIS LATER ON
+		 */
+		if(!searchJanitor(oldJanitor.getID()))
+			return null;
+		else
+		{
+			lib.removeJanitor(oldJanitor);
+			return oldJanitor;
+		}
 	}
 	
-	public void addTasks(String janitorID, Task theTask)
+	/**
+	 * Adds a new task to a janitor. If the janitor does not belong to the library, does nothing.
+	 * @param janitorID is the janitor's ID that will have the new task
+	 * @param theTask is the new task that will be added to a janitor
+	 * @return true if added, false if not
+	 */
+	public boolean addTasks(String janitorID, Task theTask)
 	{
-		
+		/*
+		 * Assumed that there is a getJanitor(int searchedJID) method inside library class.
+		 * This method returns the searched janitor.
+		 * Returns null if the janitor does not exist or throws exception ? 
+		 * DELETE THIS LATER ON
+		 */
+		/*
+		 * Assumed that there is addTask(Task newTask) method in janitor class.
+		 * This method adds the task to the janitor, returns true.
+		 * If the janitor already has the task returns false.
+		 * DELETE THIS LATER ON
+		 */
+		if(!searchJanitor(janitorID))
+			return false;
+		else
+			return lib.getJanitor(janitorID).addTask(theTask);
 	}
 	
 	public void arrangeBookDemands()
@@ -74,7 +162,12 @@ public class Manager extends User implements ActionListener
 		
 	}
 	
-	public void listEvents()
+	public void listPastEvents()
+	{
+		
+	}
+	
+	public void listUpcomingEvents()
 	{
 		
 	}
@@ -112,7 +205,13 @@ public class Manager extends User implements ActionListener
 	 */
 	public boolean searchLibrarian(String searchedLID)
 	{
-		if(librarians.contains(searchedLID))
+		/**
+		 * Assumed that there is isLibrarian(int librarianID) method in library class
+		 * This method returns the index of the librarian inside the librarians data field in library class
+		 * If the librarian does not exist, returns -1
+		 * DELETE THIS LATER ON
+		 */
+		if(lib.isLibrarian(searchedLID)!=-1))
 			return true;
 		else
 			return false;
@@ -120,7 +219,13 @@ public class Manager extends User implements ActionListener
 	
 	public boolean searchJanitor(String searchedJID)
 	{
-		if(janitors.contains(searchedJID))
+		/**
+		 * Assumed that there is isJanitor(int JanitorID) method in library class
+		 * This method returns the index of the janitor inside the janitors data field in library class
+		 * If the janitor does not exist, returns -1
+		 * DELETE THIS LATER ON
+		 */
+		if(lib.isJanitor(searchedJID)!=-1)
 			return true;
 		else
 			return false;

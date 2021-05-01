@@ -14,22 +14,8 @@ import java.util.ArrayList;
 public class Admin extends User implements ActionListener{
 
     /**
-     * Constructor For Admin
-     * @param data Class of data control
-     * @param name Name of the User
-     * @param surname Surname of the User
-     * @param ID ID of the User
-     * @param password Password of the User
-     */
-    public Admin(String name,String surname,String ID,String password)
-    {
-        super(name,surname,ID,password);
-   
-    }
-
-    /**
      * To add library in Data
-     * @param 
+     * @param Library Library to add
      */
     public boolean addLibrary(Library Library)
     {
@@ -37,15 +23,15 @@ public class Admin extends User implements ActionListener{
     }
     /**
      * To remove library from Data
-     * @param 
+     * @param ID Librarys' id
      */
-    public boolean removeLibrary()
+    public boolean removeLibrary(String ID)
     {
-        Database.removeLibrary();
+        Database.removeLibrary(ID);
     }
     /**
      * To add manager in Data
-     * @param 
+     * @param Manager Manager to add
      */
     public boolean addManager(Manager Manager)
     {
@@ -53,27 +39,27 @@ public class Admin extends User implements ActionListener{
     }
     /**
      * To remove manager in Data
-     * @param 
+     * @param ID Managers' id
      */
-    public boolean removeManager()
+    public boolean removeManager(String ID)
     {
-        Database.removeManager();
+        Database.removeManager(ID);
     }
     /**
      * To search library information in Data
-     * @param 
+     * @param ID Librarys' id
      */
-    public boolean searchLibrary()
+    public boolean searchLibrary(String ID)
     {
-        Database.searchLibrary();
+        Database.searchLibrary(ID);
     }
     /**
      * To search manager information in Data
-     * @param 
+     * @param ID Managers' id
      */
-    public boolean searchManager()
+    public boolean searchManager(String ID)
     {
-        Database.searchManager();
+        Database.searchManager(ID);
     }
     
 

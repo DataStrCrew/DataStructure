@@ -16,7 +16,7 @@ import java.util.PriorityQueue;
 
 public class Janitor extends User implements ActionListener{
 
-	PriorityQueue<Task> Task ;
+	PriorityQueue<Task> Tasks;
 	
     /**
      * It views all of the task that belongs to janitor

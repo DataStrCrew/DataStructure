@@ -1,20 +1,72 @@
 
 public class Task implements Comparable
 {
-	String taskName;
-	Integer difficultyLevel;
-	
-	public Task(String name, Integer level)
+	 private int taskDifficulty;
+	 private int TaskId;
+	 private boolean doneTask;
+	 
+	 public Task(String name, Integer level)
+	 {
+			taskName=name;
+			difficultyLevel=level;
+			doneTask=false;
+	 }
+	 
+	 public Task(String name, Integer level, boolean isDone)
+	 {
+		 	taskName=name;
+			difficultyLevel=level;
+			doneTask=isDone;
+	 }
+	 
+	 /**
+     * Getter for taskDifficult
+     * @return 
+     */
+	public int getTaskDifficulty() 
 	{
-		taskName=name;
-		difficultyLevel=level;
+		return taskDifficulty;
 	}
-	
-	/**Returns the taskName*/
-	public String getTask() {return taskName;}
-	
-	/**Returns the task's difficulty level*/
-	public Integer getLevel() {return difficultyLevel;}
+    /**
+     * Setter for taskDifficult
+     * @param taskDifficulty Task difficulty of the task
+     */
+	public void setTaskDifficulty(int taskDifficulty) 
+	{
+		this.taskDifficulty = taskDifficulty;
+	}
+    /**
+     * Getter for TaskId
+     * @return
+     */
+	public int getTaskId() 
+	{
+		return TaskId;
+	}
+    /**
+     * Setter for TaskId
+     * @param taskId Task Id of the task
+     */
+	public void setTaskId(int taskId) 
+	{
+		TaskId = taskId;
+	}
+    /**
+     * Getter for doneTask
+     * @return
+     */
+	public boolean isDoneTask() 
+	{
+		return doneTask;
+	}
+    /**
+     * Setter for doneTask
+     * @param doneTask Variable that keeps the task done or not
+     */
+	public void setDoneTask(boolean doneTask) 
+	{
+		this.doneTask = doneTask;
+	}
 	
 	/**
 	 * Firstly compares the difficulty levels of the tasks. 
@@ -30,5 +82,4 @@ public class Task implements Comparable
 		
 		return levelComparison;
 	}
-	
 }

@@ -10,6 +10,12 @@ import java.awt.event.ActionListener;
 import java.net.URL;
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author yesimyalc
+ * @author I dunno who did the GUI you can add your name here
+ */
+
 public class Librarian extends User implements ActionListener 
 {
 	/**Holds the information of the library that this Librarian is working in*/
@@ -29,26 +35,24 @@ public class Librarian extends User implements ActionListener
 		 * to the demanded books list.
 		 * DELETE THIS COMMENT LATER ON
 		 */
-		if(searchBook(demandedBook))
+		if(searchBook(demandedBook.getName(), demandedBook.getLang()))
 			return false;
 		else
-		{
 			lib.demandBook(demandedBook);
-		}
 	}
 	
 	/**
 	 * Searches for a book in the library stock.
 	 * @return the amount of the book in the library stock.
 	 */
-	public int demandBookStock(Book demandedBook)
+	public int demandBookStock(String bookName, Language bookLanguage)
 	{
 		/**
 		 * Assumed that there is a method called bookAmount in library class that returns
-		 * the amount of demandedBook in the library stock
+		 * the amount of a book which has the given language in the library stock
 		 * DELETE THIS COMMENT LATER ON
 		 */
-		return lib.bookAmount(demandedBook);
+		return lib.bookAmount(bookName, bookLanguage);
 	}
 	
 	/**
@@ -71,7 +75,7 @@ public class Librarian extends User implements ActionListener
 		 * Also assumed borrowBook method of reader adds books to the reader's borrowedBook field
 		 * DELETE THIS COMMENT LATER ON
 		 */
-		if(!searchBook(givenBook))
+		if(!searchBook(givenBook.getName(), givenBook.getLang()))
 		{
 			demandBooks(givenBook);
 			return null;
@@ -97,6 +101,7 @@ public class Librarian extends User implements ActionListener
 		 * the parameter returnedBook is the book that will be added or removed
 		 * the parameter 1 is how much it will be added or removed 
 		 * Ex: 1 means 1 book will be added. -1 means 1 book will be removed
+		 * If the book does not exist in the stock and it is trying to be removed throws an exception ? or does not do anything ?
 		 * DELETE THIS COMMENT LATER ON
 		 */
 		/**
@@ -108,7 +113,7 @@ public class Librarian extends User implements ActionListener
 		 * Assumed returnTheBook removes the book in the given index from borrowedBooks field of the customer and adds it to pastReadBooks field.
 		 * DELETE THIS COMMENT LATER ON
 		 */
-		int index=customer.isBorrowed(returnedBook);
+		int index=customer.isBorrowed(returnedBook.getName(), returnedBook.getLang());
 		if(index==-1)
 			return false;
 		else
@@ -123,14 +128,14 @@ public class Librarian extends User implements ActionListener
 	 * @param searchedBook is the book that will be searched in the stock.
 	 * @return true if the book is found in the stock, false if not.
 	 */
-	public boolean searchBook(Book searchedBook)
+	public boolean searchBook(String searchedBook, Language bookLanguage)
 	{
 		/*
 		 * Assumed that there is an isInStock method in library class that returns
 		 * -1 if the book is not found and the index number if it is found.
 		 * DELETE THIS COMMENT LATER ON
 		 */
-		if(lib.isInStock(searchedBook)!=-1)
+		if(lib.isInStock(searchedBook, bookLanguage)!=-1)
 			return true;
 		else
 			return false;	

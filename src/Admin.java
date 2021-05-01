@@ -13,57 +13,6 @@ import java.util.ArrayList;
 
 public class Admin extends User implements ActionListener{
 
-    Data data;
-
-    /**
-     * To add library in Data
-     * @param 
-     */
-    public boolean addLibrary()
-    {
-        data.addLibrary();
-    }
-    /**
-     * To remove library from Data
-     * @param 
-     */
-    public boolean removeLibrary()
-    {
-        data.removeLibrary();
-    }
-    /**
-     * To add manager in Data
-     * @param 
-     */
-    public boolean addManager()
-    {
-        data.addManager();
-    }
-    /**
-     * To remove manager in Data
-     * @param 
-     */
-    public boolean removeManager()
-    {
-        data.removeManager();
-    }
-    /**
-     * To search library information in Data
-     * @param 
-     */
-    public boolean searchLibrary()
-    {
-        data.searchLibrary();
-    }
-    /**
-     * To search manager information in Data
-     * @param 
-     */
-    public boolean searchManager()
-    {
-        data.searchManager();
-    }
-    
     /**
      * Constructor For Admin
      * @param data Class of data control
@@ -72,11 +21,61 @@ public class Admin extends User implements ActionListener{
      * @param ID ID of the User
      * @param password Password of the User
      */
-    public Admin(Data data,String name,String surname,String ID,String password)
+    public Admin(String name,String surname,String ID,String password)
     {
         super(name,surname,ID,password);
-        this.data = data;
+   
     }
+
+    /**
+     * To add library in Data
+     * @param 
+     */
+    public boolean addLibrary(Library Library)
+    {
+        Database.addLibrary(Library);
+    }
+    /**
+     * To remove library from Data
+     * @param 
+     */
+    public boolean removeLibrary()
+    {
+        Database.removeLibrary();
+    }
+    /**
+     * To add manager in Data
+     * @param 
+     */
+    public boolean addManager(Manager Manager)
+    {
+        Database.addManager(Manager);
+    }
+    /**
+     * To remove manager in Data
+     * @param 
+     */
+    public boolean removeManager()
+    {
+        Database.removeManager();
+    }
+    /**
+     * To search library information in Data
+     * @param 
+     */
+    public boolean searchLibrary()
+    {
+        Database.searchLibrary();
+    }
+    /**
+     * To search manager information in Data
+     * @param 
+     */
+    public boolean searchManager()
+    {
+        Database.searchManager();
+    }
+    
 
     JPanel panel1;
 

@@ -11,7 +11,121 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class Manager extends User implements ActionListener {
+public class Manager extends User implements ActionListener 
+{
+	Library lib;
+	DataStruct<Librarian> librarians;
+	DataStruct<Janitor> janitors;
+	
+	/**
+	 * Adds a book to the library stock
+	 * @param addedBook is the book that will be added.
+	 * @param returns the added book
+	 */
+	public Book addBook(Book addedBook)
+	{
+		lib.changeStock(addedBook, 1);
+		return addedBook;
+	}
+	
+	/**
+	 * Removes a book from the stock of the library. 
+	 * @param removedBook is the book that will be removed from the stock
+	 * @return the removed book. If the book is not in the stock, returns null.
+	 */
+	public Book removeBook(Book removedBook)
+	{
+		if(!search(removedBook))
+			return null;
+		else
+		{
+			lib.changeStock(removedBook, -1);
+			return removedBook;
+		}
+	}
+	
+	public void addLibrarian()
+	{
+		
+	}
+	
+	public void removeLibrarian()
+	{
+		
+	}
+	
+	public void removeJanitor()
+	{
+		
+	}
+	
+	public void addJanitor()
+	{
+		
+	}
+	
+	public void addTasks(String janitorID, Task theTask)
+	{
+		
+	}
+	
+	public void arrangeBookDemands()
+	{
+		
+	}
+	
+	public void listEvents()
+	{
+		
+	}
+	
+	public void acceptEvent()
+	{
+		
+	}
+	
+	public void declineEvent()
+	{
+		
+	}
+	
+	/**
+	 * Searches for a specific book in the library stock.
+	 * @return true if the book is found in the stock, false if not.
+	 */
+	public boolean searchBook(String bookName, Language bookLanguage)
+	{
+		if(lib.isInStock(bookName, bookLanguage)==-1)
+			return false;
+		else
+			return true;
+	}
+	
+	public void searchCategory()
+	{
+		
+	}
+	
+	/**
+	 * Searches for a librarian
+	 * @param searchedLID is the ID of the searched librarian
+	 */
+	public boolean searchLibrarian(String searchedLID)
+	{
+		if(librarians.contains(searchedLID))
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean searchJanitor(String searchedJID)
+	{
+		if(janitors.contains(searchedJID))
+			return true;
+		else
+			return false;
+	}
+	
     JPanel panel1;
     /*
         Features of Manager

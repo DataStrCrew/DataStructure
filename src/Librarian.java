@@ -125,7 +125,6 @@ public class Librarian extends User implements ActionListener
 	
 	/**
 	 * Searches for a specific book in the library stock.
-	 * @param searchedBook is the book that will be searched in the stock.
 	 * @return true if the book is found in the stock, false if not.
 	 */
 	public boolean searchBook(String searchedBook, Language bookLanguage)

@@ -22,6 +22,7 @@ public class Library{
     ArrayList<Integer> stocks;
     ArrayList<Event> pastEvents;
     ArrayList<Event> upcomingEvents;
+    ArrayList<Event> offeredEvents;
 
     Manager manager;
     ArrayList<Librarian> librarians;
@@ -45,11 +46,12 @@ public class Library{
     /**
      * Get book with index
      * @param index
-     * @return Book that corresponds to the index in book data structure
+     * @return Desired book by index
      */
     private Book getBook(int index){
         return books.get(index);
     }
+
 
     /**
      * Gets index of a book in the data structure with name and language
@@ -67,7 +69,7 @@ public class Library{
     /**
      * Gets index of a book by given book
      * @param givenBook
-     * @return Desired book or null in case of book is not in database
+     * @return searched book or null in case of book is not in database
      */
     private int getBookIndex(Book givenBook){
         for(int i = 0 ; i < books.size() ; ++i){
@@ -94,7 +96,7 @@ public class Library{
     /**
      * Get a specific book with name and language
      * @param name Name of the book
-     * @return desired book or null if book is not in library
+     * @return searched book or null if book is not in library
      */
     public Book getBook(String bookName, Language bookLanguage){
         for(int i = 0 ; i < books.size() ; ++i){
@@ -106,6 +108,23 @@ public class Library{
         return null;
     }
 
+    public int isLibrarian(String id){
+        for(int i = 0 ; i < librarians.size() ; ++i){
+            Librarian temp = librarians.get(i);
+            if(temp.getID().equals(id))
+                return i;
+        }
+        return -1;
+    }
+
+    public int isJanitor(String id){
+        for(int i = 0 ; i < janitors.size() ; ++i){
+            Janitor temp = janitors.get(i);
+            if(temp.getID().equals(id))
+                return i;
+        }
+        return -1;
+    }
 
 
     public int isInStock(String searchedBook, Language bookLanguage){
@@ -125,7 +144,7 @@ public class Library{
 
 
     /**
-     * Returns book amount of a specific book by name and language, 
+     * Returns book amount of a specific book by name and language 
      * @return Stock amount of desired book, -1 if book is not found
      */
     public int bookAmount(String bookName, Language bookLanguage){
@@ -146,11 +165,12 @@ public class Library{
      * @return true if book is added to the list, false if not.
      */
     public boolean demandBook(Book demandedBook){
+        //TODO
         return true;
     }
 
     /**
-     * 
+     * Add a new Janitor to the janitors list
      * @param janitor
      * @return true
      */
@@ -159,7 +179,7 @@ public class Library{
     }
 
     /**
-     * 
+     * Add a new Librarian to the librarians list
      * @param librarian
      * @return true
      */
@@ -167,13 +187,57 @@ public class Library{
         return librarians.add(librarian);
     }
 
+    /**
+     * Remove given Librarian from the librarians list
+     * @param librarian
+     * @return Removed Librarian
+     */
+    public Librarian removeLibrarian(Librarian librarian){
+        int index = librarians.indexOf(librarian);
 
+        return librarians.remove(index);
+    }
+
+    /**
+     * Get Librarian by their id
+     * @param id
+     * @return Searched Librarian
+     */
+    public Librarian getLibrarian(String id){
+        int index = isJanitor(id);
+        if(index == -1) return null;
+
+        return librarians.get(index);
+    }
+
+    /**
+     * Remove given Janitor.
+     * @param janitor
+     * @return removed Janitor, if janitor is not in the list return null
+     */
+    public Janitor removeJanitor(Janitor janitor){
+        int index = janitors.indexOf(janitor);
+        if(index == -1) return null;
+        return janitors.remove(index);
+    }
+
+    /**
+     * Get janitor by their id.
+     * @param id
+     * @return searched janitor, if janitor is not found returns null
+     */
+    public Janitor getJanitor(String id){
+        int index = isJanitor(id);
+        if(index == -1) return null;
+
+        return janitors.get(index);
+    }
     /**
      * Add event to the upcoming events list 
      * @param event
      * @return true
      */
-    public boolean addEvent(Event event){
+    public boolean addUpcomingEvent(Event event){
         return upcomingEvents.add(event);
     }
 
@@ -182,13 +246,30 @@ public class Library{
      * @param event
      * @return true
      */
-    public boolean deleteEvent(Event event){
-        upcomingEvents.remove(event);
-        return pastEvents.add(event);
+    public Event endEvent(Event event){
+        int index = upcomingEvents.indexOf(event);
+        if(index == -1) return null;
+        pastEvents.add(event);
+
+        return upcomingEvents.remove(index);
     }
 
     /**
-     * Returns nearest event as date
+     * Remove event from offered events list.
+     * @param event
+     * @return false if event is not in offeredEvents else true. 
+     */
+
+    public boolean removeEvent(Event event){
+        int index = offeredEvents.indexOf(event);
+        if(index == -1) return false;
+
+        offeredEvents.remove(index);
+        return true;
+    }
+
+    /**
+     * Returns nearest event
      * @return event
      */
     public Event getNearestEvent(){

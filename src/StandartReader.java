@@ -38,35 +38,42 @@ public class StandartReader extends User implements ActionListener
 	 * @return the Book that is borrowed, null if no books is borrowed.
 	 */
 	public Book borrowBook(Book borrowBook)
-	{
-		if(!searchBook(givenBook.getName(), givenBook.getLang()))
-		{
-			return null;
-		}
-		else
-		{
-			lib.changeStock(borrowBook, -1);
-			return borrowBook;
-		}
-	}
+	{}
 
-     /**
+    /**
 	 * returning the borrowed book
 	 * @return true if the returning is successful, false otherwise
 	 */
 	public boolean returnTheBook(int index)
-	{
-		int index=isBorrowed(returnedBook.getName(), returnedBook.getLang());
-		if(index==-1)
-			return false;
-		else
-		{
-			lib.changeStock(returnedBook, 1);
-		}
-	}
+	{}
 
+    /**
+	 * give comment for book
+	 * @return true if the commenting is successful, false otherwise
+	 */
+	public boolean commentBook(Book book , String comment)
+	{}
 
+    /**
+	 * viewing the events in the library
+	 * @return list of events in the library
+	 */
+	public Event view_events()
+	{}
 
+    /**
+	 * voting the event
+	 * @return voted event
+	 */
+	public Event vote_event(int vote , Event event)
+	{}
+
+    /**
+	 * participating the event
+	 * @return participated event
+	 */
+	public Event participate_event(int vote , Event event)
+	{}
 
     JPanel panel1;
     /**

@@ -16,6 +16,8 @@ public class StandartReader extends User implements ActionListener
     /**Holds the information of the library that this StandartUser is a member of*/
     Library lib;
 
+    LinkedList<Book> borrowedBooks;
+
     /**
 	 * Searches for a specific book in the library stock.
 	 * @return true if the book is found in the stock, false if not.

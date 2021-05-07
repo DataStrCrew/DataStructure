@@ -10,63 +10,71 @@ import javax.swing.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Admin extends User implements ActionListener{
 
+    LinkedList<Manager> Managers;
+    ArrayList<Library> Libraries;
+
+    /**
+     * Default constructor of Admin
+     */
+    /* It will add when we redesign this class.
+    public Admin(){super();}
+    */
+    /**
+    * Constructor of Admin.
+    * @param Library New Library
+    * @param Manager New Manager
+    */
+    public Admin(Library Library,Manager Manager)
+    {
+        Libraries = new LinkedList<Library>(Library);
+        Managers = new ArrayList<Managers>(Manager);
+    }
     /**
      * To add library in Data
-     * @param Library Library to add
-     * @return
+     * @param Library New Library to add
+     * @return true/false If Library adds to Libraries it will return true otherwise false.
      */
     public boolean addLibrary(Library Library)
     {
-        return Database.addLibrary(Library);
+        return Libraries.add(Library);
     }
     /**
      * To remove library from Data
      * @param ID Librarys' id
-     * @return
+     * @return true/false If Library id is true and removes it will return true otherwise false.
      */
-    public boolean removeLibrary(String ID)
-    {
-        return Database.removeLibrary(ID);
-    }
+    public boolean removeLibrary(String ID){}
     /**
      * To add manager in Data
-     * @param Manager Manager to add
-     * @return
+     * @param Manager New Manager to add
+     * @return true/false If Manager adds to Managers it will return true otherwise false.
      */
     public boolean addManager(Manager Manager)
     {
-        return Database.addManager(Manager);
+        return Managers.add(Manager);
     }
     /**
      * To remove manager in Data
      * @param ID Managers' id
-     * @return
+     * @return true/false If Manager id is true and removes it will return true otherwise false
      */
-    public boolean removeManager(String ID)
-    {
-        return Database.removeManager(ID);
-    }
+    public boolean removeManager(String ID){}
     /**
      * To search library information in Data
      * @param ID Librarys' id
-     * @return
+     * @return true/false If Library id finds it will return true otherwise false.
      */
-    public boolean searchLibrary(String ID)
-    {
-        return Database.searchLibrary(ID);
-    }
+    public boolean searchLibrary(String Address){}
     /**
      * To search manager information in Data
      * @param ID Managers' id
-     * @return
+     * @return true/false If Manager id finds it will return true otherwise false.
      */
-    public boolean searchManager(String ID)
-    {
-        return Database.searchManager(ID);
-    }
+    public boolean searchManager(String ID){}
     
 
     JPanel panel1;

@@ -19,10 +19,18 @@ public class Janitor extends User implements ActionListener{
 	PriorityQueue<Task> Tasks;
 	
     /**
+     * Constructor of Task
+     * @param Task New Task
+     */
+    public Janitor(Task Task)
+    {
+        Tasks = new PriorityQueue<Task>(Task);
+    }
+    /**
      * It views all of the task that belongs to janitor
      * @param
      */
-    public void viewTask(){}
+    public void viewTask(String ID){}
     /**
      * It updates specific task that belongs to janitor
      * @param TaskId TaskId for specific task
@@ -34,7 +42,10 @@ public class Janitor extends User implements ActionListener{
      * @param Ta New Task
      * @return
      */
-    public boolean addTask(Task Ta){}
+    public boolean addTask(Task New)
+    { 
+        return Tasks.add(New);
+    }
     
     
     JPanel panel1;

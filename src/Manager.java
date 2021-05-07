@@ -12,6 +12,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+/**
+ * @author yesimyalc
+ */
 public class Manager extends User implements ActionListener 
 {
 	Library lib;
@@ -34,7 +37,7 @@ public class Manager extends User implements ActionListener
 	 */
 	public Book removeBook(Book removedBook)
 	{
-		if(!search(removedBook))
+		if(!searchBook(removedBook.getName(), removedBook.getLang()))
 			return null;
 		else
 		{
@@ -263,7 +266,7 @@ public class Manager extends User implements ActionListener
 		 * If the librarian does not exist, returns -1
 		 * DELETE THIS LATER ON
 		 */
-		if(lib.isLibrarian(searchedLID)!=-1))
+		if(lib.isLibrarian(searchedLID)!=-1)
 			return true;
 		else
 			return false;

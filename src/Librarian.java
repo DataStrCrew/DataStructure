@@ -13,7 +13,6 @@ import java.util.ArrayList;
 /**
  * 
  * @author yesimyalc
- * @author I dunno who did the GUI you can add your name here
  */
 
 public class Librarian extends User implements ActionListener 
@@ -38,7 +37,7 @@ public class Librarian extends User implements ActionListener
 		if(searchBook(demandedBook.getName(), demandedBook.getLang()))
 			return false;
 		else
-			lib.demandBook(demandedBook);
+			return lib.demandBook(demandedBook);
 	}
 	
 	/**

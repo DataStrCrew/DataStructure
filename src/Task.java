@@ -6,18 +6,16 @@ public class Task implements Comparable
 	 private String TaskName;
 	 private boolean doneTask;
 	 
+	 /**
+	  * Constructor of janitor
+	  * @param ID
+	  * @param level
+	  */
 	 public Task(Integer ID, Integer level)
 	 {
 			TaskId=ID;
 			taskDifficulty=level;
 			doneTask=false;
-	 }
-	 
-	 public Task(Integer ID, Integer level, boolean isDone)
-	 {
-		 	TaskId=ID;
-			taskDifficulty=level;
-			doneTask=isDone;
 	 }
 
 	 	 /**

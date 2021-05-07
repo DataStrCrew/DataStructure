@@ -48,11 +48,18 @@ public class StandartReader extends User implements ActionListener
 	{}
 
     /**
-	 * give comment for book
+	 * leave a comment for the book
 	 * @return true if the commenting is successful, false otherwise
 	 */
 	public boolean commentBook(Book book , String comment)
 	{}
+
+    /**
+     * check whether the book is in the list of borrowed books
+     * @return true if the book is borrowed, false otherwise
+     */
+    public boolean isBorrowed(String bbokName, Language bookLanguage)
+    {}
 
 <<<<<<< Updated upstream
     /**

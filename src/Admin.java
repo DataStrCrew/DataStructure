@@ -14,8 +14,8 @@ import java.util.LinkedList;
 
 public class Admin extends User implements ActionListener{
 
-    LinkedList<Manager> Managers;
-    ArrayList<Library> Libraries;
+    List<Manager> Managers;
+    List<Library> Libraries;
 
     /**
      * Default constructor of Admin
@@ -30,7 +30,7 @@ public class Admin extends User implements ActionListener{
     */
     public Admin(Library Library,Manager Manager)
     {
-        Libraries = new LinkedList<Library>(Library);
+        Libraries = new ArrayList<Library>(Library);
         Managers = new ArrayList<Managers>(Manager);
     }
     /**

@@ -54,6 +54,7 @@ public class StandartReader extends User implements ActionListener
 	public boolean commentBook(Book book , String comment)
 	{}
 
+<<<<<<< Updated upstream
     /**
 	 * viewing the events in the library
 	 * @return list of events in the library
@@ -75,6 +76,8 @@ public class StandartReader extends User implements ActionListener
 	public Event participate_event(int vote , Event event)
 	{}
 
+=======
+>>>>>>> Stashed changes
     JPanel panel1;
     /**
      * Reader of the library

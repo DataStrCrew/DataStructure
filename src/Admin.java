@@ -14,7 +14,6 @@ import java.util.LinkedList;
 
 public class Admin extends User implements ActionListener{
 
-    List<Manager> Managers;
     List<Library> Libraries;
 
     /**
@@ -28,10 +27,9 @@ public class Admin extends User implements ActionListener{
     * @param Library New Library
     * @param Manager New Manager
     */
-    public Admin(Library Library,Manager Manager)
+    public Admin(Library Library)
     {
         Libraries = new ArrayList<Library>(Library);
-        Managers = new ArrayList<Managers>(Manager);
     }
     /**
      * To add library in Data
@@ -53,10 +51,7 @@ public class Admin extends User implements ActionListener{
      * @param Manager New Manager to add
      * @return true/false If Manager adds to Managers it will return true otherwise false.
      */
-    public boolean addManager(Manager Manager)
-    {
-        return Managers.add(Manager);
-    }
+    public boolean addManager(Manager Manager){}
     /**
      * To remove manager in Data
      * @param ID Managers' id

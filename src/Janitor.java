@@ -16,7 +16,7 @@ import java.util.PriorityQueue;
 
 public class Janitor extends User implements ActionListener{
 
-	PriorityQueue<Task> Tasks;
+	List<Task> Tasks;
 	
     /**
      * Constructor of Task
@@ -24,7 +24,7 @@ public class Janitor extends User implements ActionListener{
      */
     public Janitor(Task Task)
     {
-        Tasks = new PriorityQueue<Task>(Task);
+        Tasks = new ArrayList<Task>(Task);
     }
     /**
      * It views all of the task that belongs to janitor
@@ -92,6 +92,5 @@ public class Janitor extends User implements ActionListener{
             Admin admin = new Admin();
         }*/
     }
-
 
 }

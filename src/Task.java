@@ -7,7 +7,6 @@ import java.util.HashMap;
 
 public class Task implements Comparable
 {
-	 private Integer taskDifficulty;
 	 private HashMap<Integer, String> allTasks;
 	 private Integer TaskId;
 	 private String TaskName;
@@ -75,24 +74,6 @@ public class Task implements Comparable
 		return TaskName;
 	}
 
-	 /**
-     * Getter for taskDifficult
-     * @return 
-     */
-	public int getTaskDifficulty() 
-	{
-		return taskDifficulty;
-	}
-	
-    /**
-     * Setter for taskDifficult
-     * @param taskDifficulty Task difficulty of the task
-     */
-	public void setTaskDifficulty(int taskDifficulty) 
-	{
-		this.taskDifficulty = taskDifficulty;
-	}
-	
     /**
      * Setter for TaskId
      * @param taskId Task Id of the task

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 
 
 /**
@@ -17,11 +18,13 @@ import java.util.ArrayList;
 public class Library{
     private String name;
     private String address;
+    private int id;
 
-    ArrayList<Book> books;
+    BinarySearchTree<Publication> books;
+    ArrayList<Publication> demandedBooks;
     ArrayList<Integer> stocks;
+    PriorityQueue<Event> upcomingEvents;
     ArrayList<Event> pastEvents;
-    ArrayList<Event> upcomingEvents;
     ArrayList<Event> offeredEvents;
 
     Manager manager;
@@ -29,13 +32,14 @@ public class Library{
     ArrayList<Janitor> janitors;
     
 
-    Library(String name, String address){
+    public Library(String name, String address){
         this.name = name;
         this.address = address;
 
-        books = new ArrayList<Book>();
+        books = new BinarySearchTree<Publication>();
+        demandedBooks = new ArrayList<Publication>();
         pastEvents = new ArrayList<Event>();
-        upcomingEvents = new ArrayList<Event>();
+        upcomingEvents = new PriorityQueue<Event>();
         stocks = new ArrayList<Integer>();
 
         librarians = new ArrayList<Librarian>();
@@ -48,36 +52,15 @@ public class Library{
      * @param index
      * @return Desired book by index
      */
-    private Book getBook(int index){
-        return books.get(index);
+    private Publication getBook(Publication targetBook){
+        return books.find(targetBook);
     }
 
-
-    /**
-     * Gets index of a book in the data structure with name and language
-    * @param obj, book object
-    * @return index, If book is not in the database returns -1
-    */
-    private int getBookIndex(String bookName, Language bookLanguage){
-        for(int i = 0 ; i < books.size() ; ++i){
-            Book temp = getBook(i);
-            if(temp.getName().equals(bookName) && temp.getLang().equals(bookLanguage)) return i;
-        }
+    private int getBookIndex(String searchedBook, Language bookLanguage){
+        /*Todo*/
         return -1;
     }
 
-    /**
-     * Gets index of a book by given book
-     * @param givenBook
-     * @return searched book or null in case of book is not in database
-     */
-    private int getBookIndex(Book givenBook){
-        for(int i = 0 ; i < books.size() ; ++i){
-            Book temp = getBook(i);
-            if(temp.equals(givenBook)) return i;
-        }
-        return -1;
-    }
 
     private boolean changeStock(int index, int amount){
         if(index == -1) return false;
@@ -160,9 +143,9 @@ public class Library{
     
 
     /**
-     * Demands to add the book to demanded books list.
+     * Adds the book to demanded books list.
      * @param demandedBook
-     * @return true if book is added to the list, false if not.
+     * @return true
      */
     public boolean demandBook(Book demandedBook){
         //TODO

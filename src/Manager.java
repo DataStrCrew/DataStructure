@@ -53,7 +53,7 @@ public class Manager extends User implements ActionListener
 	 */
 	public boolean addLibrarian(Librarian newLibrarian)
 	{
-		/**
+		/*
 		 * Assumed that there is a method named addLibrarian(Librarian addedLibrarian) inside library class
 		 * This method adds the librarian to the librarians data field of library class
 		 * If the librarian already exists, throws an exception ?
@@ -75,7 +75,7 @@ public class Manager extends User implements ActionListener
 	 */
 	public Librarian removeLibrarian(Librarian oldLibrarian)
 	{
-		/**
+		/*
 		 * Assumed that there is a method names removeLibrarian(Librarian removedLibrarian) inside library class
 		 * This method removes the librarian from the librarians data field of library class.
 		 * If the librarian doesnt exists throws an exception ?

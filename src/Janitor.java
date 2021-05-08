@@ -12,11 +12,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
+import java.util.List;
+import java.util.Queue;
 
 
 public class Janitor extends User implements ActionListener{
 
-	private List<Task> Tasks;
+	private Queue<Task> Tasks;
 	
     /**
      * Constructor of Task
@@ -24,7 +26,7 @@ public class Janitor extends User implements ActionListener{
      */
     public Janitor(Task Task)
     {
-        Tasks = new ArrayList<Task>(Task);
+        Tasks = new Queue<Task>(Task);
     }
     /**
      * It views all of the task that belongs to janitor
@@ -44,7 +46,7 @@ public class Janitor extends User implements ActionListener{
      */
     public boolean addTask(Task New)
     { 
-        return Tasks.add(New);
+        return Tasks.push(New);
     }
     
     

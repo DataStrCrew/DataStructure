@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Abstract Publication class for all publications of the system.
@@ -11,8 +12,8 @@ public class AbstractPublication implements Publication {
     private static Integer nextID = 10000;
     private Language lang;
     private Integer page;
-    private final ArrayList<String> comments;
-
+    private final List<String> comments;
+    
     /**
      * Constructor for AbstractPublication.
      * @param nm Name of the publication.

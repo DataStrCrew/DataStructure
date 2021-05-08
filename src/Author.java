@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Author class for Automation System. Holds info of an Author.
@@ -8,7 +9,7 @@ public class Author {
     String name;
     String surname;
     String dateOfBirth;
-    ArrayList<Publication> publications;
+    List<Publication> publications;
 
     /**
      * Constructor for Author.

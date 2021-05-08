@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Event class for the Automation System.
@@ -9,7 +10,7 @@ public class Event {
 	
 	private String name;
 	private String date;
-	private ArrayList<StandartReader>participants;
+	private List<StandartReader>participants;
 	
 	
 	/**

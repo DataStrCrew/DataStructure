@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.PriorityQueue;
+import java.util.List;
 
 
 /**
@@ -18,23 +19,20 @@ import java.util.PriorityQueue;
 public class Library{
     private String name;
     private String address;
-<<<<<<< HEAD
     //private String ID;
-    ArrayList<Book> books;
-=======
     private int id;
 
-    BinarySearchTree<Publication> books;
-    ArrayList<Publication> demandedBooks;
->>>>>>> a784d9bb3fd4f730deccefb514f2e321df05da87
-    ArrayList<Integer> stocks;
+    BinarySearchTree<Publication> books;// books will be publications
     PriorityQueue<Event> upcomingEvents;
-    ArrayList<Event> pastEvents;
-    ArrayList<Event> offeredEvents;
+
+    List<Publication> demandedBooks;
+    List<Integer> stocks;
+    List<Event> pastEvents;
+    List<Event> offeredEvents;
 
     Manager manager;
-    ArrayList<Librarian> librarians;
-    ArrayList<Janitor> janitors;
+    List<Librarian> librarians;
+    List<Janitor> janitors;
     
 
     public Library(String name, String address){

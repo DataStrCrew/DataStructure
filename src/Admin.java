@@ -11,6 +11,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Admin extends User implements ActionListener{
 
@@ -27,9 +28,9 @@ public class Admin extends User implements ActionListener{
     * @param Library New Library
     * @param Manager New Manager
     */
-    public Admin(Library Library)
+    public Admin()
     {
-        Libraries = new ArrayList<Library>(Library);
+        Libraries = new ArrayList<Library>();
     }
     /**
      * To add library in Data

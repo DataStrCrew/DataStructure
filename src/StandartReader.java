@@ -16,7 +16,7 @@ public class StandartReader extends User implements ActionListener
     /**Holds the information of the library that this StandartUser is a member of*/
     Library lib;
 
-    LinkedList<Book> borrowedBooks;
+    List<Publication> borrowedBooks;
 
     /**
 	 * Searches for a specific book in the library stock.
@@ -63,7 +63,6 @@ public class StandartReader extends User implements ActionListener
     public boolean isBorrowed(String bbokName, Language bookLanguage)
     {}
 
-<<<<<<< Updated upstream
     /**
 	 * viewing the events in the library
 	 * @return list of events in the library
@@ -85,8 +84,7 @@ public class StandartReader extends User implements ActionListener
 	public Event participate_event(int vote , Event event)
 	{}
 
-=======
->>>>>>> Stashed changes
+
     JPanel panel1;
     /**
      * Reader of the library

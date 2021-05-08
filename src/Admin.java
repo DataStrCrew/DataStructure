@@ -14,7 +14,7 @@ import java.util.LinkedList;
 
 public class Admin extends User implements ActionListener{
 
-    List<Library> Libraries;
+    private List<Library> Libraries;
 
     /**
      * Default constructor of Admin

@@ -5,7 +5,7 @@ import java.util.HashMap;
  * @author musosman
  */
 
-public class Task implements Comparable
+public class Task
 {
 	 private HashMap<Integer, String> allTasks;
 	 private Integer TaskId;
@@ -17,12 +17,11 @@ public class Task implements Comparable
 	  * @param ID
 	  * @param level
 	  */
-	 public Task(Integer ID, Integer level)
+	 public Task(Integer level)
 	 {
 		 	setAllTasks();
-		 	
-		 	setTaskName(ID);
-			TaskId=ID;
+		 	//setTaskName(ID);
+			//TaskId=ID;
 			taskDifficulty=level;
 			doneTask=false;
 	 }
@@ -102,15 +101,5 @@ public class Task implements Comparable
 		return doneTask;
 	}
 	
-	/**
-	 * Firstly compares the difficulty levels of the tasks. 
-	 * If the difficulty levels are the same, then compares the taskNames in alphabetical order.
-	 * @return 0 if they are same, a value smaller than 0 if the current task is easier, a value bigger than 0 if the current task is harder�
-	 */
-	public int compareTo(Object o) 
-	{
-		int levelComparison=taskDifficulty.compareTo(((Task) o).getTaskDifficulty());
-		
-		return levelComparison;
-	}
+
 }

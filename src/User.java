@@ -13,21 +13,15 @@ public abstract class User extends JFrame implements Human{
     String password;
 
     /**
-     * Default Constructor of User
-     * @param
-     */
-    public User() {}
-    /**
      * Constructor of User
      * @param name Name of the User
      * @param surname Surname of the User
-     * @param ID ID of the User
      * @param password Password of the User
      */
-    public User(String name,String surname,String ID,String password){
+    public User(String name,String surname,String password){
         this.name = name;
         this.surname = surname;
-        this.ID = ID;
+        this.ID = null; //insert ID creating method here!!
         this.password = password;
     }
 

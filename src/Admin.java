@@ -17,21 +17,7 @@ public class Admin extends User implements ActionListener{
 
     private List<Library> Libraries;
 
-    /**
-     * Default constructor of Admin
-     */
-    /* It will add when we redesign this class.
-    public Admin(){super();}
-    */
-    /**
-    * Constructor of Admin.
-    * @param Library New Library
-    * @param Manager New Manager
-    */
-    public Admin()
-    {
-        Libraries = new ArrayList<Library>();
-    }
+   
     /**
      * To add library in Data
      * @param Library New Library to add
@@ -61,7 +47,7 @@ public class Admin extends User implements ActionListener{
     public boolean removeManager(String ID){}
     /**
      * To search library information in Data
-     * @param ID Librarys' id
+     * @param Address Librarys' id
      * @return true/false If Library id finds it will return true otherwise false.
      */
     public boolean searchLibrary(String Address){}

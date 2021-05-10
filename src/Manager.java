@@ -260,7 +260,7 @@ public class Manager extends User implements ActionListener
 	 */
 	public boolean searchLibrarian(String searchedLID)
 	{
-		/**
+		/*
 		 * Assumed that there is isLibrarian(int librarianID) method in library class
 		 * This method returns the index of the librarian inside the librarians data field in library class
 		 * If the librarian does not exist, returns -1

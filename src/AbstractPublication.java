@@ -125,7 +125,7 @@ public class AbstractPublication implements Publication {
      * @return Comments of the Publication.
      */
     @Override
-    public ArrayList<String> getComments() {
+    public List<String> getComments() {
         return comments;
     }
 
@@ -142,5 +142,10 @@ public class AbstractPublication implements Publication {
     public String toString(){
         return "Name: " + name + "\nPage Amount: " + page + "\nLanguage: " + lang + "\nID: " + id +
                 "\nAuthor's info:" + author + "\nComments: " + comments;
+    }
+
+    @Override
+    public int compareTo(Publication o) {
+        return id.compareTo(o.getID());
     }
 }

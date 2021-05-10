@@ -44,15 +44,12 @@ public class Library{
         pastEvents = new ArrayList<Event>();
         upcomingEvents = new PriorityQueue<Event>();
         stocks = new ArrayList<Integer>();
-
         librarians = new ArrayList<Librarian>();
         janitors = new ArrayList<Janitor>();
-        manager = new Manager();
     }
 
     /**
      * Get book with index
-     * @param index
      * @return Desired book by index
      */
     private Publication getBook(Publication targetBook){
@@ -81,7 +78,7 @@ public class Library{
     
     /**
      * Get a specific book with name and language
-     * @param name Name of the book
+     * @param bookName Name of the book
      * @return searched book or null if book is not in library
      */
     public Book getBook(String bookName, Language bookLanguage){
@@ -89,7 +86,7 @@ public class Library{
             Book tempBook = getBook(i);
             if(tempBook.getName().equals(bookName) && tempBook.getLang().equals(bookLanguage)){
                 return tempBook;
-            } 
+            }
         }
         return null;
     }

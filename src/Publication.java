@@ -1,11 +1,12 @@
-import java.util.ArrayList;
+
+import java.util.List;
 
 
 /**
  * Publication interface for all publications of the Library Automation System. (publication,Encyclopedia,Magazine)
  * @author gokbey_gazi_keskin
  * */
-public interface Publication {
+public interface Publication extends Comparable<Publication> {
     /**
      * Setter for Name
      * @param name Name of the publication.
@@ -71,7 +72,7 @@ public interface Publication {
      * Getter for comments of the publication.
      * @return An array list of comments.
      */
-    ArrayList<String> getComments();
+    List<String> getComments();
 
     /**
      * Add a new comment to publication.

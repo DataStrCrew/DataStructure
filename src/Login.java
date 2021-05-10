@@ -15,7 +15,6 @@ import java.util.logging.LogRecord;
 
 
 public class Login extends JFrame{
-
     JLabel label;
     JPanel panel1;
     JPanel panel2;

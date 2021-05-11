@@ -5,7 +5,6 @@ import java.util.List;
  * Reader of the library
  * @author Mustafa Gurler
  */
-<<<<<<< HEAD
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,8 +14,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-=======
->>>>>>> acab4655a1f197cc3e49d51cd584beda64ad786e
 
 
 public class StandartReader extends User

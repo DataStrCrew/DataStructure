@@ -17,9 +17,7 @@ public class Admin extends User{
 
     private List<Library> Libraries;
 
-<<<<<<< HEAD
-   
-=======
+
     /**
      * Default constructor of Admin
      */
@@ -34,7 +32,6 @@ public class Admin extends User{
         super(name,surname,pw);
         Libraries = new ArrayList<Library>();
     }
->>>>>>> acab4655a1f197cc3e49d51cd584beda64ad786e
     /**
      * To add library in Data
      * @param Library New Library to add

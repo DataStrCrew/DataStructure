@@ -24,3 +24,8 @@
 /StandartReader.class
 /Task.class
 /User.class
+/AdminGUI.class
+/JanitorGUI.class
+/LibrarianGUI.class
+/ManagerGUI.class
+/ReaderGUI.class

@@ -17,7 +17,6 @@ public class Admin extends User{
 
     private List<Library> Libraries;
 
-
     /**
      * Default constructor of Admin
      */
@@ -46,32 +45,90 @@ public class Admin extends User{
      * @param ID Librarys' id
      * @return true/false If Library id is true and removes it will return true otherwise false.
      */
-    public boolean removeLibrary(String ID){}
+    public boolean removeLibrary(String ID)
+    {
+    	for(int i=0 ; i < Libraries.size(); i++)
+    	{
+    		if(Libraries.get(i).getId() == ID )
+    		{
+    			Libraries.remove(i);
+    			return true;
+    		}
+    	}
+    	return false;
+    }
     /**
      * To add manager in Data
      * @param Manager New Manager to add
      * @return true/false If Manager adds to Managers it will return true otherwise false.
      */
-    public boolean addManager(Manager Manager){}
+    public boolean addManager(Manager Manager,String LibraryID)
+    {
+    	Library result = searchLibrary(LibraryID);
+    	if( result != null)
+    	{
+    		if (result.getManager() != null) {
+				return false;
+			}
+			else
+			{
+				result.setManager(Manager);
+			}
+    	}
+    	return false;    
+    }
     /**
      * To remove manager in Data
      * @param ID Managers' id
      * @return true/false If Manager id is true and removes it will return true otherwise false
      */
-    public boolean removeManager(String ID){}
+    public boolean removeManager(String ID,String LibraryID)
+    {
+    	Library result = searchLibrary(LibraryID);
+    	if( result != null)
+    	{
+    		if (result.getManager() != null) {
+				return false;
+			}
+			else
+			{
+				result.setManager(null);
+			}
+    	}
+    	
+    	return false;    	
+    }
     /**
      * To search library information in Data
      * @param Address Librarys' id
      * @return true/false If Library id finds it will return true otherwise false.
      */
-    public boolean searchLibrary(String Address){}
+    public Library searchLibrary(String ID)
+    {
+    	for(int i=0 ; i < Libraries.size(); i++)
+    	{
+    		if(Libraries.get(i).getId() == ID )
+    		{
+    			return Libraries.get(i);
+    		}
+    	}
+    	return null;
+    }
     /**
      * To search manager information in Data
      * @param ID Managers' id
      * @return true/false If Manager id finds it will return true otherwise false.
      */
-    public boolean searchManager(String ID){}
+    public Manager searchManager(String ID)
+    {
+    	for(int i=0 ; i < Libraries.size(); i++)
+    	{
+    		if(Libraries.get(i).getManager().getID() == ID )
+    		{
+    			return Libraries.get(i).getManager();
+    		}
+    	}
+    	return null;
+    }
     
-
-
 }

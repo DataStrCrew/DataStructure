@@ -22,7 +22,6 @@ public class Task
 		 	setAllTasks();
 		 	//setTaskName(ID);
 			//TaskId=ID;
-			taskDifficulty=level;
 			doneTask=false;
 	 }
 	 

@@ -17,28 +17,31 @@ import java.util.List;
 
 
 public class Library{
-    private String name;
+
+
+	private String name;
     private String address;
-    //private String ID;
-    private int id;
+    private String id;
+    private Manager manager;
 
-    BinarySearchTree<Publication> books;// books will be publications
-    PriorityQueue<Event> upcomingEvents;
+	private BinarySearchTree<Publication> books;// books will be publications
+    private PriorityQueue<Event> upcomingEvents;
 
-    List<Publication> demandedBooks;
-    List<Integer> stocks;
-    List<Event> pastEvents;
-    List<Event> offeredEvents;
+    private List<Publication> demandedBooks;
+    private List<Integer> stocks;
+    private List<Event> pastEvents;
+    private List<Event> offeredEvents;
 
-    Manager manager;
-    List<Librarian> librarians;
-    List<Janitor> janitors;
+    private List<Librarian> librarians;
+    private List<Janitor> janitors;
     
 
-    public Library(String name, String address){
+    public Library(String name,String address,String id){
         this.name = name;
         this.address = address;
-
+        this.id = id;
+        this.manager = null;
+        
         books = new BinarySearchTree<Publication>();
         demandedBooks = new ArrayList<Publication>();
         pastEvents = new ArrayList<Event>();
@@ -47,6 +50,38 @@ public class Library{
         librarians = new ArrayList<Librarian>();
         janitors = new ArrayList<Janitor>();
     }
+    
+    public Manager getManager() {
+		return manager;
+	}
+
+	public void setManager(Manager manager) {
+		this.manager = manager;
+	}
+
+    public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
     /**
      * Get book with index

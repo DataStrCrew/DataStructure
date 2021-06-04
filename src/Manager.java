@@ -18,8 +18,10 @@ import java.util.ArrayList;
 public class Manager extends User
 {
 	Library lib;
-	public Manager(String name,String surname,String pw){
+	public Manager(String name, String surname, String pw, Library workingLib)
+	{
 		super(name,surname,pw);
+		lib=workingLib;
 	}
 	/**
 	 * Adds a book to the library stock
@@ -55,19 +57,10 @@ public class Manager extends User
 	 */
 	public boolean addLibrarian(Librarian newLibrarian)
 	{
-		/*
-		 * Assumed that there is a method named addLibrarian(Librarian addedLibrarian) inside library class
-		 * This method adds the librarian to the librarians data field of library class
-		 * If the librarian already exists, throws an exception ?
-		 * DELETE THIS LATER ON
-		 */
 		if(searchLibrarian(newLibrarian.getID()))
 			return false;
 		else
-		{
-			lib.addLibrarian(newLibrarian);
-			return true;
-		}
+			return lib.addLibrarian(newLibrarian);
 	}
 	
 	/**
@@ -77,19 +70,13 @@ public class Manager extends User
 	 */
 	public Librarian removeLibrarian(Librarian oldLibrarian)
 	{
-		/*
-		 * Assumed that there is a method names removeLibrarian(Librarian removedLibrarian) inside library class
-		 * This method removes the librarian from the librarians data field of library class.
-		 * If the librarian doesnt exists throws an exception ?
-		 */
 		if(!searchLibrarian(oldLibrarian.getID()))
 			return null;
 		else
 		{
 			lib.removeLibrarian(oldLibrarian);
 			return oldLibrarian;
-		}
-			
+		}	
 	}
 	
 	/**
@@ -99,19 +86,10 @@ public class Manager extends User
 	 */
 	public boolean addJanitor(Janitor newJanitor)
 	{
-		/**
-		 * Assumed that there is a method named addJanitor(Janitor addedJanitor) inside library class
-		 * This method adds the janitor to the janitors data field of library class
-		 * If the janitor already exists, throws an exception ?
-		 * DELETE THIS LATER ON
-		 */
 		if(searchJanitor(newJanitor.getID()))
 			return false;
 		else
-		{
-			lib.addJanitor(newJanitor);
-			return true;
-		}
+			return lib.addJanitor(newJanitor);
 	}
 	
 	/**
@@ -121,12 +99,6 @@ public class Manager extends User
 	 */
 	public Janitor removeJanitor(Janitor oldJanitor)
 	{
-		/**
-		 * Assumed that there is a method names removeJanitor(Janitor removedJanitor) inside library class
-		 * This method removes the janitor from the janitors data field of library class.
-		 * If the janitor doesnt exists throws an exception ?
-		 * DELETE THIS LATER ON
-		 */
 		if(!searchJanitor(oldJanitor.getID()))
 			return null;
 		else
@@ -142,14 +114,8 @@ public class Manager extends User
 	 * @param theTask is the new task that will be added to a janitor
 	 * @return true if added, false if not
 	 */
-	public boolean addTasks(String janitorID, Task theTask)
+	public boolean addTasks(String janitorID, Integer theTaskID)
 	{
-		/*
-		 * Assumed that there is a getJanitor(int searchedJID) method inside library class.
-		 * This method returns the searched janitor.
-		 * Returns null if the janitor does not exist or throws exception ? 
-		 * DELETE THIS LATER ON
-		 */
 		/*
 		 * Assumed that there is addTask(Task newTask) method in janitor class.
 		 * This method adds the task to the janitor, returns true.
@@ -159,7 +125,7 @@ public class Manager extends User
 		if(!searchJanitor(janitorID))
 			return false;
 		else
-			return lib.getJanitor(janitorID).addTask(theTask);
+			return lib.getJanitor(janitorID).addTask(theTaskID);
 	}
 	
 	/**
@@ -169,8 +135,19 @@ public class Manager extends User
 	 */
 	public void arrangeBookDemands()
 	{
-		//Assumed that there is a demandedBooks data field in the library
-		//DELETE THIS LATER ON
+		/*
+		 * Assumed that there is a removeDemandedBook() method in Library class that removes the 
+		 * book in the last index of demandedBooks list and returns the removed book. Returns null
+		 * if there is no books to remove.
+		 */
+		//DELETE THIS LATER
+		Book demandedBook=lib.removeDemandedBook();
+		while(demandedBook!=null)
+		{
+			lib.changeStock(demandedBook, 1);
+			demandedBook=lib.removeDemandedBook();
+		}
+		while(demandedBook!=null);
 	}
 	
 	/**
@@ -178,7 +155,7 @@ public class Manager extends User
 	 */
 	public void listPastEvents()
 	{
-		//Fill later
+		lib.printPastEvents();
 	}
 	
 	/**
@@ -186,7 +163,7 @@ public class Manager extends User
 	 */
 	public void listUpcomingEvents()
 	{
-		//Fill later
+		lib.printUpcomingEvents();
 	}
 	
 	/**
@@ -207,33 +184,17 @@ public class Manager extends User
 	
 	public boolean declineEvent(Event newEvent)
 	{
-		/*
-		 * Assumed there is a offeredEvents data field in library class.
-		 */
-		/*
-		 * Assumed there is a removeEvent(Event removedEvent) method in library class
-		 * This method should return true after removing from offeredEvents data field. 
-		 * It should return false if the event is not in the offeredEvents list.
-		 * DELETE THIS LATER ON
-		 */
 		return lib.removeEvent(newEvent);
 	}
 	
 	/**
-	 * Moves an element from upcoming events to past events meaning it has ended.
-	 * @param endedEvent is the event that will be moved to pastEvenets
+	 * Moves the first element from upcoming events to past events meaning it has ended.
+	 * @param endedEvent is the event that will be moved to pastEvents
 	 * @return the removed event, null if nothing is removed
 	 */
-	public Event endEvent(Event endedEvent)
+	public Event endEvent()
 	{
-		/*
-		 * Assumed there is a endEvent(Event endedEvent) method in library class.
-		 * This method should remove the endedEvent from upcomingEvents and move it to pastEvents data field of library class.
-		 * Returns the removed event.
-		 * If the event is not found in upcomingEvents data field returns null.
-		 * DELETE THIS LATER ON
-		 */
-		return lib.endEvent(endedEvent);
+		return lib.endEvent();
 	}
 	
 	/**
@@ -242,10 +203,7 @@ public class Manager extends User
 	 */
 	public boolean searchBook(String bookName, Language bookLanguage)
 	{
-		if(lib.isInStock(bookName, bookLanguage)==-1)
-			return false;
-		else
-			return true;
+		return lib.isInStock(bookName, bookLanguage);
 	}
 	
 	/**
@@ -253,7 +211,12 @@ public class Manager extends User
 	 */
 	public void searchGenre(BookGenre searchedGenre)
 	{
-		//Fill later
+		/*
+		 * Assumed that there is a method in library that prints out all the
+		 * books with the given category.
+		 * Does not include the books with the same name more than once.
+		 */
+		lib.printGenre(searchedGenre);
 	}
 	
 	/**
@@ -262,12 +225,6 @@ public class Manager extends User
 	 */
 	public boolean searchLibrarian(String searchedLID)
 	{
-		/*
-		 * Assumed that there is isLibrarian(int librarianID) method in library class
-		 * This method returns the index of the librarian inside the librarians data field in library class
-		 * If the librarian does not exist, returns -1
-		 * DELETE THIS LATER ON
-		 */
 		if(lib.isLibrarian(searchedLID)!=-1)
 			return true;
 		else
@@ -276,17 +233,9 @@ public class Manager extends User
 	
 	public boolean searchJanitor(String searchedJID)
 	{
-		/**
-		 * Assumed that there is isJanitor(int JanitorID) method in library class
-		 * This method returns the index of the janitor inside the janitors data field in library class
-		 * If the janitor does not exist, returns -1
-		 * DELETE THIS LATER ON
-		 */
 		if(lib.isJanitor(searchedJID)!=-1)
 			return true;
 		else
 			return false;
 	}
-	
-
 }

@@ -20,8 +20,10 @@ public class Librarian extends User
 	/**Holds the information of the library that this Librarian is working in*/
 	Library lib;
 
-	public Librarian(String name,String surname, String pw){
+	public Librarian(String name,String surname, String pw, Library workingLib)
+	{
 		super(name,surname,pw);
+		lib=workingLib;
 	}
 
 	/**
@@ -33,11 +35,6 @@ public class Librarian extends User
 	 */
 	public boolean demandBooks(Book demandedBook)
 	{
-		/**
-		 * Assumed that there is a method called demandBook in library class that adds the book
-		 * to the demanded books list.
-		 * DELETE THIS COMMENT LATER ON
-		 */
 		if(searchBook(demandedBook.getName(), demandedBook.getLang()))
 			return false;
 		else
@@ -67,20 +64,10 @@ public class Librarian extends User
 	 */
 	public Book lendBook(Book givenBook, StandartReader customer)
 	{
-		/**
-		 * Assumed that there is a changeStock method in library class that adds or removes book from the library stock.
-		 * the parameter returnedBook is the book that will be added or removed
-		 * the parameter 1 is how much it will be added or removed 
-		 * Ex: 1 means 1 book will be added. -1 means 1 book will be removed
-		 * DELETE THIS COMMENT LATER ON
-		 */
-		/*
-		 * Also assumed borrowBook method of reader adds books to the reader's borrowedBook field
-		 * DELETE THIS COMMENT LATER ON
-		 */
 		if(!searchBook(givenBook.getName(), givenBook.getLang()))
 		{
-			demandBooks(givenBook);
+			if(customer instanceof PremiumReader)
+				demandBooks(givenBook);
 			return null;
 		}
 		else
@@ -100,29 +87,15 @@ public class Librarian extends User
 	public boolean relendBook(Book returnedBook, StandartReader customer)
 	{
 		/**
-		 * Assumed that there is a changeStock method in library class that adds or removes book from the library stock.
-		 * the parameter returnedBook is the book that will be added or removed
-		 * the parameter 1 is how much it will be added or removed 
-		 * Ex: 1 means 1 book will be added. -1 means 1 book will be removed
-		 * If the book does not exist in the stock and it is trying to be removed throws an exception ? or does not do anything ?
-		 * DELETE THIS COMMENT LATER ON
-		 */
-		/**
-		 * Assumed that there is a isBorrowed method in reader class that returns the index of the book in borrowedBooks field
-		 * Returns -1 if not found
-		 * DELETE THIS COMMENT LATER ON
-		 */
-		/**
 		 * Assumed returnTheBook removes the book in the given index from borrowedBooks field of the customer and adds it to pastReadBooks field.
 		 * DELETE THIS COMMENT LATER ON
 		 */
-		int index=customer.isBorrowed(returnedBook.getName(), returnedBook.getLang());
-		if(index==-1)
+		if(customer.isBorrowed(returnedBook.getName(), returnedBook.getLang()))
 			return false;
 		else
 		{
 			lib.changeStock(returnedBook, 1);
-			customer.returnTheBook(index);
+			customer.returnTheBook(returnedBook);
 		}
 	}
 	
@@ -134,14 +107,9 @@ public class Librarian extends User
 	{
 		/*
 		 * Assumed that there is an isInStock method in library class that returns
-		 * -1 if the book is not found and the index number if it is found.
+		 * False if the book is not found and true number if it is found.
 		 * DELETE THIS COMMENT LATER ON
 		 */
-		if(lib.isInStock(searchedBook, bookLanguage)!=-1)
-			return true;
-		else
-			return false;	
+		return lib.isInStock(searchedBook, bookLanguage)
 	}
-	
-
 }

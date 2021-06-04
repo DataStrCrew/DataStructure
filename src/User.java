@@ -5,7 +5,7 @@ import javax.swing.*;
  * @author gokbey_gazi_keskin
  * @author Mustafa Gurler
  * */
-public abstract class User extends JFrame implements Human{
+public abstract class User extends JFrame implements Person{
 
     String name;
     String surname;

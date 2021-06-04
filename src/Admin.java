@@ -16,7 +16,7 @@ import java.util.List;
 public class Admin extends User{
 
     private List<Library> Libraries;
-
+    
     /**
      * Default constructor of Admin
      */
@@ -87,7 +87,8 @@ public class Admin extends User{
     	Library result = searchLibrary(LibraryID);
     	if( result != null)
     	{
-    		if (result.getManager() != null) {
+    		if (result.getManager() != null) 
+    		{
 				return false;
 			}
 			else

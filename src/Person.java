@@ -3,7 +3,7 @@
  * User interface for all users of the Library Automation System.
  * @author gokbey_gazi_keskin
  * */
-public interface Human{
+public interface Person{
 
     /**
      * Setter for Name

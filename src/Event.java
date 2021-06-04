@@ -120,7 +120,7 @@ public class Event {
      * @return Participants of the event.
      */
     public ArrayList<StandartReader> getParticipants() {
-        return participants;
+        return (ArrayList<StandartReader>) participants;
     }
 	
     /**

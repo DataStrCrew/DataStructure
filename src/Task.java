@@ -8,7 +8,7 @@ import java.util.HashMap;
 public class Task
 {
 	 private HashMap<Integer, String> allTasks;
-	 private Integer TaskId;
+	 private String TaskId;
 	 private String TaskName;
 	 private boolean doneTask;
 	 
@@ -17,11 +17,10 @@ public class Task
 	  * @param ID
 	  * @param level
 	  */
-	 public Task(Integer level)
+	 public Task(String ID)
 	 {
 		 	setAllTasks();
-		 	//setTaskName(ID);
-			//TaskId=ID;
+			this.TaskId = ID;
 			doneTask=false;
 	 }
 	 
@@ -45,7 +44,7 @@ public class Task
 	  * If there is not a registered task for the given ID, throws an exception. 
 	  * @param ID is the given ID.
 	  */
-	 private void setTaskName(Integer ID)
+	 private void setTaskName(String ID)
 	 {
 		 String taskName=allTasks.get(ID);
 		 if(taskName==null)
@@ -58,7 +57,7 @@ public class Task
 	 * Getter for TaskId
 	 * @return
 	 */
-	public int getTaskId() 
+	public String getTaskId() 
 	{
 		return TaskId;
 	}
@@ -76,7 +75,7 @@ public class Task
      * Setter for TaskId
      * @param taskId Task Id of the task
      */
-	public void setTaskId(int taskId) 
+	public void setTaskId(String taskId) 
 	{
 		TaskId = taskId;
 		setTaskName(taskId);

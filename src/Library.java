@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.PriorityQueue;
 import java.util.List;
 
@@ -255,21 +256,27 @@ public class Library{
      * @param event
      * @return true
      */
-    public boolean addUpcomingEvent(Event event){
+    public boolean addUpcomingEvent(Event event)
+    {
+    	if(offeredEvents.contains(event))
+    		offeredEvents.remove(event);
+    	
         return upcomingEvents.add(event);
     }
 
     /**
-     * Delete last event from upcoming event list and add it to past events
+     * Delete first event from upcoming event list and add it to past events
      * @param event
      * @return true
      */
-    public Event endEvent(Event event){
-        int index = upcomingEvents.indexOf(event);
-        if(index == -1) return null;
-        pastEvents.add(event);
+    public Event endEvent(){
+    	
+    	Event endingEvent=upcomingEvents.poll();
+    	
+    	if(endingEvent!=null)
+    		pastEvents.add(endingEvent);
 
-        return upcomingEvents.remove(index);
+        return endingEvent;
     }
 
     /**
@@ -291,7 +298,41 @@ public class Library{
      * @return event
      */
     public Event getNearestEvent(){
-        return upcomingEvents.get(0);
+        return upcomingEvents.peek();
     }
-
+    
+    public void printPastEvents()
+    {
+    	Iterator<Event> iter=pastEvents.iterator();
+    	
+    	int i=1;
+    	while(iter.hasNext())
+    	{
+    		System.out.println(i+"-) "+iter.next());
+    		i++;
+    	}
+    }
+    
+    public void printUpcomingEvents()
+    {
+    	PriorityQueue<Event> temp=upcomingEvents;
+    	
+    	Event nextEvent=temp.poll();
+    	int i=1;
+    	while(nextEvent!=null)
+    	{
+    		System.out.println(i+"-) "+nextEvent);
+    		i++;
+    		nextEvent=temp.poll();
+    	}
+    }
+    
+    /**
+	 * Prints out all the books with the given category.
+	 * Does not include the books with the same name more than once.
+	 */
+    public void printGenre(BookGenre theGenre)
+    {
+    	
+    }
 }

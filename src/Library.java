@@ -64,6 +64,11 @@ public class Library{
 		return name;
 	}
 
+    public List<Event> getOfferedEvent()
+    {
+        return offeredEvents;
+    }
+
 	public void setName(String name) {
 		this.name = name;
 	}

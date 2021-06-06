@@ -5,15 +5,6 @@ import java.util.List;
  * Reader of the library
  * @author Mustafa Gurler
  */
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class StandartReader extends User
@@ -23,8 +14,10 @@ public class StandartReader extends User
 
     List<Publication> borrowedBooks;
 
-    public StandartReader(String name,String surname,String pw){
+    public StandartReader(String name,String surname,String pw, Library workingLib)
+	{
         super(name,surname,pw);
+		lib=workingLib;
         borrowedBooks = new LinkedList<>();
     }
     /**
@@ -33,11 +26,6 @@ public class StandartReader extends User
 	 */
 	public boolean searchBook(String searchedBook, Language bookLanguage)
 	{
-		/*
-		 * Assumed that there is an isInStock method in library class that returns
-		 * -1 if the book is not found and the index number if it is found.
-		 * DELETE THIS COMMENT LATER ON
-		 */
         return lib.isInStock(searchedBook, bookLanguage) != -1;
 	}
 
@@ -45,50 +33,77 @@ public class StandartReader extends User
 	 * borrowing the requested book if it is available in the library stocks
 	 * @return the Book that is borrowed, null if no books is borrowed.
 	 */
-	public Book borrowBook(Book borrowBook)
-	{}
+	public boolean borrowBook(Book borrowBook)
+	{
+		borrowedBooks.add(borrowBook);
+		return true;
+	}
 
     /**
 	 * returning the borrowed book
 	 * @return true if the returning is successful, false otherwise
 	 */
 	public boolean returnTheBook(int index)
-	{}
+	{
+		Publication book = borrowedBooks.get(index);
+		if(borrowedBooks.contains(book))
+		{
+			borrowedBooks.remove(index);
+			return true;
+		}
+		return false;
+	}
 
     /**
 	 * leave a comment for the book
 	 * @return true if the commenting is successful, false otherwise
 	 */
 	public boolean commentBook(Book book , String comment)
-	{}
+	{
+		return true;
+	}
 
     /**
      * check whether the book is in the list of borrowed books
      * @return true if the book is borrowed, false otherwise
      */
-    public boolean isBorrowed(String bbokName, Language bookLanguage)
-    {}
+    public boolean isBorrowed(String bookName, Language bookLanguage)
+    {
+		Publication book = new Book(bookName,null,bookLanguage,null,null);
+		if(borrowedBooks.contains(book))
+		{
+			return true;
+		}
+		return false;
+	}
 
     /**
 	 * viewing the events in the library
 	 * @return list of events in the library
 	 */
-	public Event view_events()
-	{}
+	public List<Event> view_events()
+	{
+		System.out.println(lib.getOfferedEvent());
+		return lib.getOfferedEvent();
+	}
 
     /**
 	 * voting the event
 	 * @return voted event
 	 */
-	public Event vote_event(int vote , Event event)
-	{}
+	public boolean vote_event(int vote , Event event)
+	{
+		return true;
+	}
 
     /**
 	 * participating the event
 	 * @return participated event
 	 */
-	public Event participate_event(int vote , Event event)
-	{}
+	public boolean participate_event(int vote , Event event)
+	{
+		return true;
+	}
 
 
 

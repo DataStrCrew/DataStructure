@@ -1,29 +1,34 @@
+import java.util.LinkedList;
+
 /**
  * Librarian of the library
  * @author Mustafa Gurler
  */
-public class PremiumReader extends StandartReader{
-    public PremiumReader() throws Exception {
-        super();
+public class PremiumReader extends StandartReader
+{
+    public PremiumReader(String name,String surname,String pw, Library workingLib) throws Exception 
+	{
+        super(name, surname, pw, workingLib);
+        borrowedBooks = new LinkedList<>();
     }
-
-    /**Holds the information of the library that this StandartUser is a member of*/
-    Library lib;
-
     
     /**
 	 * demand book
 	 * @return true if the commenting is successful, false otherwise
 	 */
-	public Book demandBook(Book book)
-	{}
+	public boolean demandBook(Book book)
+	{
+		return true;
+	}
 
     
     /**
 	 * creating event request
 	 * @return requested event
 	 */
-	public Event request_event(Event event)
-	{}
+	public boolean request_event(Event event)
+	{
+		return true;
+	}
 
 }

@@ -26,6 +26,12 @@ public class Admin extends User{
     /**
     * Constructor of Admin.
     */
+    public Admin()
+    {
+        super("name","surname","pw");
+        Libraries = new ArrayList<Library>();
+    }
+
     public Admin(String name,String surname,String pw)
     {
         super(name,surname,pw);

@@ -14,6 +14,13 @@ public class StandartReader extends User
 
     List<Publication> borrowedBooks;
 
+	public StandartReader()
+	{
+		super("name","surname","pw");
+		lib=null;
+        borrowedBooks = new LinkedList<>();
+	}
+
     public StandartReader(String name,String surname,String pw, Library workingLib)
 	{
         super(name,surname,pw);

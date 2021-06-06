@@ -18,6 +18,13 @@ import java.util.ArrayList;
 public class Manager extends User
 {
 	Library lib;
+
+	public Manager()
+	{
+		super("name","surname","pw");
+		lib=null;
+	}
+
 	public Manager(String name, String surname, String pw, Library workingLib)
 	{
 		super(name,surname,pw);
@@ -203,7 +210,11 @@ public class Manager extends User
 	 */
 	public boolean searchBook(String bookName, Language bookLanguage)
 	{
-		return lib.isInStock(bookName, bookLanguage);
+		if(lib.isInStock(bookName, bookLanguage) != 0)
+		{
+			return true;
+		}
+		return false;
 	}
 	
 	/**

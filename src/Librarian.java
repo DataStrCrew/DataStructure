@@ -20,6 +20,12 @@ public class Librarian extends User
 	/**Holds the information of the library that this Librarian is working in*/
 	Library lib;
 
+	public Librarian()
+	{
+		super("name","surname","pw");
+		lib=null;
+	}
+
 	public Librarian(String name,String surname, String pw, Library workingLib)
 	{
 		super(name,surname,pw);
@@ -96,6 +102,7 @@ public class Librarian extends User
 		{
 			lib.changeStock(returnedBook, 1);
 			customer.returnTheBook(returnedBook);
+			return true;
 		}
 	}
 	
@@ -110,6 +117,10 @@ public class Librarian extends User
 		 * False if the book is not found and true number if it is found.
 		 * DELETE THIS COMMENT LATER ON
 		 */
-		return lib.isInStock(searchedBook, bookLanguage)
+		if(lib.isInStock(searchedBook, bookLanguage) != 0)
+		{
+			return true;
+		}
+			return false;
 	}
 }

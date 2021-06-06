@@ -105,7 +105,7 @@ public class Author {
      * Getter for publications.
      * @return Publications of the author.
      */
-    public ArrayList<Publication> getPublications() {
+    public List<Publication> getPublications() {
         return publications;
     }
     @Override

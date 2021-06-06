@@ -36,14 +36,16 @@ public class Janitor extends User{
      * @param TaskId TaskId for specific task
      * @return
      */
-    public boolean updateTask(String TaskId){}
+    public boolean updateTask(String TaskId){return true;}
     /**
      * Adds the task to the janitors' task
      * @param newTask New Task
      * @return
      */
-    public boolean addTask(Task newTask)
+    public boolean addTask(int theTaskID)
     { 
+        String str_task = String.valueOf(theTaskID);
+        Task newTask = new Task(str_task);
         return Tasks.offer(newTask);
     }
     

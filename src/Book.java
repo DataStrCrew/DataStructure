@@ -13,6 +13,12 @@ public class Book extends AbstractPublication {
      * @param pg Page amounr of the Publication.
      * @param genre Genre of the book.
      */
+
+    public Book() {
+        super(null, null, null, null);
+        this.genre = null;
+    }
+
     public Book(String nm, Author athr, Language lng, Integer pg,BookGenre genre) {
         super(nm, athr, lng, pg);
         this.genre = genre;

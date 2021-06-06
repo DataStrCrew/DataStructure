@@ -193,6 +193,12 @@ public class Library{
         return true;
     }
 
+    public Book removeDemandedBook()
+    {
+        Book book = new Book();
+        return book;
+    }
+
     /**
      * Add a new Janitor to the janitors list
      * @param janitor

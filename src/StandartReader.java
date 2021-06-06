@@ -43,12 +43,11 @@ public class StandartReader extends User
 	 * returning the borrowed book
 	 * @return true if the returning is successful, false otherwise
 	 */
-	public boolean returnTheBook(int index)
-	{
-		Publication book = borrowedBooks.get(index);
-		if(borrowedBooks.contains(book))
+	public boolean returnTheBook(Book returningBook)
+	{;
+		if(borrowedBooks.contains(returningBook))
 		{
-			borrowedBooks.remove(index);
+			borrowedBooks.remove(returningBook);
 			return true;
 		}
 		return false;

@@ -35,7 +35,7 @@ public class Manager extends User
 	 * @param addedBook is the book that will be added.
 	 * @return the added book
 	 */
-	public Book addBook(Book addedBook)
+	public Publication addBook(Publication addedBook)
 	{
 		lib.changeStock(addedBook, 1);
 		return addedBook;
@@ -46,7 +46,7 @@ public class Manager extends User
 	 * @param removedBook is the book that will be removed from the stock
 	 * @return the removed book. If the book is not in the stock, returns null.
 	 */
-	public Book removeBook(Book removedBook)
+	public Publication removeBook(Publication removedBook)
 	{
 		if(!searchBook(removedBook.getName(), removedBook.getLang()))
 			return null;
@@ -148,7 +148,7 @@ public class Manager extends User
 		 * if there is no books to remove.
 		 */
 		//DELETE THIS LATER
-		Book demandedBook=lib.removeDemandedBook();
+		Publication demandedBook=lib.removeDemandedBook();
 		while(demandedBook!=null)
 		{
 			lib.changeStock(demandedBook, 1);

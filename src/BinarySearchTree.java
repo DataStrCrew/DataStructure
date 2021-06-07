@@ -6,11 +6,10 @@
 public class BinarySearchTree<E extends Comparable<E>>
          extends BinaryTree<E> {
  
-
     /** Return value from the public add method. */
-    protected boolean addReturn;
+    protected boolean isAdded;
     /** Return value from the public delete method. */
-    protected E deleteReturn;
+    protected E removed;
 
     /**
      * find method.
@@ -27,19 +26,17 @@ public class BinarySearchTree<E extends Comparable<E>>
      * @param target The object being sought
      * @return The object, if found, otherwise null
      */
-    private E find(Node<E> localRoot, E target) {
-        if (localRoot == null) {
+    private E find(Node<E> localRoot, E target) 
+    {
+        if (localRoot == null) 
             return null;
-        }
-
         int compResult = target.compareTo(localRoot.data);
-        if (compResult == 0) {
+        if (compResult == 0) 
             return localRoot.data;
-        } else if (compResult < 0) {
+        else if (compResult < 0)
             return find(localRoot.left, target);
-        } else {
+        else
             return find(localRoot.right, target);
-        }
     }
     /**
      * add method.
@@ -47,9 +44,12 @@ public class BinarySearchTree<E extends Comparable<E>>
      * @return true if the object is inserted, false
      *         if the object already exists in the tree
      */
-    public boolean add(E item) {
-        root = add(root, item);
-        return addReturn;
+    public boolean add(E item) 
+    {
+    	isAdded=false;
+		root=add(root, item);
+				
+		return isAdded;
     }
 
     /**
@@ -59,17 +59,25 @@ public class BinarySearchTree<E extends Comparable<E>>
      * @return The new local root that now contains the
      *         inserted item
      */
-    private Node<E> add(Node<E> localRoot, E item) {
-        if (localRoot == null) {
-            addReturn = true;
+    private Node<E> add(Node<E> localRoot, E item) 
+    {
+        if (localRoot == null) 
+        {
+            isAdded = true;
             return new Node<E>(item);
-        } else if (item.compareTo(localRoot.data) == 0) {
-            addReturn = false;
+        } 
+        else if (item.compareTo(localRoot.data) == 0) 
+        {
+            isAdded = false;
             return localRoot;
-        } else if (item.compareTo(localRoot.data) < 0) {
+        }
+        else if (item.compareTo(localRoot.data) < 0) 
+        {
             localRoot.left = add(localRoot.left, item);
             return localRoot;
-        } else {
+        } 
+        else 
+        {
             localRoot.right = add(localRoot.right, item);
             return localRoot;
         }
@@ -83,9 +91,12 @@ public class BinarySearchTree<E extends Comparable<E>>
      * @throws ClassCastException if target does not implement
      *         Comparable
      */
-    public E delete(E target) {
-        root = delete(root, target);
-        return deleteReturn;
+    public E delete(E target) 
+    {
+    	removed=null;
+		root=delete(root, target);
+		
+		return removed;
     }
 
     /**
@@ -95,36 +106,66 @@ public class BinarySearchTree<E extends Comparable<E>>
      * @return The modified local root that does not contain
      *         the item
      */
-    private Node<E> delete(Node<E> localRoot, E item) {
-        if (localRoot == null) {
-            deleteReturn = null;
-            return localRoot;
-        }
-
-        int compResult = item.compareTo(localRoot.data);
-        if (compResult < 0) {
-            localRoot.left = delete(localRoot.left, item);
-            return localRoot;
-        } else if (compResult > 0) {
-            localRoot.right = delete(localRoot.right, item);
-            return localRoot;
-        } else {
-            deleteReturn = localRoot.data;
-            if (localRoot.left == null) {
-                return localRoot.right;
-            } else if (localRoot.right == null) {
-                return localRoot.left;
-            } else {
-                if (localRoot.left.right == null) {
-                    localRoot.data = localRoot.left.data;
-                    localRoot.left = localRoot.left.left;
-                    return localRoot;
-                } else {
-                    localRoot.data = findLargestChild(localRoot.left);
-                    return localRoot;
-                }
-            }
-        }
+    private Node<E> delete(Node<E> localRoot, E item) 
+    {
+    	if (localRoot == null) 
+		 {
+			 // item is not in the tree.
+			 removed = null;
+			 return localRoot;
+		 }
+		 // Search for item to delete.
+		 int compResult = ((Comparable<E>)item).compareTo(localRoot.data);
+		 if (compResult < 0) 
+		 {
+			 // item is smaller than localRoot.data.
+			 localRoot.left = delete(localRoot.left, item);
+			 return localRoot;
+		 } 
+		 else if (compResult > 0) 
+		 {
+			 // item is larger than localRoot.data.
+			 localRoot.right = delete(localRoot.right, item);
+			 return localRoot;
+		 } 
+		 else 
+		 {
+			 // item is at local root.
+			 removed = localRoot.data;
+			 if (localRoot.left == null) 
+			 {
+				 // If there is no left child, return right child
+				 // which can also be null.
+				 return localRoot.right;
+			 } 
+			else if (localRoot.right == null) 
+			{
+				 // If there is no right child, return left child.
+				 return localRoot.left;
+			} 
+			else 
+			{
+				 // Node being deleted has 2 children, replace the data
+				 // with inorder predecessor. 
+				 if (localRoot.left.right == null) 
+				 {
+					 // The left child has no right child.
+					 // Replace the data with the data in the
+					 // left child.
+					 localRoot.data = localRoot.left.data;
+					 // Replace the left child with its left child.
+					 localRoot.left = localRoot.left.left;
+					 return localRoot;
+				 } 
+				 else 
+				 {
+					 // Search for the inorder predecessor (ip) and
+					 // replace deleted node's data with ip.
+					 localRoot.data = findLargestChild(localRoot.left);
+					 return localRoot;
+				 }
+			 }
+		 }
     }
 
     /**
@@ -134,15 +175,31 @@ public class BinarySearchTree<E extends Comparable<E>>
      * @param parent 
      * @return The data in the ip
      */
-    private E findLargestChild(Node<E> parent) {
+    private E findLargestChild(Node<E> parent) 
+    {
         // If the right child has no right child, it is
         // the inorder predecessor.
-        if (parent.right.right == null) {
+        if (parent.right.right == null) 
+        {
             E returnValue = parent.right.data;
             parent.right = parent.right.left;
             return returnValue;
-        } else {
+        } 
+        else 
+        {
             return findLargestChild(parent.right);
         }
     }
+    
+    /**
+	 * @param target is the element that will be searched inside the tree
+	 * @return true if the element is found, false if not
+	 */
+	public boolean contains(E target) 
+	{
+		if(find(target)!=null)
+			return true;
+		
+		return false;
+	}
 }

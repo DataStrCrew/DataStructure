@@ -39,7 +39,7 @@ public class Librarian extends User
 	 * @param demandedBook is the book that will be demanded.
 	 * @return true if the book is added to the demanded books list, false if not.
 	 */
-	public boolean demandBooks(Book demandedBook)
+	public boolean demandBooks(Publication demandedBook)
 	{
 		if(searchBook(demandedBook.getName(), demandedBook.getLang()))
 			return false;
@@ -68,7 +68,7 @@ public class Librarian extends User
 	 * @param givenBook is the book that will be lend.
 	 * @return the Book that is lend, null if no books is lend.
 	 */
-	public Book lendBook(Book givenBook, StandartReader customer)
+	public Book lendBook(Publication givenBook, StandartReader customer)
 	{
 		if(!searchBook(givenBook.getName(), givenBook.getLang()))
 		{
@@ -90,7 +90,7 @@ public class Librarian extends User
 	 * If the book is not in borrowedBooks section of the customer then does not do anything. 
 	 * @return true if relend is done, false if not.
 	 */
-	public boolean relendBook(Book returnedBook, StandartReader customer)
+	public boolean relendBook(Publication returnedBook, StandartReader customer)
 	{
 		/**
 		 * Assumed returnTheBook removes the book in the given index from borrowedBooks field of the customer and adds it to pastReadBooks field.

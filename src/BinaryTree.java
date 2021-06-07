@@ -102,13 +102,24 @@ public class BinaryTree<E> implements Serializable {
      * @return the data field of the root
      *         or null if the root is null
      */
-    public E getData() {
-        if (root != null) {
-            return root.data;
-        } else {
-            return null;
-        }
+    public E getRoot()
+	{
+		if (root != null) 
+	        return root.data;
+	    else
+	        return null;
     }
+    
+    /**
+	 * @return true if empty, false if not 
+	 */
+	public boolean isEmpty()
+	{
+		if(root==null)
+			return true;
+		
+		return false;
+	}
 
     /**
      * Determine whether this tree is a leaf.
@@ -165,5 +176,28 @@ public class BinaryTree<E> implements Serializable {
             return new BinaryTree<String>(data, leftTree, rightTree);
         }
     }
+    
+    /**
+	 * Prints the tree inOrder form.
+	 */
+	private void inOrderPrint(Node<E> node)
+	{
+		if(node==null)
+			return;
+		else
+		{
+			inOrderPrint(node.left);
+			System.out.println(node.toString());
+			inOrderPrint(node.right);
+		}
+	}
+	
+	/**
+	 * Prints the tree inOrder form.
+	 */
+	public void inOrderPrint()
+	{
+		inOrderPrint(root);
+	}
 
 }

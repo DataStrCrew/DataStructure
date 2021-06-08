@@ -18,6 +18,7 @@ public class PremiumReader extends StandartReader
 	 */
 	public boolean demandBook(Book book)
 	{
+		lib.getDemandedBooks().add(book);
 		return true;
 	}
 
@@ -28,6 +29,7 @@ public class PremiumReader extends StandartReader
 	 */
 	public boolean request_event(Event event)
 	{
+		lib.getUpcomingEvents().add(event);
 		return true;
 	}
 

@@ -4,7 +4,7 @@
  */
 public class Book extends AbstractPublication {
     private BookGenre genre;
-
+    private String comment;
     /**
      * Constructor for Book.
      * @param nm Name of the publication.
@@ -35,6 +35,16 @@ public class Book extends AbstractPublication {
      * @return Genre of the book.
      */
     public BookGenre getGenre(){return genre;}
+
+    public String getComment()
+    {
+        return comment;
+    }
+
+    public void setComment(String comment)
+    {
+        this.comment = comment;
+    }
 
     @Override
     public String toString() {

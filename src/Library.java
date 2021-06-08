@@ -89,6 +89,17 @@ public class Library{
 		this.id = id;
 	}
 
+    public List<Publication> getDemandedBooks()
+    {
+        return demandedBooks;
+    }
+
+    public PriorityQueue<Event> getUpcomingEvents()
+    {
+        return upcomingEvents;
+    }
+
+
     /**
      * Get book with index
      * @return Desired book by index
@@ -188,7 +199,7 @@ public class Library{
      * @param demandedBook
      * @return true
      */
-    public boolean demandBook(Book demandedBook){
+    public boolean demandBook(Publication demandedBook){
         //TODO
         return true;
     }

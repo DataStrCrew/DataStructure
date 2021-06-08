@@ -42,8 +42,14 @@ public class StandartReader extends User
 	 */
 	public boolean borrowBook(Book borrowBook)
 	{
-		borrowedBooks.add(borrowBook);
-		return true;
+		String book_name = borrowBook.getName();
+		Language book_lan = borrowBook.getLang();
+		if(searchBook(book_name,book_lan))
+		{
+			borrowedBooks.add(borrowBook);
+			return true;
+		}
+		return false;
 	}
 
     /**
@@ -66,7 +72,12 @@ public class StandartReader extends User
 	 */
 	public boolean commentBook(Book book , String comment)
 	{
-		return true;
+		if(isBorrowed(book.getName(), book.getLang()))
+		{
+			book.setComment(comment);
+			return true;
+		}
+		return false;
 	}
 
     /**
@@ -106,9 +117,14 @@ public class StandartReader extends User
 	 * participating the event
 	 * @return participated event
 	 */
-	public boolean participate_event(int vote , Event event)
+	public boolean participate_event(Event event)
 	{
-		return true;
+		if(event.getParticipants().contains(this) == false)
+		{
+			event.addParticipant(this);
+			return true;
+		}
+		return false;
 	}
 
 

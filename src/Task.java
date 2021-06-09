@@ -20,7 +20,7 @@ public class Task
 	 public Task(String ID)
 	 {
 		 	setAllTasks();
-			this.TaskId = ID;
+			this.TaskId=ID;
 			doneTask=false;
 	 }
 	 
@@ -46,11 +46,13 @@ public class Task
 	  */
 	 private void setTaskName(String ID)
 	 {
-		 String taskName=allTasks.get(ID);
+		 int id=Integer.parseInt(ID);
+		 String taskName=allTasks.get(id);
 		 if(taskName==null)
 			 throw new IllegalArgumentException();
-		 else
+		 else {
 			 TaskName=taskName;
+		 }
 	 }
 	 
 	 /**

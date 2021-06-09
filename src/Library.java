@@ -25,7 +25,7 @@ public class Library{
     private String id;
     private Manager manager;
 
-	private BinarySearchTree<Publication> books;// books will be publications
+	private AVLTree<Publication> books;
     private PriorityQueue<Event> upcomingEvents;
 
     private List<Publication> demandedBooks;
@@ -35,7 +35,21 @@ public class Library{
 
     private List<Librarian> librarians;
     private List<Janitor> janitors;
-    
+
+    public Library(){
+        this.name = null;
+        this.address = null;
+        this.id = null;
+        this.manager = null;
+
+        books = new AVLTree<Publication>();
+        demandedBooks = new ArrayList<Publication>();
+        pastEvents = new ArrayList<Event>();
+        upcomingEvents = new PriorityQueue<Event>();
+        stocks = new ArrayList<Integer>();
+        librarians = new ArrayList<Librarian>();
+        janitors = new ArrayList<Janitor>();
+    }
 
     public Library(String name,String address,String id){
         this.name = name;
@@ -43,7 +57,7 @@ public class Library{
         this.id = id;
         this.manager = null;
         
-        books = new BinarySearchTree<Publication>();
+        books = new AVLTree<Publication>();
         demandedBooks = new ArrayList<Publication>();
         pastEvents = new ArrayList<Event>();
         upcomingEvents = new PriorityQueue<Event>();

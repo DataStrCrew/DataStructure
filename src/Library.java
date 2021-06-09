@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.PriorityQueue;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 
 
 
-//TODO: Find better solution for mapping books to stocks
+//TODO: Find better solution for mapping publications to stocks
 //Change data structure of events to queue
 //Add demandedBooks list (?)
 //Implement demandBook method
@@ -25,11 +26,12 @@ public class Library{
     private String id;
     private Manager manager;
 
-	private AVLTree<Publication> books;
+    private AVLTree<Publication> publications;
+    private HashMap<String,Integer> stocks;
     private PriorityQueue<Event> upcomingEvents;
 
     private List<Publication> demandedBooks;
-    private List<Integer> stocks;
+    
     private List<Event> pastEvents;
     private List<Event> offeredEvents;
 
@@ -42,11 +44,11 @@ public class Library{
         this.id = null;
         this.manager = null;
 
-        books = new AVLTree<Publication>();
+        publications = new AVLTree<Publication>();
         demandedBooks = new ArrayList<Publication>();
         pastEvents = new ArrayList<Event>();
         upcomingEvents = new PriorityQueue<Event>();
-        stocks = new ArrayList<Integer>();
+        stocks = new HashMap<String,Integer>();
         librarians = new ArrayList<Librarian>();
         janitors = new ArrayList<Janitor>();
     }
@@ -57,11 +59,11 @@ public class Library{
         this.id = id;
         this.manager = null;
         
-        books = new AVLTree<Publication>();
+        publications = new AVLTree<Publication>();
         demandedBooks = new ArrayList<Publication>();
         pastEvents = new ArrayList<Event>();
         upcomingEvents = new PriorityQueue<Event>();
-        stocks = new ArrayList<Integer>();
+        stocks = new HashMap<String,Integer>();
         librarians = new ArrayList<Librarian>();
         janitors = new ArrayList<Janitor>();
     }
@@ -113,48 +115,13 @@ public class Library{
         return upcomingEvents;
     }
 
-
     /**
-     * Get book with index
-     * @return Desired book by index
+     * Get a specific publication with name and language
+     * @param bookName Name of the publication
+     * @return searched publication or null if publication is not in library
      */
-    private Publication getBook(Publication targetBook){
-        return books.find(targetBook);
-    }
-
-    private int getBookIndex(String searchedBook, Language bookLanguage){
-        /*Todo*/
-        return -1;
-    }
-
-
-    private boolean changeStock(int index, int amount){
-        if(index == -1) return false;
-
-        int val = stocks.get(index);
-        val += amount;
-
-        if(val < 0) val = 0;
-        
-        stocks.add(index, val);
-        return true;
-        
-    }
-
-    
-    /**
-     * Get a specific book with name and language
-     * @param bookName Name of the book
-     * @return searched book or null if book is not in library
-     */
-    public Book getBook(String bookName, Language bookLanguage){
-        for(int i = 0 ; i < books.size() ; ++i){
-            Book tempBook = getBook(i);
-            if(tempBook.getName().equals(bookName) && tempBook.getLang().equals(bookLanguage)){
-                return tempBook;
-            }
-        }
-        return null;
+    public Publication getBook(String bookName, Language bookLanguage){
+        return publications.find(new Book(bookName,null,bookLanguage,null,null));
     }
 
     public int isLibrarian(String id){
@@ -176,52 +143,74 @@ public class Library{
     }
 
 
-    public int isInStock(String searchedBook, Language bookLanguage){
-        return getBookIndex(searchedBook, bookLanguage);
-    }
-
     /**
-     * Changes stock of given book by given amount
-     * @param givenBook
-     * @return true if stock of given book is > 0 else false
+     * Checks if given publication exists in stock
+     * @param searchedBook
+     * @param bookLanguage
+     * @return true if publication's stock is bigger than 0 else false
      */
-    public boolean changeStock(Book givenBook, int amount){
-        int temp = getBookIndex(givenBook);
-
-        return changeStock(givenBook, amount);
+    public boolean isInStock(String searchedBook, Language bookLanguage){
+        if(!stocks.containsKey(searchedBook)) return false;
+        return (stocks.get(searchedBook) > 0);
     }
 
 
     /**
-     * Returns book amount of a specific book by name and language 
-     * @return Stock amount of desired book, -1 if book is not found
+     * Change publication with given name's stock by given amount
+     * @param name
+     * @param amount
+     * @return true if given string is not null
+     */
+    private boolean changeStock(String name, int amount){
+        if(name == null) return false;
+
+        int val = stocks.get(name);
+        val += amount;
+        if(val < 0) val = 0;
+        stocks.put(name,val);
+        
+        return true;
+        
+    }
+
+    /**
+     * Changes stock of given publication by given amount
+     * if given publication is not in the library, adds to the library.
+     * @param givenBook
+     * @return true
+     */
+    public boolean changeStock(Publication givenPublication, int amount){
+        if(!publications.contains(givenPublication)){
+            publications.add(givenPublication);
+            stocks.put(givenPublication.getName(), 0);
+        }
+        return changeStock(givenPublication.getName(), amount);
+    }
+
+
+    /**
+     * Returns publication amount of a specific publication by name and language 
+     * @return Stock amount of desired publication, -1 if publication is not found
      */
     public int bookAmount(String bookName, Language bookLanguage){
-        int index = getBookIndex(bookName, bookLanguage);
-    
-        if(index == -1){
-            return -1;
-        }
-        return stocks.get(index);
+        return stocks.get(bookName);
     }
 
-    
-    
 
     /**
-     * Adds the book to demanded books list.
+     * Adds the publication to demanded publications list.
      * @param demandedBook
      * @return true
      */
     public boolean demandBook(Publication demandedBook){
-        //TODO
-        return true;
+        return demandedBooks.add(demandedBook);
     }
 
-    public Book removeDemandedBook()
+    public Publication removeDemandedBook()
     {
-        Book book = new Book();
-        return book;
+        if(demandedBooks.size() == 0) return null;
+
+        return demandedBooks.remove(demandedBooks.size() - 1);
     }
 
     /**
@@ -364,8 +353,8 @@ public class Library{
     }
     
     /**
-	 * Prints out all the books with the given category.
-	 * Does not include the books with the same name more than once.
+	 * Prints out all the publications with the given category.
+	 * Does not include the publications with the same name more than once.
 	 */
     public void printGenre(BookGenre theGenre)
     {

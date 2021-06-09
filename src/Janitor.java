@@ -1,5 +1,6 @@
 /**
  * Janitor of the library
+ * @author mehmet_acar
  * @author Mustafa Gurler
  */
 
@@ -30,13 +31,28 @@ public class Janitor extends User{
      * It views all of the task that belongs to janitor
      * @param
      */
-    public void viewTask(String ID){}
+    public void viewTask(String ID){
+    	for (Task element : Tasks)
+        {
+            	System.out.println(element.getTaskName());
+        }
+    }
+ 
     /**
      * It updates specific task that belongs to janitor
      * @param TaskId TaskId for specific task
      * @return
      */
-    public boolean updateTask(String TaskId){return true;}
+    public boolean updateTask(String TaskId){
+    	for (Task element : Tasks)
+        {
+          if(element.getTaskId()==TaskId) {
+        	 element.setDoneTask(true);
+        	 return true;
+          }
+        }
+    	return false;
+    }
     /**
      * Adds the task to the janitors' task
      * @param newTask New Task

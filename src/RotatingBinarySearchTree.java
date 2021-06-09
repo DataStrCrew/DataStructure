@@ -1,6 +1,17 @@
 
 public class RotatingBinarySearchTree<E extends Comparable<E>> extends BinarySearchTree<E>
 {
+	public RotatingBinarySearchTree()
+	{
+		super();
+	}
+	
+	public RotatingBinarySearchTree(E item)
+	{
+		super();
+		add(item);
+	}
+	
 	protected Node<E> rotateLeft(Node<E> node)
 	{
 		Node<E> temp=node.right;

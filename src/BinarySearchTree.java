@@ -11,6 +11,17 @@ public class BinarySearchTree<E extends Comparable<E>>
     /** Return value from the public delete method. */
     protected E removed;
 
+    public BinarySearchTree()
+    {
+    	super();
+    }
+    
+    public BinarySearchTree(E item)
+    {
+    	super();
+    	add(item);
+    }
+    
     /**
      * find method.
      * @param target 
@@ -64,6 +75,7 @@ public class BinarySearchTree<E extends Comparable<E>>
         if (localRoot == null) 
         {
             isAdded = true;
+            size++;
             return new Node<E>(item);
         } 
         else if (item.compareTo(localRoot.data) == 0) 
@@ -132,6 +144,7 @@ public class BinarySearchTree<E extends Comparable<E>>
 		 {
 			 // item is at local root.
 			 removed = localRoot.data;
+			 size--;
 			 if (localRoot.left == null) 
 			 {
 				 // If there is no left child, return right child

@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author Koffman and Wolfgang
  **/
 public class BinaryTree<E> implements Serializable {
-
+	
     protected static class Node<E> implements Serializable {
 
         public E data;
@@ -36,10 +36,12 @@ public class BinaryTree<E> implements Serializable {
 
     /** The root of the binary tree */
     protected Node<E> root;
+    protected int size;
 
     /** Construct an empty BinaryTree */
     public BinaryTree() {
         root = null;
+        size=0;
     }
 
     /**
@@ -120,6 +122,8 @@ public class BinaryTree<E> implements Serializable {
 		
 		return false;
 	}
+	
+	public int size() {return size;}
 
     /**
      * Determine whether this tree is a leaf.

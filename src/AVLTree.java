@@ -24,6 +24,17 @@ public class AVLTree<E extends Comparable<E>> extends RotatingBinarySearchTree<E
 		}
 	}
 	
+	public AVLTree()
+	{
+		super();
+	}
+	
+	public AVLTree(E item)
+	{
+		super(item);
+		add(item);
+	}
+	
 	private void changeBalance(AVLNode<E> localRoot, int change)
 	{
 		localRoot.balance+=change;
@@ -172,6 +183,7 @@ public class AVLTree<E extends Comparable<E>> extends RotatingBinarySearchTree<E
 		if (localRoot == null) 
 		{
 			isAdded=true;
+			size++;
 			increased = true;
 			return new AVLNode<E>(item);
 		}
@@ -289,6 +301,7 @@ public class AVLTree<E extends Comparable<E>> extends RotatingBinarySearchTree<E
 		 {
 			 // item is at local root.
 			 removed = localRoot.data;
+			 size--;
 			 if (localRoot.left == null) 
 			 {
 				 // If there is no left child, return right child

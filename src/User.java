@@ -7,11 +7,11 @@ import javax.swing.*;
  * */
 public abstract class User extends JFrame implements Person{
 
-    String name;
-    String surname;
-    String ID;
-    String password;
-
+    protected String name;
+    protected String surname;
+    protected String ID;
+    protected String password;
+    private static String lastID = "10000";
     /**
      * Constructor of User
      * @param name Name of the User
@@ -21,8 +21,15 @@ public abstract class User extends JFrame implements Person{
     public User(String name,String surname,String password){
         this.name = name;
         this.surname = surname;
-        this.ID = null; //insert ID creating method here!!
+        this.ID = generateID();
         this.password = password;
+        System.out.println("Your ID is:" + ID +". You will login with this ID.");
+    }
+
+    private String generateID(){
+        String returnID = lastID;
+        lastID = String.valueOf(Integer.parseInt(lastID)+1);
+        return returnID;
     }
 
     /**
@@ -97,7 +104,7 @@ public abstract class User extends JFrame implements Person{
      * @return true if login is successful,false otherwise;
      */
     public boolean login(String id,String pw){
-        return id == this.ID && pw == this.password;
+        return id.equals(this.ID) && pw.equals(this.password);
     }
 
 
@@ -108,7 +115,7 @@ public abstract class User extends JFrame implements Person{
      * @return true if they are the same User, false otherwise.
      */
     public boolean equals(User other){
-        return other.getID() == ID && other.getPW() == password;
+        return other.getID().equals(ID) && other.getPW().equals(password);
     }
 
 

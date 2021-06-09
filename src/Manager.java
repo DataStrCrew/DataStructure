@@ -1,18 +1,9 @@
+import java.util.List;
+import java.util.Queue;
+
 /**
  * Manager of the library
  * @author Mustafa Gurler
- * @author yesimyalc
- */
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-
-/**
  * @author yesimyalc
  */
 public class Manager extends User
@@ -118,7 +109,7 @@ public class Manager extends User
 	/**
 	 * Adds a new task to a janitor. If the janitor does not belong to the library, does nothing.
 	 * @param janitorID is the janitor's ID that will have the new task
-	 * @param theTask is the new task that will be added to a janitor
+	 * @param theTaskID is the new task that will be added to a janitor
 	 * @return true if added, false if not
 	 */
 	public boolean addTasks(String janitorID, Integer theTaskID)
@@ -154,7 +145,6 @@ public class Manager extends User
 			lib.changeStock(demandedBook, 1);
 			demandedBook=lib.removeDemandedBook();
 		}
-		while(demandedBook!=null);
 	}
 	
 	/**
@@ -172,7 +162,12 @@ public class Manager extends User
 	{
 		lib.printUpcomingEvents();
 	}
-	
+
+	public List<Event> getOfferedEvents(){
+		return lib.getOfferedEvents();
+	}
+
+
 	/**
 	 * Accepts an event and adds it to upcoming event list.
 	 * @param newEvent is the event that will be added to the upcoming events list.
@@ -196,7 +191,6 @@ public class Manager extends User
 	
 	/**
 	 * Moves the first element from upcoming events to past events meaning it has ended.
-	 * @param endedEvent is the event that will be moved to pastEvents
 	 * @return the removed event, null if nothing is removed
 	 */
 	public Event endEvent()
@@ -210,11 +204,7 @@ public class Manager extends User
 	 */
 	public boolean searchBook(String bookName, Language bookLanguage)
 	{
-		if(lib.isInStock(bookName, bookLanguage) != 0)
-		{
-			return true;
-		}
-		return false;
+		return lib.isInStock(bookName, bookLanguage);
 	}
 	
 	/**
@@ -236,17 +226,17 @@ public class Manager extends User
 	 */
 	public boolean searchLibrarian(String searchedLID)
 	{
-		if(lib.isLibrarian(searchedLID)!=-1)
-			return true;
-		else
-			return false;
+		return lib.isLibrarian(searchedLID) != -1;
 	}
 	
 	public boolean searchJanitor(String searchedJID)
 	{
-		if(lib.isJanitor(searchedJID)!=-1)
-			return true;
-		else
-			return false;
+		return lib.isJanitor(searchedJID) != -1;
+
+	}
+
+	@Override
+	public String toString(){
+		return name + " " + surname + "\n";
 	}
 }

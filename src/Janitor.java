@@ -1,31 +1,25 @@
+
+
+
+import java.util.*;
+
 /**
  * Janitor of the library
  * @author mehmet_acar
  * @author Mustafa Gurler
  */
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.*;
-import java.util.List;
-
-
 public class Janitor extends User{
 
-	private Queue<Task> Tasks;
-	
+	private final Queue<Task> Tasks;
+	Library lib;
     /**
      * Constructor of Task
      */
-    public Janitor(String name,String surname,String pw)
+    public Janitor(String name,String surname,String pw,Library lib)
     {
         super(name,surname,pw);
         Tasks = new ArrayDeque<Task>();
+        this.lib = lib;
     }
     /**
      * It views all of the task that belongs to janitor

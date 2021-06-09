@@ -10,7 +10,7 @@ public class Event {
 	
 	private String name;
 	private String date;
-	private List<StandartReader>participants;
+	private final List<StandartReader>participants;
 	
 	
 	/**
@@ -20,7 +20,7 @@ public class Event {
 	public Event(String name) {
 		this.name=name;
 		this.date="not-added or unknown";
-		participants=new ArrayList<StandartReader>();
+		participants= new ArrayList<>();
 	}
 	
 	/**
@@ -31,7 +31,7 @@ public class Event {
 	public Event(String name,String date) {
 		this.name=name;
 		this.date=date;
-		participants=new ArrayList<StandartReader>();
+		participants= new ArrayList<>();
 	}
 	
 	/**

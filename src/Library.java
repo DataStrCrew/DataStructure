@@ -75,7 +75,7 @@ public class Library{
 		return name;
 	}
 
-    public List<Event> getOfferedEvent()
+    public List<Event> getOfferedEvents()
     {
         return offeredEvents;
     }
@@ -162,8 +162,8 @@ public class Library{
 
     /**
      * Change publication with given name's stock by given amount
-     * @param name
-     * @param amount
+     * @param name Name of the book
+     * @param amount Amount of the book
      * @return true if given string is not null
      */
     private boolean changeStock(String name, int amount){
@@ -181,7 +181,7 @@ public class Library{
     /**
      * Changes stock of given publication by given amount
      * if given publication is not in the library, adds to the library.
-     * @param givenBook
+     * @param givenPublication
      * @return true
      */
     public boolean changeStock(Publication givenPublication, int amount){
@@ -296,7 +296,6 @@ public class Library{
 
     /**
      * Delete first event from upcoming event list and add it to past events
-     * @param event
      * @return true
      */
     public Event endEvent(){
@@ -364,5 +363,10 @@ public class Library{
     public void printGenre(BookGenre theGenre)
     {
     	
+    }
+
+    @Override
+    public String toString(){
+       return "Name:" + name + "Address: " + address + "Current Manager: " + manager;
     }
 }

@@ -1,20 +1,7 @@
 /**
  * Librarian of the library
- * @author Mustafa Gurler
+ * @author Mustafa Gurler,yesimyalc
  */
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.net.URL;
-import java.util.ArrayList;
-
-/**
- * 
- * @author yesimyalc
- */
-
 public class Librarian extends User
 {
 	/**Holds the information of the library that this Librarian is working in*/
@@ -68,18 +55,18 @@ public class Librarian extends User
 	 * @param givenBook is the book that will be lend.
 	 * @return the Book that is lend, null if no books is lend.
 	 */
-	public Book lendBook(Publication givenBook, StandartReader customer)
+	public Publication lendBook(Publication givenBook, StandartReader reader)
 	{
 		if(!searchBook(givenBook.getName(), givenBook.getLang()))
 		{
-			if(customer instanceof PremiumReader)
+			if(reader instanceof PremiumReader)
 				demandBooks(givenBook);
 			return null;
 		}
 		else
 		{
 			lib.changeStock(givenBook, -1);
-			customer.borrowBook(givenBook);
+			reader.borrowBook(givenBook);
 			return givenBook;
 		}
 	}
@@ -92,7 +79,7 @@ public class Librarian extends User
 	 */
 	public boolean relendBook(Publication returnedBook, StandartReader customer)
 	{
-		/**
+		/*
 		 * Assumed returnTheBook removes the book in the given index from borrowedBooks field of the customer and adds it to pastReadBooks field.
 		 * DELETE THIS COMMENT LATER ON
 		 */
@@ -117,10 +104,6 @@ public class Librarian extends User
 		 * False if the book is not found and true number if it is found.
 		 * DELETE THIS COMMENT LATER ON
 		 */
-		if(lib.isInStock(searchedBook, bookLanguage) != 0)
-		{
-			return true;
-		}
-			return false;
+		return lib.isInStock(searchedBook, bookLanguage);
 	}
 }

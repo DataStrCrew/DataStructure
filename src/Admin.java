@@ -1,21 +1,13 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Administrator of the libraries.
  * @author Mustafa Gurler
  * */
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 public class Admin extends User{
 
-    private List<Library> Libraries;
+    private static List<Library> libraries;
     
     /**
      * Default constructor of Admin
@@ -29,13 +21,13 @@ public class Admin extends User{
     public Admin()
     {
         super("name","surname","pw");
-        Libraries = new ArrayList<Library>();
+        libraries = new ArrayList<>();
     }
 
     public Admin(String name,String surname,String pw)
     {
         super(name,surname,pw);
-        Libraries = new ArrayList<Library>();
+        libraries = new ArrayList<>();
     }
     /**
      * To add library in Data
@@ -44,7 +36,7 @@ public class Admin extends User{
      */
     public boolean addLibrary(Library Library)
     {
-        return Libraries.add(Library);
+        return libraries.add(Library);
     }
     /**
      * To remove library from Data
@@ -53,11 +45,11 @@ public class Admin extends User{
      */
     public boolean removeLibrary(String ID)
     {
-    	for(int i=0 ; i < Libraries.size(); i++)
+    	for(int i=0 ; i < libraries.size(); i++)
     	{
-    		if(Libraries.get(i).getId() == ID )
+    		if(libraries.get(i).getId().equals(ID))
     		{
-    			Libraries.remove(i);
+    			libraries.remove(i);
     			return true;
     		}
     	}
@@ -107,18 +99,16 @@ public class Admin extends User{
     }
     /**
      * To search library information in Data
-     * @param Address Librarys' id
+     * @param ID Library's id
      * @return true/false If Library id finds it will return true otherwise false.
      */
     public Library searchLibrary(String ID)
     {
-    	for(int i=0 ; i < Libraries.size(); i++)
-    	{
-    		if(Libraries.get(i).getId() == ID )
-    		{
-    			return Libraries.get(i);
-    		}
-    	}
+		for (Library library : libraries) {
+			if (library.getId().equals(ID)) {
+				return library;
+			}
+		}
     	return null;
     }
     /**
@@ -128,14 +118,16 @@ public class Admin extends User{
      */
     public Manager searchManager(String ID)
     {
-    	for(int i=0 ; i < Libraries.size(); i++)
-    	{
-    		if(Libraries.get(i).getManager().getID() == ID )
-    		{
-    			return Libraries.get(i).getManager();
-    		}
-    	}
+		for (Library library : libraries) {
+			if (library.getManager().getID().equals(ID)) {
+				return library.getManager();
+			}
+		}
     	return null;
     }
+
+    public List<Library> getLibraries(){
+    	return libraries;
+	}
     
 }

@@ -6,7 +6,7 @@ import java.util.LinkedList;
  */
 public class PremiumReader extends StandartReader
 {
-    public PremiumReader(String name,String surname,String pw, Library workingLib) throws Exception 
+    public PremiumReader(String name,String surname,String pw, Library workingLib)
 	{
         super(name, surname, pw, workingLib);
         borrowedBooks = new LinkedList<>();
@@ -29,7 +29,7 @@ public class PremiumReader extends StandartReader
 	 */
 	public boolean request_event(Event event)
 	{
-		lib.getUpcomingEvents().add(event);
+		lib.getOfferedEvents().add(event);
 		return true;
 	}
 

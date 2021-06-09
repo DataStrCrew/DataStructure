@@ -40,7 +40,7 @@ public class StandartReader extends User
 	 * borrowing the requested book if it is available in the library stocks
 	 * @return the Book that is borrowed, null if no books is borrowed.
 	 */
-	public boolean borrowBook(Book borrowBook)
+	public boolean borrowBook(Publication borrowBook)
 	{
 		String book_name = borrowBook.getName();
 		Language book_lan = borrowBook.getLang();
@@ -56,7 +56,7 @@ public class StandartReader extends User
 	 * returning the borrowed book
 	 * @return true if the returning is successful, false otherwise
 	 */
-	public boolean returnTheBook(Book returningBook)
+	public boolean returnTheBook(Publication returningBook)
 	{;
 		if(borrowedBooks.contains(returningBook))
 		{
@@ -100,8 +100,8 @@ public class StandartReader extends User
 	 */
 	public List<Event> view_events()
 	{
-		System.out.println(lib.getOfferedEvent());
-		return lib.getOfferedEvent();
+		System.out.println(lib.getOfferedEvents());
+		return lib.getOfferedEvents();
 	}
 
     /**
@@ -119,7 +119,7 @@ public class StandartReader extends User
 	 */
 	public boolean participate_event(Event event)
 	{
-		if(event.getParticipants().contains(this) == false)
+		if(!event.getParticipants().contains(this))
 		{
 			event.addParticipant(this);
 			return true;

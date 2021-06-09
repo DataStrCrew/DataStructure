@@ -33,7 +33,7 @@ public class StandartReader extends User
 	 */
 	public boolean searchBook(String searchedBook, Language bookLanguage)
 	{
-        return lib.isInStock(searchedBook, bookLanguage) != -1;
+        return lib.isInStock(searchedBook, bookLanguage);
 	}
 
     /**

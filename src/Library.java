@@ -10,11 +10,6 @@ import java.util.List;
  */
 
 
-
-//TODO: Find better solution for mapping publications to stocks
-//Change data structure of events to queue
-//Add demandedBooks list (?)
-//Implement demandBook method
  
 
 
@@ -124,6 +119,11 @@ public class Library{
         return publications.find(new Book(bookName,null,bookLanguage,null,null));
     }
 
+    /**
+     * Check if librarian with given id exists in library.
+     * @param id id of the librarian
+     * @return -1 if librarian does not exist else id of the librarian.
+     */
     public int isLibrarian(String id){
         for(int i = 0 ; i < librarians.size() ; ++i){
             Librarian temp = librarians.get(i);
@@ -133,6 +133,11 @@ public class Library{
         return -1;
     }
 
+    /**
+     * Check if janitor with given id exists in library.
+     * @param id id of the janitor
+     * @return -1 if janitor does not exist else id of the librarian.
+     */
     public int isJanitor(String id){
         for(int i = 0 ; i < janitors.size() ; ++i){
             Janitor temp = janitors.get(i);
@@ -353,8 +358,8 @@ public class Library{
     }
     
     /**
-	 * Prints out all the publications with the given category.
-	 * Does not include the publications with the same name more than once.
+	 * Prints out all the books with the given category.
+	 * Does not include the books with the same name more than once.
 	 */
     public void printGenre(BookGenre theGenre)
     {

@@ -110,7 +110,12 @@ public class StandartReader extends User
 	 */
 	public boolean vote_event(int vote , Event event)
 	{
-		return true;
+		if((vote > 0) && (vote < 10))
+		{
+			event.addVote(vote);
+			return true;
+		}
+		return false;
 	}
 
     /**

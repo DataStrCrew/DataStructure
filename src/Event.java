@@ -11,6 +11,7 @@ public class Event {
 	private String name;
 	private String date;
 	private final List<StandartReader>participants;
+	private ArrayList<Integer> votes = new ArrayList<>();
 	
 	
 	/**
@@ -77,6 +78,10 @@ public class Event {
 	public String getDate() {
 		return this.date;
 	}
+
+	public ArrayList<Integer> getVotes() {
+		return this.votes;
+	}
 	
 	/**
      * Add a new participant to event.
@@ -129,6 +134,12 @@ public class Event {
      */
 	public StandartReader getParticipant(int index) {
 		return participants.get(index);
+	}
+
+	public boolean addVote(int vote)
+	{
+		votes.add(vote);
+		return true;
 	}
 	
 	

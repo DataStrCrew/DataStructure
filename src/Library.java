@@ -32,6 +32,7 @@ public class Library{
 
     private List<Librarian> librarians;
     private List<Janitor> janitors;
+    private static final List<String> existingIDs = new ArrayList<>(); //skip-list olabilir, hızlı arama için
 
     public Library(){
         this.name = null;
@@ -51,7 +52,13 @@ public class Library{
     public Library(String name,String address,String id){
         this.name = name;
         this.address = address;
-        this.id = id;
+        if(!existingIDs.contains(id)) {
+            this.id = id;
+            existingIDs.add(id);
+        }
+        else{
+            throw new IllegalArgumentException("ID already exists.");
+        }
         this.manager = null;
         
         publications = new AVLTree<Publication>();

@@ -7,7 +7,9 @@ import java.util.List;
  * */
 public class Admin extends User{
 
-    private static List<Library> libraries;
+
+	//Database gelince = Database.getLibraries() olacak.
+    private static final List<Library> libraries = new ArrayList<>();
     
     /**
      * Default constructor of Admin
@@ -21,13 +23,11 @@ public class Admin extends User{
     public Admin()
     {
         super("name","surname","pw");
-        libraries = new ArrayList<>();
     }
 
     public Admin(String name,String surname,String pw)
     {
         super(name,surname,pw);
-        libraries = new ArrayList<>();
     }
     /**
      * To add library in Data
@@ -80,7 +80,7 @@ public class Admin extends User{
      * @param ID Managers' id
      * @return true/false If Manager id is true and removes it will return true otherwise false
      */
-    public boolean removeManager(String ID,String LibraryID)
+    public boolean removeManager(String LibraryID)
     {
     	Library result = searchLibrary(LibraryID);
     	if( result != null)
@@ -99,24 +99,33 @@ public class Admin extends User{
     }
     /**
      * To search library information in Data
-     * @param ID Library's id
-     * @return true/false If Library id finds it will return true otherwise false.
+     * @param searchText Text to search
+     * @return true/false If Library name or address contains given text.
      */
-    public Library searchLibrary(String ID)
+    public Library searchLibrary(String searchText)
     {
 		for (Library library : libraries) {
-			if (library.getId().equals(ID)) {
+			if (library.getName().contains(searchText) || library.getAddress().contains(searchText)) {
 				return library;
 			}
 		}
     	return null;
     }
+
+    public Library getLibrary(String id){
+		for (Library library : libraries) {
+			if (library.getId().equals(id)) {
+				return library;
+			}
+		}
+		return null;
+	}
     /**
      * To search manager information in Data
      * @param ID Managers' id
      * @return true/false If Manager id finds it will return true otherwise false.
      */
-    public Manager searchManager(String ID)
+    public Manager getManager(String ID)
     {
 		for (Library library : libraries) {
 			if (library.getManager().getID().equals(ID)) {
@@ -125,6 +134,15 @@ public class Admin extends User{
 		}
     	return null;
     }
+
+    public Manager searchManager(String searchText){
+		for (Library library : libraries) {
+			if (library.getManager().getName().contains(searchText) || library.getManager().getSurname().contains(searchText)) {
+				return library.getManager();
+			}
+		}
+		return null;
+	}
 
     public List<Library> getLibraries(){
     	return libraries;

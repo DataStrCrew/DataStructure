@@ -40,7 +40,7 @@ public class Librarian extends User
 	 */
 	public int demandBookStock(String bookName, Language bookLanguage)
 	{
-		/**
+		/*
 		 * Assumed that there is a method called bookAmount in library class that returns
 		 * the amount of a book which has the given language in the library stock
 		 * DELETE THIS COMMENT LATER ON

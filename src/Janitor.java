@@ -28,7 +28,7 @@ public class Janitor extends User{
     public void viewTask(String ID){
     	for (Task element : Tasks)
         {
-            	System.out.println(element.getTaskName());
+            	System.out.println(element);
         }
     }
  
@@ -40,7 +40,7 @@ public class Janitor extends User{
     public boolean updateTask(String TaskId){
     	for (Task element : Tasks)
         {
-          if(element.getTaskId()==TaskId) {
+          if(element.getTaskId().equals(TaskId)) {
         	 element.setDoneTask(true);
         	 return true;
           }

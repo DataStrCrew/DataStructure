@@ -15,7 +15,6 @@ public class Task
 	 /**
 	  * Constructor of janitor
 	  * @param ID
-	  * @param level
 	  */
 	 public Task(String ID)
 	 {
@@ -99,6 +98,14 @@ public class Task
 	public boolean isDoneTask() 
 	{
 		return doneTask;
+	}
+
+	@Override
+	public String toString(){
+		String status;
+		if(doneTask) status = "Done";
+		else status = "Not-Done";
+		return "Task Name: " + TaskName + "\nTask ID: " + TaskId + "\nStatus:" + status;
 	}
 	
 

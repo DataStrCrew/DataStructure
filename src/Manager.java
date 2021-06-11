@@ -8,7 +8,7 @@ import java.util.Queue;
  */
 public class Manager extends User
 {
-	Library lib;
+	private final Library lib;
 
 	public Manager()
 	{
@@ -233,6 +233,10 @@ public class Manager extends User
 	{
 		return lib.isJanitor(searchedJID) != -1;
 
+	}
+
+	public Library getLib(){
+		return lib;
 	}
 
 	@Override

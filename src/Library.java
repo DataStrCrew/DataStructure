@@ -288,6 +288,9 @@ public class Library{
 
         return janitors.get(index);
     }
+
+    public AVLTree<Publication> getPublications(){return publications;}
+
     /**
      * Add event to the upcoming events list 
      * @param event

@@ -1,3 +1,5 @@
+import java.util.Iterator;
+import java.util.Stack;
 
 public class AVLTree<E extends Comparable<E>> extends RotatingBinarySearchTree<E>
 {
@@ -368,6 +370,47 @@ public class AVLTree<E extends Comparable<E>> extends RotatingBinarySearchTree<E
 		root=delete((AVLNode<E>)root, target);
 		
 		return removed;
+	}
+
+	public Iterator<E> preOrderIterator(){
+		return new PreOrderIterator();
+	}
+
+	/**
+	 * Pre order iterator class (ascending order)
+	 */
+	private class PreOrderIterator implements Iterator<E> {
+		public Stack<Node<E>> stack = new Stack<>();
+		public Node<E> current;
+
+		/**
+		 * Constructor
+		 */
+		public PreOrderIterator() {
+			current = root;
+		}
+
+		/**
+		 * Check if there is a next element to iterate
+		 * @return true if there is a next element.
+		 */
+		public boolean hasNext() {
+			return current != null || !stack.isEmpty();
+		}
+
+		/**
+		 * Iterates once
+		 * @return the next element
+		 */
+		public E next() {
+			while (current != null) {
+				stack.push(current);
+				current = current.left;
+			}
+			Node<E> rst = stack.pop();
+			current = rst.right;
+			return rst.data;
+		}
 	}
 
 }

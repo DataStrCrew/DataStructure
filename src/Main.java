@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Main{
@@ -15,6 +17,8 @@ public class Main{
 
 
     public static void main(String[] args) throws Exception{
+
+
         Scanner input = new Scanner(System.in);
         System.out.println("Welcome to the Library Automation System.");
         int opt;
@@ -318,10 +322,110 @@ public class Main{
     }
     public static void managerMenu(Manager manager){
         System.out.println("Welcome, " + manager.getName() + ".\n" );
-        System.out.println("1)Add Book\n2)Remove Book\n3)List Demanded Books and Accept/Decline Them" +
-                "\n4)Add Librarian\n5)Remove Librarian\n" +
-                "6)Add Janitor\n7)Remove Janitor\n8)Add Task to a Janitor\n9)List Offered Events and Accept/Decline them\n" +
-                "10)End and Event\n11)Exit");
+        int  opt;
+        Scanner input = new Scanner(System.in);
+        System.out.println("1)List Publications\n2)Add Publication\n3)Remove Publication\n" +
+                "4)List Demanded Books and Accept/Decline Them\n5)Add Librarian\n6)Remove Librarian\n" +
+                "7)Add Janitor\n8)Remove Janitor\n9)Add Task to a Janitor\n10)List Offered Events and Accept/Decline them\n" +
+                "12)End and Event\n12)Exit");
+        do {
+            opt = input.nextInt();
+            input.nextLine();
+            switch (opt) {
+                case 1:
+                    Iterator<Publication> iter = manager.getLib().getPublications().preOrderIterator();
+                    while (iter.hasNext())
+                        System.out.println(iter.next());
+                case 2:
+                    System.out.println("Choose type of the publication.\n1)Book\n2)Encyclopedia\n3)Magazine");
+                    int pubType = input.nextInt();
+                    input.nextLine();
+                    System.out.println("Enter book name: ");
+                    String bookName = input.nextLine();
+                    System.out.println("Enter book page amount: ");
+                    Integer pg = input.nextInt();
+                    input.nextLine();
+                    System.out.println("Choose book language:\n");
+                    int i = 1;
+                    for (Language lan : Language.values()) {
+                        System.out.println(i + ") " + lan.name());
+                    }
+                    int lanIndex = input.nextInt();
+                    input.nextLine();
+                    Language language = Language.values()[lanIndex];
+
+                    System.out.println("Enter author information:\n");
+                    System.out.println("Name: ");
+                    String authorName = input.nextLine();
+                    System.out.println("Surname: ");
+                    String authorSurname = input.nextLine();
+                    Publication pub = null;
+                    Author author = new Author(authorName, authorSurname);
+                    if (pubType == 1) {
+                        System.out.println("Choose book genre:\n");
+                        i = 1;
+                        for (BookGenre gen : BookGenre.values()) {
+                            System.out.println(i + ") " + gen.name());
+                        }
+                        int genreIndex = input.nextInt();
+                        input.nextLine();
+                        BookGenre genre = BookGenre.values()[genreIndex];
+                        pub = new Book(bookName, author, language, pg, genre);
+                    } else if (pubType == 2) {
+                        System.out.println("Enter encyclopedia sections: " +
+                                "(example: 20 Instects (Section Insects starts from page 20\n(type 0 to stop)");
+                        int page;
+                        String sect;
+                        HashMap<Integer, String> sections = new HashMap<>();
+                        do {
+                            page = input.nextInt();
+                            sect = input.nextLine();
+                            sections.put(page, sect);
+                        } while (page != 0);
+                        pub = new Encyclopedia(bookName, author, language, pg, sections);
+                    } else if (pubType == 3) {
+                        System.out.println("Enter the issue number:");
+                        int issue = input.nextInt();
+                        input.nextLine();
+                        pub = new Magazine(bookName, author, language, pg, issue);
+                    } else
+                        System.out.println("Wrong input.");
+                    if (pub != null)
+                        manager.addBook(pub);
+                    break;
+                case 3:
+                    //AVL TREE'ye preOrderIterator ekledim, ama yine de nasıl delete implement ededeceğimi bilemedim.
+                    break;
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                    for (Event event : manager.getOfferedEvents()) {
+                        System.out.println(event);
+                        System.out.println("Choose: \n1)Accept\n2)Decline");
+                        opt = input.nextInt();
+                        input.nextLine();
+                        if (opt == 1)
+                            manager.acceptEvent(event);
+                        else if (opt == 2)
+                            manager.declineEvent(event);
+                        else
+                            System.out.println("Wrong input.");
+                        break;
+                    }
+                case 11:
+                case 12:
+                    System.out.println("Redirecting to main menu.");
+                    break;
+                default:
+                    System.out.println("Wrong input.");
+
+
+            }
+        }while(opt!=12);
     }
     public static void librarianMenu(Librarian librarian){
         System.out.println("Welcome, " + librarian.getName() + ".\n" );

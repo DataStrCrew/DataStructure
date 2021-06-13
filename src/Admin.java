@@ -135,6 +135,12 @@ public class Admin extends User{
     	return null;
     }
 
+
+    /**
+     * To search manager information in Data
+     * @param searchText Managers' name
+     * @return true/false If Manager id finds it will return true otherwise false.
+     */
     public Manager searchManager(String searchText){
 		for (Library library : libraries) {
 			if (library.getManager().getName().contains(searchText) || library.getManager().getSurname().contains(searchText)) {
@@ -144,6 +150,10 @@ public class Admin extends User{
 		return null;
 	}
 
+    /**
+     * Method to return list of libraries.
+     * @return list of Libraries.
+     */
     public List<Library> getLibraries(){
     	return libraries;
 	}

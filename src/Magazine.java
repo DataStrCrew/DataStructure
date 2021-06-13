@@ -36,18 +36,18 @@ public class Magazine extends AbstractPublication{
         return issue;
     }
 
-    //-----------------------------------------ENTITY METHODS--------------------------
-
-    /*
-
-    /*
+    /**
      * Returns string representation of the object.
      * @return Information of Magazine.
-     
+     */
     @Override
     public String toString(){
         return super.toString() + "\nIssue: " + issue;
     }
+
+    //-----------------------------------------ENTITY METHODS--------------------------
+
+    /*
 
     /**
      * Magazine constructor for Database operations.

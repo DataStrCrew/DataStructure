@@ -1,8 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.PriorityQueue;
-import java.util.List;
+import java.util.*;
 
 
 /**
@@ -30,8 +26,8 @@ public class Library{
     private List<Event> pastEvents;
     private List<Event> offeredEvents;
 
-    private List<Librarian> librarians;
-    private List<Janitor> janitors;
+    private NavigableSet<Librarian> librarians;
+    private NavigableSet<Janitor> janitors;
     private static final List<String> existingIDs = new ArrayList<>(); //skip-list olabilir, hızlı arama için
 
     public Library(){
@@ -45,8 +41,8 @@ public class Library{
         pastEvents = new ArrayList<Event>();
         upcomingEvents = new PriorityQueue<Event>();
         stocks = new HashMap<String,Integer>();
-        librarians = new ArrayList<Librarian>();
-        janitors = new ArrayList<Janitor>();
+        librarians = new TreeSet<>();
+        janitors = new TreeSet<>();
     }
 
     public Library(String name,String address,String id){
@@ -66,8 +62,8 @@ public class Library{
         pastEvents = new ArrayList<Event>();
         upcomingEvents = new PriorityQueue<Event>();
         stocks = new HashMap<String,Integer>();
-        librarians = new ArrayList<Librarian>();
-        janitors = new ArrayList<Janitor>();
+        librarians = new TreeSet<>();
+        janitors = new TreeSet<>();
     }
     
     public AVLTree<Publication> getPublications(){return publications;}
@@ -134,11 +130,11 @@ public class Library{
      * @return -1 if librarian does not exist else id of the librarian.
      */
     public int isLibrarian(String id){
-        for(int i = 0 ; i < librarians.size() ; ++i){
-            Librarian temp = librarians.get(i);
-            if(temp.getID().equals(id))
-                return i;
+        for(Librarian i : librarians){
+            if(i.getID().equals(id))
+                return 1;
         }
+
         return -1;
     }
 
@@ -148,11 +144,11 @@ public class Library{
      * @return -1 if janitor does not exist else id of the librarian.
      */
     public int isJanitor(String id){
-        for(int i = 0 ; i < janitors.size() ; ++i){
-            Janitor temp = janitors.get(i);
-            if(temp.getID().equals(id))
-                return i;
+        for(Janitor i : janitors){
+            if(i.getID().equals(id))
+                return 1;
         }
+
         return -1;
     }
 
@@ -250,10 +246,8 @@ public class Library{
      * @param librarian
      * @return Removed Librarian
      */
-    public Librarian removeLibrarian(Librarian librarian){
-        int index = librarians.indexOf(librarian);
-
-        return librarians.remove(index);
+    public boolean removeLibrarian(Librarian librarian){
+        return librarians.remove(librarian);
     }
 
     /**
@@ -262,10 +256,10 @@ public class Library{
      * @return Searched Librarian
      */
     public Librarian getLibrarian(String id){
-        int index = isJanitor(id);
-        if(index == -1) return null;
-
-        return librarians.get(index);
+        for(Librarian i : librarians)
+            if(i.getID().equals(id))
+                return i;
+        return null;
     }
 
     /**
@@ -273,10 +267,8 @@ public class Library{
      * @param janitor
      * @return removed Janitor, if janitor is not in the list return null
      */
-    public Janitor removeJanitor(Janitor janitor){
-        int index = janitors.indexOf(janitor);
-        if(index == -1) return null;
-        return janitors.remove(index);
+    public boolean removeJanitor(Janitor janitor){
+        return janitors.remove(janitor);
     }
 
     /**
@@ -285,10 +277,10 @@ public class Library{
      * @return searched janitor, if janitor is not found returns null
      */
     public Janitor getJanitor(String id){
-        int index = isJanitor(id);
-        if(index == -1) return null;
-
-        return janitors.get(index);
+        for(Janitor i : janitors)
+            if(i.getID().equals(id))
+                return i;
+        return null;
     }
 
 

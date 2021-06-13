@@ -1,3 +1,7 @@
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
+
 /**
  * Book class for the Automation System.
  * @author gokbey_gazi_keskin
@@ -5,7 +9,7 @@
 public class Book extends AbstractPublication {
     private BookGenre genre;
     private String comment;
-
+    private static Set<String> bookGenre = new TreeSet<>();
     public Book() {
         super(null, null, null, null);
         this.genre = null;

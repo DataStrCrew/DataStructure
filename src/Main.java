@@ -1,8 +1,6 @@
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Queue;
 import java.util.Scanner;
 
 public class Main{
@@ -431,7 +429,7 @@ public class Main{
     public static void librarianMenu(Librarian librarian){
         Publication book;
         String Name,Surname,bookName;
-        Integer Usr;
+        int Usr;
         
     	int  opt;
         int i;
@@ -496,32 +494,28 @@ public class Main{
                     
                     if(Usr == 1)
                     {
-                    	for(int j=0; j < SReaders.size() ; j++)
-                        {
-                        	if( 1 == SReaders.get(j).getName().compareTo(Name)
-                        	&& (1 == SReaders.get(j).getSurname().compareTo(Surname) )
-                        	&& (1 == SReaders.get(j).getLib().getAddress().compareTo(librarian.lib.getAddress())))
-                        	{
-                                if(null != librarian.lendBook(book,SReaders.get(j)))
-                                	System.out.println("The book is lended !");
+                        for (StandartReader sReader : SReaders) {
+                            if (0 < sReader.getName().compareTo(Name)
+                                    && (0 < sReader.getSurname().compareTo(Surname))
+                                    && (0 < sReader.getLib().getAddress().compareTo(librarian.lib.getAddress()))) {
+                                if (null != librarian.lendBook(book, sReader))
+                                    System.out.println("The book is lended !");
                                 else
-                                	System.out.println("The book is not lended !");
-                        	}
+                                    System.out.println("The book is not lended !");
+                            }
                         }
                     }
                     if(Usr == 2)
                     {
-                    	for(int j=0; j < PReaders.size() ; j++)
-                        {
-                        	if( 1 == PReaders.get(j).getName().compareTo(Name)
-                        	&& (1 == PReaders.get(j).getSurname().compareTo(Surname) )
-                        	&& (1 == PReaders.get(j).getLib().getAddress().compareTo(librarian.lib.getAddress())))
-                        	{
-                                if(null != librarian.lendBook(book,PReaders.get(j)))
-                                	System.out.println("The book is lended !");
+                        for (PremiumReader pReader : PReaders) {
+                            if (0 < pReader.getName().compareTo(Name)
+                                    && (0 < pReader.getSurname().compareTo(Surname))
+                                    && (0 < pReader.getLib().getAddress().compareTo(librarian.lib.getAddress()))) {
+                                if (null != librarian.lendBook(book, pReader))
+                                    System.out.println("The book is lended !");
                                 else
-                                	System.out.println("The book is not lended !");
-                        	}
+                                    System.out.println("The book is not lended !");
+                            }
                         }
                     }
                     
@@ -550,32 +544,28 @@ public class Main{
                     
                     if(Usr == 1)
                     {
-                    	for(int j=0; j < SReaders.size() ; j++)
-                        {
-                        	if( 1 == SReaders.get(j).getName().compareTo(Name)
-                        	&& (1 == SReaders.get(j).getSurname().compareTo(Surname) )
-                        	&& (1 == SReaders.get(j).getLib().getAddress().compareTo(librarian.lib.getAddress())))
-                        	{
-                                if(librarian.relendBook(book,SReaders.get(j)))
-                                	System.out.println("The book is lended !");
+                        for (StandartReader sReader : SReaders) {
+                            if (0 < sReader.getName().compareTo(Name)
+                                    && (0 < sReader.getSurname().compareTo(Surname))
+                                    && (0 < sReader.getLib().getAddress().compareTo(librarian.lib.getAddress()))) {
+                                if (librarian.relendBook(book, sReader))
+                                    System.out.println("The book is lended !");
                                 else
-                                	System.out.println("The book is not lended !");
-                        	}
+                                    System.out.println("The book is not lended !");
+                            }
                         }
                     }
                     if(Usr == 2)
                     {
-                    	for(int j=0; j < PReaders.size() ; j++)
-                        {
-                        	if( 1 == PReaders.get(j).getName().compareTo(Name)
-                        	&& (1 == PReaders.get(j).getSurname().compareTo(Surname) )
-                        	&& (1 == PReaders.get(j).getLib().getAddress().compareTo(librarian.lib.getAddress())))
-                        	{
-                                if(librarian.relendBook(book,PReaders.get(j)))
-                                	System.out.println("The book is lended !");
+                        for (PremiumReader pReader : PReaders) {
+                            if (0 < pReader.getName().compareTo(Name)
+                                    && (0 < pReader.getSurname().compareTo(Surname))
+                                    && (0 < pReader.getLib().getAddress().compareTo(librarian.lib.getAddress()))) {
+                                if (librarian.relendBook(book, pReader))
+                                    System.out.println("The book is lended !");
                                 else
-                                	System.out.println("The book is not lended !");
-                        	}
+                                    System.out.println("The book is not lended !");
+                            }
                         }
                     }
                     break;

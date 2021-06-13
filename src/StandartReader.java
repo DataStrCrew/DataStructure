@@ -11,9 +11,6 @@ public class StandartReader extends User
 {
     /**Holds the information of the library that this StandartUser is a member of*/
     Library lib;
-
-
-
 	List<Publication> borrowedBooks;
 
 	public StandartReader()

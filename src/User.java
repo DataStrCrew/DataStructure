@@ -5,7 +5,7 @@ import javax.swing.*;
  * @author gokbey_gazi_keskin
  * @author Mustafa Gurler
  * */
-public abstract class User extends JFrame implements Person{
+public abstract class User implements Person,Comparable<User>{
 
     protected String name;
     protected String surname;
@@ -119,6 +119,12 @@ public abstract class User extends JFrame implements Person{
     }
 
 
+
+    @Override
+    public int compareTo(User o) {
+        return getID().compareTo(o.getID());
+    }
+
     /**
      * toString implementation for User Class
      * @return String representation of User.
@@ -131,4 +137,6 @@ public abstract class User extends JFrame implements Person{
         str.append("\nID:").append(getID());
         return str.toString();
     }
+
+
 }

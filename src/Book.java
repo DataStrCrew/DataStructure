@@ -41,11 +41,18 @@ public class Book extends AbstractPublication {
         return comment;
     }
 
+    /**
+     * Method to set comment of Book.
+     */
     public void setComment(String comment)
     {
         this.comment = comment;
     }
 
+    /**
+     * Returns string representation of the object.
+     * @return Information of Book.
+     */
     @Override
     public String toString() {
         return super.toString() + "\nGenre: " + genre;

@@ -12,7 +12,7 @@ public class AbstractPublication implements Publication {
     private static Integer nextID = 10000;
     private Language lang;
     private Integer page;
-    private final List<String> comments;
+    private List<String> comments;
     
     /**
      * Constructor for AbstractPublication.
@@ -154,4 +154,19 @@ public class AbstractPublication implements Publication {
     public int compareTo(Publication o) {
         return id.compareTo(o.getID());
     }
+
+    //-----------------------------------------ENTITY METHODS--------------------------
+    
+    /*
+    public AbstractPublication(BookEntity entity){
+
+        name = entity.getName();
+        author = entity.getAuthor();
+        id = entity.getID();
+        lang = entity.getLang();
+        page = entity.getPage();
+        comments = entity.getComments(); 
+    }
+    */
+
 }

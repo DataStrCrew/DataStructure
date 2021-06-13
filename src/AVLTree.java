@@ -1,6 +1,7 @@
 import java.util.Iterator;
 import java.util.Stack;
 
+@SuppressWarnings("unchecked")
 public class AVLTree<E extends Comparable<E>> extends RotatingBinarySearchTree<E>
 {
 	private boolean increased;

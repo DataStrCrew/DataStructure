@@ -119,5 +119,42 @@ public class Author {
                 "\nDateOfBirth: " + dateOfBirth + "Publications:" + publications;
 
     }
+    //-----------------------------------------ENTITY METHODS--------------------------
+
+    /*
+
+    /**
+     * Author constructor for Database operations.
+     * @param entity AuthorEntity class object.
+     
+    public Author(AuthorEntity entity){
+
+        this.name = entity.getName();
+        this.surname = entity.getSurname();
+        this.dateOfBirth = entity.getDateOfBirth();
+        this.publications = entity.getPublications();
+
+    }
+
+    /**
+     * Method to save Author data field to AuthorEntity object.
+     * @return AuthorEntity object.
+     
+    public AuthorEntity getEntity(){
+
+        AuthorEntity entity;
+
+        entity.setName(this.name);
+        entity.setSurname(this.surname);
+        entity.setDateOfBirth(this.dateOfBirth);
+
+        for (Publication pub : publications)           
+           entity.publications.add(pub);        
+        
+        return entity;
+
+    }
+
+    */
 
 }

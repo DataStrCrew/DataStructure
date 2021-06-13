@@ -1,11 +1,11 @@
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * Encyclopedia class for the Automation System.
  * @author gokbey_gazi_keskin
  */
 public class Encyclopedia extends AbstractPublication{
-    private final HashMap<Integer,String> sections;
+    private HashMap<Integer,String> sections;
 
     /**
      * Constructor for Encyclopedia.
@@ -41,6 +41,14 @@ public class Encyclopedia extends AbstractPublication{
         sections.put(pg,heading);
     }
 
+     /**
+     * Getter for the Sections of the Encyclopedia.
+     * @return Sections of the Encyclopedia.
+     */
+    public HashMap<Integer,String> getSections() {
+        return sections;
+    }
+
     /**
      * Returns string representation of the object.
      * @return Information of Encyclopedia.
@@ -49,4 +57,44 @@ public class Encyclopedia extends AbstractPublication{
     public String toString(){
         return super.toString() + "\nSections: " + sections;
     }
+
+    //-----------------------------------------ENTITY METHODS--------------------------
+
+    /*
+
+    /**
+     * Encyclopedia constructor for Database operations.
+     * @param entity EncyclopediaEntity class object.
+     
+    public Encyclopedia(EncyclopediaEntity entity){
+
+        super(entity); 
+        this.sections = entity.getSections();
+    }
+
+    /**
+     * Method to save Encyclopedia data field to EncyclopediaEntity object.
+     * @return EncyclopediaEntity object.
+     
+    public EncyclopediaEntity getEntity(){
+
+        EncyclopediaEntity entity;
+
+        entity.setName(getName());
+        entity.setAuthor(getAuthor());
+        entity.setID(getID());
+        entity.setLang(getLang());
+        entity.setPage(getPage());
+        
+        for(Map.Entry<Integer, String> entry : sections.entrySet())
+            entity.sections.put(entry.getKey(),entry.getValue());
+
+        for (String comment : getComments())           
+           entity.comments.add(comment);         
+        
+        return entity;
+
+    }
+
+    */
 }

@@ -108,6 +108,11 @@ public class Author {
     public List<Publication> getPublications() {
         return publications;
     }
+
+    /**
+     * Returns string representation of the object.
+     * @return Information of Author.
+     */
     @Override
     public String toString(){
         return "Name: " + name + "\nSurname:  " + surname +

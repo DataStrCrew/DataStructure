@@ -70,6 +70,8 @@ public class Library{
         janitors = new ArrayList<Janitor>();
     }
     
+    public AVLTree<Publication> getPublications(){return publications;}
+
     public Manager getManager() {
 		return manager;
 	}
@@ -289,7 +291,6 @@ public class Library{
         return janitors.get(index);
     }
 
-    public AVLTree<Publication> getPublications(){return publications;}
 
     /**
      * Add event to the upcoming events list 

@@ -446,8 +446,12 @@ public class Main{
             
             switch (opt) {
                 case 1:
-                	
-                    break;
+                	Iterator<Publication> publications = librarian.lib.getPublications().preOrderIterator();
+                    while(publications.hasNext())
+                    {
+                    	System.out.println(publications.next());
+                    }
+                	break;
                 case 2:
                 	System.out.println("Enter book name: ");
                     bookName = input.nextLine();
@@ -615,7 +619,11 @@ public class Main{
             
             switch (opt) {
                 case 1:
-                	System.out.println(janitor.Tasks);
+                	Iterator<Task> Tasks = janitor.getTasks().iterator();
+                	while(Tasks.hasNext())
+                	{
+                		System.out.println(Tasks.next());
+                	}
                     break;
                 case 2:
                 	String TaskID = input.nextLine();

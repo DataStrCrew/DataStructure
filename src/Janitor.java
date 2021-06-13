@@ -10,8 +10,8 @@ import java.util.*;
  */
 public class Janitor extends User{
 
-	Queue<Task> Tasks;
-	Library lib;
+	private Queue<Task> Tasks;
+	private Library lib;
     /**
      * Constructor of Task
      */
@@ -21,6 +21,14 @@ public class Janitor extends User{
         Tasks = new ArrayDeque<Task>();
         this.lib = lib;
     }
+    
+	public Queue<Task> getTasks() {
+		return Tasks;
+	}
+	public Library getLib() {
+		return lib;
+	}
+	
     /**
      * It views all of the task that belongs to janitor
      * @param

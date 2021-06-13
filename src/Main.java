@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class Main{
@@ -428,14 +429,210 @@ public class Main{
         }while(opt!=12);
     }
     public static void librarianMenu(Librarian librarian){
+        Publication book;
+        String Name,Surname,bookName;
+        Integer Usr;
+        
+    	int  opt;
+        int i;
+        int lanIndex;
+
+        Scanner input = new Scanner(System.in);
         System.out.println("Welcome, " + librarian.getName() + ".\n" );
         System.out.println("1)List Books\n2)Demand Book\n3)Lend Book\n4)Relend Book\n5)Search Book\n6)Exit");
+        do {
+            opt = input.nextInt();
+            input.nextLine();
+            
+            switch (opt) {
+                case 1:
+                	
+                    break;
+                case 2:
+                	System.out.println("Enter book name: ");
+                    bookName = input.nextLine();
+                    System.out.println("Choose book language: ");
+                    i = 1;
+                    for (Language lan : Language.values()) {
+                        System.out.println(i + ") " + lan.name());
+                    }
+                    lanIndex = input.nextInt();
+                    input.nextLine();
+                    Language language = Language.values()[lanIndex];
+                    book = librarian.lib.getBook(bookName,language);
+  
+                    if(librarian.demandBooks(book))
+                    	System.out.println("The book is demanded !");
+                    else
+                    	System.out.println("The book is not demanded !");
+                    break;
+                    
+                case 3:
+                	System.out.println("Enter book name: ");
+                    bookName = input.nextLine();
+                    System.out.println("Choose book language: ");
+                    
+                    i = 1;
+                    for (Language lan : Language.values()) {
+                        System.out.println(i + ") " + lan.name());
+                    }
+                    lanIndex = input.nextInt();
+                    input.nextLine();
+                    language = Language.values()[lanIndex];
+                    book = librarian.lib.getBook(bookName, language);
 
+                	System.out.println("Enter name: ");
+                    Name = input.nextLine();
+                	System.out.println("Enter surname: ");
+                    Surname = input.nextLine();
+                	System.out.println("1-Standart Reader: ");
+                	System.out.println("2-Premium Reader: ");
+                	System.out.println("Choose User type: ");
+                    Usr = input.nextInt();
+                    
+                    if(Usr == 1)
+                    {
+                    	for(int j=0; j < SReaders.size() ; j++)
+                        {
+                        	if( 1 == SReaders.get(j).getName().compareTo(Name)
+                        	&& (1 == SReaders.get(j).getSurname().compareTo(Surname) )
+                        	&& (1 == SReaders.get(j).getLib().getAddress().compareTo(librarian.lib.getAddress())))
+                        	{
+                                if(null != librarian.lendBook(book,SReaders.get(j)))
+                                	System.out.println("The book is lended !");
+                                else
+                                	System.out.println("The book is not lended !");
+                        	}
+                        }
+                    }
+                    if(Usr == 2)
+                    {
+                    	for(int j=0; j < PReaders.size() ; j++)
+                        {
+                        	if( 1 == PReaders.get(j).getName().compareTo(Name)
+                        	&& (1 == PReaders.get(j).getSurname().compareTo(Surname) )
+                        	&& (1 == PReaders.get(j).getLib().getAddress().compareTo(librarian.lib.getAddress())))
+                        	{
+                                if(null != librarian.lendBook(book,PReaders.get(j)))
+                                	System.out.println("The book is lended !");
+                                else
+                                	System.out.println("The book is not lended !");
+                        	}
+                        }
+                    }
+                    
+                case 4:
+                	System.out.println("Enter book name: ");
+                    bookName = input.nextLine();
+                    System.out.println("Choose book language: ");
+                    
+                    i = 1;
+                    for (Language lan : Language.values()) {
+                        System.out.println(i + ") " + lan.name());
+                    }
+                    lanIndex = input.nextInt();
+                    input.nextLine();
+                    language = Language.values()[lanIndex];
+                    book = librarian.lib.getBook(bookName, language);
+
+                	System.out.println("Enter name: ");
+                    Name = input.nextLine();
+                	System.out.println("Enter surname: ");
+                    Surname = input.nextLine();
+                	System.out.println("1-Standart Reader: ");
+                	System.out.println("2-Premium Reader: ");
+                	System.out.println("Choose User type: ");
+                    Usr = input.nextInt();
+                    
+                    if(Usr == 1)
+                    {
+                    	for(int j=0; j < SReaders.size() ; j++)
+                        {
+                        	if( 1 == SReaders.get(j).getName().compareTo(Name)
+                        	&& (1 == SReaders.get(j).getSurname().compareTo(Surname) )
+                        	&& (1 == SReaders.get(j).getLib().getAddress().compareTo(librarian.lib.getAddress())))
+                        	{
+                                if(librarian.relendBook(book,SReaders.get(j)))
+                                	System.out.println("The book is lended !");
+                                else
+                                	System.out.println("The book is not lended !");
+                        	}
+                        }
+                    }
+                    if(Usr == 2)
+                    {
+                    	for(int j=0; j < PReaders.size() ; j++)
+                        {
+                        	if( 1 == PReaders.get(j).getName().compareTo(Name)
+                        	&& (1 == PReaders.get(j).getSurname().compareTo(Surname) )
+                        	&& (1 == PReaders.get(j).getLib().getAddress().compareTo(librarian.lib.getAddress())))
+                        	{
+                                if(librarian.relendBook(book,PReaders.get(j)))
+                                	System.out.println("The book is lended !");
+                                else
+                                	System.out.println("The book is not lended !");
+                        	}
+                        }
+                    }
+                    break;
+                case 5:
+                	System.out.println("Enter book name: ");
+                    bookName = input.nextLine();
+                    System.out.println("Choose book language: ");
+                    int i3 = 1;
+                    for (Language lan : Language.values()) {
+                        System.out.println(i3 + ") " + lan.name());
+                    }
+                    lanIndex = input.nextInt();
+                    input.nextLine();
+                    language = Language.values()[lanIndex];
+                    
+                	if(librarian.searchBook(bookName, language))
+                    	System.out.println("The book is in stock !");
+                	else
+                    	System.out.println("The book is not in stock !");
+                    break;
+                case 6:
+                    System.out.println("Redirecting to main menu.");
+                    break;
+                default:
+                    System.out.println("Wrong input.");
+                    break;
+            }
+            
+        }while(opt!=6);
     }
     public static void janitorMenu(Janitor janitor){
-        System.out.println("Welcome, " + janitor.getName() + ".\n" );
+        int  opt;
+    	System.out.println("Welcome, " + janitor.getName() + ".\n" );
         System.out.println("1)List Tasks\n2)Set a Task as done\n3)Exit");
-
+        
+        Scanner input = new Scanner(System.in);
+       
+        do {
+            opt = input.nextInt();
+            input.nextLine();
+            
+            switch (opt) {
+                case 1:
+                	System.out.println(janitor.Tasks);
+                    break;
+                case 2:
+                	String TaskID = input.nextLine();
+                	if(janitor.updateTask(TaskID))
+                		System.out.println("Task is updated.");
+                	else
+                		System.out.println("Task is not updated.");
+                	break;
+                case 3:
+                    System.out.println("Redirecting to main menu.");
+                    break;
+                default:
+                    System.out.println("Wrong input.");
+                    break;
+            }
+            
+        }while(opt!=3);
     }
     public static void sReaderMenu(StandartReader sReader){
         System.out.println("Welcome, " + sReader.getName() + ".\n" );

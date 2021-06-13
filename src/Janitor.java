@@ -10,7 +10,7 @@ import java.util.*;
  */
 public class Janitor extends User{
 
-	private final Queue<Task> Tasks;
+	Queue<Task> Tasks;
 	Library lib;
     /**
      * Constructor of Task

@@ -12,7 +12,9 @@ public class StandartReader extends User
     /**Holds the information of the library that this StandartUser is a member of*/
     Library lib;
 
-    List<Publication> borrowedBooks;
+
+
+	List<Publication> borrowedBooks;
 
 	public StandartReader()
 	{
@@ -27,6 +29,14 @@ public class StandartReader extends User
 		lib=workingLib;
         borrowedBooks = new LinkedList<>();
     }
+    
+    public Library getLib() {
+		return lib;
+	}
+
+	public void setLib(Library lib) {
+		this.lib = lib;
+	}
     /**
 	 * Searches for a specific book in the library stock.
 	 * @return true if the book is found in the stock, false if not.

@@ -30,3 +30,7 @@
 /ManagerGUI.class
 /ReaderGUI.class
 /Person.class
+/AVLTree$AVLNode.class
+/AVLTree$PreOrderIterator.class
+/AVLTree.class
+/RotatingBinarySearchTree.class

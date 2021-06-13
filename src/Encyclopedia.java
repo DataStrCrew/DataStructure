@@ -41,6 +41,10 @@ public class Encyclopedia extends AbstractPublication{
         sections.put(pg,heading);
     }
 
+    /**
+     * Returns string representation of the object.
+     * @return Information of Encyclopedia.
+     */
     @Override
     public String toString(){
         return super.toString() + "\nSections: " + sections;

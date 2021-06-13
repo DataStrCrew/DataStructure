@@ -142,7 +142,10 @@ public class Event {
 		return true;
 	}
 	
-	
+	 /**
+     * Returns string representation of the object.
+     * @return Information of Event.
+     */
 	@Override
     public String toString() {
         return "Name: " + name + "\nDate: " + date + "\nParticipants:" + participants;

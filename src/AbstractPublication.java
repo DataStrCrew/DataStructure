@@ -137,13 +137,19 @@ public class AbstractPublication implements Publication {
     public void addComment(String comment){
         comments.add(comment);
     }
-
+    /**
+     * Returns string representation of the object.
+     * @return Information of Publication.
+     */
     @Override
     public String toString(){
         return "Name: " + name + "\nPage Amount: " + page + "\nLanguage: " + lang + "\nID: " + id +
                 "\nAuthor's info:" + author + "\nComments: " + comments;
     }
 
+    /**
+     * CompareTo method for compare publication ID's.
+     */
     @Override
     public int compareTo(Publication o) {
         return id.compareTo(o.getID());

@@ -28,21 +28,10 @@ public class Library{
 
     private NavigableSet<Librarian> librarians;
     private NavigableSet<Janitor> janitors;
-    private static final List<String> existingIDs = new ArrayList<>(); //skip-list olabilir, hızlı arama için
+    private static final SkipList<String> existingIDs = new SkipList<>();
 
     public Library(){
-        this.name = null;
-        this.address = null;
-        this.id = null;
-        this.manager = null;
-
-        publications = new AVLTree<Publication>();
-        demandedBooks = new ArrayList<Publication>();
-        pastEvents = new ArrayList<Event>();
-        upcomingEvents = new PriorityQueue<Event>();
-        stocks = new HashMap<String,Integer>();
-        librarians = new TreeSet<>();
-        janitors = new TreeSet<>();
+        this(null,null,null);
     }
 
     public Library(String name,String address,String id){
@@ -50,18 +39,18 @@ public class Library{
         this.address = address;
         if(!existingIDs.contains(id)) {
             this.id = id;
-            existingIDs.add(id);
+            existingIDs.insert(id);
         }
         else{
             throw new IllegalArgumentException("ID already exists.");
         }
         this.manager = null;
         
-        publications = new AVLTree<Publication>();
-        demandedBooks = new ArrayList<Publication>();
-        pastEvents = new ArrayList<Event>();
-        upcomingEvents = new PriorityQueue<Event>();
-        stocks = new HashMap<String,Integer>();
+        publications = new AVLTree<>();
+        demandedBooks = new ArrayList<>();
+        pastEvents = new ArrayList<>();
+        upcomingEvents = new PriorityQueue<>();
+        stocks = new HashMap<>();
         librarians = new TreeSet<>();
         janitors = new TreeSet<>();
     }

@@ -351,6 +351,8 @@ public class Library{
     /**
 	 * Prints out all the books with the given category.
 	 * Does not include the books with the same name more than once.
+     * Print output is alphabetically ordered.
+     * @param theGenre desired genre
 	 */
     public void printGenre(BookGenre theGenre)
     {
@@ -373,10 +375,17 @@ public class Library{
             System.out.printf("Book with %s genre does not exist in this library\n", theGenre.toString());
             return;
         }
+        //Sort bookList by name using merge sort.
+        ALSort.mergeSort(bookList, new Comparator<Publication>(){
+            @Override
+            public int compare(Publication o1, Publication o2){
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
         
         for(Publication pub : bookList)
         {
-            System.out.println(pub);
+            System.out.println(pub + "\n");
         }
 
     }

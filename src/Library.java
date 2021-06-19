@@ -354,7 +354,31 @@ public class Library{
 	 */
     public void printGenre(BookGenre theGenre)
     {
-    	
+        Iterator<Publication> iter = publications.preOrderIterator();
+        List<Publication> bookList = new ArrayList<>();
+        
+        while(iter.hasNext())
+        {
+            Publication tempPub = iter.next();
+            if(tempPub instanceof Book)
+            {
+                Book tempBook = (Book) tempPub;
+                if(tempBook.getGenre().equals(theGenre)){
+                    bookList.add(tempPub);
+                }
+            }
+        }
+        if(bookList.size() == 0)
+        {
+            System.out.printf("Book with %s genre does not exist in this library\n", theGenre.toString());
+            return;
+        }
+        
+        for(Publication pub : bookList)
+        {
+            System.out.println(pub);
+        }
+
     }
 
     @Override

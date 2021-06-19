@@ -15,6 +15,10 @@ public class Book extends AbstractPublication {
         this.genre = null;
     }
 
+    public Book(String nm, Language lng) {
+        super(nm, null, lng, null);
+        this.genre = null;
+    }
     /**
      * Constructor for Book.
      * @param nm Name of the publication.

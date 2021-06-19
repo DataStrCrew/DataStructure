@@ -34,6 +34,9 @@ public class StandartReader extends User
 	public void setLib(Library lib) {
 		this.lib = lib;
 	}
+
+	public List<Publication> getBorrowed(){ return borrowedBooks; }
+
     /**
 	 * Searches for a specific book in the library stock.
 	 * @return true if the book is found in the stock, false if not.
@@ -77,11 +80,11 @@ public class StandartReader extends User
 	 * leave a comment for the book
 	 * @return true if the commenting is successful, false otherwise
 	 */
-	public boolean commentBook(Book book , String comment)
+	public boolean commentBook(Publication book , String comment)
 	{
 		if(isBorrowed(book.getName(), book.getLang()))
 		{
-			book.setComment(comment);
+			book.addComment(comment);
 			return true;
 		}
 		return false;

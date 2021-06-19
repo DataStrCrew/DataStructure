@@ -5,7 +5,11 @@
 public class Librarian extends User
 {
 	/**Holds the information of the library that this Librarian is working in*/
-	Library lib;
+	private Library lib;
+
+	public Library getLib() {
+		return lib;
+	}
 
 	public Librarian()
 	{

@@ -57,13 +57,9 @@ public class Janitor extends User{
      * @param newTask New Task
      * @return
      */
-    public boolean addTask(int theTaskID)
+    public boolean addTask(String theTaskID)
     { 
-        String str_task = String.valueOf(theTaskID);
-        Task newTask = new Task(str_task);
+        Task newTask = new Task(theTaskID);
         return Tasks.offer(newTask);
     }
-    
-
-
 }

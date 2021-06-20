@@ -112,7 +112,7 @@ public class Manager extends User
 	 * @param theTaskID is the new task that will be added to a janitor
 	 * @return true if added, false if not
 	 */
-	public boolean addTasks(String janitorID, Integer theTaskID)
+	public boolean addTasks(String janitorID, String theTaskID)
 	{
 		/*
 		 * Assumed that there is addTask(Task newTask) method in janitor class.

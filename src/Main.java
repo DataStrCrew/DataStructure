@@ -324,6 +324,10 @@ public class Main{
     public static void managerMenu(Manager manager){
     	Publication pub;
     	Language language;
+    	String name;
+    	String surname;
+    	String pw;
+    	String id;
         int  opt;
         int i,Index;
         int lanIndex;
@@ -332,8 +336,8 @@ public class Main{
         Scanner input = new Scanner(System.in);
         System.out.println("1)List Publications\n2)Add Publication\n3)Remove Publication\n" +
                 "4)List Demanded Books and Accept/Decline Them\n5)Add Librarian\n6)Remove Librarian\n" +
-                "7)Add Janitor\n8)Remove Janitor\n9)Add Task to a Janitor\n10)List Offered Events and Accept/Decline them\n" +
-                "12)End and Event\n12)Exit");
+                "7)Add Janitor\n8)Remove Janitor\n9)Add Task to a Janitor\n"
+                + "10)List Offered Events and Accept/Decline them\n" + "11)End and Event\n12)Exit");
         do {
             opt = input.nextInt();
             input.nextLine();
@@ -450,11 +454,69 @@ public class Main{
                     
                     break;
                 case 5:
-                	
+                	 System.out.println("Name of the Librarian: ");
+                     System.out.println("Enter name:");
+                     name = input.nextLine();
+                     System.out.println("Enter surname:");
+                     surname = input.nextLine();
+                     System.out.println("Enter password:");
+                     pw = input.nextLine();
+                        try {
+                         Librarian l = new Librarian(name, surname, pw, manager.getLib());
+                         manager.addLibrarian(l);
+                     } catch (IndexOutOfBoundsException ex) {
+                         System.out.println("Wrong input.");
+                     }
+                     break;
                 case 6:
+                    System.out.println("Enter the ID of the librarian to remove from library.");
+                    id = input.nextLine();
+                    
+                    if (null != manager.removeLibrarian(manager.getLib().getLibrarian(id)))
+                        System.out.println("Librarian is succesfully removed.");
+                    else
+                        System.out.println("There is no such librarian.");
+                    break;
                 case 7:
+               	 System.out.println("Name of the Janitor: ");
+                 System.out.println("Enter name:");
+                 name = input.nextLine();
+                 System.out.println("Enter surname:");
+                 surname = input.nextLine();
+                 System.out.println("Enter password:");
+                 pw = input.nextLine();
+                 try {
+                     Janitor j = new Janitor(name, surname, pw, manager.getLib());
+                     manager.addJanitor(j);
+                 } catch (IndexOutOfBoundsException ex) {
+                     System.out.println("Wrong input.");
+                 }
+                 break;
                 case 8:
+                    System.out.println("Enter the ID of the janitor to remove from library.");
+                    id = input.nextLine();
+                    
+                    if (null != manager.removeJanitor(manager.getLib().getJanitor(id)))
+                        System.out.println("Janitor is succesfully removed.");
+                    else
+                        System.out.println("There is no such janitor.");
+                    break;
                 case 9:
+                    System.out.println("Enter the ID of the janitor.");
+                    id = input.nextLine();
+                    Janitor j = manager.getLib().getJanitor(id);
+                    if (null == j)
+                        System.out.println("There is no such janitor.");
+                    else 
+                    {
+                        System.out.println("Enter the ID of the Task.");
+                        id = input.nextLine();
+                        if(manager.addTasks(j.getID(), id))
+                            System.out.println("The task is added succesfully.");
+                        else 
+                            System.out.println("The task is not added succesfully.");
+                    }
+                	break;
                 case 10:
                     for (Event event : manager.getOfferedEvents()) {
                         System.out.println(event);
@@ -470,7 +532,6 @@ public class Main{
                         break;
                     }
                 case 11:
-                case 12:
                     System.out.println("Redirecting to main menu.");
                     break;
                 default:
@@ -1045,7 +1106,7 @@ public class Main{
                 eventNum = input.nextInt();
                 event = pReader.getLib().getUpcomingEvents().get(eventNum);
                 pReader.participate_event(event);
-
+                
                 break;
 
             case 8:

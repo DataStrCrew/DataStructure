@@ -1,3 +1,4 @@
+import java.util.Comparator;
 
 /**
  * A class to represent a binary search tree.
@@ -10,17 +11,29 @@ public class BinarySearchTree<E extends Comparable<E>>
     protected boolean isAdded;
     /** Return value from the public delete method. */
     protected E removed;
+    
+    protected Comparator<E> comp;
 
-    public BinarySearchTree()
+    public BinarySearchTree(Comparator<E> comparator)
     {
     	super();
+    	comp=comparator;
     }
     
-    public BinarySearchTree(E item)
+    public BinarySearchTree(E item, Comparator<E> comparator)
     {
     	super();
+    	comp=comparator;
     	add(item);
     }
+    
+    protected int compare(E left, E right)
+	{
+		if(comp==null)
+			return left.compareTo(right);
+		else
+			return comp.compare(left,right);
+	}
     
     /**
      * find method.
@@ -41,7 +54,7 @@ public class BinarySearchTree<E extends Comparable<E>>
     {
         if (localRoot == null) 
             return null;
-        int compResult = target.compareTo(localRoot.data);
+        int compResult =compare(target, localRoot.data);
         if (compResult == 0) 
             return localRoot.data;
         else if (compResult < 0)
@@ -78,12 +91,12 @@ public class BinarySearchTree<E extends Comparable<E>>
             size++;
             return new Node<E>(item);
         } 
-        else if (item.compareTo(localRoot.data) == 0) 
+        else if (compare(item, localRoot.data) == 0)
         {
             isAdded = false;
             return localRoot;
         }
-        else if (item.compareTo(localRoot.data) < 0) 
+        else if (compare(item, localRoot.data) < 0) 
         {
             localRoot.left = add(localRoot.left, item);
             return localRoot;
@@ -127,7 +140,7 @@ public class BinarySearchTree<E extends Comparable<E>>
 			 return localRoot;
 		 }
 		 // Search for item to delete.
-		 int compResult = ((Comparable<E>)item).compareTo(localRoot.data);
+		 int compResult = compare(item, localRoot.data);
 		 if (compResult < 0) 
 		 {
 			 // item is smaller than localRoot.data.

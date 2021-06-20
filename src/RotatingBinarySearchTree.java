@@ -1,14 +1,15 @@
+import java.util.Comparator;
 
 public class RotatingBinarySearchTree<E extends Comparable<E>> extends BinarySearchTree<E>
 {
-	public RotatingBinarySearchTree()
+	public RotatingBinarySearchTree(Comparator<E> comparator)
 	{
-		super();
+		super(comparator);
 	}
 	
-	public RotatingBinarySearchTree(E item)
+	public RotatingBinarySearchTree(E item, Comparator<E> comparator)
 	{
-		super();
+		super(comparator);
 		add(item);
 	}
 	

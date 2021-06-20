@@ -1,3 +1,4 @@
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Stack;
 
@@ -24,7 +25,7 @@ public class AVLTree<E extends Comparable<E>> extends RotatingBinarySearchTree<E
 		private static final int Right_Heavy=1;
 		private static final int Balanced=0;
 		
-		int balance;
+		private int balance;
 		
 		public AVLNode(E data)
 		{
@@ -38,14 +39,14 @@ public class AVLTree<E extends Comparable<E>> extends RotatingBinarySearchTree<E
 		}
 	}
 	
-	public AVLTree()
+	public AVLTree(Comparator<E> comparator)
 	{
-		super();
+		super(comparator);
 	}
 	
-	public AVLTree(E item)
+	public AVLTree(E item, Comparator<E> comparator)
 	{
-		super(item);
+		super(comparator);
 		add(item);
 	}
 	
@@ -57,7 +58,7 @@ public class AVLTree<E extends Comparable<E>> extends RotatingBinarySearchTree<E
     {
         if (localRoot == null) 
             return 0;
-        int compResult = target.compareTo(localRoot.data);
+        int compResult = compare(target, localRoot.data);
         if (compResult == 0) 
             return ((AVLNode<E>)localRoot).count;
         else if (compResult < 0)
@@ -238,7 +239,7 @@ public class AVLTree<E extends Comparable<E>> extends RotatingBinarySearchTree<E
 			increased = true;
 			return new AVLNode<E>(item);
 		}
-		if (((Comparable)item).compareTo(localRoot.data) == 0) 
+		if (compare(item, localRoot.data) == 0) 
 		{
 			// Item is already in the tree.
 			increased = false;
@@ -247,7 +248,7 @@ public class AVLTree<E extends Comparable<E>> extends RotatingBinarySearchTree<E
 			isAdded = true;
 			return localRoot;
 		}
-		else if (((Comparable)item).compareTo(localRoot.data) < 0) 
+		else if (compare(item, localRoot.data) < 0)
 		{
 			// item < data
 			 localRoot.left = add((AVLNode<E>) localRoot.left, item);
@@ -335,7 +336,7 @@ public class AVLTree<E extends Comparable<E>> extends RotatingBinarySearchTree<E
 			 return localRoot;
 		 }
 		 // Search for item to delete.
-		 int compResult = ((Comparable<E>)item).compareTo(localRoot.data);		 
+		 int compResult = compare(item, localRoot.data);
 		 if (compResult < 0) 
 		 {
 			 // item is smaller than localRoot.data.

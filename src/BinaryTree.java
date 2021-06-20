@@ -13,6 +13,7 @@ public class BinaryTree<E> implements Serializable {
         public E data;
         public Node<E> left;
         public Node<E> right;
+        public int count;
 
         /**
          * Construct a node with given data and no children.
@@ -22,6 +23,7 @@ public class BinaryTree<E> implements Serializable {
             this.data = data;
             left = null;
             right = null;
+            count=1;
         }
 
         /**

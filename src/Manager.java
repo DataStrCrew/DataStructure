@@ -114,12 +114,6 @@ public class Manager extends User
 	 */
 	public boolean addTasks(String janitorID, String theTaskID)
 	{
-		/*
-		 * Assumed that there is addTask(Task newTask) method in janitor class.
-		 * This method adds the task to the janitor, returns true.
-		 * If the janitor already has the task returns false.
-		 * DELETE THIS LATER ON
-		 */
 		if(!searchJanitor(janitorID))
 			return false;
 		else
@@ -127,24 +121,72 @@ public class Manager extends User
 	}
 	
 	/**
+	 * Accepts and removes a book from demandedBooks list in the library. Stock is also updated.
+	 * @return false if there is nothing to accept, true if a book is accepted.
+	 */
+	public boolean acceptBookDemand(Publication demandedBook)
+	{
+		boolean check=lib.removeDemandedBook(demandedBook);
+		if(check!=false)
+			lib.changeStock(demandedBook, 1);
+		return check;
+	}
+	
+	/**
+	 * Accepts and removes the last book from demandedBooks list in the library. Stock is also updated.
+	 * @return false if there is nothing to accept, true if a book is accepted.
+	 */
+	public boolean acceptBookDemand()
+	{
+		Publication demandedBook=lib.removeDemandedBook();
+		if(demandedBook==null)
+			return false;
+		else
+			lib.changeStock(demandedBook, 1);
+		
+		return true;
+	}
+	
+	/**
 	 * Gets all the demands from the demandedBooks data field of library and adds them to
 	 * the stock of the library. At the end demandedBooks data field must be empty and all
 	 * the books must be added to the stock.
 	 */
-	public void arrangeBookDemands()
+	public void acceptAllBookDemands()
 	{
-		/*
-		 * Assumed that there is a removeDemandedBook() method in Library class that removes the 
-		 * book in the last index of demandedBooks list and returns the removed book. Returns null
-		 * if there is no books to remove.
-		 */
-		//DELETE THIS LATER
+		while(acceptBookDemand());
+	}
+	
+	/**
+	 * Declines and removes a book from demandedBooks list in the library. Stock remains unchanged.
+	 * @return false if there is nothing to decline, true if a book is declined.
+	 */
+	public boolean declineBookDemand(Publication demandedBook)
+	{
+		boolean check=lib.removeDemandedBook(demandedBook);
+		return check;
+	}
+	
+	/**
+	 * Declines and removes the last book from demandedBooks list in the library. Stock remains unchanged.
+	 * @return false if there is nothing to decline, true if a book is declined.
+	 */
+	public boolean declineBookDemand()
+	{
 		Publication demandedBook=lib.removeDemandedBook();
-		while(demandedBook!=null)
-		{
-			lib.changeStock(demandedBook, 1);
-			demandedBook=lib.removeDemandedBook();
-		}
+		if(demandedBook==null)
+			return false;
+		else
+			return true;
+	}
+	
+	/**
+	 * Gets all the demands from the demandedBooks data field of library and removes them. 
+	 * Does not add to the stock. At the end demandedBooks data field must be empty.
+	 */
+	public void declineAllBookDemands()
+	{
+		while(declineBookDemand());
 	}
 	
 	/**
@@ -167,7 +209,6 @@ public class Manager extends User
 		return lib.getOfferedEvents();
 	}
 
-
 	/**
 	 * Accepts an event and adds it to upcoming event list.
 	 * @param newEvent is the event that will be added to the upcoming events list.
@@ -175,12 +216,6 @@ public class Manager extends User
 	 */
 	public boolean acceptEvent(Event newEvent)
 	{
-		/*
-		 * Assumed there is a addUpcomingEvent(Event addedEvent) method in library class
-		 * This method should return true after adding to upcomingEvenets data field. 
-		 * It should return false if the event is already in the upcoming events list.
-		 * DELETE THIS LATER ON
-		 */
 		return lib.addUpcomingEvent(newEvent);
 	}
 	
@@ -212,11 +247,6 @@ public class Manager extends User
 	 */
 	public void searchGenre(BookGenre searchedGenre)
 	{
-		/*
-		 * Assumed that there is a method in library that prints out all the
-		 * books with the given category.
-		 * Does not include the books with the same name more than once.
-		 */
 		lib.printGenre(searchedGenre);
 	}
 	

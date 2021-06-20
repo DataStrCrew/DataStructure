@@ -204,6 +204,11 @@ public class Library{
     public boolean demandBook(Publication demandedBook){
         return demandedBooks.add(demandedBook);
     }
+    
+    public boolean removeDemandedBook(Publication demandedBook)
+    {
+    	return demandedBooks.remove(demandedBook);
+    }
 
     public Publication removeDemandedBook()
     {

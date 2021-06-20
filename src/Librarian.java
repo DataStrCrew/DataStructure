@@ -44,11 +44,6 @@ public class Librarian extends User
 	 */
 	public int demandBookStock(String bookName, Language bookLanguage)
 	{
-		/*
-		 * Assumed that there is a method called bookAmount in library class that returns
-		 * the amount of a book which has the given language in the library stock
-		 * DELETE THIS COMMENT LATER ON
-		 */
 		return lib.bookAmount(bookName, bookLanguage);
 	}
 	
@@ -83,10 +78,6 @@ public class Librarian extends User
 	 */
 	public boolean relendBook(Publication returnedBook, StandartReader customer)
 	{
-		/*
-		 * Assumed returnTheBook removes the book in the given index from borrowedBooks field of the customer and adds it to pastReadBooks field.
-		 * DELETE THIS COMMENT LATER ON
-		 */
 		if(customer.isBorrowed(returnedBook.getName(), returnedBook.getLang()))
 			return false;
 		else
@@ -103,11 +94,6 @@ public class Librarian extends User
 	 */
 	public boolean searchBook(String searchedBook, Language bookLanguage)
 	{
-		/*
-		 * Assumed that there is an isInStock method in library class that returns
-		 * False if the book is not found and true number if it is found.
-		 * DELETE THIS COMMENT LATER ON
-		 */
 		return lib.isInStock(searchedBook, bookLanguage);
 	}
 }

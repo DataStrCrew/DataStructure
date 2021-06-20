@@ -18,7 +18,6 @@ public class Library{
     private Manager manager;
 
     private AVLTree<Publication> publications;
-    private HashMap<String,Integer> stocks;
     private PriorityQueue<Event> upcomingEvents;
 
     private List<Publication> demandedBooks;
@@ -50,7 +49,6 @@ public class Library{
         demandedBooks = new ArrayList<>();
         pastEvents = new ArrayList<>();
         upcomingEvents = new PriorityQueue<>();
-        stocks = new HashMap<>();
         librarians = new TreeSet<>();
         janitors = new TreeSet<>();
     }
@@ -149,28 +147,12 @@ public class Library{
      * @return true if publication's stock is bigger than 0 else false
      */
     public boolean isInStock(String searchedBook, Language bookLanguage){
-        if(!stocks.containsKey(searchedBook)) return false;
-        return (stocks.get(searchedBook) > 0);
+        //TODO 
+        //compare method should be implemented for publications in AbstractPublications class.
+        //Or AVLTree should have a constructor that takes Comparator.
+        return (publications.getAmount(new AbstractPublication(searchedBook, null, bookLanguage, null)) != 0);
     }
 
-
-    /**
-     * Change publication with given name's stock by given amount
-     * @param name Name of the book
-     * @param amount Amount of the book
-     * @return true if given string is not null
-     */
-    private boolean changeStock(String name, int amount){
-        if(name == null) return false;
-
-        int val = stocks.get(name);
-        val += amount;
-        if(val < 0) val = 0;
-        stocks.put(name,val);
-        
-        return true;
-        
-    }
 
     /**
      * Changes stock of given publication by given amount
@@ -179,11 +161,10 @@ public class Library{
      * @return true
      */
     public boolean changeStock(Publication givenPublication, int amount){
-        if(!publications.contains(givenPublication)){
-            publications.add(givenPublication);
-            stocks.put(givenPublication.getName(), 0);
-        }
-        return changeStock(givenPublication.getName(), amount);
+
+        if(amount < 0) return publications.delete(givenPublication) != null;
+        
+        return publications.add(givenPublication);
     }
 
 
@@ -192,7 +173,7 @@ public class Library{
      * @return Stock amount of desired publication, -1 if publication is not found
      */
     public int bookAmount(String bookName, Language bookLanguage){
-        return stocks.get(bookName);
+        return publications.getAmount(new AbstractPublication(bookName, null, bookLanguage, null));
     }
 
 

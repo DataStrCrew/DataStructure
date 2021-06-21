@@ -45,7 +45,17 @@ public class Library{
         }
         this.manager = null;
         
-        publications = new AVLTree<>();
+        publications = new AVLTree<>(new Comparator<Publication>(){
+            @Override
+            public int compare(Publication p1, Publication p2){
+                if(p1.getName().compareTo(p2.getName()) == 0){
+                    return p1.getLang().compareTo(p2.getLang());
+                }
+                
+                return p1.getName().compareTo(p2.getName());
+                
+            }
+        });
         demandedBooks = new ArrayList<>();
         pastEvents = new ArrayList<>();
         upcomingEvents = new PriorityQueue<>();

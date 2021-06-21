@@ -436,6 +436,7 @@ public class Main{
                 	break;
                 	
                 case 4:
+                	int selection;
                 	System.out.println("Deamanded Books:");
                     do {
 	                	i = 1;
@@ -451,7 +452,30 @@ public class Main{
 	                    	System.out.println("Choose proper book index! ");
             		}while( !(Index < i) );
                     
+                    do {
+                    	System.out.println("Choose Proper Selection");
+                    	System.out.println("1-Accept");
+                    	System.out.println("2-Decline");
+                    	selection = input.nextInt();
+	                    if(selection != 1 && selection != 2)
+	                    	System.out.println("Choose proper selection! ");
+                    }while(selection != 1 && selection != 2);
                     
+                    pub = manager.getLib().getDemandedBooks().get(Index);
+                    if(selection == 1) 
+                    {
+                    	if(manager.acceptBookDemand(pub))
+                    		System.out.println("Book is accepted.");
+                    	else
+                    		System.out.println("Book is not accepted.");
+                    }
+                    else if(selection == 2)
+                    {
+                    	if(manager.declineBookDemand(pub))
+                    		System.out.println("Book is declined.");
+                    	else
+                    		System.out.println("Book is not declined.");
+                    }
                     break;
                 case 5:
                 	 System.out.println("Name of the Librarian: ");

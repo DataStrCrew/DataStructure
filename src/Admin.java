@@ -158,5 +158,45 @@ public class Admin extends User{
     	return libraries;
 	}
 
+        //-----------------------------------------ENTITY METHODS--------------------------
+
+    /*
+
+    /**
+     * Admin constructor for Database operations.
+     * @param entity AdminEntity class object.
+     *
+     
+    public Admin(AdminEntity entity){
+
+        super(entity);
+
+        for (Library lib : entity.getLibraries())           
+           this.libraries.add(lib);   
+    }
+
+    /**
+     * Method to save Admin data field to AdminEntity object.
+     * @return AdminEntity object.
+     *
+     
+    public AdminEntity getEntity(){
+
+        AdminEntity entity;
+
+        entity.setName(getName());
+        entity.setSurname(getSurname());
+        entity.setID(getID());
+        entity.setPW(getPW());
+
+        for (Library lib : libraries)           
+           entity.libraries.add(lib);        
+        
+        return entity;
+
+    }
+
+    */
+
 
 }

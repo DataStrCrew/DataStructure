@@ -8,7 +8,7 @@ import java.util.Queue;
  */
 public class Manager extends User
 {
-	private final Library lib;
+	private Library lib;
 
 	public Manager()
 	{
@@ -269,8 +269,46 @@ public class Manager extends User
 		return lib;
 	}
 
+	public void setLib(Library lib){
+		this.lib = lib;
+	}
+
 	@Override
 	public String toString(){
 		return name + " " + surname + "\n";
 	}
+
+		 //-----------------------------------------ENTITY METHODS--------------------------
+
+   /*
+    /**
+     * Manager constructor for Database operations.
+     * @param entity ManagerEntity class object.
+     *  
+    public Manager(ManagerEntity entity){
+
+        super(entity);
+        this.lib = entity.getLib();
+    }
+
+    /**
+     * Method to save Manager data field to ManagerEntity object.
+     * @return ManagerEntity object.
+     *
+     
+    public ManagerEntity getEntity(){
+
+        ManagerEntity entity;
+
+        entity.setName(getName());
+        entity.setSurname(getSurname());
+        entity.setID(getID());
+        entity.setPW(getPW());
+        entity.setLib(getLib());    
+        
+        return entity;
+
+    }
+*/
+    
 }

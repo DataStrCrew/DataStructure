@@ -138,5 +138,60 @@ public abstract class User implements Person,Comparable<User>{
         return str.toString();
     }
 
+        //-----------------------------------------ENTITY METHODS--------------------------
+    
+    /*
+    public User(AdminEntity entity){
 
+        this.name = entity.getName();
+        this.surname = entity.getSurname();
+        this.ID = entity.getID();
+        this.password = entity.getPW();
+    }
+   
+    public User(JanitorEntity entity){
+
+        this.name = entity.getName();
+        this.surname = entity.getSurname();
+        this.ID = entity.getID();
+        this.password = entity.getPW();
+    }
+
+    public User(LibrarianEntity entity){
+
+        this.name = entity.getName();
+        this.surname = entity.getSurname();
+        this.ID = entity.getID();
+        this.password = entity.getPW();
+    }
+ 
+    public User(ManagerEntity entity){
+
+        this.name = entity.getName();
+        this.surname = entity.getSurname();
+        this.ID = entity.getID();
+        this.password = entity.getPW();
+    }
+
+    public User(PremiumReaderEntity entity){
+
+        this.name = entity.getName();
+        this.surname = entity.getSurname();
+        this.ID = entity.getID();
+        this.password = entity.getPW();
+    }
+
+    public User(StandartReaderEntity entity){
+
+        this.name = entity.getName();
+        this.surname = entity.getSurname();
+        this.ID = entity.getID();
+        this.password = entity.getPW();
+    }
+    
+    */
+
+
+
+    
 }

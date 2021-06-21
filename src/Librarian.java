@@ -11,6 +11,11 @@ public class Librarian extends User
 		return lib;
 	}
 
+	public void setLib(Library lib){
+
+		this.lib = lib;
+	}
+
 	public Librarian()
 	{
 		super("name","surname","pw");
@@ -96,4 +101,38 @@ public class Librarian extends User
 	{
 		return lib.isInStock(searchedBook, bookLanguage);
 	}
+
+	 //-----------------------------------------ENTITY METHODS--------------------------
+
+   /*
+    /**
+     * Librarian constructor for Database operations.
+     * @param entity LibrarianEntity class object.
+     *  
+    public Librarian(LibrarianEntity entity){
+
+        super(entity);
+        this.lib = entity.getLib();
+    }
+
+    /**
+     * Method to save Librarian data field to LibrarianEntity object.
+     * @return LibrarianEntity object.
+     *
+     
+    public LibrarianEntity getEntity(){
+
+        LibrarianEntity entity;
+
+        entity.setName(getName());
+        entity.setSurname(getSurname());
+        entity.setID(getID());
+        entity.setPW(getPW());
+        entity.setLib(getLib());    
+        
+        return entity;
+
+    }
+
+    */
 }

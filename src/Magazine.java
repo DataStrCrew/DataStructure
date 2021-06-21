@@ -53,7 +53,7 @@ public class Magazine extends AbstractPublication{
      * Magazine constructor for Database operations.
      * @param entity MagazineEntity class object.
      
-    public Magazine(EncyclopediaEntity entity){
+    public Magazine(MagazineEntity entity){
 
         super(entity); 
         this.issue = entity.getIssue();

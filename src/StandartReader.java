@@ -143,5 +143,49 @@ public class StandartReader extends User
 	}
 
 
+	//-----------------------------------------ENTITY METHODS--------------------------
+
+   /*
+    /**
+     * StandartReader constructor for Database operations.
+     * @param entity StandartReaderEntity class object.
+     *
+    public StandartReader(StandartReaderEntity entity){
+
+        super(entity);
+        this.lib = entity.getLib();
+        this.borrowedBooks = getBorrowed();
+    }
+	
+	public StandartReader(PremiumReaderEntity entity){
+
+        super(entity);
+        this.lib = entity.getLib();
+        this.borrowedBooks = getBorrowed();
+    }
+
+    /**
+     * Method to save StandartReader data field to StandartReaderEntity object.
+     * @return StandartReaderEntity object.
+     *
+     
+    public StandartReaderEntity getEntity(){
+
+        StandartReaderEntity entity;
+
+        entity.setName(getName());
+        entity.setSurname(getSurname());
+        entity.setID(getID());
+        entity.setPW(getPW());
+        entity.setLib(getLib());
+
+        for (Publication book : borrowedBooks)           
+          entity.borrowedBooks.add(book);    
+        
+        return entity;
+
+    }
+
+*/
 
 }

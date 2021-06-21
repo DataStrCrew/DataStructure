@@ -167,6 +167,27 @@ public class AbstractPublication implements Publication {
         page = entity.getPage();
         comments = entity.getComments(); 
     }
+
+    public AbstractPublication(EncyclopediaEntity entity){
+
+        name = entity.getName();
+        author = entity.getAuthor();
+        id = entity.getID();
+        lang = entity.getLang();
+        page = entity.getPage();
+        comments = entity.getComments(); 
+    }
+    
+    public AbstractPublication(MagazineEntity entity){
+
+        name = entity.getName();
+        author = entity.getAuthor();
+        id = entity.getID();
+        lang = entity.getLang();
+        page = entity.getPage();
+        comments = entity.getComments(); 
+    }
+
     */
 
 }

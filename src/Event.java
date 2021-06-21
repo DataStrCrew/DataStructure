@@ -160,5 +160,45 @@ public class Event {
 		System.out.println(participants);
 		
 	}
+
+	   //-----------------------------------------ENTITY METHODS--------------------------
+
+    
+/*
+    /**
+     * Event constructor for Database operations.
+     * @param entity EventEntity class object.
+     
+    public Event(EventEntity entity){
+
+        this.name = entity.getName();
+        this.date = entity.getDate();
+        this.participants = entity.getParticipants();
+        this.votes = entity.getVotes();
+
+    }
+
+    /**
+     * Method to save Event data field to EventEntity object.
+     * @return EventEntity object.
+     
+    public EventEntity getEntity(){
+
+        EventEntity entity;
+
+        entity.setName(getName());
+        entity.setDate(getDate());
+
+        for (StandartReader rdr : participants)           
+           entity.participants.add(rdr);
+
+        for (Integer vote : votes)           
+           entity.votes.add(vote);          
+        
+        return entity;
+
+    }
+
+    */
 	
 }

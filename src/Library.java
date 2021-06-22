@@ -107,9 +107,25 @@ public class Library{
         return demandedBooks;
     }
 
+    public List<Publication> getPastEvents()
+    {
+        return pastEvents;
+    }
+
+
     public PriorityQueue<Event> getUpcomingEvents()
     {
         return upcomingEvents;
+    }
+
+    public NavigableSet<Librarian> getLibrarians()
+    {
+        return librarians;
+    }
+
+    public NavigableSet<Janitor> getLibrarians()
+    {
+        return janitors;
     }
 
     /**
@@ -390,4 +406,67 @@ public class Library{
     public String toString(){
        return "Name:" + name + "Address: " + address + "Current Manager: " + manager;
     }
+
+           //-----------------------------------------ENTITY METHODS--------------------------
+
+    
+    /*
+    /**
+     * Event constructor for Database operations.
+     *  @param entity EventEntity class object.
+     * 
+     
+    public Event(EventEntity entity){
+
+    this.name = entity.getName();
+    this.address = entity.getAddress();
+    this.id = entity.getID();
+    this.manager = entity.getManager();
+    this.demandedBooks = entity.getDemandedBooks();
+    this.pastEvents = entity.getPastEvents();
+    this.offeredEvents = entity.getOfferedEvents();
+    this.upcomingEvents = entity.getUpcomingEvents();
+    this.librarians = entity.getLibrarians();
+    this.janitors = entity.getJanitors();
+
+
+    for (Publication pub : entity.publications)           
+        this.publications.add(pub);
+
+    for (String ids : entity.existingIDs)           
+        this.existingIDs.insert(ids);   
+
+    }
+
+    /**
+     * Method to save Event data field to EventEntity object.
+     * @return EventEntity object.
+     * 
+
+     
+    public EventEntity getEntity(){
+
+        EventEntity entity;
+
+        entity.setName(getName());
+        entity.setAddress(getAddress());
+        entity.id = this.id;
+        entity.setManager(getManager());
+        entity.demandedBooks = this.demandedBooks;
+        entity.pastEvents = this.pastEvents;
+        entity.offeredEvents = this.offeredEvents;
+        entity.upcomingEvents = this.upcomingEvents;
+        entity.librarians = this.librarians;
+        entity.janitors = this.janitors;
+
+        for (Publication pub : publications)           
+           entity.publications.add(pub);
+
+        for (String ids : existingIDs)           
+           entity.existingIDs.add(ids);          
+        
+        return entity;
+    }
+*/
+    
 }

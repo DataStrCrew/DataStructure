@@ -7,7 +7,6 @@ import javax.lang.model.util.ElementScanner14;
 
 public class Main{
 
-    //Bunlar şimdilik new arrayliste eşitli.
     //Database gelince Database.getAdmins(),Database.getManagers... 'a eşitlenecek.
     static ArrayList<Admin> admins = new ArrayList<>();
     static ArrayList<Manager> managers = new ArrayList<>();

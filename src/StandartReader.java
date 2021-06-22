@@ -39,7 +39,7 @@ public class StandartReader extends User
 
     /**
 	 * Searches for a specific book in the library stock.
-	 * @return true if the book is found in the stock, false if not.
+	 * @return true if the book is found in the stock, false if it is not.
 	 */
 	public boolean searchBook(String searchedBook, Language bookLanguage)
 	{
@@ -48,7 +48,7 @@ public class StandartReader extends User
 
     /**
 	 * borrowing the requested book if it is available in the library stocks
-	 * @return the Book that is borrowed, null if no books is borrowed.
+	 * @return true if the borrowing is successful, false if it is not.
 	 */
 	public boolean borrowBook(Publication borrowBook)
 	{
@@ -116,7 +116,7 @@ public class StandartReader extends User
 
     /**
 	 * voting the event
-	 * @return voted event
+	 * @return true if the voting is successful, false if it is not.
 	 */
 	public boolean vote_event(int vote , Event event)
 	{
@@ -130,7 +130,7 @@ public class StandartReader extends User
 
     /**
 	 * participating the event
-	 * @return participated event
+	 * @return true if the participating is successful, false if it is not.
 	 */
 	public boolean participate_event(Event event)
 	{

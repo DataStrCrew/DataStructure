@@ -869,7 +869,7 @@ public class Main{
         int i;
         int lanIndex;
 
-        System.out.println("Welcome " + sReader.getName() + "\n" );
+        System.out.println("Welcome " + sReader.getName());
         System.out.println("1)Search a Book");
         System.out.println("2)Borrow Book");
         System.out.println("3)Return a Book");
@@ -972,21 +972,17 @@ public class Main{
                 break;
                 
             case 6:
-                System.out.println(sReader.getLib().getUpcomingEvents()); 
-                System.out.println("Choose event : ");
-                int eventNum = input.nextInt();
+                System.out.println(sReader.getLib().getUpcomingEvents().peek()); 
                 System.out.println("Choose vote : ");
                 int vote = input.nextInt();
-                Event event = sReader.getLib().getUpcomingEvents().get(eventNum);
+                Event event = sReader.getLib().getUpcomingEvents().peek();
                 sReader.vote_event(vote, event);
 
                 break; 
                 
             case 7:
-                System.out.println(sReader.getLib().getUpcomingEvents()); 
-                System.out.println("Choose event : ");
-                eventNum = input.nextInt();
-                event = sReader.getLib().getUpcomingEvents().get(eventNum);
+                System.out.println(sReader.getLib().getUpcomingEvents().peek()); 
+                event = sReader.getLib().getUpcomingEvents().peek();
                 sReader.participate_event(event);
 
                 break;
@@ -1009,7 +1005,7 @@ public class Main{
         int i;
         int lanIndex;
 
-        System.out.println("Welcome " + pReader.getName() + "\n" );
+        System.out.println("Welcome " + pReader.getName());
         System.out.println("1)Search a Book");
         System.out.println("2)Borrow Book");
         System.out.println("3)Return a Book");
@@ -1114,21 +1110,17 @@ public class Main{
                 break;
                 
             case 6:
-                System.out.println(pReader.getLib().getUpcomingEvents()); 
-                System.out.println("Choose event : ");
-                int eventNum = input.nextInt();
+                System.out.println(pReader.getLib().getUpcomingEvents().peek()); 
                 System.out.println("Choose vote : ");
                 int vote = input.nextInt();
-                Event event = pReader.getLib().getUpcomingEvents().get(eventNum);
+                Event event = pReader.getLib().getUpcomingEvents().peek();
                 pReader.vote_event(vote, event);
 
                 break; 
                 
             case 7:
-                System.out.println(pReader.getLib().getUpcomingEvents()); 
-                System.out.println("Choose event : ");
-                eventNum = input.nextInt();
-                event = pReader.getLib().getUpcomingEvents().get(eventNum);
+                System.out.println(pReader.getLib().getUpcomingEvents().peek()); 
+                event = pReader.getLib().getUpcomingEvents().peek();
                 pReader.participate_event(event);
                 
                 break;

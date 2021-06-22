@@ -25,7 +25,7 @@ public class PremiumReader extends StandartReader
     
     /**
 	 * creating event request
-	 * @return requested event
+	 * @return true if the requesting is successful, false if it is not.
 	 */
 	public boolean request_event(Event event)
 	{

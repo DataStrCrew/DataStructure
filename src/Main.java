@@ -3,6 +3,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
 
+import javax.lang.model.util.ElementScanner14;
 
 public class Main{
 
@@ -659,11 +660,11 @@ public class Main{
 	                	System.out.println("2-Premium Reader: ");
 	                	System.out.println("Choose User type: ");
 	                    Usr = input.nextInt();
-	                    if(Usr != 1 && Usr != 2)
+	                    if(Usr != 1 || Usr != 2)
 	                    {
 	                    	System.out.println("Choose proper selection ! ");
 	                    }
-                    }while(Usr != 1 && Usr != 2);
+                    }while(Usr != 1 || Usr != 2);
                     
                     flag = 0;
                     
@@ -741,11 +742,11 @@ public class Main{
 	                	System.out.println("2-Premium Reader: ");
 	                	System.out.println("Choose User type: ");
 	                    Usr = input.nextInt();
-	                    if(Usr != 1 && Usr != 2)
+	                    if(Usr != 1 || Usr != 2)
 	                    {
 	                    	System.out.println("Choose proper selection ! ");
 	                    }
-                    }while(Usr != 1 && Usr != 2);
+                    }while(Usr != 1 || Usr != 2);
                     
                     flag = 0;
                     if(Usr == 1)

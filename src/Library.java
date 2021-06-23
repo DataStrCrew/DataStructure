@@ -107,7 +107,7 @@ public class Library{
         return demandedBooks;
     }
 
-    public List<Publication> getPastEvents()
+    public List<Event> getPastEvents()
     {
         return pastEvents;
     }
@@ -123,7 +123,7 @@ public class Library{
         return librarians;
     }
 
-    public NavigableSet<Janitor> getLibrarians()
+    public NavigableSet<Janitor> getJanitors()
     {
         return janitors;
     }

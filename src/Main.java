@@ -3,7 +3,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
 
-import javax.lang.model.util.ElementScanner14;
 
 public class Main{
 
@@ -333,11 +332,12 @@ public class Main{
         
     	System.out.println("Welcome, " + manager.getName() + ".\n" );
         Scanner input = new Scanner(System.in);
-        System.out.println("1)List Publications\n2)Add Publication\n3)Remove Publication\n" +
-                "4)List Demanded Books and Accept/Decline Them\n5)Add Librarian\n6)Remove Librarian\n" +
-                "7)Add Janitor\n8)Remove Janitor\n9)Add Task to a Janitor\n"
-                + "10)List Offered Events and Accept/Decline them\n" + "11)End and Event\n12)Exit");
+
         do {
+            System.out.println("1)List Publications\n2)Add Publication\n3)Remove Publication\n" +
+            "4)List Demanded Books and Accept/Decline Them\n5)Add Librarian\n6)Remove Librarian\n" +
+            "7)Add Janitor\n8)Remove Janitor\n9)Add Task to a Janitor\n"
+            + "10)List Offered Events and Accept/Decline them\n" + "11)End and Event\n12)Exit");
             opt = input.nextInt();
             input.nextLine();
             switch (opt) {
@@ -487,6 +487,10 @@ public class Main{
                         try {
                          Librarian l = new Librarian(name, surname, pw, manager.getLib());
                          manager.addLibrarian(l);
+
+                        //Delete this later, since right now for login
+                        //we are using static main objects instead of library's janitors object.
+                         librarians.add(l);
                      } catch (IndexOutOfBoundsException ex) {
                          System.out.println("Wrong input.");
                      }
@@ -511,6 +515,10 @@ public class Main{
                  try {
                      Janitor j = new Janitor(name, surname, pw, manager.getLib());
                      manager.addJanitor(j);
+
+                    //Delete this later, since right now
+                    //we are using static main objects instead of library's janitors object.
+                     janitors.add(j);
                  } catch (IndexOutOfBoundsException ex) {
                      System.out.println("Wrong input.");
                  }

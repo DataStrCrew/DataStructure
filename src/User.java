@@ -9,7 +9,7 @@ public abstract class User implements Person,Comparable<User>{
 
     protected String name;
     protected String surname;
-    protected String ID;
+    protected String id;
     protected String password;
     private static String lastID = "10000";
     /**
@@ -21,9 +21,9 @@ public abstract class User implements Person,Comparable<User>{
     public User(String name,String surname,String password){
         this.name = name;
         this.surname = surname;
-        this.ID = generateID();
+        this.id = generateID();
         this.password = password;
-        System.out.println("Your ID is:" + ID +". You will login with this ID.");
+        System.out.println("Your ID is:" + id +". You will login with this ID.");
     }
 
     private String generateID(){
@@ -65,19 +65,19 @@ public abstract class User implements Person,Comparable<User>{
     }
 
     /**
-     * Setter for ID
-     * @param id ID of the User
+     * Setter for id
+     * @param id id of the User
      */
     public void setID(String id){
-        this.ID = id;
+        this.id = id;
     }
 
     /**
-     * Getter for ID
-     * @return ID of the User
+     * Getter for id
+     * @return id of the User
      */
     public String getID(){
-        return ID;
+        return id;
     }
 
     /**
@@ -104,7 +104,7 @@ public abstract class User implements Person,Comparable<User>{
      * @return true if login is successful,false otherwise;
      */
     public boolean login(String id,String pw){
-        return id.equals(this.ID) && pw.equals(this.password);
+        return id.equals(this.id) && pw.equals(this.password);
     }
 
 
@@ -115,7 +115,7 @@ public abstract class User implements Person,Comparable<User>{
      * @return true if they are the same User, false otherwise.
      */
     public boolean equals(User other){
-        return other.getID().equals(ID) && other.getPW().equals(password);
+        return other.getID().equals(id) && other.getPW().equals(password);
     }
 
 

@@ -150,7 +150,7 @@ public class Main {
         System.out.println("Choose Account Type:\n1)Admin\n2)Library Manager\n3)Librarian\n4)Janitor" +
                 "\n5)Standart Reader\n6)Premium Reader\n7)Exit");
         opt = input.nextInt(); input.nextLine();
-        System.out.println("Your ID: ");
+        System.out.println("Your name: ");
         String id = input.nextLine();
         System.out.println("Your password: ");
         String pw = input.nextLine();

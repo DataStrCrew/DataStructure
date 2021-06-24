@@ -513,12 +513,22 @@ public class Main{
                  System.out.println("Enter password:");
                  pw = input.nextLine();
                  try {
-                     Janitor j = new Janitor(name, surname, pw, manager.getLib());
-                     manager.addJanitor(j);
-
+                	 int count=0;
+                     for(int k=0;k<janitors.size();k++) {
+                    	 if(janitors.get(k).getName().equals(name) && janitors.get(k).getSurname().equals(surname) && janitors.get(k).getPW().equals(pw)) {
+                    		 System.out.println("This janitor is added before");
+                    	     count++;
+                    	     break;
+                    	 }
+                     }
+                     if(count==0) {
+                         Janitor j = new Janitor(name, surname, pw, manager.getLib());
+                         manager.addJanitor(j);
+                         janitors.add(j);
+                     }
                     //Delete this later, since right now
                     //we are using static main objects instead of library's janitors object.
-                     janitors.add(j);
+                     
                  } catch (IndexOutOfBoundsException ex) {
                      System.out.println("Wrong input.");
                  }

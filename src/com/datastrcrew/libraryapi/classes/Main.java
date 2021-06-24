@@ -872,11 +872,13 @@ public class Main {
     	int opt;
         int i;
         int lanIndex;
+        
+        System.out.println("Welcome " + sReader.getName());
+        int choice=1;
 
         do
         {
-        	System.out.println("Welcome " + sReader.getName());
-            System.out.println("1)Search a Book");
+            System.out.println("\n1)Search a Book");
             System.out.println("2)Borrow Book");
             System.out.println("3)Return a Book");
             System.out.println("4)Comment a Book");
@@ -885,7 +887,7 @@ public class Main {
             System.out.println("7)Participate in an Event");
             System.out.println("8)Exit");
             
-            int choice = input.nextInt();
+            choice = input.nextInt();
             input.nextLine();
             
 	        switch(choice)
@@ -1013,10 +1015,11 @@ public class Main {
         int i;
         int lanIndex;
 
+        System.out.println("Welcome " + pReader.getName());
+        int choice=0;
         do
         {
-        	System.out.println("Welcome " + pReader.getName());
-            System.out.println("1)Search a Book");
+            System.out.println("\n1)Search a Book");
             System.out.println("2)Borrow Book");
             System.out.println("3)Return a Book");
             System.out.println("4)Comment a Book");
@@ -1027,7 +1030,7 @@ public class Main {
             System.out.println("9)Request Event");
             System.out.println("10)Exit");
             
-            int choice = input.nextInt();
+            choice = input.nextInt();
             input.nextLine();
             
 	        switch(choice)

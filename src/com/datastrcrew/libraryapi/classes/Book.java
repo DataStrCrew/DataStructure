@@ -80,20 +80,20 @@ public class Book extends AbstractPublication {
     //  * Book constructor for Database operations.
     //  * @param entity BookEntity class object.
     //  */
-     
+
     // public Book(BookEntity entity){
 
     //     super(entity);
     //     genre = entity.getGenre();
     //     comment = entity.getComment();
-        
+
     // }
 
     // /**
     //  * Method to save Book data field to BookEntity object.
     //  * @return BookEntity object.
     //  */
-     
+
     // public BookEntity getEntity(){
 
     //     BookEntity entity;
@@ -106,9 +106,9 @@ public class Book extends AbstractPublication {
     //     entity.setGenre(genre);
     //     entity.setComment(comment);
 
-    //     for (String comment : getComments())           
-    //        entity.comments.add(comment);        
-        
+    //     for (String comment : getComments())
+    //        entity.comments.add(comment);
+
     //     return entity;
 
     // }

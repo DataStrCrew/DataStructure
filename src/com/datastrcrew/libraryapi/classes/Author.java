@@ -46,6 +46,15 @@ public class Author {
         publications = pb;
     }
 
+    public Author() {
+        publications = new ArrayList<Publication>();
+    }
+
+    public void setPublications(List<Publication> publications) {
+        this.publications = publications;
+    }
+
+
     /**
      * Setter for name.
      * @param name Name of the author.
@@ -122,13 +131,13 @@ public class Author {
     }
     //-----------------------------------------ENTITY METHODS--------------------------
 
-    
+
 
     // /**
     //  * Author constructor for Database operations.
     //  * @param entity AuthorEntity class object.
     //  */
-     
+
     // public Author(AuthorEntity entity){
 
     //     this.name = entity.getName();
@@ -142,7 +151,7 @@ public class Author {
     //  * Method to save Author data field to AuthorEntity object.
     //  * @return AuthorEntity object.
     //  */
-     
+
     // public AuthorEntity getEntity(){
 
     //     AuthorEntity entity;
@@ -151,9 +160,9 @@ public class Author {
     //     entity.setSurname(this.surname);
     //     entity.setDateOfBirth(this.dateOfBirth);
 
-    //     for (Publication pub : publications)           
-    //        entity.publications.add(pub);        
-        
+    //     for (Publication pub : publications)
+    //        entity.publications.add(pub);
+
     //     return entity;
 
     // }

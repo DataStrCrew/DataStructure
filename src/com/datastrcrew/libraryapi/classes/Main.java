@@ -44,11 +44,11 @@ public class Main {
     public static void register(){
         Scanner input = new Scanner(System.in);
         int opt;
-        System.out.println("\nChoose Account Type:\n1)Admin"+ "\n2)Standart Reader\n3)Premium Reader\n4)Exit");
+        System.out.println("\nChoose Account Type:\n1)Admin"+ "\n2)Standard Reader\n3)Premium Reader\n4)Exit");
         System.out.println("If you are a Library Manager, Librarian or Janitor " +
                 "ask your supervisor to create an account for you ");
         opt = input.nextInt(); input.nextLine();
-        if(opt<1 || opt>6) {
+        if(opt<1 || opt>3) {
             System.out.println("Redirecting you to main menu");
             return;
         }
@@ -104,7 +104,7 @@ public class Main {
         int opt;
         boolean loggedIn = false;
         System.out.println("\nChoose Account Type:\n1)Admin\n2)Library Manager\n3)Librarian\n4)Janitor" +
-                "\n5)Standart Reader\n6)Premium Reader\n7)Exit");
+                "\n5)Standard Reader\n6)Premium Reader\n7)Exit");
         opt = input.nextInt(); input.nextLine();
         if(opt<1 || opt>6) {
             System.out.println("Redirecting you to main menu");
@@ -251,7 +251,7 @@ public class Main {
                     id = input.nextLine();
 
                     if (admin.removeManager(id))
-                        System.out.println("Manager is succesfully removed.");
+                        System.out.println("Manager is successfully removed.");
                     else
                         System.out.println("There is no such library.");
                     break;
@@ -312,7 +312,8 @@ public class Main {
                 case 1:
                     Iterator<Publication> iter = manager.getLib().getPublications().preOrderIterator();
                     while (iter.hasNext())
-                        System.out.println(iter.next());
+                        System.out.println(iter.next() + "\n");
+                    break;
                 case 2:
                     System.out.println("Choose type of the publication.\n1)Book\n2)Encyclopedia\n3)Magazine");
                     int pubType = input.nextInt();
@@ -352,15 +353,17 @@ public class Main {
                         pub = new Book(bookName, author, language, pg, genre);
                     } else if (pubType == 2) {
                         System.out.println("Enter encyclopedia sections: " +
-                                "(example: 20 Instects (Section Insects starts from page 20\n(type 0 to stop)");
-                        int page;
+                                "(example: 20 Insects (Section Insects starts from page 20\n(type 0 to stop)");
+                        String page;
                         String sect;
-                        HashMap<Integer, String> sections = new HashMap<>();
+                        HashMap<String, String> sections = new HashMap<>();
                         do {
-                            page = input.nextInt();
-                            sect = input.nextLine();
-                            sections.put(page, sect);
-                        } while (page != 0);
+                            page = input.next();
+                            if(!page.equals("0")) {
+                                sect = input.next();
+                                sections.put(page, sect);
+                            }
+                        } while (!page.equals("0"));
                         pub = new Encyclopedia(bookName, author, language, pg, sections);
                     } else if (pubType == 3) {
                         System.out.println("Enter the issue number:");
@@ -369,19 +372,21 @@ public class Main {
                         pub = new Magazine(bookName, author, language, pg, issue);
                     } else
                         System.out.println("Wrong input.");
-                    if (pub != null)
+                    if (pub != null) {
                         manager.addBook(pub);
+                        System.out.println("Publication is successfully added");
+                    }
                     break;
                 case 3:
-
                 	System.out.println("Enter book name: ");
                     bookName = input.nextLine();
 
                     do {
 	                    System.out.println("Choose book language: ");
-	                    i = 1;
+	                    i = 0;
 	                    for (Language lan : Language.values()) {
 	                        System.out.println(i + ") " + lan.name());
+	                        i++;
 	                    }
 	                    lanIndex = input.nextInt();
 	                    input.nextLine();

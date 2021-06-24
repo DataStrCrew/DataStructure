@@ -14,7 +14,7 @@ public class AbstractPublication implements Publication {
     private Language lang;
     private Integer page;
     private List<String> comments;
-    
+
     /**
      * Constructor for AbstractPublication.
      * @param nm Name of the publication.
@@ -145,7 +145,7 @@ public class AbstractPublication implements Publication {
     @Override
     public String toString(){
         return "Name: " + name + "\nPage Amount: " + page + "\nLanguage: " + lang + "\nID: " + ID +
-                "\nAuthor's info:" + author + "\nComments: " + comments;
+                "\nAuthor's info:\n" + author + "\nComments: " + comments;
     }
 
     /**
@@ -157,8 +157,8 @@ public class AbstractPublication implements Publication {
     }
 
     //-----------------------------------------ENTITY METHODS--------------------------
-    
-    
+
+
     // public AbstractPublication(BookEntity entity){
 
     //     name = entity.getName();
@@ -166,7 +166,7 @@ public class AbstractPublication implements Publication {
     //     id = entity.getId();
     //     lang = new LanguageEntity(entity.getLang());
     //     page = entity.getPage();
-    //     comments = entity.getComments(); 
+    //     comments = entity.getComments();
     // }
 
     // public AbstractPublication(EncyclopediaEntity entity){
@@ -176,9 +176,9 @@ public class AbstractPublication implements Publication {
     //     id = entity.getID();
     //     lang = entity.getLang();
     //     page = entity.getPage();
-    //     comments = entity.getComments(); 
+    //     comments = entity.getComments();
     // }
-    
+
     // public AbstractPublication(MagazineEntity entity){
 
     //     name = entity.getName();
@@ -186,9 +186,9 @@ public class AbstractPublication implements Publication {
     //     id = entity.getID();
     //     lang = entity.getLang();
     //     page = entity.getPage();
-    //     comments = entity.getComments(); 
+    //     comments = entity.getComments();
     // }
 
-    
+
 
 }

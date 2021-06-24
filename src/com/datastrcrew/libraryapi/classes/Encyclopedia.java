@@ -6,16 +6,7 @@ import java.util.*;
  * @author gokbey_gazi_keskin
  */
 public class Encyclopedia extends AbstractPublication{
-    private HashMap<Integer,String> sections;
-    private String type = "Encyclopedia";
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
+    private HashMap<String,String> sections; //page number-content
     /**
      * Constructor for Encyclopedia.
      * @param nm Name of the publication.
@@ -36,9 +27,18 @@ public class Encyclopedia extends AbstractPublication{
      * @param pg Page amounr of the Publication.
      * @param sec Page-Section heading info's of the Encyclopedia.
      */
-    public Encyclopedia(String nm, Author athr, Language lng, Integer pg,HashMap<Integer,String> sec) {
+    public Encyclopedia(String nm, Author athr, Language lng, Integer pg,HashMap<String,String> sec) {
         super(nm, athr, lng, pg);
         sections = sec;
+    }
+
+
+    public Encyclopedia() {
+        super("", null, Language.English, null);
+    }
+
+    public void setSections(HashMap<String, String> sections) {
+        this.sections = sections;
     }
 
     /**
@@ -46,7 +46,7 @@ public class Encyclopedia extends AbstractPublication{
      * @param pg Page number.
      * @param heading Section heading.
      */
-    public void addSection(Integer pg, String heading){
+    public void addSection(String pg, String heading){
         sections.put(pg,heading);
     }
 
@@ -54,7 +54,7 @@ public class Encyclopedia extends AbstractPublication{
      * Getter for the Sections of the Encyclopedia.
      * @return Sections of the Encyclopedia.
      */
-    public HashMap<Integer,String> getSections() {
+    public HashMap<String,String> getSections() {
         return sections;
     }
 
@@ -74,17 +74,17 @@ public class Encyclopedia extends AbstractPublication{
     /**
      * Encyclopedia constructor for Database operations.
      * @param entity EncyclopediaEntity class object.
-     
+
     public Encyclopedia(EncyclopediaEntity entity){
 
-        super(entity); 
+        super(entity);
         this.sections = entity.getSections();
     }
 
     /**
      * Method to save Encyclopedia data field to EncyclopediaEntity object.
      * @return EncyclopediaEntity object.
-     
+
     public EncyclopediaEntity getEntity(){
 
         EncyclopediaEntity entity;
@@ -94,13 +94,13 @@ public class Encyclopedia extends AbstractPublication{
         entity.setID(getID());
         entity.setLang(getLang());
         entity.setPage(getPage());
-        
+
         for(Map.Entry<Integer, String> entry : sections.entrySet())
             entity.sections.put(entry.getKey(),entry.getValue());
 
-        for (String comment : getComments())           
-           entity.comments.add(comment);         
-        
+        for (String comment : getComments())
+           entity.comments.add(comment);
+
         return entity;
 
     }

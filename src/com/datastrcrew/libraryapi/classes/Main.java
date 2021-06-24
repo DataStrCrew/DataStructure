@@ -360,6 +360,7 @@ public class Main {
                     i = 1;
                     for (Language lan : Language.values()) {
                         System.out.println(i + ") " + lan.name());
+                        i++;
                     }
                     lanIndex = input.nextInt();
                     input.nextLine();
@@ -377,6 +378,7 @@ public class Main {
                         i = 1;
                         for (BookGenre gen : BookGenre.values()) {
                             System.out.println(i + ") " + gen.name());
+                            i++;
                         }
                         int genreIndex = input.nextInt();
                         input.nextLine();
@@ -444,6 +446,7 @@ public class Main {
 	                	for(Publication book :manager.getLib().getDemandedBooks())
 	                	{
 	                		System.out.println(i+":\n"+book);
+	                		i++;
 	                	}
 	                    System.out.println("Choose book: ");
 

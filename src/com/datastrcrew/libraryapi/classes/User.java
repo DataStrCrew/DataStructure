@@ -24,7 +24,6 @@ public abstract class User implements Person,Comparable<User>, HasID {
         this.surname = surname;
         this.ID = generateID();
         this.password = password;
-        System.out.println("You can login with your name and password");
     }
 
     private String generateID(){

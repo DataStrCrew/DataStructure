@@ -97,6 +97,9 @@ public class Manager extends User
 	 */
 	public Janitor removeJanitor(Janitor oldJanitor)
 	{
+		if(oldJanitor==null)
+			return null;
+		
 		if(!searchJanitor(oldJanitor.getID()))
 			return null;
 		else

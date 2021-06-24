@@ -13,7 +13,6 @@ public abstract class User implements Person,Comparable<User>, HasID {
     protected String surname;
     protected String ID;
     protected String password;
-    private static String lastID = "10000";
     /**
      * Constructor of User
      * @param name Name of the User
@@ -25,13 +24,11 @@ public abstract class User implements Person,Comparable<User>, HasID {
         this.surname = surname;
         this.ID = generateID();
         this.password = password;
-        System.out.println("Your ID is:" + ID +". You will login with this ID.");
+        System.out.println("You can login with your name and password");
     }
 
     private String generateID(){
-        String returnID = lastID;
-        lastID = String.valueOf(Integer.parseInt(lastID)+1);
-        return returnID;
+        return org.apache.commons.codec.digest.DigestUtils.sha256Hex(name + surname + password);
     }
 
     /**
@@ -101,12 +98,12 @@ public abstract class User implements Person,Comparable<User>, HasID {
 
     /**
      * Login method
-     * @param id ID of the User
+     * @param name Name of the User
      * @param pw Password of the User
      * @return true if login is successful,false otherwise;
      */
-    public boolean login(String id,String pw){
-        return id.equals(this.ID) && pw.equals(this.password);
+    public boolean login(String name,String pw){
+        return name.equals(this.name) && pw.equals(this.password);
     }
 
 
@@ -141,7 +138,7 @@ public abstract class User implements Person,Comparable<User>, HasID {
     }
 
         //-----------------------------------------ENTITY METHODS--------------------------
-    
+
     // public User(AdminEntity entity){
 
     //     this.name = entity.getName();
@@ -149,7 +146,7 @@ public abstract class User implements Person,Comparable<User>, HasID {
     //     this.ID = entity.getId();
     //     this.password = entity.getPassword();
     // }
-   
+
     // // public User(JanitorEntity entity){
 
     // //     this.name = entity.getName();
@@ -165,7 +162,7 @@ public abstract class User implements Person,Comparable<User>, HasID {
     //     this.ID = entity.getId();
     //     this.password = entity.getPassword();
     // }
- 
+
     // public User(ManagerEntity entity){
 
     //     this.name = entity.getName();

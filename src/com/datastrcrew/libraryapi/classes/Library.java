@@ -1,4 +1,5 @@
 package com.datastrcrew.libraryapi.classes;
+import java.lang.reflect.Array;
 import java.util.*;
 
 import com.datastrcrew.libraryapi.entity.JanitorEntity;
@@ -19,7 +20,7 @@ public class Library {
     private PriorityQueue<Event> upcomingEvents;
 
     private List<Publication> demandedBooks;
-    
+
     private List<Event> pastEvents;
     private List<Event> offeredEvents;
 
@@ -42,16 +43,16 @@ public class Library {
             throw new IllegalArgumentException("ID already exists.");
         }
         this.manager = null;
-        
+
         publications = new AVLTree<>(new Comparator<Publication>(){
             @Override
             public int compare(Publication p1, Publication p2){
                 if(p1.getName().compareTo(p2.getName()) == 0){
                     return p1.getLang().compareTo(p2.getLang());
                 }
-                
+
                 return p1.getName().compareTo(p2.getName());
-                
+
             }
         });
         demandedBooks = new ArrayList<>();
@@ -60,7 +61,7 @@ public class Library {
         librarians = new TreeSet<>();
         janitors = new TreeSet<>();
     }
-    
+
     public AVLTree<Publication> getPublications(){return publications;}
 
     public Manager getManager() {
@@ -166,7 +167,7 @@ public class Library {
      * @return true if publication's stock is bigger than 0 else false
      */
     public boolean isInStock(String searchedBook, Language bookLanguage){
-        //TODO 
+        //TODO
         //compare method should be implemented for publications in AbstractPublications class.
         //Or AVLTree should have a constructor that takes Comparator.
         return (publications.getAmount(new AbstractPublication(searchedBook, null, bookLanguage, null)) != 0);
@@ -182,13 +183,13 @@ public class Library {
     public boolean changeStock(Publication givenPublication, int amount){
 
         if(amount < 0) return publications.delete(givenPublication) != null;
-        
+
         return publications.add(givenPublication);
     }
 
 
     /**
-     * Returns publication amount of a specific publication by name and language 
+     * Returns publication amount of a specific publication by name and language
      * @return Stock amount of desired publication, -1 if publication is not found
      */
     public int bookAmount(String bookName, Language bookLanguage){
@@ -204,7 +205,7 @@ public class Library {
     public boolean demandBook(Publication demandedBook){
         return demandedBooks.add(demandedBook);
     }
-    
+
     public boolean removeDemandedBook(Publication demandedBook)
     {
     	return demandedBooks.remove(demandedBook);
@@ -279,7 +280,7 @@ public class Library {
 
 
     /**
-     * Add event to the upcoming events list 
+     * Add event to the upcoming events list
      * @param event
      * @return true
      */
@@ -287,7 +288,7 @@ public class Library {
     {
     	if(offeredEvents.contains(event))
     		offeredEvents.remove(event);
-    	
+
         return upcomingEvents.add(event);
     }
 
@@ -296,9 +297,9 @@ public class Library {
      * @return true
      */
     public Event endEvent(){
-    	
+
     	Event endingEvent=upcomingEvents.poll();
-    	
+
     	if(endingEvent!=null)
     		pastEvents.add(endingEvent);
 
@@ -308,7 +309,7 @@ public class Library {
     /**
      * Remove event from offered events list.
      * @param event
-     * @return false if event is not in offeredEvents else true. 
+     * @return false if event is not in offeredEvents else true.
      */
 
     public boolean removeEvent(Event event){
@@ -326,11 +327,11 @@ public class Library {
     public Event getNearestEvent(){
         return upcomingEvents.peek();
     }
-    
+
     public void printPastEvents()
     {
     	Iterator<Event> iter=pastEvents.iterator();
-    	
+
     	int i=1;
     	while(iter.hasNext())
     	{
@@ -338,11 +339,11 @@ public class Library {
     		i++;
     	}
     }
-    
+
     public void printUpcomingEvents()
     {
     	PriorityQueue<Event> temp=upcomingEvents;
-    	
+
     	Event nextEvent=temp.poll();
     	int i=1;
     	while(nextEvent!=null)
@@ -352,7 +353,7 @@ public class Library {
     		nextEvent=temp.poll();
     	}
     }
-    
+
     /**
 	 * Prints out all the books with the given category.
 	 * Does not include the books with the same name more than once.
@@ -363,7 +364,7 @@ public class Library {
     {
         Iterator<Publication> iter = publications.preOrderIterator();
         List<Publication> bookList = new ArrayList<>();
-        
+
         while(iter.hasNext())
         {
             Publication tempPub = iter.next();
@@ -387,7 +388,7 @@ public class Library {
                 return o1.getName().compareTo(o2.getName());
             }
         });
-        
+
         for(Publication pub : bookList)
         {
             System.out.println(pub + "\n");
@@ -402,13 +403,13 @@ public class Library {
 
            //-----------------------------------------ENTITY METHODS--------------------------
 
-    
-    
+
+
     /**
      * Event constructor for Database operations.
      *  @param entity EventEntity class object.
      */
-     
+
     public Library(LibraryEntity entity){
 
     this.name = entity.getName();
@@ -426,10 +427,10 @@ public class Library {
     for (JanitorEntity janitorT : entity.getJanitors())
         janitors.add(new Janitor(janitorT));
 
-    for (Publication pub : entity.publications)           
+    for (Publication pub : entity.publications)
         this.publications.add(pub);
 
-    for (String ids : entity.existingIDs)           
+    for (String ids : entity.existingIDs)
         Library.existingIDs.insert(ids);
 
     }
@@ -439,7 +440,7 @@ public class Library {
      * @return EventEntity object.
      */
 
-     
+
     public LibraryEntity getEntity(){
 
         LibraryEntity entity = new LibraryEntity();
@@ -459,14 +460,23 @@ public class Library {
         for (Janitor janitorT : janitors)
             entity.janitors.add(janitorT.getEntity());
 
-        // for (Publication pub : publications)           
-        //    entity.publications.add(pub);
+        ArrayList<Publication> arrayPub = new ArrayList<>();
+        Iterator<Publication> iter = publications.preOrderIterator();
+        while(iter.hasNext()){
+            arrayPub.add(iter.next());
+        }
+        entity.publications.addAll(arrayPub);
 
-        // for (String ids : existingIDs)           
-        //    entity.existingIDs.add(ids);          
-        
+
+        ArrayList<String> arrayIDs = new ArrayList<>();
+        Iterator<String> iter2 = existingIDs.SLIterator();
+        while(iter2.hasNext())
+            arrayIDs.add(iter2.next());
+
+        entity.existingIDs.addAll(arrayIDs);
+
         return entity;
     }
 
-    
+
 }

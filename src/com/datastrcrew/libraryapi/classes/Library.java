@@ -400,7 +400,7 @@ public class Library {
 
     @Override
     public String toString(){
-       return "Name:" + name + " Address: " + address + " Current Manager: " + manager;
+       return "Name:" + name + "\nAddress: " + address;
     }
 
            //-----------------------------------------ENTITY METHODS--------------------------

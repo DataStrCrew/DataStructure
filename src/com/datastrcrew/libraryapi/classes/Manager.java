@@ -34,9 +34,9 @@ public class Manager extends User
 		lib.changeStock(addedBook, 1);
 		return addedBook;
 	}
-	
+
 	/**
-	 * Removes a book from the stock of the library. 
+	 * Removes a book from the stock of the library.
 	 * @param removedBook is the book that will be removed from the stock
 	 * @return the removed book. If the book is not in the stock, returns null.
 	 */
@@ -50,7 +50,7 @@ public class Manager extends User
 			return removedBook;
 		}
 	}
-	
+
 	/**
 	 * Adds a librarian to the library. If the librarian already exists does not add again.
 	 * @param newLibrarian is the librarian that will be added.
@@ -63,7 +63,7 @@ public class Manager extends User
 		else
 			return lib.addLibrarian(newLibrarian);
 	}
-	
+
 	/**
 	 * Removes a librarian from the library. If the librarian does not exist, doesnt do anything.
 	 * @param oldLibrarian is the librarian that will be removed
@@ -77,9 +77,9 @@ public class Manager extends User
 		{
 			lib.removeLibrarian(oldLibrarian);
 			return oldLibrarian;
-		}	
+		}
 	}
-	
+
 	/**
 	 * Adds a janitor to the library. If the janitor already exists does not add again.
 	 * @param newJanitor is the janitor that will be added.
@@ -92,7 +92,7 @@ public class Manager extends User
 		else
 			return lib.addJanitor(newJanitor);
 	}
-	
+
 	/**
 	 * Removes a janitor from the library. If the janitor does not exist, doesnt do anything.
 	 * @param oldJanitor is the janitor that will be removed
@@ -108,7 +108,7 @@ public class Manager extends User
 			return oldJanitor;
 		}
 	}
-	
+
 	/**
 	 * Adds a new task to a janitor. If the janitor does not belong to the library, does nothing.
 	 * @param janitorID is the janitor's ID that will have the new task
@@ -122,7 +122,7 @@ public class Manager extends User
 		else
 			return lib.getJanitor(janitorID).addTask(theTaskID);
 	}
-	
+
 	/**
 	 * Accepts and removes a book from demandedBooks list in the library. Stock is also updated.
 	 * @return false if there is nothing to accept, true if a book is accepted.
@@ -134,7 +134,7 @@ public class Manager extends User
 			lib.changeStock(demandedBook, 1);
 		return check;
 	}
-	
+
 	/**
 	 * Accepts and removes the last book from demandedBooks list in the library. Stock is also updated.
 	 * @return false if there is nothing to accept, true if a book is accepted.
@@ -146,10 +146,10 @@ public class Manager extends User
 			return false;
 		else
 			lib.changeStock(demandedBook, 1);
-		
+
 		return true;
 	}
-	
+
 	/**
 	 * Gets all the demands from the demandedBooks data field of library and adds them to
 	 * the stock of the library. At the end demandedBooks data field must be empty and all
@@ -159,7 +159,7 @@ public class Manager extends User
 	{
 		while(acceptBookDemand());
 	}
-	
+
 	/**
 	 * Declines and removes a book from demandedBooks list in the library. Stock remains unchanged.
 	 * @return false if there is nothing to decline, true if a book is declined.
@@ -169,7 +169,7 @@ public class Manager extends User
 		boolean check=lib.removeDemandedBook(demandedBook);
 		return check;
 	}
-	
+
 	/**
 	 * Declines and removes the last book from demandedBooks list in the library. Stock remains unchanged.
 	 * @return false if there is nothing to decline, true if a book is declined.
@@ -182,16 +182,16 @@ public class Manager extends User
 		else
 			return true;
 	}
-	
+
 	/**
-	 * Gets all the demands from the demandedBooks data field of library and removes them. 
+	 * Gets all the demands from the demandedBooks data field of library and removes them.
 	 * Does not add to the stock. At the end demandedBooks data field must be empty.
 	 */
 	public void declineAllBookDemands()
 	{
 		while(declineBookDemand());
 	}
-	
+
 	/**
 	 * Prints out all the past events in the library.
 	 */
@@ -199,7 +199,7 @@ public class Manager extends User
 	{
 		lib.printPastEvents();
 	}
-	
+
 	/**
 	 * Prints out all the upcoming events in the library.
 	 */
@@ -221,12 +221,12 @@ public class Manager extends User
 	{
 		return lib.addUpcomingEvent(newEvent);
 	}
-	
+
 	public boolean declineEvent(Event newEvent)
 	{
 		return lib.removeEvent(newEvent);
 	}
-	
+
 	/**
 	 * Moves the first element from upcoming events to past events meaning it has ended.
 	 * @return the removed event, null if nothing is removed
@@ -235,7 +235,7 @@ public class Manager extends User
 	{
 		return lib.endEvent();
 	}
-	
+
 	/**
 	 * Searches for a specific book in the library stock.
 	 * @return true if the book is found in the stock, false if not.
@@ -244,7 +244,7 @@ public class Manager extends User
 	{
 		return lib.isInStock(bookName, bookLanguage);
 	}
-	
+
 	/**
 	 * Prints out all the books with this genre in the library.
 	 */
@@ -252,7 +252,7 @@ public class Manager extends User
 	{
 		lib.printGenre(searchedGenre);
 	}
-	
+
 	/**
 	 * Searches for a librarian
 	 * @param searchedLID is the ID of the searched librarian
@@ -261,7 +261,7 @@ public class Manager extends User
 	{
 		return lib.isLibrarian(searchedLID) != -1;
 	}
-	
+
 	public boolean searchJanitor(String searchedJID)
 	{
 		return lib.isJanitor(searchedJID) != -1;
@@ -278,12 +278,12 @@ public class Manager extends User
 
 	@Override
 	public String toString(){
-		return name + " " + surname + "\n";
+		return name + " " + surname + "\nWorking Library: " + lib;
 	}
 
 		 //-----------------------------------------ENTITY METHODS--------------------------
 
-   
+
     /**
      * Manager constructor for Database operations.
      * @param entity ManagerEntity class object.
@@ -297,7 +297,7 @@ public class Manager extends User
      * Method to save Manager data field to ManagerEntity object.
      * @return ManagerEntity object.
      */
-     
+
     public ManagerEntity getEntity(){
 		ManagerEntity entity = new ManagerEntity(name, surname, ID, password, null);
 		entity.setLib(lib != null ? getLib().getEntity() : null);

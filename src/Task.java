@@ -1,6 +1,7 @@
 import java.util.HashMap;
 
 /**
+ * @author mehmet_acar
  * @author yesimyalc
  * @author musosman
  */
@@ -19,8 +20,11 @@ public class Task
 	 public Task(String ID)
 	 {
 		 	setAllTasks();
-			this.TaskId=ID;
-			doneTask=false;
+		 	if(allTasks.containsKey(Integer.parseInt(ID))) {
+				this.TaskId=ID;
+				doneTask=false;
+				setTaskName(ID);
+		 	}
 	 }
 	 
 	 /**
@@ -53,6 +57,7 @@ public class Task
 			 TaskName=taskName;
 		 }
 	 }
+	 
 	 
 	 /**
 	 * Getter for TaskId

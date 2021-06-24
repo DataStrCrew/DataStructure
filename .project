@@ -10,17 +10,19 @@
 			<arguments>
 			</arguments>
 		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.m2e.core.maven2Builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
 	</buildSpec>
 	<natures>
+		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
 	<filteredResources>
 		<filter>
-<<<<<<< Updated upstream
-			<id>1620160632977</id>
-=======
-			<id>1620034724286</id>
->>>>>>> Stashed changes
+			<id>0</id>
 			<name></name>
 			<type>30</type>
 			<matcher>

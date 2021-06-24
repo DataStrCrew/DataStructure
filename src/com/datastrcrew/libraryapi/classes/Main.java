@@ -881,6 +881,7 @@ public class Main {
         System.out.println("5)List Events");
         System.out.println("6)Vote Event");
         System.out.println("7)Participate in an Event");
+        System.out.println("8)Exit");
 
         int choice = 0;
         choice = input.nextInt();
@@ -991,7 +992,7 @@ public class Main {
 
                 break;
 
-            case 0:
+            case 8:
                 break;
         }
         // input.close();
@@ -1019,6 +1020,7 @@ public class Main {
         System.out.println("7)Participate in an Event");
         System.out.println("8)Demand Book");
         System.out.println("9)Request Event");
+        System.out.println("10)Exit");
 
         int choice = 0;
         choice = input.nextInt();
@@ -1171,6 +1173,8 @@ public class Main {
                 }
 
                 break;
+            case 10:
+            	break;
         }
         // input.close();
     }

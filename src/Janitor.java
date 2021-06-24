@@ -37,7 +37,7 @@ public class Janitor extends User{
     public void viewTask(String ID){
     	for (Task element : Tasks)
         {
-            	System.out.println(element);
+            System.out.println(element.toString());
         }
     }
  
@@ -64,7 +64,12 @@ public class Janitor extends User{
     public boolean addTask(String theTaskID)
     { 
         Task newTask = new Task(theTaskID);
-        return Tasks.offer(newTask);
+        if(newTask.getTaskId()!=null) {
+           return Tasks.offer(newTask);
+        }
+        else {
+           return false;
+        }
     }
 
     //-----------------------------------------ENTITY METHODS--------------------------

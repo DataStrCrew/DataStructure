@@ -1,6 +1,8 @@
 package com.datastrcrew.libraryapi.classes;
 
+import com.datastrcrew.libraryapi.entity.LibrarianEntity;
 import com.datastrcrew.libraryapi.service.Database;
+import com.google.cloud.firestore.annotation.Exclude;
 
 /**
  * Librarian of the library
@@ -44,6 +46,16 @@ public class Librarian extends User {
 	private Library findLibrary() {
 		for (Library library : Database.libraries) {
 			if (library.getID().equals(lib)) {
+				return library;
+			}
+		}
+		return null;
+	}
+
+
+	private Library findLibrary(String ID) {
+		for (Library library : Database.libraries) {
+			if (library.getID().equals(ID)) {
 				return library;
 			}
 		}
@@ -125,21 +137,20 @@ public class Librarian extends User {
 	}
 
 	//  //-----------------------------------------ENTITY METHODS--------------------------
-    // /**
-    //  * Librarian constructor for Database operations.
-    //  * @param entity LibrarianEntity class object.
-    //  */
-    // public Librarian(LibrarianEntity entity){
-	// 	super(entity.name, entity.surname, entity.password);
-    //     lib = new Library(entity.getLib());
-    // }
+    /**
+     * Librarian constructor for Database operations.
+     * @param entity LibrarianEntity class object.
+     */
+    public Librarian(LibrarianEntity entity){
+		super(entity.name, entity.surname, entity.password);
+        lib = entity.getLib();
+    }
 
-    // /**
-    //  * Method to save Librarian data field to LibrarianEntity object.
-    //  * @return LibrarianEntity object.
-    //  */
-     
-    // public LibrarianEntity getEntity(){
-    //     return new LibrarianEntity(name, surname, ID, password, lib.getEntity());
-    // }
+    /**
+     * Method to save Librarian data field to LibrarianEntity object.
+     * @return LibrarianEntity object.
+     */
+    public LibrarianEntity getEntity(){
+        return new LibrarianEntity(name, surname, password, lib);
+    }
 }

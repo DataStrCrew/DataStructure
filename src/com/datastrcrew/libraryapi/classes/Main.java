@@ -13,7 +13,7 @@ public class Main {
         /* Initialize Firebase */
         FirebaseInitialization firebaseInitialization = new FirebaseInitialization();
         firebaseInitialization.initialization();
-                
+
         Database.Init();
 
         Scanner input = new Scanner(System.in);
@@ -57,7 +57,7 @@ public class Main {
 
         switch (opt){
             case 1:
-            Database.admins.add(new Admin(name,surname,pw));
+                Database.admins.add(new Admin(name,surname,pw));
                 break;
             case 2:
                 System.out.println("Which Library will you be working at?");
@@ -237,7 +237,7 @@ public class Main {
                     System.out.println("ID of the new library: ");
                     String id = input.nextLine();
                     try {
-                        admin.addLibrary(new Library(name, address, id));
+                        Database.libraries.add(new Library(name, address, id));
                         System.out.println("Library succesfully created.");
                     } catch (IllegalArgumentException ex) {
                         System.out.println("Library creation not successful. ID already exists.");
@@ -248,10 +248,16 @@ public class Main {
                         System.out.println(lib);
                     System.out.println("Enter the ID of the library.");
                     id = input.nextLine();
-
-                    if (admin.removeLibrary(id))
-                        System.out.println("Library successfully removed.");
-                    else
+                    boolean flag = true;
+                    for (Library libraryTemp : Database.libraries) {
+                        if (libraryTemp.getID().equals(id)) {
+                            Database.libraries.remove(libraryTemp);
+                            System.out.println("Library successfully removed.");
+                            flag = false;
+                            break;
+                        }
+                    }
+                    if(flag)
                         System.out.println("There is no such library.");
                     break;
                 case 3:

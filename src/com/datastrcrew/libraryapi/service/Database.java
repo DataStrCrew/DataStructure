@@ -11,6 +11,7 @@ import com.datastrcrew.libraryapi.classes.PremiumReader;
 import com.datastrcrew.libraryapi.classes.StandartReader;
 import com.datastrcrew.libraryapi.entity.AdminEntity;
 import com.datastrcrew.libraryapi.entity.JanitorEntity;
+import com.datastrcrew.libraryapi.entity.LibrarianEntity;
 import com.datastrcrew.libraryapi.entity.LibraryEntity;
 import com.datastrcrew.libraryapi.entity.ManagerEntity;
 
@@ -31,8 +32,8 @@ public class Database {
             "admins");
     public static GenericService<ManagerEntity> managerService = new GenericService<ManagerEntity>(ManagerEntity.class,
             "managers");
-    public static GenericService<Librarian> librarianService = new GenericService<Librarian>(
-            Librarian.class, "librarians");
+    public static GenericService<LibrarianEntity> librarianService = new GenericService<LibrarianEntity>(
+            LibrarianEntity.class, "librarians");
     public static GenericService<JanitorEntity> janitorService = new GenericService<JanitorEntity>(JanitorEntity.class,
             "janitors");
     public static GenericService<StandartReader> standartReaderService = new GenericService<StandartReader>(
@@ -44,7 +45,7 @@ public class Database {
     public static ArrayList<LibraryEntity> libraryEntities = new ArrayList<LibraryEntity>();
     public static ArrayList<AdminEntity> adminEntities = new ArrayList<AdminEntity>();
     public static ArrayList<ManagerEntity> managerEntities = new ArrayList<ManagerEntity>();
-    public static ArrayList<Librarian> librarianEntities = new ArrayList<Librarian>();
+    public static ArrayList<LibrarianEntity> librarianEntities = new ArrayList<LibrarianEntity>();
     public static ArrayList<JanitorEntity> janitorEntities = new ArrayList<JanitorEntity>();
 
     public static void Init() {
@@ -66,8 +67,8 @@ public class Database {
             admins.add(new Admin(adminEntity));
         for (ManagerEntity adminEntity : managerEntities)
             managers.add(new Manager(adminEntity));
-        for (Librarian adminEntity : librarianEntities)
-            librarians.add(adminEntity);
+        for (LibrarianEntity adminEntity : librarianEntities)
+            librarians.add(new Librarian(adminEntity));
         for (JanitorEntity adminEntity : janitorEntities)
             janitors.add(new Janitor(adminEntity));
     }
@@ -104,9 +105,9 @@ public class Database {
         for (Manager i : managers)
             managersTmp.add(i.getEntity());
 
-        ArrayList<Librarian> librariansTmp = new ArrayList<>();
+        ArrayList<LibrarianEntity> librariansTmp = new ArrayList<>();
         for (Librarian i : librarians)
-            librariansTmp.add(i);
+            librariansTmp.add(i.getEntity());
 
         ArrayList<JanitorEntity> janitorsTmp = new ArrayList<>();
         for (Janitor i : janitors)
@@ -125,13 +126,3 @@ public class Database {
         }
     }
 }
-
-// users.add(new AdminEntity("Osman Talha", "Aydin", "password"));
-// users.add(new AdminEntity("Gökbey Gazi", "KESKİN", "password"));
-// users.add(new AdminEntity("Yeşim", "YALÇIN", "password"));
-// users.add(new AdminEntity("Mehmet", "ACAR", "password"));
-// users.add(new AdminEntity("Hikmet Mete", "VAROL", "password"));
-// users.add(new AdminEntity("Muhammed", "GEÇGELOĞLU", "password"));
-// users.add(new AdminEntity("Sinan", "SARI", "password"));
-// users.add(new AdminEntity("Oğulcan", "KALAFATOĞLU", "password"));
-// users.add(new AdminEntity("Mustafa", "GÜRLER", "password"));

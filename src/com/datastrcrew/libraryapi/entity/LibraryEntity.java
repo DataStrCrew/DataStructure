@@ -16,14 +16,13 @@ public class LibraryEntity implements HasID {
     private List<Publication> demandedBooks;
     private List<Event> pastEvents;
     private List<Event> offeredEvents;
-    private List<Librarian> librarians;
+    private List<LibrarianEntity> librarians;
     private List<JanitorEntity> janitors;
-    // private List<String> existingIDs;
 
     public LibraryEntity(String name, String address, String ID, String manager,
             List<Publication> publications, List<Event> upcomingEvents,
             List<Publication> demandedBooks, List<Event> pastEvents, List<Event> offeredEvents,
-            List<Librarian> librarians, List<JanitorEntity> janitors) {
+            List<LibrarianEntity> librarians, List<JanitorEntity> janitors) {
         this.name = name;
         this.address = address;
         this.ID = ID;
@@ -35,7 +34,6 @@ public class LibraryEntity implements HasID {
         this.offeredEvents = offeredEvents;
         this.librarians = librarians;
         this.janitors = janitors;
-        // this.existingIDs = existingIDs;
     }
 
     public LibraryEntity() {
@@ -45,9 +43,8 @@ public class LibraryEntity implements HasID {
         demandedBooks = new ArrayList<Publication>();
         pastEvents = new ArrayList<Event>();
         offeredEvents = new ArrayList<Event>();
-        librarians = new ArrayList<Librarian>();
+        librarians = new ArrayList<LibrarianEntity>();
         janitors = new ArrayList<JanitorEntity>();
-        // existingIDs = new ArrayList<String>();
     }
 
     public String getName() {
@@ -122,11 +119,11 @@ public class LibraryEntity implements HasID {
         this.offeredEvents = offeredEvents;
     }
 
-    public List<Librarian> getLibrarians() {
+    public List<LibrarianEntity> getLibrarians() {
         return librarians;
     }
 
-    public void setLibrarians(List<Librarian> librarians) {
+    public void setLibrarians(List<LibrarianEntity> librarians) {
         this.librarians = librarians;
     }
 
@@ -138,11 +135,4 @@ public class LibraryEntity implements HasID {
         this.janitors = janitors;
     }
 
-    // public List<String> getExistingIDs() {
-    //     return existingIDs;
-    // }
-
-    // public void setExistingIDs(List<String> existingIDs) {
-    //     this.existingIDs = existingIDs;
-    // }
 }

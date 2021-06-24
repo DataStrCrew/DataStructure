@@ -6,7 +6,7 @@ import java.util.List;
 import com.datastrcrew.libraryapi.classes.User;
 
 public class AdminEntity extends User {
-    public List<LibraryEntity> libraries;
+    private List<LibraryEntity> libraries;
 
     public AdminEntity(String name, String surname, String password) {
         super(name, surname, password);

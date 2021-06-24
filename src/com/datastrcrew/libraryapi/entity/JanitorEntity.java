@@ -6,8 +6,8 @@ import com.datastrcrew.libraryapi.classes.Task;
 import com.datastrcrew.libraryapi.classes.User;
 
 public class JanitorEntity extends User {
-	public Queue<Task> Tasks;
-	public LibraryEntity lib;
+	private Queue<Task> Tasks;
+	private LibraryEntity lib;
 
 	public JanitorEntity(String name, String surname, String iD, String password, Queue<Task> tasks,
 			LibraryEntity lib) {

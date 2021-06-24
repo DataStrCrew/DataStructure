@@ -2,6 +2,7 @@ package com.datastrcrew.libraryapi.classes;
 import java.util.*;
 
 import com.datastrcrew.libraryapi.entity.JanitorEntity;
+import com.datastrcrew.libraryapi.entity.LibrarianEntity;
 import com.datastrcrew.libraryapi.entity.LibraryEntity;
 import com.datastrcrew.libraryapi.service.Database;
 
@@ -438,8 +439,8 @@ public class Library {
         this.offeredEvents = entity.getOfferedEvents();
         this.upcomingEvents.addAll(entity.getUpcomingEvents());
 
-        for (Librarian librarianT : entity.getLibrarians())
-            librarians.add(librarianT);
+        for (LibrarianEntity librarianT : entity.getLibrarians())
+            librarians.add(new Librarian(librarianT));
 
         for (JanitorEntity janitorT : entity.getJanitors())
             janitors.add(new Janitor(janitorT));
@@ -465,11 +466,12 @@ public class Library {
         entity.setPastEvents(pastEvents);
         entity.setOfferedEvents(offeredEvents);
         ArrayList<Event> tmpEvents = new ArrayList<Event>();
-        tmpEvents.addAll(upcomingEvents);
+        for (Event i : upcomingEvents)
+            tmpEvents.add(i);
         entity.setUpcomingEvents(tmpEvents);
-        
+
         for (Librarian librarianT : librarians)
-            entity.getLibrarians().add(librarianT);
+            entity.getLibrarians().add(librarianT.getEntity());
 
         for (Janitor janitorT : janitors)
             entity.getJanitors().add(janitorT.getEntity());

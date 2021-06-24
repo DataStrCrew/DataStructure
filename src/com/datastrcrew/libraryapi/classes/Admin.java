@@ -12,7 +12,7 @@ import com.datastrcrew.libraryapi.service.Database;
  * */
 public class Admin extends User {
 	//Database gelince = Database.getLibraries() olacak.
-    private static final List<Library> libraries = new ArrayList<>();
+    private final List<Library> libraries;
     
     /**
      * Default constructor of Admin
@@ -26,44 +26,44 @@ public class Admin extends User {
     public Admin()
     {
         super("name","surname","pw");
+        libraries = Database.libraries;
     }
 
     public Admin(String name,String surname,String pw)
     {
         super(name,surname,pw);
+        libraries = Database.libraries;
     }
     /**
      * To add library in Data
-     * @param Library New Library to add
+     * @param library New Library to add
      * @return true/false If Library adds to Libraries it will return true otherwise false.
      */
-    public boolean addLibrary(Library Library)
+    public boolean addLibrary(Library library)
     {
-        return libraries.add(Library);
+        return Database.libraries.add(library);
     }
+
     /**
      * To remove library from Data
      * @param ID Librarys' id
      * @return true/false If Library id is true and removes it will return true otherwise false.
      */
-    public boolean removeLibrary(String ID)
-    {
-    	for(int i=0 ; i < libraries.size(); i++)
-    	{
-    		if(libraries.get(i).getID().equals(ID))
-    		{
-    			libraries.remove(i);
-    			return true;
-    		}
-    	}
-    	return false;
+    public boolean removeLibrary(String ID) {
+        for (Library lib : Database.libraries) {
+            if (lib.getID().equals(ID)) {
+                Database.libraries.remove(lib);
+                return true;
+            }
+        }
+        return false;
     }
     /**
      * To add manager in Data
      * @param Manager New Manager to add
      * @return true/false If Manager adds to Managers it will return true otherwise false.
      */
-    public boolean addManager(Manager Manager,String LibraryID)
+    public boolean addManager(Manager Manager, String LibraryID)
     {
     	Library result = searchLibrary(LibraryID);
     	if( result != null)
@@ -106,7 +106,7 @@ public class Admin extends User {
      */
     public Library searchLibrary(String searchText)
     {
-		for (Library library : libraries) {
+		for (Library library : Database.libraries) {
 			if (library.getName().contains(searchText) || library.getAddress().contains(searchText)) {
 				return library;
 			}
@@ -155,7 +155,7 @@ public class Admin extends User {
      * Method to return list of libraries.
      * @return list of Libraries.
      */
-    public static List<Library> getLibraries(){
+    public List<Library> getLibraries(){
     	return libraries;
 	}
 
@@ -166,11 +166,11 @@ public class Admin extends User {
      * @param entity AdminEntity class object.
      *
      */
-    public Admin(AdminEntity entity){
+    public Admin(AdminEntity entity) {
         super(entity.name, entity.surname, entity.password);
-
-        for (LibraryEntity lib : entity.getLibraries())           
-           Admin.libraries.add(new Library(lib));   
+        libraries = Database.libraries;
+        // for (LibraryEntity lib : entity.getLibraries())           
+        //    Database.libraries.add(new Library(lib));
     }
 
     /**
@@ -181,10 +181,9 @@ public class Admin extends User {
         AdminEntity entity = new AdminEntity(name, surname, password);
 
         for (Library lib : libraries)           
-           entity.libraries.add(lib.getEntity());        
+           entity.getLibraries().add(lib.getEntity());        
         
         return entity;
     }
-
 
 }

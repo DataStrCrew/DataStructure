@@ -9,7 +9,7 @@ import java.util.List;
 public class AbstractPublication implements Publication {
     private String name;
     private Author author;
-    private String id;
+    private String ID;
     private static Integer nextID = 10000;
     private Language lang;
     private Integer page;
@@ -25,7 +25,7 @@ public class AbstractPublication implements Publication {
     public AbstractPublication(String nm,Author athr,Language lng, Integer pg){
         name = nm;
         author = athr;
-        id = String.valueOf(nextID++); //id is automatically generated. First ID is 10000
+        ID = String.valueOf(nextID++); //id is automatically generated. First ID is 10000
         lang = lng;
         page = pg;
         comments = new ArrayList<>();
@@ -73,7 +73,7 @@ public class AbstractPublication implements Publication {
      */
     @Override
     public void setID(String id) {
-        this.id = id;
+        this.ID = id;
     }
 
     /**
@@ -82,7 +82,7 @@ public class AbstractPublication implements Publication {
      */
     @Override
     public String getID() {
-        return id;
+        return ID;
     }
 
     /**
@@ -144,7 +144,7 @@ public class AbstractPublication implements Publication {
      */
     @Override
     public String toString(){
-        return "Name: " + name + "\nPage Amount: " + page + "\nLanguage: " + lang + "\nID: " + id +
+        return "Name: " + name + "\nPage Amount: " + page + "\nLanguage: " + lang + "\nID: " + ID +
                 "\nAuthor's info:" + author + "\nComments: " + comments;
     }
 
@@ -153,7 +153,7 @@ public class AbstractPublication implements Publication {
      */
     @Override
     public int compareTo(Publication o) {
-        return id.compareTo(o.getID());
+        return ID.compareTo(o.getID());
     }
 
     //-----------------------------------------ENTITY METHODS--------------------------

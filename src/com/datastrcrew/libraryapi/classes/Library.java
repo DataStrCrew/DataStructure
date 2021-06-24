@@ -1,11 +1,9 @@
 package com.datastrcrew.libraryapi.classes;
-import java.lang.reflect.Array;
 import java.util.*;
 
 import com.datastrcrew.libraryapi.entity.JanitorEntity;
-import com.datastrcrew.libraryapi.entity.LibrarianEntity;
 import com.datastrcrew.libraryapi.entity.LibraryEntity;
-
+import com.datastrcrew.libraryapi.service.Database;
 
 /**
  * @author ogulcan_kalafatoglu
@@ -13,8 +11,8 @@ import com.datastrcrew.libraryapi.entity.LibraryEntity;
 public class Library {
 	private String name;
     private String address;
-    private String id;
-    private Manager manager;
+    private String ID;
+    private String manager;
 
     private AVLTree<Publication> publications;
     private PriorityQueue<Event> upcomingEvents;
@@ -26,22 +24,27 @@ public class Library {
 
     private NavigableSet<Librarian> librarians;
     private NavigableSet<Janitor> janitors;
-    private static final SkipList<String> existingIDs = new SkipList<>();
+    // private static final SkipList<String> existingIDs = new SkipList<>();
 
     public Library(){
-        this(null,null,null);
+        this("", "", "");
     }
 
     public Library(String name,String address,String id){
         this.name = name;
         this.address = address;
-        if(!existingIDs.contains(id)) {
-            this.id = id;
-            existingIDs.insert(id);
+        // if(!existingIDs.contains(id)) {
+        //     this.ID = id;
+        //     existingIDs.insert(id);
+        // } else {
+        //     throw new IllegalArgumentException("ID already exists.");
+        // }
+        for (Library lib : Database.libraries) {
+            if (lib.getID().equals(id)) {
+                throw new IllegalArgumentException("ID already exists.");
+            }
         }
-        else{
-            throw new IllegalArgumentException("ID already exists.");
-        }
+        this.ID = id;
         this.manager = null;
 
         publications = new AVLTree<>(new Comparator<Publication>(){
@@ -50,9 +53,7 @@ public class Library {
                 if(p1.getName().compareTo(p2.getName()) == 0){
                     return p1.getLang().compareTo(p2.getLang());
                 }
-
                 return p1.getName().compareTo(p2.getName());
-
             }
         });
         demandedBooks = new ArrayList<>();
@@ -64,11 +65,11 @@ public class Library {
 
     public AVLTree<Publication> getPublications(){return publications;}
 
-    public Manager getManager() {
+    public String getManager() {
 		return manager;
 	}
 
-	public void setManager(Manager manager) {
+	public void setManager(String manager) {
 		this.manager = manager;
 	}
 
@@ -93,12 +94,12 @@ public class Library {
 		this.address = address;
 	}
 
-	public String getId() {
-		return id;
+	public String getID() {
+		return ID;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setID(String id) {
+		this.ID = id;
 	}
 
     public List<Publication> getDemandedBooks()
@@ -398,7 +399,7 @@ public class Library {
 
     @Override
     public String toString(){
-       return "Name:" + name + "Address: " + address + "Current Manager: " + manager;
+       return "Name:" + name + " Address: " + address + " Current Manager: " + manager;
     }
 
            //-----------------------------------------ENTITY METHODS--------------------------
@@ -410,70 +411,80 @@ public class Library {
      *  @param entity EventEntity class object.
      */
 
-    public Library(LibraryEntity entity){
+    public Library(LibraryEntity entity) {
+        this.manager = null;
 
-    this.name = entity.getName();
-    this.address = entity.getAddress();
-    this.id = entity.getID();
-    this.manager = new Manager(entity.getManager());
-    this.demandedBooks = entity.getDemandedBooks();
-    this.pastEvents = entity.getPastEvents();
-    this.offeredEvents = entity.getOfferedEvents();
-    this.upcomingEvents = entity.getUpcomingEvents();
+        publications = new AVLTree<>(new Comparator<Publication>(){
+            @Override
+            public int compare(Publication p1, Publication p2){
+                if(p1.getName().compareTo(p2.getName()) == 0){
+                    return p1.getLang().compareTo(p2.getLang());
+                }
+                return p1.getName().compareTo(p2.getName());
+            }
+        });
+        demandedBooks = new ArrayList<>();
+        pastEvents = new ArrayList<>();
+        upcomingEvents = new PriorityQueue<>();
+        librarians = new TreeSet<>();
+        janitors = new TreeSet<>();
 
-    for (LibrarianEntity librarianT : entity.getLibrarians())
-        librarians.add(new Librarian(librarianT));
+        this.name = entity.getName();
+        this.address = entity.getAddress();
+        this.ID = entity.getID();
+        this.manager = entity.getManager();
+        this.demandedBooks = entity.getDemandedBooks();
+        this.pastEvents = entity.getPastEvents();
+        this.offeredEvents = entity.getOfferedEvents();
+        this.upcomingEvents.addAll(entity.getUpcomingEvents());
 
-    for (JanitorEntity janitorT : entity.getJanitors())
-        janitors.add(new Janitor(janitorT));
+        for (Librarian librarianT : entity.getLibrarians())
+            librarians.add(librarianT);
 
-    for (Publication pub : entity.publications)
-        this.publications.add(pub);
+        for (JanitorEntity janitorT : entity.getJanitors())
+            janitors.add(new Janitor(janitorT));
 
-    for (String ids : entity.existingIDs)
-        Library.existingIDs.insert(ids);
+        for (Publication pub : entity.getPublications())
+            this.publications.add(pub);
 
+        // for (String ids : entity.getExistingIDs())
+        //     Library.existingIDs.insert(ids);
     }
 
     /**
      * Method to save Event data field to EventEntity object.
      * @return EventEntity object.
      */
-
-
     public LibraryEntity getEntity(){
-
         LibraryEntity entity = new LibraryEntity();
-
         entity.setName(name);
         entity.setAddress(address);
-        entity.ID = this.id;
-        entity.setManager(getManager().getEntity());
-        entity.demandedBooks = this.demandedBooks;
-        entity.pastEvents = this.pastEvents;
-        entity.offeredEvents = this.offeredEvents;
-        entity.upcomingEvents = this.upcomingEvents;
-
+        entity.setID(this.ID);
+        entity.setManager(manager);
+        entity.setDemandedBooks(demandedBooks);
+        entity.setPastEvents(pastEvents);
+        entity.setOfferedEvents(offeredEvents);
+        ArrayList<Event> tmpEvents = new ArrayList<Event>();
+        tmpEvents.addAll(upcomingEvents);
+        entity.setUpcomingEvents(tmpEvents);
+        
         for (Librarian librarianT : librarians)
-            entity.librarians.add(librarianT.getEntity());
+            entity.getLibrarians().add(librarianT);
 
         for (Janitor janitorT : janitors)
-            entity.janitors.add(janitorT.getEntity());
+            entity.getJanitors().add(janitorT.getEntity());
 
         ArrayList<Publication> arrayPub = new ArrayList<>();
         Iterator<Publication> iter = publications.preOrderIterator();
-        while(iter.hasNext()){
+        while(iter.hasNext())
             arrayPub.add(iter.next());
-        }
-        entity.publications.addAll(arrayPub);
+        entity.getPublications().addAll(arrayPub);
 
-
-        ArrayList<String> arrayIDs = new ArrayList<>();
-        Iterator<String> iter2 = existingIDs.SLIterator();
-        while(iter2.hasNext())
-            arrayIDs.add(iter2.next());
-
-        entity.existingIDs.addAll(arrayIDs);
+        // ArrayList<String> arrayIDs = new ArrayList<>();
+        // Iterator<String> iter2 = existingIDs.SLIterator();
+        // while(iter2.hasNext())
+        //     arrayIDs.add(iter2.next());
+        // entity.getExistingIDs().addAll(arrayIDs);
 
         return entity;
     }

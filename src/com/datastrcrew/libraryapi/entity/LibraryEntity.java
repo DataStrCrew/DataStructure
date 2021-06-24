@@ -3,29 +3,30 @@ package com.datastrcrew.libraryapi.entity;
 import java.util.*;
 
 import com.datastrcrew.libraryapi.classes.Event;
+import com.datastrcrew.libraryapi.classes.Librarian;
 import com.datastrcrew.libraryapi.classes.Publication;
 
 public class LibraryEntity implements HasID {
-	public String name;
-    public String address;
-    public String ID;
-    public ManagerEntity manager;
-    public List<Publication> publications;
-    public PriorityQueue<Event> upcomingEvents;
-    public List<Publication> demandedBooks;
-    public List<Event> pastEvents;
-    public List<Event> offeredEvents;
-    public NavigableSet<LibrarianEntity> librarians;
-    public NavigableSet<JanitorEntity> janitors;
-    public List<String> existingIDs;
+	private String name;
+    private String address;
+    private String ID;
+    private String manager;
+    private List<Publication> publications;
+    private List<Event> upcomingEvents;
+    private List<Publication> demandedBooks;
+    private List<Event> pastEvents;
+    private List<Event> offeredEvents;
+    private List<Librarian> librarians;
+    private List<JanitorEntity> janitors;
+    // private List<String> existingIDs;
 
-    public LibraryEntity(String name, String address, String id, ManagerEntity manager,
-            List<Publication> publications, PriorityQueue<Event> upcomingEvents,
+    public LibraryEntity(String name, String address, String ID, String manager,
+            List<Publication> publications, List<Event> upcomingEvents,
             List<Publication> demandedBooks, List<Event> pastEvents, List<Event> offeredEvents,
-            NavigableSet<LibrarianEntity> librarians, NavigableSet<JanitorEntity> janitors, List<String> existingIDs) {
+            List<Librarian> librarians, List<JanitorEntity> janitors) {
         this.name = name;
         this.address = address;
-        this.ID = id;
+        this.ID = ID;
         this.manager = manager;
         this.publications = publications;
         this.upcomingEvents = upcomingEvents;
@@ -34,26 +35,23 @@ public class LibraryEntity implements HasID {
         this.offeredEvents = offeredEvents;
         this.librarians = librarians;
         this.janitors = janitors;
-        this.existingIDs = existingIDs;
+        // this.existingIDs = existingIDs;
     }
 
     public LibraryEntity() {
+        manager = null;
         publications = new ArrayList<Publication>();
-        upcomingEvents = new PriorityQueue<Event>();
+        upcomingEvents = new ArrayList<Event>();
         demandedBooks = new ArrayList<Publication>();
         pastEvents = new ArrayList<Event>();
         offeredEvents = new ArrayList<Event>();
-        librarians = new TreeSet<LibrarianEntity>();
-        janitors = new TreeSet<JanitorEntity>();
-        existingIDs = new ArrayList<String>();
+        librarians = new ArrayList<Librarian>();
+        janitors = new ArrayList<JanitorEntity>();
+        // existingIDs = new ArrayList<String>();
     }
 
     public String getName() {
         return name;
-    }
-
-    public String getID() {
-        return ID;
     }
 
     public void setName(String name) {
@@ -68,15 +66,19 @@ public class LibraryEntity implements HasID {
         this.address = address;
     }
 
-    public void setID(String id) {
-        this.ID = id;
+    public String getID() {
+        return ID;
     }
 
-    public ManagerEntity getManager() {
+    public void setID(String iD) {
+        ID = iD;
+    }
+
+    public String getManager() {
         return manager;
     }
 
-    public void setManager(ManagerEntity manager) {
+    public void setManager(String manager) {
         this.manager = manager;
     }
 
@@ -88,11 +90,11 @@ public class LibraryEntity implements HasID {
         this.publications = publications;
     }
 
-    public PriorityQueue<Event> getUpcomingEvents() {
+    public List<Event> getUpcomingEvents() {
         return upcomingEvents;
     }
 
-    public void setUpcomingEvents(PriorityQueue<Event> upcomingEvents) {
+    public void setUpcomingEvents(List<Event> upcomingEvents) {
         this.upcomingEvents = upcomingEvents;
     }
 
@@ -120,29 +122,27 @@ public class LibraryEntity implements HasID {
         this.offeredEvents = offeredEvents;
     }
 
-    public NavigableSet<LibrarianEntity> getLibrarians() {
+    public List<Librarian> getLibrarians() {
         return librarians;
     }
 
-    public void setLibrarians(NavigableSet<LibrarianEntity> librarians) {
+    public void setLibrarians(List<Librarian> librarians) {
         this.librarians = librarians;
     }
 
-    public NavigableSet<JanitorEntity> getJanitors() {
+    public List<JanitorEntity> getJanitors() {
         return janitors;
     }
 
-    public void setJanitors(NavigableSet<JanitorEntity> janitors) {
+    public void setJanitors(List<JanitorEntity> janitors) {
         this.janitors = janitors;
     }
 
-    public List<String> getExistingIDs() {
-        return existingIDs;
-    }
+    // public List<String> getExistingIDs() {
+    //     return existingIDs;
+    // }
 
-    public void setExistingIDs(List<String> existingIDs) {
-        this.existingIDs = existingIDs;
-    }
-    
-    
+    // public void setExistingIDs(List<String> existingIDs) {
+    //     this.existingIDs = existingIDs;
+    // }
 }

@@ -52,7 +52,7 @@ public class Janitor extends User{
     public boolean updateTask(String TaskId){
     	for (Task element : Tasks)
         {
-          if(element.getTaskId().equals(TaskId)) {
+          if(element.getID().equals(TaskId)) {
         	 element.setDoneTask(true);
         	 return true;
           }

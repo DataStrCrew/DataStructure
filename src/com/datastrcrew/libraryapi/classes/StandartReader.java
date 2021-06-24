@@ -151,8 +151,7 @@ public class StandartReader extends User
     //  * @param entity StandartReaderEntity class object.
     //  */
     // public StandartReader(StandartReaderEntity entity){
-
-    //     super(entity);
+    //     super(entity.name, entity.surname, entity.password);
     //     this.lib = entity.getLib();
     //     this.borrowedBooks = getBorrowed();
     // }

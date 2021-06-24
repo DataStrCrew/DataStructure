@@ -1,35 +1,53 @@
 package com.datastrcrew.libraryapi.classes;
 
-import com.datastrcrew.libraryapi.entity.LibrarianEntity;
+import com.datastrcrew.libraryapi.service.Database;
 
 /**
  * Librarian of the library
  * @author Mustafa Gurler,yesimyalc
  */
-public class Librarian extends User
-{
+public class Librarian extends User {
 	/**Holds the information of the library that this Librarian is working in*/
-	private Library lib;
+	private String lib;
 
-	public Library getLib() {
+	public Library getLibrary() {
+		for (Library library : Database.libraries) {
+			if (library.getID().equals(lib)) {
+				return library;
+			}
+		}
+		return null;
+	}
+
+	public String getLib() {
 		return lib;
 	}
 
-	public void setLib(Library lib){
-
+	public void setLib(String lib) {
 		this.lib = lib;
 	}
 
-	public Librarian()
-	{
-		super("name","surname","pw");
-		lib=null;
+	public void setLibrary(String lib){
+		this.lib = lib;
 	}
 
-	public Librarian(String name,String surname, String pw, Library workingLib)
-	{
+	public Librarian() {
+		super("name","surname","pw");
+		lib = "";
+	}
+
+	public Librarian(String name,String surname, String pw, Library workingLib) {
 		super(name,surname,pw);
-		lib=workingLib;
+		lib = workingLib.getID();
+	}
+
+	private Library findLibrary() {
+		for (Library library : Database.libraries) {
+			if (library.getID().equals(lib)) {
+				return library;
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -44,7 +62,7 @@ public class Librarian extends User
 		if(searchBook(demandedBook.getName(), demandedBook.getLang()))
 			return false;
 		else
-			return lib.demandBook(demandedBook);
+			return findLibrary().demandBook(demandedBook);
 	}
 	
 	/**
@@ -53,7 +71,7 @@ public class Librarian extends User
 	 */
 	public int demandBookStock(String bookName, Language bookLanguage)
 	{
-		return lib.bookAmount(bookName, bookLanguage);
+		return findLibrary().bookAmount(bookName, bookLanguage);
 	}
 	
 	/**
@@ -73,7 +91,7 @@ public class Librarian extends User
 		}
 		else
 		{
-			lib.changeStock(givenBook, -1);
+			findLibrary().changeStock(givenBook, -1);
 			reader.borrowBook(givenBook);
 			return givenBook;
 		}
@@ -91,7 +109,7 @@ public class Librarian extends User
 			return false;
 		else
 		{
-			lib.changeStock(returnedBook, 1);
+			findLibrary().changeStock(returnedBook, 1);
 			customer.returnTheBook(returnedBook);
 			return true;
 		}
@@ -103,27 +121,25 @@ public class Librarian extends User
 	 */
 	public boolean searchBook(String searchedBook, Language bookLanguage)
 	{
-		return lib.isInStock(searchedBook, bookLanguage);
+		return findLibrary().isInStock(searchedBook, bookLanguage);
 	}
 
-	 //-----------------------------------------ENTITY METHODS--------------------------
-    /**
-     * Librarian constructor for Database operations.
-     * @param entity LibrarianEntity class object.
-     */
-    public Librarian(LibrarianEntity entity){
-		super(entity.name, entity.surname, entity.password);
-        lib = new Library(entity.getLib());
-    }
+	//  //-----------------------------------------ENTITY METHODS--------------------------
+    // /**
+    //  * Librarian constructor for Database operations.
+    //  * @param entity LibrarianEntity class object.
+    //  */
+    // public Librarian(LibrarianEntity entity){
+	// 	super(entity.name, entity.surname, entity.password);
+    //     lib = new Library(entity.getLib());
+    // }
 
-    /**
-     * Method to save Librarian data field to LibrarianEntity object.
-     * @return LibrarianEntity object.
-     */
+    // /**
+    //  * Method to save Librarian data field to LibrarianEntity object.
+    //  * @return LibrarianEntity object.
+    //  */
      
-    public LibrarianEntity getEntity(){
-        return new LibrarianEntity(name, surname, ID, password, lib.getEntity());
-    }
-
-    
+    // public LibrarianEntity getEntity(){
+    //     return new LibrarianEntity(name, surname, ID, password, lib.getEntity());
+    // }
 }

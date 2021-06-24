@@ -5,7 +5,7 @@ import com.datastrcrew.libraryapi.classes.User;
 public class ManagerEntity extends User {
 	public LibraryEntity lib;
 
-	public ManagerEntity(String name, String surname, String iD, String password, LibraryEntity lib) {
+	public ManagerEntity(String name, String surname, String ID, String password, LibraryEntity lib) {
 		super(name, surname, password);
 		this.lib = lib;
 	}

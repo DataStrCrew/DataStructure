@@ -30,6 +30,4 @@ public class AdminEntity extends User {
         super("", "", "");
         libraries = new ArrayList<>();
     }
-
-    
 }

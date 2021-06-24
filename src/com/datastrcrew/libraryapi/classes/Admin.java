@@ -4,14 +4,13 @@ import java.util.List;
 
 import com.datastrcrew.libraryapi.entity.AdminEntity;
 import com.datastrcrew.libraryapi.entity.LibraryEntity;
+import com.datastrcrew.libraryapi.service.Database;
 
 /**
  * Administrator of the libraries.
  * @author Mustafa Gurler
  * */
 public class Admin extends User {
-
-
 	//Database gelince = Database.getLibraries() olacak.
     private static final List<Library> libraries = new ArrayList<>();
     
@@ -51,7 +50,7 @@ public class Admin extends User {
     {
     	for(int i=0 ; i < libraries.size(); i++)
     	{
-    		if(libraries.get(i).getId().equals(ID))
+    		if(libraries.get(i).getID().equals(ID))
     		{
     			libraries.remove(i);
     			return true;
@@ -74,10 +73,10 @@ public class Admin extends User {
 			}
 			else
 			{
-				result.setManager(Manager);
+				result.setManager(Manager.getID());
 			}
     	}
-    	return false;    
+    	return false;
     }
     /**
      * To remove manager in Data
@@ -98,7 +97,6 @@ public class Admin extends User {
 				result.setManager(null);
 			}
     	}
-    	
     	return false;    	
     }
     /**
@@ -118,7 +116,7 @@ public class Admin extends User {
 
     public Library getLibrary(String id){
 		for (Library library : libraries) {
-			if (library.getId().equals(id)) {
+			if (library.getID().equals(id)) {
 				return library;
 			}
 		}
@@ -131,14 +129,13 @@ public class Admin extends User {
      */
     public Manager getManager(String ID)
     {
-		for (Library library : libraries) {
-			if (library.getManager().getID().equals(ID)) {
-				return library.getManager();
-			}
-		}
+        for (Manager manager : Database.managers) {
+            if (manager.getID().equals(ID)) {
+                return manager;
+            }
+        }
     	return null;
     }
-
 
     /**
      * To search manager information in Data
@@ -146,11 +143,11 @@ public class Admin extends User {
      * @return true/false If Manager id finds it will return true otherwise false.
      */
     public Manager searchManager(String searchText){
-		for (Library library : libraries) {
-			if (library.getManager().getName().contains(searchText) || library.getManager().getSurname().contains(searchText)) {
-				return library.getManager();
-			}
-		}
+        for (Manager manager : Database.managers) {
+            if (manager.getName().contains(searchText) || manager.getSurname().contains(searchText)) {
+                return manager;
+            }
+        }
 		return null;
 	}
 
@@ -158,7 +155,7 @@ public class Admin extends User {
      * Method to return list of libraries.
      * @return list of Libraries.
      */
-    public List<Library> getLibraries(){
+    public static List<Library> getLibraries(){
     	return libraries;
 	}
 

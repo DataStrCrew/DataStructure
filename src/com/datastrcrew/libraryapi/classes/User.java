@@ -106,8 +106,6 @@ public abstract class User implements Person,Comparable<User>, HasID {
         return name.equals(this.name) && pw.equals(this.password);
     }
 
-
-
     /**
      * Equals implementation for User Class.
      * @param other Another User Object
@@ -116,8 +114,6 @@ public abstract class User implements Person,Comparable<User>, HasID {
     public boolean equals(User other){
         return other.getID().equals(ID) && other.getPW().equals(password);
     }
-
-
 
     @Override
     public int compareTo(User o) {

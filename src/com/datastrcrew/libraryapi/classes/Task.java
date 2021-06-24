@@ -6,10 +6,9 @@ import java.util.HashMap;
  * @author musosman
  */
 
-public class Task
-{
+public class Task {
 	 private HashMap<Integer, String> allTasks;
-	 private String TaskId;
+	 private String ID;
 	 private String TaskName;
 	 private boolean doneTask;
 	 
@@ -20,7 +19,7 @@ public class Task
 	 public Task(String ID)
 	 {
 		 	setAllTasks();
-			this.TaskId=ID;
+			this.ID=ID;
 			doneTask=false;
 	 }
 	 
@@ -59,9 +58,9 @@ public class Task
 	 * Getter for TaskId
 	 * @return
 	 */
-	public String getTaskId() 
+	public String getID() 
 	{
-		return TaskId;
+		return ID;
 	}
 	 
 	 /**
@@ -77,9 +76,9 @@ public class Task
      * Setter for TaskId
      * @param taskId Task Id of the task
      */
-	public void setTaskId(String taskId) 
+	public void setID(String taskId) 
 	{
-		TaskId = taskId;
+		ID = taskId;
 		setTaskName(taskId);
 	}
 	
@@ -106,7 +105,7 @@ public class Task
 		String status;
 		if(doneTask) status = "Done";
 		else status = "Not-Done";
-		return "Task Name: " + TaskName + "\nTask ID: " + TaskId + "\nStatus:" + status;
+		return "Task Name: " + TaskName + "\nTask ID: " + ID + "\nStatus:" + status;
 	}
 	
 

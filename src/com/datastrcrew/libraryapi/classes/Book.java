@@ -1,7 +1,4 @@
 package com.datastrcrew.libraryapi.classes;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * Book class for the Automation System.

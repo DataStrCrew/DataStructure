@@ -1,81 +1,20 @@
 package com.datastrcrew.libraryapi.classes;
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
 
-import com.datastrcrew.libraryapi.entity.AdminEntity;
-import com.datastrcrew.libraryapi.entity.JanitorEntity;
-import com.datastrcrew.libraryapi.entity.LibrarianEntity;
-import com.datastrcrew.libraryapi.entity.LibraryEntity;
-import com.datastrcrew.libraryapi.entity.ManagerEntity;
 import com.datastrcrew.libraryapi.initialization.FirebaseInitialization;
-import com.datastrcrew.libraryapi.service.GenericService;
+import com.datastrcrew.libraryapi.service.Database;
 
-public class Main{
-
-    //Database gelince Database.getAdmins(),Database.getManagers... 'a eşitlenecek.
-    static ArrayList<Librarian> libraries = new ArrayList<>();
-    static ArrayList<Admin> admins = new ArrayList<>();
-    static ArrayList<Manager> managers = new ArrayList<>();
-    static ArrayList<Librarian> librarians = new ArrayList<>();
-    static ArrayList<Janitor> janitors = new ArrayList<>();
-    static ArrayList<StandartReader> SReaders = new ArrayList<>();
-    static ArrayList<PremiumReader> PReaders = new ArrayList<>();
-
-    public static void main(String[] args) throws Exception{
+public class Main {
+    
+    public static void main(String[] args) throws Exception {
         /* Initialize Firebase */
         FirebaseInitialization firebaseInitialization = new FirebaseInitialization();
         firebaseInitialization.initialization();
-
-        /* Initialize Services */
-        GenericService<LibraryEntity> libraryService = new GenericService<LibraryEntity>(LibraryEntity.class, "libraries");
-        GenericService<AdminEntity> adminService = new GenericService<AdminEntity>(AdminEntity.class, "admins");
-        GenericService<ManagerEntity> managerService = new GenericService<ManagerEntity>(ManagerEntity.class, "managers");
-        GenericService<LibrarianEntity> librarianService = new GenericService<LibrarianEntity>(LibrarianEntity.class, "librarians");
-        GenericService<JanitorEntity> janitorService = new GenericService<JanitorEntity>(JanitorEntity.class, "janitors");
-        GenericService<StandartReader> standartReaderService = new GenericService<StandartReader>(StandartReader.class, "standart_readers");
-        GenericService<PremiumReader> premiumReaderService = new GenericService<PremiumReader>(PremiumReader.class, "premium_readers");
-//
-//         /* Create  Libraries */
-//        ArrayList<LibraryEntity> libraryEntities = new ArrayList<>();
-//        libraryEntities.add(new LibraryEntity("lele", "dsds", "dsds", null, "dsdssd", "upcomingEvents"," demandedBooks", "pastEvents", "offeredEvents", librarians, janitors, "existingIDs"))
-//
-//        /* Create Admins */
-//        ArrayList<AdminEntity> users = new ArrayList<AdminEntity>();
-//        users.add(new AdminEntity("Osman Talha", "Aydin", "password"));
-//        users.add(new AdminEntity("Gökbey Gazi", "KESKİN", "password"));
-//        users.add(new AdminEntity("Yeşim", "YALÇIN", "password"));
-//        users.add(new AdminEntity("Mehmet", "ACAR", "password"));
-//        users.add(new AdminEntity("Hikmet Mete", "VAROL", "password"));
-//        users.add(new AdminEntity("Muhammed", "GEÇGELOĞLU", "password"));
-//        users.add(new AdminEntity("Sinan", "SARI", "password"));
-//        users.add(new AdminEntity("Oğulcan", "KALAFATOĞLU", "password"));
-//        users.add(new AdminEntity("Mustafa", "GÜRLER", "password"));
-//
-//        try {
-//            // users = adminService.getAll();
-//            //adminService.deleteAll();
-//            adminService.saveAll(users);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        for (AdminEntity adminEntity : adminService.getAll()) {
-//            admins.add(new Admin(adminEntity));
-//        }
-//
-//        /* Generate comments */
-//        ArrayList<String> comments1 = new ArrayList<String>();
-//        comments1.add("It was slow to start but got me hooked after a while.");
-//        comments1.add("Great Book!");
-//
-//        /* Generate comments */
-//        ArrayList<String> comments2 = new ArrayList<String>();
-//        comments2.add("Love the cover.");
-//        comments2.add("Lacks information.");
-//
-
+                
+        Database.Init();
 
         Scanner input = new Scanner(System.in);
         System.out.println("Welcome to the Library Automation System.");
@@ -92,17 +31,9 @@ public class Main{
                     break;
                 case 3:
                     System.out.println("Goodbye!");
-                    ArrayList<AdminEntity> adminsTmp = new ArrayList<>();
-                    for(Admin i : admins)
-                        adminsTmp.add(i.getEntity());
-                    try {
-                        // users = adminService.getAll();
-                        //adminService.deleteAll();
-                        adminService.saveAll(adminsTmp);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
+                    // Database.clearAll();
+                    Database.async();
+                    Database.saveAll();
                     break;
                 default:
                     System.out.println("Wrong info");
@@ -113,7 +44,7 @@ public class Main{
     public static void register(){
         Scanner input = new Scanner(System.in);
         int opt;
-        System.out.println("Choose Account Type:\n1)Admin"+ "2)Standart Reader\n3)Premium Reader\n4)Exit");
+        System.out.println("Choose Account Type:\n1)Admin"+ "\n2)Standart Reader\n3)Premium Reader\n4)Exit");
         System.out.println("If you are a Library Manager, Librarian or Janitor " +
                 "ask your supervisor to create an account for you ");
         opt = input.nextInt(); input.nextLine();
@@ -126,19 +57,19 @@ public class Main{
 
         switch (opt){
             case 1:
-                admins.add(new Admin(name,surname,pw));
+            Database.admins.add(new Admin(name,surname,pw));
                 break;
             case 2:
                 System.out.println("Which Library will you be working at?");
                 int i=0;
-                for(Library lib : admins.get(0).getLibraries()) {
+                for(Library lib : Database.libraries) {
                     System.out.println(i++ + ") " + lib);
                 }
                 int libIndex = input.nextInt(); input.nextLine();
                 try{
-                    Manager m= new Manager(name,surname,pw,admins.get(0).getLibraries().get(libIndex));
-                    managers.add(m);
-                    admins.get(0).getLibraries().get(libIndex).setManager(m);
+                    Manager m= new Manager(name,surname,pw,Database.libraries.get(libIndex));
+                    Database.managers.add(m);
+                    Database.libraries.get(libIndex).setManager(m.getID());
                 }
                 catch(IndexOutOfBoundsException ex){
                     System.out.println("Wrong input.");
@@ -147,14 +78,14 @@ public class Main{
             case 3:
                 System.out.println("Which Library will you be working at?");
                 i=0;
-                for(Library lib : admins.get(0).getLibraries()) {
+                for(Library lib : Database.libraries) {
                     System.out.println(i++ + ") " + lib);
                 }
                 libIndex = input.nextInt(); input.nextLine();
                 try{
-                    Librarian l= new Librarian(name,surname,pw,admins.get(0).getLibraries().get(libIndex));
-                    librarians.add(l);
-                    admins.get(0).getLibraries().get(libIndex).addLibrarian(l);
+                    Librarian l= new Librarian(name,surname,pw,Database.libraries.get(libIndex));
+                    Database.librarians.add(l);
+                    Database.libraries.get(libIndex).addLibrarian(l);
                 }
                 catch(IndexOutOfBoundsException ex){
                     System.out.println("Wrong input.");
@@ -163,14 +94,14 @@ public class Main{
             case 4:
                 System.out.println("Which Library will you be working at?");
                 i=0;
-                for(Library lib : admins.get(0).getLibraries()) {
+                for(Library lib : Database.libraries) {
                     System.out.println(i++ + ") " + lib);
                 }
                 libIndex = input.nextInt(); input.nextLine();
                 try{
-                    Janitor j= new Janitor(name,surname,pw,admins.get(0).getLibraries().get(libIndex));
-                    janitors.add(j);
-                    admins.get(0).getLibraries().get(libIndex).addJanitor(j);
+                    Janitor j= new Janitor(name,surname,pw,Database.libraries.get(libIndex));
+                    Database.janitors.add(j);
+                    Database.libraries.get(libIndex).addJanitor(j);
                 }
                 catch(IndexOutOfBoundsException ex){
                     System.out.println("Wrong input.");
@@ -179,13 +110,13 @@ public class Main{
             case 5:
                 System.out.println("Which Library do you want to register?");
                 i=0;
-                for(Library lib : admins.get(0).getLibraries()) {
+                for(Library lib : Database.libraries) {
                     System.out.println(i++ + ") " + lib);
                 }
                 libIndex = input.nextInt(); input.nextLine();
                 try{
-                    StandartReader sr = new StandartReader(name,surname,pw,admins.get(0).getLibraries().get(libIndex));
-                    SReaders.add(sr);
+                    StandartReader sr = new StandartReader(name,surname,pw,Database.libraries.get(libIndex));
+                    Database.SReaders.add(sr);
                 }
                 catch(IndexOutOfBoundsException ex){
                     System.out.println("Wrong input.");
@@ -194,13 +125,13 @@ public class Main{
             case 6:
                 System.out.println("Which Library do you want to register?");
                 i=0;
-                for(Library lib : admins.get(0).getLibraries()) {
+                for(Library lib : Database.libraries) {
                     System.out.println(i++ + ") " + lib);
                 }
                 libIndex = input.nextInt(); input.nextLine();
                 try{
-                    PremiumReader pr = new PremiumReader(name,surname,pw,admins.get(0).getLibraries().get(libIndex));
-                    PReaders.add(pr);
+                    PremiumReader pr = new PremiumReader(name,surname,pw,Database.libraries.get(libIndex));
+                    Database.PReaders.add(pr);
                 }
                 catch(IndexOutOfBoundsException ex){
                     System.out.println("Wrong input.");
@@ -209,6 +140,7 @@ public class Main{
             default:
                 System.out.println("Redirecting to main menu.");
         }
+        // input.close();
     }
 
     public static void login(){
@@ -216,7 +148,7 @@ public class Main{
         int opt;
         boolean loggedIn = false;
         System.out.println("Choose Account Type:\n1)Admin\n2)Library Manager\n3)Librarian\n4)Janitor" +
-                "5)Standart Reader\n6)Premium Reader\n7)Exit");
+                "\n5)Standart Reader\n6)Premium Reader\n7)Exit");
         opt = input.nextInt(); input.nextLine();
         System.out.println("Your ID: ");
         String id = input.nextLine();
@@ -224,7 +156,7 @@ public class Main{
         String pw = input.nextLine();
         switch (opt){
             case 1:
-                for(Admin admin : admins){
+                for(Admin admin : Database.admins){
                     if(admin.login(id,pw)) {
                         adminMenu(admin);
                         loggedIn = true;
@@ -233,7 +165,7 @@ public class Main{
                 }
                 break;
             case 2:
-                for(Manager manager : managers){
+                for(Manager manager : Database.managers){
                     if(manager.login(id,pw)) {
                         managerMenu(manager);
                         loggedIn = true;
@@ -242,7 +174,7 @@ public class Main{
                 }
                 break;
             case 3:
-                for(Librarian librarian : librarians){
+                for(Librarian librarian : Database.librarians){
                     if(librarian.login(id,pw)) {
                         librarianMenu(librarian);
                         loggedIn = true;
@@ -251,7 +183,7 @@ public class Main{
                 }
                 break;
             case 4:
-                for(Janitor janitor : janitors){
+                for(Janitor janitor : Database.janitors){
                     if(janitor.login(id,pw)) {
                         janitorMenu(janitor);
                         loggedIn = true;
@@ -261,7 +193,7 @@ public class Main{
 
                 break;
             case 5:
-                for(StandartReader sreader : SReaders){
+                for(StandartReader sreader : Database.SReaders){
                     if(sreader.login(id,pw)) {
                         sReaderMenu(sreader);
                         loggedIn = true;
@@ -270,7 +202,7 @@ public class Main{
                 }
                 break;
             case 6:
-                for(PremiumReader preader : PReaders){
+                for(PremiumReader preader : Database.PReaders){
                     if(preader.login(id,pw)) {
                         pReaderMenu(preader);
                         loggedIn = true;
@@ -284,6 +216,7 @@ public class Main{
         }
         if(!loggedIn)
             System.out.println("Wrong ID or Password.");
+        // input.close();
     }
 
     public static void adminMenu(Admin admin){
@@ -291,7 +224,7 @@ public class Main{
         System.out.println("Welcome, " + admin.getName() + ".\n" );
         int opt;
         do {
-            System.out.println("1)Add Library\n2)Remove Library)\n3)Add Manager\n4)Remove Manager\n5)List Libraries\n" +
+            System.out.println("1)Add Library\n2)Remove Library\n3)Add Manager\n4)Remove Manager\n5)List Libraries\n" +
                     "6)Search Library\n7)Search Manager\n8)Exit");
             opt = input.nextInt();
             input.nextLine();
@@ -311,7 +244,7 @@ public class Main{
                     }
                     break;
                 case 2:
-                    for (Library lib : admin.getLibraries())
+                    for (Library lib : Database.libraries)
                         System.out.println(lib);
                     System.out.println("Enter the ID of the library.");
                     id = input.nextLine();
@@ -331,21 +264,21 @@ public class Main{
                     String pw = input.nextLine();
                     System.out.println("Which Library will the manager be working at?");
                     int i = 0;
-                    for (Library lib : admin.getLibraries()) {
+                    for (Library lib : Database.libraries) {
                         System.out.println(i++ + ") " + lib);
                     }
                     int libIndex = input.nextInt();
                     input.nextLine();
                     try {
-                        Manager m = new Manager(name, surname, pw, admins.get(0).getLibraries().get(libIndex));
-                        managers.add(m);
-                        admin.getLibraries().get(libIndex).setManager(m);
+                        Manager m = new Manager(name, surname, pw, Database.libraries.get(libIndex));
+                        Database.managers.add(m);
+                        Database.libraries.get(libIndex).setManager(m.getID());
                     } catch (IndexOutOfBoundsException ex) {
                         System.out.println("Wrong input.");
                     }
                     break;
                 case 4:
-                    for (Library lib : admin.getLibraries()) {
+                    for (Library lib : Database.libraries) {
                         System.out.println(lib + "\n");
                     }
                     System.out.println("Enter the ID of the library to remove Manager.");
@@ -357,7 +290,7 @@ public class Main{
                         System.out.println("There is no such library.");
                     break;
                 case 5:
-                    for (Library lib : admin.getLibraries()) {
+                    for (Library lib : Database.libraries) {
                         System.out.println(lib + "\n");
                     }
                     break;
@@ -387,7 +320,7 @@ public class Main{
                     System.out.println("Wrong input.");
             }
         }while(opt!=8);
-
+        // input.close();
     }
     public static void managerMenu(Manager manager){
     	Publication pub;
@@ -632,6 +565,7 @@ public class Main{
 
             }
         }while(opt!=12);
+        // input.close();
     }
     public static void librarianMenu(Librarian librarian){
     	Language language;
@@ -652,7 +586,7 @@ public class Main{
 
             switch (opt) {
                 case 1:
-                	Iterator<Publication> publications = librarian.getLib().getPublications().preOrderIterator();
+                	Iterator<Publication> publications = librarian.getLibrary().getPublications().preOrderIterator();
                     while(publications.hasNext())
                     {
                     	System.out.println(publications.next());
@@ -678,7 +612,7 @@ public class Main{
 	                    }while( !(lanIndex < i) );
 
 	                    language = Language.values()[lanIndex];
-	                    book = librarian.getLib().getBook(bookName, language);
+	                    book = librarian.getLibrary().getBook(bookName, language);
 
 	                    if(book == null)
 	                    	System.out.println("The book is not in library ! ");
@@ -711,7 +645,7 @@ public class Main{
 	                    }while( !(lanIndex < i) );
 
 	                    language = Language.values()[lanIndex];
-	                    book = librarian.getLib().getBook(bookName, language);
+	                    book = librarian.getLibrary().getBook(bookName, language);
 
 	                    if(book == null)
 	                    	System.out.println("The book is not in library ! ");
@@ -738,10 +672,10 @@ public class Main{
 
                     if(Usr == 1)
                     {
-                        for (StandartReader sReader : SReaders) {
+                        for (StandartReader sReader : Database.SReaders) {
                             if (0 < sReader.getName().compareTo(Name)
                                     && (0 < sReader.getSurname().compareTo(Surname))
-                                    && (0 < sReader.getLib().getAddress().compareTo(librarian.getLib().getAddress()))) {
+                                    && (0 < sReader.getLib().getAddress().compareTo(librarian.getLibrary().getAddress()))) {
                                 flag = 1;
                             	if (null != librarian.lendBook(book, sReader))
                                     System.out.println("The book is lended !");
@@ -757,10 +691,10 @@ public class Main{
                     }
                     else if(Usr == 2)
                     {
-                        for (PremiumReader pReader : PReaders) {
+                        for (PremiumReader pReader : Database.PReaders) {
                             if (0 < pReader.getName().compareTo(Name)
                                     && (0 < pReader.getSurname().compareTo(Surname))
-                                    && (0 < pReader.getLib().getAddress().compareTo(librarian.getLib().getAddress()))) {
+                                    && (0 < pReader.getLib().getAddress().compareTo(librarian.getLibrary().getAddress()))) {
                                 flag = 1;
                             	if (null != librarian.lendBook(book, pReader))
                                     System.out.println("The book is lended !");
@@ -794,7 +728,7 @@ public class Main{
 	                    }while( !(lanIndex < i) );
 
 	                    language = Language.values()[lanIndex];
-	                    book = librarian.getLib().getBook(bookName, language);
+	                    book = librarian.getLibrary().getBook(bookName, language);
 
 	                    if(book == null)
 	                    	System.out.println("The book is not in library ! ");
@@ -819,10 +753,10 @@ public class Main{
                     flag = 0;
                     if(Usr == 1)
                     {
-                        for (StandartReader sReader : SReaders) {
+                        for (StandartReader sReader : Database.SReaders) {
                             if (0 < sReader.getName().compareTo(Name)
                                     && (0 < sReader.getSurname().compareTo(Surname))
-                                    && (0 < sReader.getLib().getAddress().compareTo(librarian.getLib().getAddress()))) {
+                                    && (0 < sReader.getLib().getAddress().compareTo(librarian.getLibrary().getAddress()))) {
                                 flag = 1;
                             	if (librarian.relendBook(book, sReader))
                                     System.out.println("The book is lended !");
@@ -838,10 +772,10 @@ public class Main{
                     }
                     if(Usr == 2)
                     {
-                        for (PremiumReader pReader : PReaders) {
+                        for (PremiumReader pReader : Database.PReaders) {
                             if (0 < pReader.getName().compareTo(Name)
                                     && (0 < pReader.getSurname().compareTo(Surname))
-                                    && (0 < pReader.getLib().getAddress().compareTo(librarian.getLib().getAddress()))) {
+                                    && (0 < pReader.getLib().getAddress().compareTo(librarian.getLibrary().getAddress()))) {
                                 flag = 1;
                             	if (librarian.relendBook(book, pReader))
                                     System.out.println("The book is lended !");
@@ -887,6 +821,7 @@ public class Main{
             }
 
         }while(opt!=6);
+        // input.close();
     }
     public static void janitorMenu(Janitor janitor){
         int  opt;
@@ -923,6 +858,7 @@ public class Main{
             }
 
         }while(opt!=3);
+        // input.close();
     }
 
     public static void sReaderMenu(StandartReader sReader)
@@ -1058,7 +994,7 @@ public class Main{
             case 0:
                 break;
         }
-
+        // input.close();
     }
 
     public static void pReaderMenu(PremiumReader pReader)
@@ -1236,5 +1172,6 @@ public class Main{
 
                 break;
         }
+        // input.close();
     }
 }

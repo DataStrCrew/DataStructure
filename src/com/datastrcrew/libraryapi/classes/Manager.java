@@ -289,8 +289,8 @@ public class Manager extends User
      * @param entity ManagerEntity class object.
      */
     public Manager(ManagerEntity entity){
-		super(entity.name, entity.surname, entity.password);
-        this.lib = new Library(entity.getLib());
+		super(entity != null ? entity.name : "", entity != null ? entity.surname : "", entity != null ? entity.password : "");
+        this.lib = entity != null ? new Library(entity.getLib()) : null;
     }
 
     /**
@@ -299,8 +299,8 @@ public class Manager extends User
      */
      
     public ManagerEntity getEntity(){
-        return new ManagerEntity(name, surname, ID, password, getLib().getEntity());
+		ManagerEntity entity = new ManagerEntity(name, surname, ID, password, null);
+		entity.setLib(lib != null ? getLib().getEntity() : null);
+		return entity;
     }
-
-    
 }

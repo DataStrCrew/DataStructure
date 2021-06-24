@@ -123,14 +123,20 @@ public class SkipList<E extends Comparable<E>>{
 
 
     private boolean lessThan(E a, E b) {
+        if (a == null)
+            return false;
         return a.compareTo(b) < 0;
     }
 
     private boolean equalTo(E a, E b) {
+        if (a == null)
+            return a == b;
         return a.compareTo(b) == 0;
     }
 
     private boolean greaterThan(E a, E b) {
+        if (a == null)
+            return false;
         return a.compareTo(b) > 0;
     }
 

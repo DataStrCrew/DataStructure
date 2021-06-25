@@ -12,15 +12,23 @@ public class BinarySearchTree<E extends Comparable<E>>
     protected boolean isAdded;
     /** Return value from the public delete method. */
     protected E removed;
-    
+    /** Comparator. */
     protected Comparator<E> comp;
 
+    /**
+     * Constructor for BinarySearchTree.
+     * @param comparator comparator object.
+     */
     public BinarySearchTree(Comparator<E> comparator)
     {
     	super();
     	comp=comparator;
-    }
-    
+    }   
+    /**
+     * Constructor for BinarySearchTree.
+     * @param comparator comparator object.
+     * @param item item to add BinarySearchTree
+     */
     public BinarySearchTree(E item, Comparator<E> comparator)
     {
     	super();
@@ -28,6 +36,12 @@ public class BinarySearchTree<E extends Comparable<E>>
     	add(item);
     }
     
+    /**
+     * Compare method.
+     * @param left left node.
+     * @param right right node.
+     * @return node index val.
+     */
     protected int compare(E left, E right)
 	{
 		if(comp==null)

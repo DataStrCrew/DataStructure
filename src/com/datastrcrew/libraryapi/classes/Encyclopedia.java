@@ -6,13 +6,23 @@ import java.util.*;
  * @author gokbey_gazi_keskin
  */
 public class Encyclopedia extends AbstractPublication{
-    private HashMap<String,String> sections; //page number-content
+
+     /** HashMap object for sections */
+    private HashMap<String,String> sections;
+    /** Type of book */ 
     private String type = "Encyclopedia";
 
+     /**
+     * Getter for type.
+     * @return Type of the book.
+     */
     public String getType() {
         return type;
     }
-
+    /**
+     * Setter for type.
+     * @param type Type of the book.
+     */
     public void setType(String type) {
         this.type = type;
     }

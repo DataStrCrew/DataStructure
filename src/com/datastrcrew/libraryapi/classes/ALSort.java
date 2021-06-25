@@ -10,6 +10,10 @@ public class ALSort {
 
     /**
      * Helper method for mergeSort
+     * @param outputSequence list of output sequence.
+     * @param leftSequencev list of left sequence.
+     * @param rightSequence list of right sequence.
+     * @param c comparator object.
      */
     private static<T extends Comparable<T>> void merge(List<T> outputSequence, List<T> leftSequence,
      List<T> rightSequence, Comparator<? super T> c){

@@ -39,12 +39,20 @@ public class AVLTree<E extends Comparable<E>> extends RotatingBinarySearchTree<E
 			return data.toString()+" "+Integer.toString(balance)+" "+count;
 		}
 	}
-	
+
+	 /**
+     * Constructor for AVLTree.
+     * @param comparator comparator object.
+     */
 	public AVLTree(Comparator<E> comparator)
 	{
 		super(comparator);
 	}
-	
+	/**
+     * Constructor for AVLTree.
+     * @param comparator comparator object.
+     * @param item item to add AVL
+     */
 	public AVLTree(E item, Comparator<E> comparator)
 	{
 		super(comparator);
@@ -53,6 +61,8 @@ public class AVLTree<E extends Comparable<E>> extends RotatingBinarySearchTree<E
 	
 	/**
 	 * Searches for an element in the tree
+	 * @param localRoot AVL node.
+	 * @param target item.
 	 * @return the amount of the element in the tree
 	 */
 	private int find(AVLNode<E> localRoot, E target) 
@@ -70,6 +80,8 @@ public class AVLTree<E extends Comparable<E>> extends RotatingBinarySearchTree<E
 	
 	/**
 	 * Changes the balance of the localRoot by the given change amount
+	 * @param localRoot local root.
+	 * @param change balance value.
 	 */
 	private void changeBalance(AVLNode<E> localRoot, int change)
 	{
@@ -85,6 +97,8 @@ public class AVLTree<E extends Comparable<E>> extends RotatingBinarySearchTree<E
 	
 	/**
 	 * Rebalances to the left starting from the localRoot
+	 * @param localRoot local root.
+	 * @param oldBalance old balance.
 	 * @return the new localRoot
 	 */
 	private AVLNode<E> rebalanceLeft(AVLNode<E> localRoot, int oldBalance)
@@ -154,6 +168,8 @@ public class AVLTree<E extends Comparable<E>> extends RotatingBinarySearchTree<E
 	
 	/**
 	 * Rebalances to the right starting from the localRoot
+	 * @param localRoot local root.
+	 * @param oldBalance old balance.
 	 * @return the new localRoot
 	 */
 	private AVLNode<E> rebalanceRight(AVLNode<E> localRoot, int oldBalance)
@@ -468,6 +484,7 @@ public class AVLTree<E extends Comparable<E>> extends RotatingBinarySearchTree<E
 	
 	/**
 	 * @return the amount of the target inside the tree.
+	 * @param target target object.
 	 */
 	public int getAmount(E target)
 	{

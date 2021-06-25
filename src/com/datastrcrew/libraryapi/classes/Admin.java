@@ -9,24 +9,27 @@ import com.datastrcrew.libraryapi.service.Database;
  * @author Mustafa Gurler
  * */
 public class Admin extends User {
-	//Database gelince = Database.getLibraries() olacak.
+
+	/**
+     * List data field to hold libraries.
+     */
     private final List<Library> libraries;
 
     /**
      * Default constructor of Admin
      */
-    /* It will add when we redesign this class.
-    public Admin(){super();}
-    */
-    /**
-    * Constructor of Admin.
-    */
     public Admin()
     {
         super("name","surname","pw");
         libraries = Database.libraries;
     }
 
+    /**
+     * Constructor of Admin
+     * @param name name of Admin.
+     * @param surname surname of Admin.
+     * @param pw password of Admin.
+     */
     public Admin(String name,String surname,String pw)
     {
         super(name,surname,pw);
@@ -58,7 +61,8 @@ public class Admin extends User {
     }
     /**
      * To add manager in Data
-     * @param Manager New Manager to add
+     * @param Manager New Manager to add.
+     * @param LibraryID ID of library.
      * @return true/false If Manager adds to Managers it will return true otherwise false.
      */
     public boolean addManager(Manager Manager, String LibraryID)
@@ -109,6 +113,11 @@ public class Admin extends User {
     	return null;
     }
 
+    /**
+     * To search Library information in Data
+     * @param id Library' id
+     * @return true/false If Library id finds it will return true otherwise false.
+     */
     public Library getLibrary(String id){
 		for (Library library : libraries) {
 			if (library.getID().equals(id)) {
@@ -118,7 +127,7 @@ public class Admin extends User {
 		return null;
 	}
     /**
-     * To search manager information in Data
+     * To search Manager information in Data
      * @param ID Managers' id
      * @return true/false If Manager id finds it will return true otherwise false.
      */
@@ -159,7 +168,6 @@ public class Admin extends User {
     /**
      * Admin constructor for Database operations.
      * @param entity AdminEntity class object.
-     *
      */
     public Admin(AdminEntity entity) {
         super(entity.name, entity.surname, entity.password);

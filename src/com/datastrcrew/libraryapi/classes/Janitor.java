@@ -16,7 +16,11 @@ public class Janitor extends User{
 	private String lib;
 
     /**
-     * Constructor of Task
+     * Constructor of Janitor
+     * @param name name of janitor.
+     * @param surname surname of janitor.
+     * @param pw password of janitor.
+     * @param lin library of janitor.
      */
     public Janitor(String name,String surname,String pw,Library lib)
     {
@@ -26,6 +30,10 @@ public class Janitor extends User{
         this.ID = this.name;
     }
 
+    /**
+     * Find library method that search library.
+     * @return library.
+     */
     @Exclude
     private Library findLibrary() {
 		for (Library library : Database.libraries) {
@@ -36,18 +44,35 @@ public class Janitor extends User{
 		return null;
 	}
 
+    /**
+     * Setter for tasks.
+     * @param tasks task of the janitor.
+     */
     public void setTasks(Queue<Task> tasks) {
         Tasks = tasks;
     }
 
+    /**
+     * Getter for Library.
+     * @return library.
+     */
     public String getLib() {
         return lib;
     }
 
+    /**
+     * Setter for Library.
+     * @param lib lib of the janitor.
+     */
     public void setLib(String lib) {
         this.lib = lib;
     }
 
+    /**
+     * Find library method that search library.
+     * @param ID id of library.
+     * @return library.
+     */
     @Exclude
 	private Library findLibrary(String ID) {
 		for (Library library : Database.libraries) {
@@ -58,15 +83,27 @@ public class Janitor extends User{
 		return null;
 	}
     
+    /**
+     * Getter for Tasks.
+     * @return Tasks.
+     */
 	public Queue<Task> getTasks() {
 		return Tasks;
 	}
 
+    /**
+     * Getter for Library.
+     * @return Library.
+     */
     @Exclude
 	public Library getLibrary() {
 		return findLibrary();
 	}
 
+    /**
+     * Setter for Library.
+     * @param lib lib of the janitor.
+     */
     @Exclude
     public void setLibrary(Library lib){
         this.lib = lib.getID();
@@ -74,7 +111,7 @@ public class Janitor extends User{
 	
     /**
      * It views all of the task that belongs to janitor
-     * @param
+     * @param ID
      */
     public void viewTask(String ID){
     	for (Task element : Tasks)
@@ -100,7 +137,7 @@ public class Janitor extends User{
     }
     /**
      * Adds the task to the janitors' task
-     * @param newTask New Task
+     * @param theTaskID New Task
      * @return
      */
     public boolean addTask(String theTaskID)

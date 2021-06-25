@@ -9,10 +9,15 @@ import com.datastrcrew.libraryapi.entity.HasID;
  * */
 public abstract class User implements Person,Comparable<User>, HasID {
 
+    /** Name */
     protected String name;
+    /** Surname */
     protected String surname;
+    /** ID */
     protected String ID;
+    /** Password */
     protected String password;
+
     /**
      * Constructor of User
      * @param name Name of the User
@@ -26,6 +31,10 @@ public abstract class User implements Person,Comparable<User>, HasID {
         this.password = password;
     }
 
+    /**
+     * Generates an ID using SHA256
+     * @return generated ID.
+     */
     private String generateID(){
         return org.apache.commons.codec.digest.DigestUtils.sha256Hex(name + surname + password);
     }
@@ -94,7 +103,6 @@ public abstract class User implements Person,Comparable<User>, HasID {
         return password;
     }
 
-
     /**
      * Login method
      * @param name Name of the User
@@ -114,6 +122,7 @@ public abstract class User implements Person,Comparable<User>, HasID {
         return other.getID().equals(ID) && other.getPW().equals(password);
     }
 
+    /** Comparison method. */
     @Override
     public int compareTo(User o) {
         return getID().compareTo(o.getID());
@@ -131,55 +140,5 @@ public abstract class User implements Person,Comparable<User>, HasID {
         str.append("\nID:").append(getID());
         return str.toString();
     }
-
-        //-----------------------------------------ENTITY METHODS--------------------------
-
-    // public User(AdminEntity entity){
-
-    //     this.name = entity.getName();
-    //     this.surname = entity.getSurname();
-    //     this.ID = entity.getId();
-    //     this.password = entity.getPassword();
-    // }
-
-    // // public User(JanitorEntity entity){
-
-    // //     this.name = entity.getName();
-    // //     this.surname = entity.getSurname();
-    // //     this.ID = entity.getID();
-    // //     this.password = entity.getPW();
-    // // }
-
-    // public User(LibrarianEntity entity){
-
-    //     this.name = entity.getName();
-    //     this.surname = entity.getSurname();
-    //     this.ID = entity.getId();
-    //     this.password = entity.getPassword();
-    // }
-
-    // public User(ManagerEntity entity){
-
-    //     this.name = entity.getName();
-    //     this.surname = entity.getSurname();
-    //     this.ID = entity.getId();
-    //     this.password = entity.getPassword();
-    // }
-
-    // public User(PremiumReaderEntity entity){
-
-    //     this.name = entity.getName();
-    //     this.surname = entity.getSurname();
-    //     this.ID = entity.getId();
-    //     this.password = entity.getPassword();
-    // }
-
-    // public User(StandartReaderEntity entity){
-
-    //     this.name = entity.getName();
-    //     this.surname = entity.getSurname();
-    //     this.ID = entity.getId();
-    //     this.password = entity.getPassword();
-    // }
 
 }

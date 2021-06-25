@@ -49,7 +49,7 @@ public class StandartReader extends User
 
 	 /**
      * Setter of Library.
-     * @param lib
+     * @param lib Library.
      */
 	public void setLib(String lib) {
 		this.lib = lib;
@@ -68,7 +68,7 @@ public class StandartReader extends User
     }
    	/**
      * Setter of Library.
-     * @param lib
+     * @param lib Library
      */
     public void setLibrary(Library lib){
 	    this.lib = lib.getID();
@@ -182,47 +182,5 @@ public class StandartReader extends User
 		}
 		return false;
 	}
-
-
-	//-----------------------------------------ENTITY METHODS--------------------------
-
-    // /**
-    //  * StandartReader constructor for Database operations.
-    //  * @param entity StandartReaderEntity class object.
-    //  */
-    // public StandartReader(StandartReaderEntity entity){
-    //     super(entity.name, entity.surname, entity.password);
-    //     this.lib = entity.getLib();
-    //     this.borrowedBooks = getBorrowed();
-    // }
-
-	// public StandartReader(PremiumReaderEntity entity){
-
-    //     super(entity);
-    //     this.lib = entity.getLib();
-    //     this.borrowedBooks = getBorrowed();
-    // }
-
-    // /**
-    //  * Method to save StandartReader data field to StandartReaderEntity object.
-    //  * @return StandartReaderEntity object.
-    //  */
-
-    // public StandartReaderEntity getEntity() {
-
-    //     StandartReaderEntity entity;
-
-    //     entity.setName(getName());
-    //     entity.setSurname(getSurname());
-    //     entity.setId(getID());
-    //     entity.setPassword(getPW());
-    //     entity.setLib(getLib().getEntity());
-
-    //     for (Publication book : borrowedBooks)
-    //       entity.borrowedBooks.add(book.getEntity());
-
-    //     return entity;
-
-	// }
 
 }

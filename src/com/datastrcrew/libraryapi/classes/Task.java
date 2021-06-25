@@ -19,7 +19,7 @@ public class Task {
 	 
 	 /**
 	  * Constructor of Task
-	  * @param ID
+	  * @param ID ID
 	  */
 	 public Task(String ID)
 	 {
@@ -98,7 +98,7 @@ public class Task {
 	 
 	 /**
 	 * Getter for TaskId
-	 * @return
+	 * @return task ID
 	 */
 	public String getID() 
 	{
@@ -135,7 +135,7 @@ public class Task {
 	
 	 /**
      * Getter for doneTask
-     * @return
+     * @return true or false.
      */
 	@Exclude
 	public boolean isDoneTask() 

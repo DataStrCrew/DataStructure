@@ -69,7 +69,9 @@ public class Task {
 	 {
 		 String taskName = allTasks.get(ID);
 		 if(taskName==null)
-			 throw new IllegalArgumentException();
+		 {
+			 //throw new IllegalArgumentException();
+		 }
 		 else {
 			 TaskName=taskName;
 		 }

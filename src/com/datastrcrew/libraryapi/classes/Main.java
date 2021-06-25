@@ -579,6 +579,7 @@ public class Main {
                 	Iterator<Publication> publications = librarian.getLibrary().getPublications().preOrderIterator();
                     while(publications.hasNext())
                     {
+                    	System.out.println();
                     	System.out.println(publications.next());
                     }
                 	break;
@@ -602,11 +603,8 @@ public class Main {
 
 	                    }while( !(lanIndex < i) );
 
-	                    language = Language.values()[lanIndex];
-	                    book = librarian.getLibrary().getBook(bookName, language);
-
-	                    if(book == null)
-	                    	System.out.println("The book is not in library ! ");
+	                    language = Language.values()[lanIndex-1];
+	                    book = new AbstractPublication(bookName, null, language, null);
 
                 	}while(book == null);
 

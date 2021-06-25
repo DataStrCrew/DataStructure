@@ -119,7 +119,7 @@ public class Library {
         return upcomingEvents;
     }
 
-    public NavigableSet<Janitor> getLibrarians()
+    public NavigableSet<Janitor> getJanitors()
     {
         return janitors;
     }
@@ -275,8 +275,10 @@ public class Library {
      */
     public Janitor getJanitor(String name){
         for(Janitor i : janitors)
+        {
             if(i.getName().equals(name))
                 return i;
+        }
         return null;
     }
 

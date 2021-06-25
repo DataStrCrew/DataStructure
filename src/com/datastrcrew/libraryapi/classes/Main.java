@@ -16,13 +16,13 @@ public class Main {
 
         Database.Init();
 
-        Database.clearAll();
-
-        Database.async();
-
-        Database.createDummyData();
-
-        Database.saveAll();
+//        Database.clearAll();
+//
+//        Database.async();
+//
+//        Database.createDummyData();
+//
+//        Database.saveAll();
 
         Scanner input = new Scanner(System.in);
         System.out.println("Welcome to the Library Automation System.");
@@ -887,7 +887,8 @@ public class Main {
             System.out.println("5)List Events");
             System.out.println("6)Vote Event");
             System.out.println("7)Participate in an Event");
-            System.out.println("8)Exit");
+            System.out.println("8)Where to find?");
+            System.out.println("9)Exit");
 
             choice = input.nextInt();
             input.nextLine();
@@ -914,7 +915,6 @@ public class Main {
 	                    System.out.println("The book is in stock !");
 	                else
 	                    System.out.println("The book is not in stock !");
-
 	                    break;
 
 	            case 2:
@@ -997,11 +997,15 @@ public class Main {
 
 	                break;
 
-	            case 8:
+                case 8:
+                    sReader.getLibrary().getClosestPath();
+                    break;
+	            case 9:
+	                System.out.println("Redirecting to main menu.");
 	                break;
 	        }
         }
-        while(choice!=8);
+        while(choice!=9);
         // input.close();
     }
 
@@ -1030,6 +1034,7 @@ public class Main {
             System.out.println("7)Participate in an Event");
             System.out.println("8)Demand Book");
             System.out.println("9)Request Event");
+            System.out.println("10)Where to get?");
             System.out.println("10)Exit");
 
             choice = input.nextInt();
@@ -1180,9 +1185,10 @@ public class Main {
 	                    System.out.println("The event is requested !");
 	                    pReader.request_event(requestedEvent);
 	                }
-
+                case 10:
+                    pReader.getLibrary().getClosestPath();
 	                break;
-	            case 10:
+	            case 11:
 	            	break;
 	        }
         }

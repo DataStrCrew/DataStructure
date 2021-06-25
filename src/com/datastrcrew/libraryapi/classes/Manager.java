@@ -113,12 +113,12 @@ public class Manager extends User {
 	 * @param theTaskID is the new task that will be added to a janitor
 	 * @return true if added, false if not
 	 */
-	public boolean addTasks(String janitorName, String theTaskID)
+	public boolean addTasks(String janitorID, String theTaskID)
 	{
-		if(!searchJanitor(janitorName))
+		if(!searchJanitor(janitorID))
 			return false;
 		else
-			return lib.getJanitor(janitorName).addTask(theTaskID);
+			return lib.getJanitor(janitorID).addTask(theTaskID);
 	}
 
 	/**
@@ -260,9 +260,9 @@ public class Manager extends User {
 		return lib.isLibrarian(searchedLID) != -1;
 	}
 
-	public boolean searchJanitor(String searchedJName)
+	public boolean searchJanitor(String searchedJID)
 	{
-		return lib.isJanitor(searchedJName) != -1;
+		return lib.isJanitor(searchedJID) != -1;
 
 	}
 

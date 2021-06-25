@@ -15,8 +15,6 @@ public class Main {
         firebaseInitialization.initialization();
 
         Database.Init();
-        
-        Database.createDummyData();
 
         Scanner input = new Scanner(System.in);
         System.out.println("Welcome to the Library Automation System.");

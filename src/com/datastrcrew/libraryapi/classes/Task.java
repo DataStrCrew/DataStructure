@@ -50,13 +50,13 @@ public class Task {
 	 private void setAllTasks()
 	 {
 		 allTasks=new HashMap<String, String>();
-		 allTasks.put("001", "Insert a task here");
-		 allTasks.put("010", "Insert a task here");
-		 allTasks.put("011", "Insert a task here");
-		 allTasks.put("100", "Insert a task here");
-		 allTasks.put("101", "Insert a task here");
-		 allTasks.put("110", "Insert a task here");
-		 allTasks.put("111", "Insert a task here");
+		 allTasks.put("001", "Unlock the doors");
+		 allTasks.put("010", "Clean floor 1");
+		 allTasks.put("011", "Clean floor 2");
+		 allTasks.put("100", "Organize the shelfs");
+		 allTasks.put("101", "Organize the chairs");
+		 allTasks.put("110", "Make guests leave");
+		 allTasks.put("111", "Lock the doors");
 	 }
 	 
 	 /**

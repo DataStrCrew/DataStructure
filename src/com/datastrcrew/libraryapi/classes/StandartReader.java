@@ -1,6 +1,4 @@
 package com.datastrcrew.libraryapi.classes;
-import com.datastrcrew.libraryapi.service.Database;
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,7 +9,7 @@ import java.util.List;
 public class StandartReader extends User
 {
     /**Holds the information of the library that this StandartUser is a member of*/
-    String lib;
+    Library lib;
 	List<Publication> borrowedBooks;
 
 	public StandartReader() {
@@ -23,31 +21,17 @@ public class StandartReader extends User
     public StandartReader(String name,String surname,String pw, Library workingLib)
 	{
         super(name,surname,pw);
-		lib=workingLib.getID();
+		lib=workingLib;
         borrowedBooks = new LinkedList<>();
     }
-
-
-
-    public String getLib() {
+    
+    public Library getLib() {
 		return lib;
 	}
 
-	public void setLib(String lib) {
+	public void setLib(Library lib) {
 		this.lib = lib;
 	}
-
-    public Library getLibrary(){
-        for(Library i: Database.libraries){
-            if(i.getID().equals(lib))
-                return i;
-        }
-        return null;
-    }
-
-    public void setLibrary(Library lib){
-	    this.lib = lib.getID();
-    }
 
 	public List<Publication> getBorrowed(){ return borrowedBooks; }
 
@@ -57,7 +41,7 @@ public class StandartReader extends User
 	 */
 	public boolean searchBook(String searchedBook, Language bookLanguage)
 	{
-        return getLibrary().isInStock(searchedBook, bookLanguage);
+        return lib.isInStock(searchedBook, bookLanguage);
 	}
 
     /**
@@ -124,8 +108,8 @@ public class StandartReader extends User
 	 */
 	public List<Event> view_events()
 	{
-		System.out.println(getLibrary().getOfferedEvents());
-		return getLibrary().getOfferedEvents();
+		System.out.println(lib.getOfferedEvents());
+		return lib.getOfferedEvents();
 	}
 
     /**
@@ -168,7 +152,7 @@ public class StandartReader extends User
     //     this.lib = entity.getLib();
     //     this.borrowedBooks = getBorrowed();
     // }
-
+	
 	// public StandartReader(PremiumReaderEntity entity){
 
     //     super(entity);
@@ -180,7 +164,7 @@ public class StandartReader extends User
     //  * Method to save StandartReader data field to StandartReaderEntity object.
     //  * @return StandartReaderEntity object.
     //  */
-
+     
     // public StandartReaderEntity getEntity() {
 
     //     StandartReaderEntity entity;
@@ -193,7 +177,7 @@ public class StandartReader extends User
 
     //     for (Publication book : borrowedBooks)
     //       entity.borrowedBooks.add(book.getEntity());
-
+        
     //     return entity;
 
 	// }

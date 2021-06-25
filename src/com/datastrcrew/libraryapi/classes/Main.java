@@ -667,7 +667,7 @@ public class Main {
                         for (StandartReader sReader : Database.SReaders) {
                             if (0 < sReader.getName().compareTo(Name)
                                     && (0 < sReader.getSurname().compareTo(Surname))
-                                    && (0 < sReader.getLibrary().getAddress().compareTo(librarian.getLibrary().getAddress()))) {
+                                    && (0 < sReader.getLib().getAddress().compareTo(librarian.getLibrary().getAddress()))) {
                                 flag = 1;
                             	if (null != librarian.lendBook(book, sReader))
                                     System.out.println("The book is lended !");
@@ -686,7 +686,7 @@ public class Main {
                         for (PremiumReader pReader : Database.PReaders) {
                             if (0 < pReader.getName().compareTo(Name)
                                     && (0 < pReader.getSurname().compareTo(Surname))
-                                    && (0 < pReader.getLibrary().getAddress().compareTo(librarian.getLibrary().getAddress()))) {
+                                    && (0 < pReader.getLib().getAddress().compareTo(librarian.getLibrary().getAddress()))) {
                                 flag = 1;
                             	if (null != librarian.lendBook(book, pReader))
                                     System.out.println("The book is lended !");
@@ -749,7 +749,7 @@ public class Main {
                         for (StandartReader sReader : Database.SReaders) {
                             if (0 < sReader.getName().compareTo(Name)
                                     && (0 < sReader.getSurname().compareTo(Surname))
-                                    && (0 < sReader.getLibrary().getAddress().compareTo(librarian.getLibrary().getAddress()))) {
+                                    && (0 < sReader.getLib().getAddress().compareTo(librarian.getLibrary().getAddress()))) {
                                 flag = 1;
                             	if (librarian.relendBook(book, sReader))
                                     System.out.println("The book is lended !");
@@ -768,7 +768,7 @@ public class Main {
                         for (PremiumReader pReader : Database.PReaders) {
                             if (0 < pReader.getName().compareTo(Name)
                                     && (0 < pReader.getSurname().compareTo(Surname))
-                                    && (0 < pReader.getLibrary().getAddress().compareTo(librarian.getLibrary().getAddress()))) {
+                                    && (0 < pReader.getLib().getAddress().compareTo(librarian.getLibrary().getAddress()))) {
                                 flag = 1;
                             	if (librarian.relendBook(book, pReader))
                                     System.out.println("The book is lended !");
@@ -927,7 +927,7 @@ public class Main {
 	                    }while( !(lanIndex < i) );
 
 	                    language = Language.values()[lanIndex];
-	                    book = sReader.getLibrary().getBook(bookName, language);
+	                    book = sReader.getLib().getBook(bookName, language);
 
 	                    if(book == null)
 	                        System.out.println("The book is not in library ! ");
@@ -966,7 +966,7 @@ public class Main {
 	                break;
 
 	            case 5:
-	                for (Event event : sReader.getLibrary().getUpcomingEvents())
+	                for (Event event : sReader.getLib().getUpcomingEvents())
 	                {
 	                    System.out.println(event);
 	                }
@@ -974,17 +974,17 @@ public class Main {
 	                break;
 
 	            case 6:
-	                System.out.println(sReader.getLibrary().getUpcomingEvents().peek());
+	                System.out.println(sReader.getLib().getUpcomingEvents().peek());
 	                System.out.println("Choose vote : ");
 	                int vote = input.nextInt();
-	                Event event = sReader.getLibrary().getUpcomingEvents().peek();
+	                Event event = sReader.getLib().getUpcomingEvents().peek();
 	                sReader.vote_event(vote, event);
 
 	                break;
 
 	            case 7:
-	                System.out.println(sReader.getLibrary().getUpcomingEvents().peek());
-	                event = sReader.getLibrary().getUpcomingEvents().peek();
+	                System.out.println(sReader.getLib().getUpcomingEvents().peek());
+	                event = sReader.getLib().getUpcomingEvents().peek();
 	                sReader.participate_event(event);
 
 	                break;
@@ -1070,7 +1070,7 @@ public class Main {
 	                    }while( !(lanIndex < i) );
 
 	                    language = Language.values()[lanIndex];
-	                    book = pReader.getLibrary().getBook(bookName, language);
+	                    book = pReader.getLib().getBook(bookName, language);
 
 	                    if(book == null)
 	                        System.out.println("The book is not in library ! ");
@@ -1109,7 +1109,7 @@ public class Main {
 	                break;
 
 	            case 5:
-	                for (Event event : pReader.getLibrary().getUpcomingEvents())
+	                for (Event event : pReader.getLib().getUpcomingEvents())
 	                {
 	                    System.out.println(event);
 	                }
@@ -1117,17 +1117,17 @@ public class Main {
 	                break;
 
 	            case 6:
-	                System.out.println(pReader.getLibrary().getUpcomingEvents().peek());
+	                System.out.println(pReader.getLib().getUpcomingEvents().peek());
 	                System.out.println("Choose vote : ");
 	                int vote = input.nextInt();
-	                Event event = pReader.getLibrary().getUpcomingEvents().peek();
+	                Event event = pReader.getLib().getUpcomingEvents().peek();
 	                pReader.vote_event(vote, event);
 
 	                break;
 
 	            case 7:
-	                System.out.println(pReader.getLibrary().getUpcomingEvents().peek());
-	                event = pReader.getLibrary().getUpcomingEvents().peek();
+	                System.out.println(pReader.getLib().getUpcomingEvents().peek());
+	                event = pReader.getLib().getUpcomingEvents().peek();
 	                pReader.participate_event(event);
 
 	                break;
@@ -1163,7 +1163,7 @@ public class Main {
 	                System.out.println("Enter event name : ");
 	                String eventName = input.nextLine();
 	                Event requestedEvent = new Event(eventName);
-	                if(pReader.getLibrary().getUpcomingEvents().contains(requestedEvent))
+	                if(pReader.getLib().getUpcomingEvents().contains(requestedEvent))
 	                {
 	                    System.out.println("The event is already coming !");
 	                }

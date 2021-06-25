@@ -244,7 +244,7 @@ public class Library {
         //TODO
         //compare method should be implemented for publications in AbstractPublications class.
         //Or AVLTree should have a constructor that takes Comparator.
-        return (publications.getAmount(new AbstractPublication(searchedBook, null, bookLanguage, null)) != 0);
+        return (publications.getAmount(new AbstractPublication(searchedBook, null, bookLanguage, 0)) != 0);
     }
 
 
@@ -267,7 +267,7 @@ public class Library {
      * @return Stock amount of desired publication, -1 if publication is not found
      */
     public int bookAmount(String bookName, Language bookLanguage){
-        return publications.getAmount(new AbstractPublication(bookName, null, bookLanguage, null));
+        return publications.getAmount(new AbstractPublication(bookName, null, bookLanguage, 0));
     }
 
 
@@ -533,7 +533,7 @@ public class Library {
         upcomingEvents = new PriorityQueue<>();
         librarians = new TreeSet<>();
         janitors = new TreeSet<>();
-
+        offeredEvents = new ArrayList<>();
         this.name = entity.getName();
         this.address = entity.getAddress();
         this.ID = entity.getID();
@@ -543,7 +543,6 @@ public class Library {
         this.offeredEvents = entity.getOfferedEvents();
         this.upcomingEvents.addAll(entity.getUpcomingEvents());
         this.graph = new LibraryGraph();
-
         for (LibrarianEntity librarianT : entity.getLibrarians())
             librarians.add(new Librarian(librarianT));
 

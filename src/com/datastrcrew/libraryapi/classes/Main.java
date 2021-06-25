@@ -1,5 +1,6 @@
 package com.datastrcrew.libraryapi.classes;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -20,9 +21,9 @@ public class Main {
 
         // Database.async();
 
-        // Database.createDummyData();
+        //Database.createDummyData();
 
-        // Database.saveAll();
+        //Database.saveAll();
 
         Scanner input = new Scanner(System.in);
         System.out.println("Welcome to the Library Automation System.");
@@ -422,7 +423,7 @@ public class Main {
                 	int selection;
                 	System.out.println("Demanded Books:");
                     do {
-	                	i = 1;
+	                	i = 0;
 	                	for(Publication book :manager.getLib().getDemandedBooks())
 	                	{
 	                		System.out.println(i+":\n"+book);
@@ -478,11 +479,11 @@ public class Main {
                      }
                      break;
                 case 6:
-                    System.out.println("Enter the ID of the librarian to remove from library.");
-                    id = input.nextLine();
+                    System.out.println("Enter the name of the librarian to remove from library.");
+                    name = input.nextLine();
 
-                    if (Database.librarians.remove(manager.getLib().getLibrarian(id))) {
-                        manager.removeLibrarian(manager.getLib().getLibrarian(id));
+                    if (Database.librarians.remove(manager.getLib().getLibrarian(name))) {
+                        manager.removeLibrarian(manager.getLib().getLibrarian(name));
                         System.out.println("Librarian is succesfully removed.");
                     } else {
                         System.out.println("There is no such librarian.");
@@ -507,8 +508,7 @@ public class Main {
                 case 8:
                     System.out.println("Enter the Name of the janitor to remove from library.");
                     id = input.nextLine();
-                    if (Database.janitors.remove(manager.getLib().getJanitor(id))) {
-                        manager.removeJanitor(manager.getLib().getJanitor(id));
+                    if (manager.removeJanitor(manager.getLib().getJanitor(id))!=null) {
                         System.out.println("Janitor is succesfully removed.");
                     } else {
                         System.out.println("There is no such janitor.");
@@ -535,7 +535,8 @@ public class Main {
                     }
                 	break;
                 case 10:
-                    for (Event event : manager.getOfferedEvents()) {
+                    for (int k=0;k<manager.getLib().getOfferedEvents().size();k++) {
+                        Event event = manager.getLib().getOfferedEvents().get(k);
                         System.out.println(event);
                         System.out.println("Choose: \n1)Accept\n2)Decline");
                         opt = input.nextInt();
@@ -546,8 +547,8 @@ public class Main {
                             manager.declineEvent(event);
                         else
                             System.out.println("Wrong input.");
-                        break;
                     }
+                    break;
                 case 11:
                     Event endedEvent = manager.endEvent();
                     if(endedEvent!=null) {
@@ -614,7 +615,7 @@ public class Main {
 	                    }while( !(lanIndex < i) );
 
 	                    language = Language.values()[lanIndex-1];
-	                    book = new AbstractPublication(bookName, null, language, null);
+	                    book = new AbstractPublication(bookName, null, language, 0);
 
                 	}while(book == null);
 
@@ -708,7 +709,7 @@ public class Main {
                         	System.out.println("There are no any Premium Reader with this name and surname.");
                         }
                     }
-
+                    break;
                 case 4:
                 	do {
 
@@ -841,7 +842,7 @@ public class Main {
                 	Iterator<Task> Tasks = janitor.getTasks().iterator();
                 	while(Tasks.hasNext())
                 	{
-                		System.out.println(Tasks.next());
+                		System.out.println(Tasks.next() + "\n");
                 	}
                     break;
                 case 2:
@@ -900,9 +901,10 @@ public class Main {
 	                bookName = input.nextLine();
 	                do {
 	                    System.out.println("Choose book language: ");
-	                    i = 1;
+	                    i = 0;
 	                    for (Language lan : Language.values()) {
 	                        System.out.println(i + ") " + lan.name());
+	                        i++;
 	                    }
 	                    lanIndex = input.nextInt();
 	                    input.nextLine();
@@ -923,9 +925,10 @@ public class Main {
 	                    bookName = input.nextLine();
 	                    do {
 	                        System.out.println("Choose book language: ");
-	                        i = 1;
+	                        i = 0;
 	                        for (Language lan : Language.values()) {
 	                            System.out.println(i + ") " + lan.name());
+	                            i++;
 	                        }
 	                        lanIndex = input.nextInt();
 	                        input.nextLine();
@@ -965,12 +968,15 @@ public class Main {
 	            case 4:
 	                System.out.println(sReader.getBorrowed());
 	                System.out.println("Which book do you want to give a comment? : ");
-	                b = input.nextInt();
-	                book = sReader.getBorrowed().get(b);
-	                System.out.println("What is your comment? : ");
-	                String comment = input.nextLine();
-	                sReader.commentBook(book, comment);
-
+	                b = input.nextInt(); input.nextLine();
+	                try {
+                        book = sReader.getBorrowed().get(b);
+                        System.out.println("What is your comment? : ");
+                        String comment = input.nextLine();
+                        sReader.commentBook(book, comment);
+                    }catch(IndexOutOfBoundsException ex){
+	                    System.out.println("Wrong input.");
+                    }
 	                break;
 
 	            case 5:
@@ -1033,7 +1039,7 @@ public class Main {
             System.out.println("8)Demand Book");
             System.out.println("9)Request Event");
             System.out.println("10)Where to get?");
-            System.out.println("10)Exit");
+            System.out.println("11)Exit");
 
             choice = input.nextInt();
             input.nextLine();
@@ -1045,9 +1051,10 @@ public class Main {
 	                bookName = input.nextLine();
 	                do {
 	                    System.out.println("Choose book language: ");
-	                    i = 1;
+	                    i = 0;
 	                    for (Language lan : Language.values()) {
 	                        System.out.println(i + ") " + lan.name());
+	                        i++;
 	                    }
 	                    lanIndex = input.nextInt();
 	                    input.nextLine();
@@ -1069,9 +1076,10 @@ public class Main {
 	                    bookName = input.nextLine();
 	                    do {
 	                        System.out.println("Choose book language: ");
-	                        i = 1;
+	                        i = 0;
 	                        for (Language lan : Language.values()) {
 	                            System.out.println(i + ") " + lan.name());
+	                            i++;
 	                        }
 	                        lanIndex = input.nextInt();
 	                        input.nextLine();
@@ -1110,8 +1118,8 @@ public class Main {
 
 	            case 4:
 	                System.out.println(pReader.getBorrowed());
-	                System.out.println("Which book do you want to give a comment? : ");
-	                b = input.nextInt();
+	                System.out.println("Which book do you want to give a comment(give index)? : ");
+	                b = input.nextInt(); input.nextLine();
 	                book = pReader.getBorrowed().get(b);
 	                System.out.println("What is your comment? : ");
 	                String comment = input.nextLine();
@@ -1148,9 +1156,10 @@ public class Main {
 	                bookName = input.nextLine();
 	                do {
 	                    System.out.println("Choose book language: ");
-	                    i = 1;
+	                    i = 0;
 	                    for (Language lan : Language.values()) {
 	                        System.out.println(i + ") " + lan.name());
+	                        i++;
 	                    }
 	                    lanIndex = input.nextInt();
 	                    input.nextLine();
@@ -1180,17 +1189,19 @@ public class Main {
 	                }
 	                else
 	                {
+                        pReader.request_event(requestedEvent);
 	                    System.out.println("The event is requested !");
-	                    pReader.request_event(requestedEvent);
 	                }
+	                break;
                 case 10:
                     pReader.getLibrary().getClosestPath();
 	                break;
 	            case 11:
+	                System.out.println("Redirecting to main menu.");
 	            	break;
 	        }
         }
-        while(choice!=10);
+        while(choice!=11);
         // input.close();
     }
 }

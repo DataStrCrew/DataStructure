@@ -51,12 +51,12 @@ public class Magazine extends AbstractPublication{
         super(nm, athr, lng, pg);
         issue = is;
     }
-    
+
     /**
      * Default Constructor for Magazine.
      */
     public Magazine() {
-        super("", null, Language.English, null);
+        super("", null, Language.English, 0);
     }
 
     /**

@@ -7,8 +7,8 @@ import java.util.List;
  * @author mehmet_acar
  */
 
-public class Event {
-	/** Name of Event */
+public class Event implements Comparable<Event>{
+/** Name of Event */
 	private String name;
 	/** Date of Event */
 	private String date;
@@ -16,8 +16,8 @@ public class Event {
 	private final List<StandartReader>participants;
 	/** Votes of Event */
 	private ArrayList<Integer> votes = new ArrayList<>();
-	
-	
+
+
 	/**
      * Constructor for Event.
      * @param name Name of the event.
@@ -27,7 +27,7 @@ public class Event {
 		this.date="not-added or unknown";
 		participants= new ArrayList<>();
 	}
-	
+
 	/**
      * Constructor with additional info date for Event.
      * @param name Name of the event.
@@ -38,7 +38,7 @@ public class Event {
 		this.date=date;
 		participants= new ArrayList<>();
 	}
-	
+
 	/**
      * Constructor with additional info date and participants for Event.
      * @param name Name of the event.
@@ -50,7 +50,14 @@ public class Event {
         this.date=date;
         this.participants = participants;
     }
-	
+
+    /**
+     * Default constructor for event.
+     */
+    public Event(){
+	    this("");
+    }
+
 	/**
      * Setter for name.
      * @param name Name of the event.
@@ -58,7 +65,7 @@ public class Event {
 	public void setName(String name) {
 		this.name=name;
 	}
-	
+
 	/**
      * Setter for date.
      * @param date Date of the event.
@@ -66,7 +73,7 @@ public class Event {
 	public void setDate(String date) {
 		this.date=date;
 	}
-	
+
 	/**
      * Getter for name.
      * @return Name of the event.
@@ -74,7 +81,7 @@ public class Event {
 	public String getName() {
 		return this.name;
 	}
-	
+
 	/**
      * Getter for date.
      * @return Date of the event.
@@ -86,7 +93,7 @@ public class Event {
 	public ArrayList<Integer> getVotes() {
 		return this.votes;
 	}
-	
+
 	/**
      * Add a new participant to event.
      * @param participant New participant.
@@ -94,16 +101,16 @@ public class Event {
 	public void addParticipant(StandartReader participant) {
 		participants.add(participant);
 	}
-	
+
 	/**
      * Remove a participant from event according to StandartReader parameter.
      * @param participant Removed participant.
      * @return removed participant or throws exception.
      */
 	public StandartReader removeParticipant(StandartReader participant) throws Exception{
-	    
+
 		StandartReader temp,removed_user;
-		
+
 		if(participants.size()==0) {
 			throw new Exception("Event has not participants.You can not remove participant.");
 		}
@@ -117,13 +124,13 @@ public class Event {
 					return removed_user;
 				}
 			}
-			
+
 			throw new Exception("Event has not this participant.");
-			
+
 		}
 
 	}
-	
+
 	 /**
      * Getter for participants.
      * @return Participants of the event.
@@ -131,7 +138,7 @@ public class Event {
     public ArrayList<StandartReader> getParticipants() {
         return (ArrayList<StandartReader>) participants;
     }
-	
+
     /**
      * Getter for participant.
      * @return Participant of the event according to index parameter.
@@ -145,7 +152,7 @@ public class Event {
 		votes.add(vote);
 		return true;
 	}
-	
+
 	 /**
      * Returns string representation of the object.
      * @return Information of Event.
@@ -154,24 +161,29 @@ public class Event {
     public String toString() {
         return "Name: " + name + "\nDate: " + date + "\nParticipants:" + participants;
     }
-	
+
 	/**
      * Prints event infos.
      */
 	public void printEventInfos() {
-		
+
 		System.out.printf("Name: %s \nDate: %s\n", name,date);
 		System.out.println(participants);
-		
+
 	}
 
-	   //-----------------------------------------ENTITY METHODS--------------------------
+    @Override
+    public int compareTo(Event o) {
+        return name.compareTo(o.name);
+    }
+
+    //-----------------------------------------ENTITY METHODS--------------------------
 
     // /**
     //  * Event constructor for Database operations.
     //  * @param entity EventEntity class object.
 	//  */
-     
+
     // public Event(EventEntity entity){
     //     this.name = entity.getName();
     //     this.date = entity.getDate();
@@ -186,7 +198,7 @@ public class Event {
     //  * Method to save Event data field to EventEntity object.
     //  * @return EventEntity object.
 	//  */
-     
+
     // public EventEntity getEntity(){
 
     //     EventEntity entity;
@@ -194,14 +206,14 @@ public class Event {
     //     entity.setName(getName());
     //     entity.setDate(getDate());
 
-    //     for (StandartReader rdr : participants)           
+    //     for (StandartReader rdr : participants)
     //        entity.participants.add(rdr);
 
-    //     for (Integer vote : votes)           
-    //        entity.votes.add(vote);          
-        
+    //     for (Integer vote : votes)
+    //        entity.votes.add(vote);
+
     //     return entity;
 
 	// }
-	
+
 }

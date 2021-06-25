@@ -9,7 +9,7 @@ public class Encyclopedia extends AbstractPublication{
 
      /** HashMap object for sections */
     private HashMap<String,String> sections;
-    /** Type of book */ 
+    /** Type of book */
     private String type = "Encyclopedia";
 
      /**
@@ -53,7 +53,7 @@ public class Encyclopedia extends AbstractPublication{
     }
 
     public Encyclopedia() {
-        super("", null, Language.English, null);
+        super("", null, Language.English, 0);
     }
 
     public void setSections(HashMap<String, String> sections) {

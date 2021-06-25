@@ -110,12 +110,11 @@ public class StandartReader extends User
      */
     public boolean isBorrowed(String bookName, Language bookLanguage)
     {
-		Publication book = new Book(bookName,null,bookLanguage,null,null);
-		if(borrowedBooks.contains(book))
-		{
-			return true;
-		}
-		return false;
+        for(Publication i : borrowedBooks){
+            if(i.getName().equals(bookName) && i.getLang().equals(bookLanguage))
+                return true;
+        }
+        return false;
 	}
 
     /**

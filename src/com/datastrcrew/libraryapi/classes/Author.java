@@ -125,8 +125,7 @@ public class Author {
      */
     @Override
     public String toString(){
-        return "Name: " + name + "\nSurname:  " + surname +
-                "\nDateOfBirth: " + dateOfBirth + "Publications:" + publications;
+        return "Name: " + name + "\nSurname:  " + surname;
 
     }
     //-----------------------------------------ENTITY METHODS--------------------------

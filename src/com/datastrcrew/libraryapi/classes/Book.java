@@ -43,7 +43,7 @@ public class Book extends AbstractPublication {
      * Default Book constructor
      */
     public Book() {
-        super(null, null, null, null);
+        super(null, null, null, 0);
         this.genre = null;
     }
      /**
@@ -52,7 +52,7 @@ public class Book extends AbstractPublication {
      * @param lng language.
      */
     public Book(String nm, Language lng) {
-        super(nm, null, lng, null);
+        super(nm, null, lng, 0);
         this.genre = null;
     }
     /**
@@ -79,11 +79,11 @@ public class Book extends AbstractPublication {
      * @return Genre of the book.
      */
     public BookGenre getGenre(){return genre;}
-    
+
     /**
      * Getter for comment.
      * @return comment of the book.
-     */    
+     */
     public String getComment()
     {
         return comment;

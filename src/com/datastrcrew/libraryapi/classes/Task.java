@@ -20,7 +20,7 @@ public class Task {
 	 {
 		 	TaskName = "-";
 		 	setAllTasks();
-			this.ID = ID;
+			setID(ID);
 			doneTask=false;
 	 }
 	 

@@ -12,6 +12,12 @@ public class PremiumReader extends StandartReader {
         borrowedBooks = new LinkedList<>();
     }
 
+    public PremiumReader() {
+        super("", "", "", null);
+        borrowedBooks = new LinkedList<>();
+    }
+
+
     /**
 	 * demand book
 	 * @return true if the commenting is successful, false otherwise

@@ -16,13 +16,13 @@ public class Main {
 
         Database.Init();
 
-        Database.clearAll();
+        // Database.clearAll();
 
-        Database.async();
+        // Database.async();
 
-        Database.createDummyData();
+        // Database.createDummyData();
 
-        Database.saveAll();
+        // Database.saveAll();
 
         Scanner input = new Scanner(System.in);
         System.out.println("Welcome to the Library Automation System.");

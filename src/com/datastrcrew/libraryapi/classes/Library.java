@@ -64,6 +64,7 @@ public class Library {
         librarians = new TreeSet<>();
         janitors = new TreeSet<>();
         graph = new LibraryGraph();
+        offeredEvents = new ArrayList<>();
     }
 
     public AVLTree<Publication> getPublications(){return publications;}

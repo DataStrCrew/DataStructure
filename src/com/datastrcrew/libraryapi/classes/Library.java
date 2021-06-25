@@ -417,7 +417,7 @@ public class Library {
         }
         if(managerName == null)
             managerName = "No current Manager";
-       return "Name:" + name + "\nAddress: " + address + "\nManager: " + managerName + "\n Library ID: " + ID;
+       return "Name:" + name + "\nAddress: " + address + "\nManager: " + managerName + "\nLibrary ID: " + ID;
     }
 
     public void getClosestPath(){

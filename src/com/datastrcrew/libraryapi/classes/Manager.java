@@ -28,8 +28,7 @@ public class Manager extends User {
 	 * @param addedBook is the book that will be added.
 	 * @return the added book
 	 */
-	public Publication addBook(Publication addedBook)
-	{
+	public Publication addBook(Publication addedBook) {
 		lib.changeStock(addedBook, 1);
 		return addedBook;
 	}

@@ -88,7 +88,7 @@ public class Database {
         managers.add(new Manager("Big", "Boss", "123456", libraries.get(1)));
         managers.add(new Manager("Big", "Boss", "123456", libraries.get(2)));
 
-        
+
     }
 
     public static void clearAll() {
@@ -105,9 +105,11 @@ public class Database {
         }
     }
 
-    public static void async() {
-        for (int i = 0; i < 10000000; i++) {}
+    public static int async() {
+        int k = 0;
+        for (int i = 0; i < 10000000; i++) {k++;}
         System.out.println("Saving...");
+        return k;
     }
 
     public static void saveAll() {

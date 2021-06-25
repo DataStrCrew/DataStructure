@@ -31,7 +31,7 @@ public class Main {
                     break;
                 case 3:
                     System.out.println("Goodbye!");
-                    // Database.clearAll();
+                    Database.clearAll();
                     Database.async();
                     Database.saveAll();
                     break;
@@ -470,10 +470,12 @@ public class Main {
                     System.out.println("Enter the ID of the librarian to remove from library.");
                     id = input.nextLine();
 
-                    if (null != manager.removeLibrarian(manager.getLib().getLibrarian(id)))
+                    if (Database.librarians.remove(manager.getLib().getLibrarian(id))) {
+                        manager.removeLibrarian(manager.getLib().getLibrarian(id));
                         System.out.println("Librarian is succesfully removed.");
-                    else
+                    } else {
                         System.out.println("There is no such librarian.");
+                    }
                     break;
                 case 7:
                	 System.out.println("Name of the Janitor: ");
@@ -486,21 +488,27 @@ public class Main {
                  try {
                      Janitor j = new Janitor(name, surname, pw, manager.getLib());
                      manager.addJanitor(j);
+                     Database.janitors.add(j);
                  } catch (IndexOutOfBoundsException ex) {
                      System.out.println("Wrong input.");
                  }
                  break;
                 case 8:
-                    System.out.println("Enter the ID of the janitor to remove from library.");
+                    System.out.println("Enter the Name of the janitor to remove from library.");
                     id = input.nextLine();
-
-                    if (null != manager.removeJanitor(manager.getLib().getJanitor(id)))
+                    if (Database.janitors.remove(manager.getLib().getJanitor(id))) {
+                        manager.removeJanitor(manager.getLib().getJanitor(id));
                         System.out.println("Janitor is succesfully removed.");
-                    else
+                    } else {
                         System.out.println("There is no such janitor.");
+                    }
+                    // if (null != manager.removeJanitor(manager.getLib().getJanitor(id)))
+                    //     System.out.println("Janitor is succesfully removed.");
+                    // else
+                    //     System.out.println("There is no such janitor.");
                     break;
                 case 9:
-                    System.out.println("Enter the ID of the janitor.");
+                    System.out.println("Enter the name of the janitor.");
                     id = input.nextLine();
                     Janitor j = manager.getLib().getJanitor(id);
                     if (null == j)
@@ -509,7 +517,7 @@ public class Main {
                     {
                         System.out.println("Enter the ID of the Task.");
                         id = input.nextLine();
-                        if(manager.addTasks(j.getID(), id))
+                        if(manager.addTasks(j.getName(), id))
                             System.out.println("The task is added succesfully.");
                         else
                             System.out.println("The task is not added succesfully.");

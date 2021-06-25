@@ -7,7 +7,7 @@ import java.util.HashMap;
  */
 
 public class Task {
-	 private HashMap<Integer, String> allTasks;
+	 private HashMap<String, String> allTasks;
 	 private String ID;
 	 private String TaskName;
 	 private boolean doneTask;
@@ -18,24 +18,45 @@ public class Task {
 	  */
 	 public Task(String ID)
 	 {
+		 	TaskName = "-";
 		 	setAllTasks();
-			this.ID=ID;
+			this.ID = ID;
 			doneTask=false;
 	 }
 	 
-	 /**
+	 public Task() {
+		TaskName = "-";
+		doneTask=false;
+		 allTasks = new HashMap<String, String>();
+	}
+
+
+
+	public HashMap<String, String> getAllTasks() {
+		return allTasks;
+	}
+
+
+
+	public void setAllTasks(HashMap<String, String> allTasks) {
+		this.allTasks = allTasks;
+	}
+
+
+
+	/**
 	  * Sets all the possible tasks that can be registered.
 	  */
 	 private void setAllTasks()
 	 {
-		 allTasks=new HashMap<Integer, String>();
-		 allTasks.put(001, "Insert a task here");
-		 allTasks.put(010, "Insert a task here");
-		 allTasks.put(011, "Insert a task here");
-		 allTasks.put(100, "Insert a task here");
-		 allTasks.put(101, "Insert a task here");
-		 allTasks.put(110, "Insert a task here");
-		 allTasks.put(111, "Insert a task here");
+		 allTasks=new HashMap<String, String>();
+		 allTasks.put("001", "Insert a task here");
+		 allTasks.put("010", "Insert a task here");
+		 allTasks.put("011", "Insert a task here");
+		 allTasks.put("100", "Insert a task here");
+		 allTasks.put("101", "Insert a task here");
+		 allTasks.put("110", "Insert a task here");
+		 allTasks.put("111", "Insert a task here");
 	 }
 	 
 	 /**

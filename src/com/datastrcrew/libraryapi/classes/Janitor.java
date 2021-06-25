@@ -21,6 +21,7 @@ public class Janitor extends User{
         super(name,surname,pw);
         Tasks = new ArrayDeque<Task>();
         this.lib = lib.getID();
+        this.ID = this.name;
     }
 
     private Library findLibrary() {

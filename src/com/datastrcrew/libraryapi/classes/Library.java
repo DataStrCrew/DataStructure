@@ -154,7 +154,7 @@ public class Library {
      */
     public int isJanitor(String id){
         for(Janitor i : janitors){
-            if(i.getID().equals(id))
+            if(i.getName().equals(id))
                 return 1;
         }
 
@@ -252,9 +252,9 @@ public class Library {
      * @param id
      * @return Searched Librarian
      */
-    public Librarian getLibrarian(String id){
+    public Librarian getLibrarian(String name){
         for(Librarian i : librarians)
-            if(i.getID().equals(id))
+            if(i.getName().equals(name))
                 return i;
         return null;
     }
@@ -273,9 +273,9 @@ public class Library {
      * @param id
      * @return searched janitor, if janitor is not found returns null
      */
-    public Janitor getJanitor(String id){
+    public Janitor getJanitor(String name){
         for(Janitor i : janitors)
-            if(i.getID().equals(id))
+            if(i.getName().equals(name))
                 return i;
         return null;
     }

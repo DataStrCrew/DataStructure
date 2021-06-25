@@ -25,6 +25,7 @@ public class Library {
 
     private NavigableSet<Librarian> librarians;
     private NavigableSet<Janitor> janitors;
+    private LibraryGraph graph;
     // private static final SkipList<String> existingIDs = new SkipList<>();
 
     public Library(){
@@ -62,6 +63,7 @@ public class Library {
         upcomingEvents = new PriorityQueue<>();
         librarians = new TreeSet<>();
         janitors = new TreeSet<>();
+        graph = new LibraryGraph();
     }
 
     public AVLTree<Publication> getPublications(){return publications;}
@@ -412,6 +414,10 @@ public class Library {
         if(managerName == null)
             managerName = "No current Manager";
        return "Name:" + name + "\nAddress: " + address + "\nManager: " + managerName + "\n Library ID: " + ID;
+    }
+
+    public void getClosestPath(){
+        graph.getPath();
     }
 
            //-----------------------------------------ENTITY METHODS--------------------------

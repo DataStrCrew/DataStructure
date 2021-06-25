@@ -34,7 +34,6 @@ public class Library {
     private NavigableSet<Janitor> janitors;
     /** graph of library */
     private LibraryGraph graph;
-    // private static final SkipList<String> existingIDs = new SkipList<>();
 
     /**
      * Default Constructor of Library.
@@ -42,6 +41,7 @@ public class Library {
     public Library(){
         this("", "", "");
     }
+    
     /**
      * Default Constructor of Library.
      * @param name name of library.
@@ -51,12 +51,6 @@ public class Library {
     public Library(String name,String address,String id){
         this.name = name;
         this.address = address;
-        // if(!existingIDs.contains(id)) {
-        //     this.ID = id;
-        //     existingIDs.insert(id);
-        // } else {
-        //     throw new IllegalArgumentException("ID already exists.");
-        // }
         for (Library lib : Database.libraries) {
             if (lib.getID().equals(id)) {
                 throw new IllegalArgumentException("ID already exists.");
@@ -236,8 +230,8 @@ public class Library {
 
     /**
      * Checks if given publication exists in stock
-     * @param searchedBook
-     * @param bookLanguage
+     * @param searchedBook searched book.
+     * @param bookLanguage book language.
      * @return true if publication's stock is bigger than 0 else false
      */
     public boolean isInStock(String searchedBook, Language bookLanguage){
@@ -251,7 +245,7 @@ public class Library {
     /**
      * Changes stock of given publication by given amount
      * if given publication is not in the library, adds to the library.
-     * @param givenPublication
+     * @param givenPublication given oublication
      * @return true
      */
     public boolean changeStock(Publication givenPublication, int amount){
@@ -261,7 +255,6 @@ public class Library {
         return publications.add(givenPublication);
     }
 
-
     /**
      * Returns publication amount of a specific publication by name and language
      * @return Stock amount of desired publication, -1 if publication is not found
@@ -270,21 +263,29 @@ public class Library {
         return publications.getAmount(new AbstractPublication(bookName, null, bookLanguage, 0));
     }
 
-
     /**
      * Adds the publication to demanded publications list.
-     * @param demandedBook
+     * @param demandedBook Demanded book
      * @return true
      */
     public boolean demandBook(Publication demandedBook){
         return demandedBooks.add(demandedBook);
     }
 
+    /**
+     * Removes the demanded book.
+     * @param demandedBook demanded book.
+     * @return true if successfull.
+     */
     public boolean removeDemandedBook(Publication demandedBook)
     {
     	return demandedBooks.remove(demandedBook);
     }
 
+    /**
+     * Removes the demanded book.
+     * @return the demanded book.
+     */
     public Publication removeDemandedBook()
     {
         if(demandedBooks.size() == 0) return null;
@@ -294,7 +295,7 @@ public class Library {
 
     /**
      * Add a new Janitor to the janitors list
-     * @param janitor
+     * @param janitor Janitor
      * @return true
      */
     public boolean addJanitor(Janitor janitor){
@@ -304,7 +305,7 @@ public class Library {
 
     /**
      * Add a new Librarian to the librarians list
-     * @param librarian
+     * @param librarian Librarian
      * @return true
      */
     public boolean addLibrarian(Librarian librarian){
@@ -314,7 +315,7 @@ public class Library {
 
     /**
      * Remove given Librarian from the librarians list
-     * @param librarian
+     * @param librarian Librarian
      * @return Removed Librarian
      */
     public boolean removeLibrarian(Librarian librarian){
@@ -324,7 +325,7 @@ public class Library {
 
     /**
      * Get Librarian by their id
-     * @param id
+     * @param id ID
      * @return Searched Librarian
      */
     public Librarian getLibrarian(String name){
@@ -336,7 +337,7 @@ public class Library {
 
     /**
      * Remove given Janitor.
-     * @param janitor
+     * @param janitor Janitor
      * @return removed Janitor, if janitor is not in the list return null
      */
     public boolean removeJanitor(Janitor janitor){
@@ -346,7 +347,7 @@ public class Library {
 
     /**
      * Get janitor by their id.
-     * @param id
+     * @param id ID
      * @return searched janitor, if janitor is not found returns null
      */
     public Janitor getJanitor(String name){
@@ -361,7 +362,7 @@ public class Library {
 
     /**
      * Add event to the upcoming events list
-     * @param event
+     * @param event Event
      * @return true
      */
     public boolean addUpcomingEvent(Event event)
@@ -388,7 +389,7 @@ public class Library {
 
     /**
      * Remove event from offered events list.
-     * @param event
+     * @param event Event
      * @return false if event is not in offeredEvents else true.
      */
     public boolean removeEvent(Event event){
@@ -466,7 +467,6 @@ public class Library {
             System.out.printf("Book with %s genre does not exist in this library\n", theGenre.toString());
             return;
         }
-        //Sort bookList by name using merge sort.
         ALSort.mergeSort(bookList, new Comparator<Publication>(){
             @Override
             public int compare(Publication o1, Publication o2){
@@ -509,13 +509,10 @@ public class Library {
 
            //-----------------------------------------ENTITY METHODS--------------------------
 
-
-
     /**
      * Event constructor for Database operations.
      *  @param entity EventEntity class object.
      */
-
     public Library(LibraryEntity entity) {
         this.manager = null;
 
@@ -552,8 +549,6 @@ public class Library {
         for (Publication pub : entity.getPublications())
             this.publications.add(pub);
 
-        // for (String ids : entity.getExistingIDs())
-        //     Library.existingIDs.insert(ids);
     }
 
     /**
@@ -585,12 +580,6 @@ public class Library {
         while(iter.hasNext())
             arrayPub.add(iter.next());
         entity.getPublications().addAll(arrayPub);
-
-        // ArrayList<String> arrayIDs = new ArrayList<>();
-        // Iterator<String> iter2 = existingIDs.SLIterator();
-        // while(iter2.hasNext())
-        //     arrayIDs.add(iter2.next());
-        // entity.getExistingIDs().addAll(arrayIDs);
 
         return entity;
     }

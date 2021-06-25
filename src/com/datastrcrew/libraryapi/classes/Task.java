@@ -7,7 +7,6 @@ import com.google.cloud.firestore.annotation.Exclude;
  * @author yesimyalc
  * @author musosman
  */
-
 public class Task {
 	 private HashMap<String, String> allTasks;
 	 private String ID;

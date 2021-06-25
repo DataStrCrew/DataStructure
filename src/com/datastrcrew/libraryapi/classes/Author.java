@@ -7,9 +7,13 @@ import java.util.List;
  * @author gokbey_gazi_keskin
  */
 public class Author {
+    /** Name */
     String name;
+    /** Surname */
     String surname;
+    /** Date Of Birth */
     String dateOfBirth;
+    /** Publications */
     List<Publication> publications;
 
     /**
@@ -46,14 +50,18 @@ public class Author {
         publications = pb;
     }
 
+    /** Constructs an Author. */
     public Author() {
         publications = new ArrayList<Publication>();
     }
 
+    /**
+     * Sets the publications.
+     * @param publications the publications.
+     */
     public void setPublications(List<Publication> publications) {
         this.publications = publications;
     }
-
 
     /**
      * Setter for name.
@@ -128,42 +136,5 @@ public class Author {
         return "Name: " + name + "\nSurname:  " + surname;
 
     }
-    //-----------------------------------------ENTITY METHODS--------------------------
-
-
-
-    // /**
-    //  * Author constructor for Database operations.
-    //  * @param entity AuthorEntity class object.
-    //  */
-
-    // public Author(AuthorEntity entity){
-
-    //     this.name = entity.getName();
-    //     this.surname = entity.getSurname();
-    //     this.dateOfBirth = entity.getDateOfBirth();
-    //     this.publications = entity.getPublications();
-
-    // }
-
-    // /**
-    //  * Method to save Author data field to AuthorEntity object.
-    //  * @return AuthorEntity object.
-    //  */
-
-    // public AuthorEntity getEntity(){
-
-    //     AuthorEntity entity;
-
-    //     entity.setName(this.name);
-    //     entity.setSurname(this.surname);
-    //     entity.setDateOfBirth(this.dateOfBirth);
-
-    //     for (Publication pub : publications)
-    //        entity.publications.add(pub);
-
-    //     return entity;
-
-    // }
 
 }

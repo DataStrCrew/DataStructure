@@ -1,12 +1,14 @@
-package com.datastrcrew.libraryapi.classes; /**
- * This class has been made up to finding Destination
- * @author Mustafa Gurler
- */
+package com.datastrcrew.libraryapi.classes;
 
 import java.util.*;
 
+/**
+ * This class has been made to finding Destination
+ * @author Mustafa Gurler
+ */
 public class LibraryGraph {
 
+    /** City Graph */
     private ListGraph cityGraph;// Graph
 
     /**
@@ -76,12 +78,12 @@ public class LibraryGraph {
 
     /**
      * recursive for shortest path
-     * @param s
-     * @param d
-     * @param visited
-     * @param path
-     * @param path_index
-     * @param sb
+     * @param s s
+     * @param d d
+     * @param visited visited
+      * @param path path
+     * @param path_index path index
+     * @param sb sb
      */
     public void printPathsUtil(int s, int d, Boolean[] visited, int[] path, int path_index, StringBuilder sb){
         visited[s] = true;
@@ -113,8 +115,8 @@ public class LibraryGraph {
 
     /**
      * path of string version
-     * @param dest
-     * @return
+     * @param dest dest
+     * @return String
      */
     private String path(int dest){
         switch (dest){

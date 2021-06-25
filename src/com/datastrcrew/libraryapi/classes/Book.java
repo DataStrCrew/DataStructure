@@ -106,42 +106,4 @@ public class Book extends AbstractPublication {
         return super.toString() + "\nGenre: " + genre;
     }
 
-    //-----------------------------------------ENTITY METHODS--------------------------
-
-    // /**
-    //  * Book constructor for Database operations.
-    //  * @param entity BookEntity class object.
-    //  */
-
-    // public Book(BookEntity entity){
-
-    //     super(entity);
-    //     genre = entity.getGenre();
-    //     comment = entity.getComment();
-
-    // }
-
-    // /**
-    //  * Method to save Book data field to BookEntity object.
-    //  * @return BookEntity object.
-    //  */
-
-    // public BookEntity getEntity(){
-
-    //     BookEntity entity;
-
-    //     entity.setName(getName());
-    //     entity.setAuthor(getAuthor());
-    //     entity.setID(getID());
-    //     entity.setLang(getLang());
-    //     entity.setPage(getPage());
-    //     entity.setGenre(genre);
-    //     entity.setComment(comment);
-
-    //     for (String comment : getComments())
-    //        entity.comments.add(comment);
-
-    //     return entity;
-
-    // }
 }

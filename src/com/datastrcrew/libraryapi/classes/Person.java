@@ -54,7 +54,6 @@ public interface Person{
      */
     String getPW();
 
-
     /**
      * Login method
      * @param id ID of the User
@@ -62,7 +61,6 @@ public interface Person{
      * @return true if login is successful,false otherwise;
      */
     boolean login(String id,String pw);
-
 
     /**
      * Equals implementation for User Class.

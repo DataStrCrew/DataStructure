@@ -1,6 +1,7 @@
 package com.datastrcrew.libraryapi.classes;
 import java.util.Comparator;
 
+/** Rotating Binary Search Tree */
 public class RotatingBinarySearchTree<E extends Comparable<E>> extends BinarySearchTree<E>
 {	
 	/**

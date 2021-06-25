@@ -7,7 +7,6 @@ import java.io.*;
  *   that uses an array of lists to represent the edges.
  *   @author Koffman and Wolfgang
  */
-
 public class ListGraph
         extends AbstractGraph {
 

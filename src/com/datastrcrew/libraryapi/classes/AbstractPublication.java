@@ -7,11 +7,17 @@ import java.util.List;
  * @author gokbey_gazi_keskin
  */
 public class AbstractPublication implements Publication {
+    /** Name */
     private String name;
+    /** Author */
     private Author author;
+    /** ID */
     private String ID;
+    /** Language */
     private Language lang;
+    /** Page */
     private Integer page;
+    /** Comments */
     private List<String> comments;
 
     /**
@@ -30,6 +36,10 @@ public class AbstractPublication implements Publication {
         comments = new ArrayList<>();
     }
 
+    /**
+     * Generates an ID using SHA256
+     * @return the generated ID.
+     */
     private String generateID(){
         return org.apache.commons.codec.digest.DigestUtils.sha256Hex(name);
     }
@@ -158,40 +168,5 @@ public class AbstractPublication implements Publication {
     public int compareTo(Publication o) {
         return ID.compareTo(o.getID());
     }
-
-    //-----------------------------------------ENTITY METHODS--------------------------
-
-
-    // public AbstractPublication(BookEntity entity){
-
-    //     name = entity.getName();
-    //     author = new Author(entity.getAuthor());
-    //     id = entity.getId();
-    //     lang = new LanguageEntity(entity.getLang());
-    //     page = entity.getPage();
-    //     comments = entity.getComments();
-    // }
-
-    // public AbstractPublication(EncyclopediaEntity entity){
-
-    //     name = entity.getName();
-    //     author = entity.getAuthor();
-    //     id = entity.getID();
-    //     lang = entity.getLang();
-    //     page = entity.getPage();
-    //     comments = entity.getComments();
-    // }
-
-    // public AbstractPublication(MagazineEntity entity){
-
-    //     name = entity.getName();
-    //     author = entity.getAuthor();
-    //     id = entity.getID();
-    //     lang = entity.getLang();
-    //     page = entity.getPage();
-    //     comments = entity.getComments();
-    // }
-
-
-
+    
 }

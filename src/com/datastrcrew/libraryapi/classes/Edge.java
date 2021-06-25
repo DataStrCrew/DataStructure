@@ -4,7 +4,6 @@ package com.datastrcrew.libraryapi.classes;
  *  vertices.
  *  @author Koffman and Wolfgang
  */
-
 public class Edge {
     /**** BEGIN EXERCISE ****/
     // Data Fields

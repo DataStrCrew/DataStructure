@@ -491,6 +491,10 @@ public class AVLTree<E extends Comparable<E>> extends RotatingBinarySearchTree<E
 		return find((AVLNode<E>)root, target);
 	}
 
+	/**
+	 * Creates an Iterator.
+	 * @return pre order iterator.
+	 */
 	public Iterator<E> preOrderIterator(){
 		return new PreOrderIterator();
 	}
@@ -499,7 +503,9 @@ public class AVLTree<E extends Comparable<E>> extends RotatingBinarySearchTree<E
 	 * Pre order iterator class (ascending order)
 	 */
 	private class PreOrderIterator implements Iterator<E> {
+		/** Stack */
 		public Stack<Node<E>> stack = new Stack<>();
+		/** Node */
 		public Node<E> current;
 
 		/**

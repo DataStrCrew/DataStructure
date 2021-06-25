@@ -8,7 +8,7 @@ import java.util.List;
  */
 
 public class Event implements Comparable<Event>{
-/** Name of Event */
+	/** Name of Event */
 	private String name;
 	/** Date of Event */
 	private String date;
@@ -16,7 +16,6 @@ public class Event implements Comparable<Event>{
 	private final List<StandartReader>participants;
 	/** Votes of Event */
 	private ArrayList<Integer> votes = new ArrayList<>();
-
 
 	/**
      * Constructor for Event.
@@ -90,6 +89,10 @@ public class Event implements Comparable<Event>{
 		return this.date;
 	}
 
+	/**
+	 * Gets the votes.
+	 * @return the votes.
+	 */
 	public ArrayList<Integer> getVotes() {
 		return this.votes;
 	}
@@ -147,6 +150,11 @@ public class Event implements Comparable<Event>{
 		return participants.get(index);
 	}
 
+	/**
+	 * Adds vote.
+	 * @param vote vote.
+	 * @return the vote.
+	 */
 	public boolean addVote(int vote)
 	{
 		votes.add(vote);
@@ -172,48 +180,10 @@ public class Event implements Comparable<Event>{
 
 	}
 
+	/** Comparison method. */
     @Override
     public int compareTo(Event o) {
         return name.compareTo(o.name);
     }
-
-    //-----------------------------------------ENTITY METHODS--------------------------
-
-    // /**
-    //  * Event constructor for Database operations.
-    //  * @param entity EventEntity class object.
-	//  */
-
-    // public Event(EventEntity entity){
-    //     this.name = entity.getName();
-    //     this.date = entity.getDate();
-	// 	for (StandartReaderEntity standartReader : entity.getParticipants()) {
-	// 		this.participants.add(new StandartReader(standartReader));
-	// 	}
-    //     this.votes = entity.getVotes();
-
-    // }
-
-    // /**
-    //  * Method to save Event data field to EventEntity object.
-    //  * @return EventEntity object.
-	//  */
-
-    // public EventEntity getEntity(){
-
-    //     EventEntity entity;
-
-    //     entity.setName(getName());
-    //     entity.setDate(getDate());
-
-    //     for (StandartReader rdr : participants)
-    //        entity.participants.add(rdr);
-
-    //     for (Integer vote : votes)
-    //        entity.votes.add(vote);
-
-    //     return entity;
-
-	// }
 
 }

@@ -20,6 +20,7 @@ public class Manager extends User {
 		super("name","surname","pw");
 		lib = null;
 	}
+
 	/**
      * Constructor for Manager.
      * @param name name of manager.
@@ -219,6 +220,10 @@ public class Manager extends User {
 		lib.printUpcomingEvents();
 	}
 
+	/**
+	 * Gets the offered events.
+	 * @return offered events.
+	 */
 	public List<Event> getOfferedEvents(){
 		return lib.getOfferedEvents();
 	}
@@ -232,6 +237,7 @@ public class Manager extends User {
 	{
 		return lib.addUpcomingEvent(newEvent);
 	}
+
 	/**
 	 * Declines an event and remvoe it to upcoming event list.
 	 * @param newEvent is the event that will be removed to the upcoming events list.
@@ -335,7 +341,6 @@ public class Manager extends User {
      * Method to save Manager data field to ManagerEntity object.
      * @return ManagerEntity object.
      */
-
     public ManagerEntity getEntity(){
 		ManagerEntity entity = new ManagerEntity(name, surname, ID, password, null);
 		entity.setLib(lib != null ? getLib().getEntity() : null);

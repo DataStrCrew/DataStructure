@@ -8,9 +8,13 @@ import com.datastrcrew.libraryapi.service.Database;
  * @author Mustafa Gurler,yesimyalc
  */
 public class Librarian extends User {
-	/**Holds the information of the library that this Librarian is working in*/
+	/** Holds the information of the library that this Librarian is working in */
 	private String lib;
 
+	/**
+	 * Gets the library.
+	 * @return the library.
+	 */
 	public Library getLibrary() {
 		for (Library library : Database.libraries) {
 			if (library.getID().equals(lib)) {

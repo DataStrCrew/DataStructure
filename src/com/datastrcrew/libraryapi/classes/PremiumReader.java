@@ -6,7 +6,6 @@ import java.util.LinkedList;
  * @author Mustafa Gurler
  */
 public class PremiumReader extends StandartReader {
-
     /**
      * Constructor of PremiumReader.
      * @param name name of reader.
@@ -25,7 +24,6 @@ public class PremiumReader extends StandartReader {
     public PremiumReader() {
         super();
     }
-
 
     /**
 	 * demand book
@@ -46,40 +44,5 @@ public class PremiumReader extends StandartReader {
 		getLibrary().getOfferedEvents().add(event);
 		return true;
 	}
-
-	//-----------------------------------------ENTITY METHODS--------------------------
-	/*
-    /**
-     * PremiumReader constructor for Database operations.
-     * @param entity PremiumReaderEntity class object.
-     *
-    public PremiumReader(PremiumReaderEntity entity){
-
-        super(entity);
-    }
-
-    /**
-     * Method to save PremiumReader data field to PremiumReaderEntity object.
-     * @return PremiumReaderEntity object.
-     *
-
-    public PremiumReaderEntity getEntity(){
-
-        PremiumReaderEntity entity;
-
-        entity.setName(getName());
-        entity.setSurname(getSurname());
-        entity.setID(getID());
-        entity.setPW(getPW());
-        entity.setLib(getLib());
-
-        for (Publication book : getBorrowed())
-          entity.getBorrowed().add(book);
-
-        return entity;
-
-    }
-
-*/
 
 }

@@ -11,9 +11,13 @@ public class BinaryTree<E> implements Serializable {
 	
     protected static class Node<E> implements Serializable {
 
+        /** Data */
         public E data;
+        /** Left Node */
         public Node<E> left;
+        /** Right Node */
         public Node<E> right;
+        /** Count */
         public int count;
 
         /**
@@ -39,6 +43,7 @@ public class BinaryTree<E> implements Serializable {
 
     /** The root of the binary tree */
     protected Node<E> root;
+    /** Size */
     protected int size;
 
     /** Construct an empty BinaryTree */

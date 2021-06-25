@@ -85,42 +85,4 @@ public class Magazine extends AbstractPublication{
         return super.toString() + "\nIssue: " + issue;
     }
 
-    //-----------------------------------------ENTITY METHODS--------------------------
-
-    /*
-
-    /**
-     * Magazine constructor for Database operations.
-     * @param entity MagazineEntity class object.
-
-    public Magazine(MagazineEntity entity){
-
-        super(entity);
-        this.issue = entity.getIssue();
-    }
-
-    /**
-     * Method to save Magazine data field to MagazineEntity object.
-     * @return MagazineEntity object.
-
-    public MagazineEntity getEntity(){
-
-        MagazineEntity entity;
-
-        entity.setName(getName());
-        entity.setAuthor(getAuthor());
-        entity.setID(getID());
-        entity.setLang(getLang());
-        entity.setPage(getPage());
-        entity.setIssue(issue);
-
-        for (String comment : getComments())
-           entity.comments.add(comment);
-
-        return entity;
-
-    }
-
-    */
-
 }

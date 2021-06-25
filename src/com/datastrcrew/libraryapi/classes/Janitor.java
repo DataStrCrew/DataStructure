@@ -11,8 +11,9 @@ import com.google.cloud.firestore.annotation.Exclude;
  * @author Mustafa Gurler
  */
 public class Janitor extends User{
-
+    /** Tasks */
 	private Queue<Task> Tasks;
+    /** Library ID */
 	private String lib;
 
     /**

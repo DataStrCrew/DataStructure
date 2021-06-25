@@ -16,6 +16,14 @@ public class Main {
 
         Database.Init();
 
+        Database.clearAll();
+
+        Database.async();
+
+        Database.createDummyData();
+
+        Database.saveAll();
+
         Scanner input = new Scanner(System.in);
         System.out.println("Welcome to the Library Automation System.");
         int opt;

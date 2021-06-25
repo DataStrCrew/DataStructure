@@ -16,6 +16,12 @@ public class JanitorEntity extends User {
 		this.lib = lib;
 	}
 
+	public JanitorEntity() {
+		super("", "", "");
+		Tasks = new ArrayList<Task>();
+		lib = "";
+	}
+
 	public List<Task> getTasks() {
 		return Tasks;
 	}
@@ -30,11 +36,6 @@ public class JanitorEntity extends User {
 
 	public void setLib(String lib) {
 		this.lib = lib;
-	}
-
-	public JanitorEntity() {
-		super("", "", "");
-		Tasks = new ArrayList<>();
 	}
 	
 }

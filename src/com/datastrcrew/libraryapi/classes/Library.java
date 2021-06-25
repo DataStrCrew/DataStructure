@@ -228,6 +228,7 @@ public class Library {
      * @return true
      */
     public boolean addJanitor(Janitor janitor){
+        Database.janitors.add(janitor);
         return janitors.add(janitor);
     }
 
@@ -237,6 +238,7 @@ public class Library {
      * @return true
      */
     public boolean addLibrarian(Librarian librarian){
+        Database.librarians.add(librarian);
         return librarians.add(librarian);
     }
 
@@ -246,6 +248,7 @@ public class Library {
      * @return Removed Librarian
      */
     public boolean removeLibrarian(Librarian librarian){
+        Database.librarians.remove(librarian);
         return librarians.remove(librarian);
     }
 
@@ -267,6 +270,7 @@ public class Library {
      * @return removed Janitor, if janitor is not in the list return null
      */
     public boolean removeJanitor(Janitor janitor){
+        Database.janitors.remove(janitor);
         return janitors.remove(janitor);
     }
 

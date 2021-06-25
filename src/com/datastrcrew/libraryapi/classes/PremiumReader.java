@@ -5,8 +5,7 @@ import java.util.LinkedList;
  * Librarian of the library
  * @author Mustafa Gurler
  */
-public class PremiumReader extends StandartReader
-{
+public class PremiumReader extends StandartReader {
     public PremiumReader(String name,String surname,String pw, Library workingLib)
 	{
         super(name, surname, pw, workingLib);
@@ -22,7 +21,6 @@ public class PremiumReader extends StandartReader
 		getLibrary().getDemandedBooks().add(book);
 		return true;
 	}
-
 
     /**
 	 * creating event request

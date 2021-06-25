@@ -1,7 +1,8 @@
 package com.datastrcrew.libraryapi.classes;
 import com.datastrcrew.libraryapi.service.Database;
+import com.google.cloud.firestore.annotation.Exclude;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,17 +18,15 @@ public class StandartReader extends User
 	public StandartReader() {
 		super("name","surname","pw");
 		lib = null;
-        borrowedBooks = new LinkedList<>();
+        borrowedBooks = new ArrayList<>();
 	}
 
     public StandartReader(String name,String surname,String pw, Library workingLib)
 	{
         super(name,surname,pw);
 		lib=workingLib.getID();
-        borrowedBooks = new LinkedList<>();
+        borrowedBooks = new ArrayList<>();
     }
-
-
 
     public String getLib() {
 		return lib;
@@ -37,6 +36,7 @@ public class StandartReader extends User
 		this.lib = lib;
 	}
 
+	@Exclude
     public Library getLibrary(){
         for(Library i: Database.libraries){
             if(i.getID().equals(lib))

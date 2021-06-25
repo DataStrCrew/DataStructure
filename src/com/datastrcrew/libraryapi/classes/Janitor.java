@@ -3,6 +3,7 @@ import java.util.*;
 
 import com.datastrcrew.libraryapi.entity.JanitorEntity;
 import com.datastrcrew.libraryapi.service.Database;
+import com.google.cloud.firestore.annotation.Exclude;
 
 /**
  * Janitor of the library
@@ -13,6 +14,7 @@ public class Janitor extends User{
 
 	private Queue<Task> Tasks;
 	private String lib;
+
     /**
      * Constructor of Task
      */
@@ -24,6 +26,7 @@ public class Janitor extends User{
         this.ID = this.name;
     }
 
+    @Exclude
     private Library findLibrary() {
 		for (Library library : Database.libraries) {
 			if (library.getID().equals(lib)) {
@@ -33,6 +36,19 @@ public class Janitor extends User{
 		return null;
 	}
 
+    public void setTasks(Queue<Task> tasks) {
+        Tasks = tasks;
+    }
+
+    public String getLib() {
+        return lib;
+    }
+
+    public void setLib(String lib) {
+        this.lib = lib;
+    }
+
+    @Exclude
 	private Library findLibrary(String ID) {
 		for (Library library : Database.libraries) {
 			if (library.getID().equals(ID)) {
@@ -45,12 +61,14 @@ public class Janitor extends User{
 	public Queue<Task> getTasks() {
 		return Tasks;
 	}
-	public Library getLib() {
-        
+
+    @Exclude
+	public Library getLibrary() {
 		return findLibrary();
 	}
-    public void setLib(Library lib){
 
+    @Exclude
+    public void setLibrary(Library lib){
         this.lib = lib.getID();
     }
 	

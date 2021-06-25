@@ -74,29 +74,59 @@ public class Database {
     }
 
     public static void createDummyData() {
-        /* Create 2 Admins */
-        admins.add(new Admin("Admin", "Account", "123456"));
-        admins.add(new Admin("Root", "Account", "123456"));
+
+        /* Create 3 Admins */
+        admins.clear();
+        admins.add(new Admin("Admin", "Account", "12345"));
+        admins.add(new Admin("Root", "Account", "12345"));
         admins.add(new Admin("Keira", "Johnson", "12345"));
 
-        /* Create 3 Libraries */
+        /* Create 5 Libraries */
+        libraries.clear();
         libraries.add(new Library("Kadikoy", "Sahil", "0001"));
         libraries.add(new Library("Nevmekan", "Uskudar Istanbul", "0002"));
         libraries.add(new Library("Beyazit Devlet", "Fatih Istanbul", "0003"));
-        Library lib= new Library("Maltepe Library", "Maltepe", "1234567");
-        libraries.add(lib);
+        libraries.add(new Library("Aziz Berker İlçe Halk Kütüphanesi", "Rasimpaşa, Nüzhet Efendi Sk. No:53, 34716 Kadıköy/İstanbul", "0004"));
+        libraries.add(new Library("Maltepe Library", "Maltepe", "0005"));
 
-        /* Create 3 Managers */
-        managers.add(new Manager("Big", "Boss", "123456", libraries.get(0)));
-        managers.add(new Manager("Big", "Boss", "123456", libraries.get(1)));
-        managers.add(new Manager("Big", "Boss", "123456", libraries.get(2)));
-        managers.add(new Manager("Jack", "Johnson", "12345", lib));
-        
-        librarians.add(new Librarian("Jade", "Johnson", "12345", lib));
-        
-        janitors.add(new Janitor("Karl", "Johnson", "12345", lib));
+        /* Create 5 Managers */
+        managers.clear();
+        managers.add(new Manager("Big", "Boss", "12345", libraries.get(0)));
+        managers.add(new Manager("John", "Doe", "12345", libraries.get(1)));
+        managers.add(new Manager("Alice", "Bob", "12345", libraries.get(2)));
+        managers.add(new Manager("Jack", "Johnson", "12345", libraries.get(3)));
+        managers.add(new Manager("Wade", "Williams", "12345", libraries.get(4)));
 
+        /* Add Librarians */
+        librarians.clear();
+        managers.get(0).addLibrarian(new Librarian("Jade", "Johnson", "12345", managers.get(0).getLib()));
+        managers.get(1).addLibrarian(new Librarian("Kelvin", "Welch", "12345", managers.get(1).getLib()));
+        managers.get(2).addLibrarian(new Librarian("Kevin", "Johnson", "12345", managers.get(2).getLib()));
+        managers.get(3).addLibrarian(new Librarian("Mike", "Tim", "12345", managers.get(3).getLib()));
+        managers.get(4).addLibrarian(new Librarian("Tom", "Staff", "12345", managers.get(4).getLib()));
 
+        /* Add Janitors */
+        janitors.clear();
+        managers.get(0).addJanitor(new Janitor("Karl", "Johnson", "12345", managers.get(0).getLib()));
+        managers.get(1).addJanitor(new Janitor("Swain", "Johnson", "12345", managers.get(1).getLib()));
+        managers.get(2).addJanitor(new Janitor("John", "Johnson", "12345", managers.get(2).getLib()));
+        managers.get(3).addJanitor(new Janitor("Bob", "Johnson", "12345", managers.get(3).getLib()));
+        managers.get(4).addJanitor(new Janitor("Steve", "Johnson", "12345", managers.get(4).getLib()));
+
+        /* Add Standard Readers */
+        SReaders.clear();
+        SReaders.add(new StandartReader("Jonathan", "Sons", "12345", libraries.get(0)));
+        SReaders.add(new StandartReader("Jason", "Sons", "12345", libraries.get(1)));
+        SReaders.add(new StandartReader("Sam", "Sons", "12345", libraries.get(2)));
+        SReaders.add(new StandartReader("Pike", "Sons", "12345", libraries.get(3)));
+        SReaders.add(new StandartReader("Elsa", "Sons", "12345", libraries.get(4)));
+
+        /* Add Tasks */
+        managers.get(0).addTasks("Karl", "001");
+        managers.get(1).addTasks("Swain", "011");
+        managers.get(2).addTasks("John", "101");
+        managers.get(3).addTasks("Bob", "010");
+        managers.get(4).addTasks("Steve", "111");
     }
 
     public static void clearAll() {

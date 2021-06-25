@@ -56,10 +56,12 @@ public class Manager extends User {
 	 */
 	public boolean addLibrarian(Librarian newLibrarian)
 	{
-		if(searchLibrarian(newLibrarian.getID()))
+		if(searchLibrarian(newLibrarian.getID())) {
 			return false;
-		else
+		}
+		else {
 			return lib.addLibrarian(newLibrarian);
+		}
 	}
 
 	/**

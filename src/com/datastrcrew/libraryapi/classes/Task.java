@@ -1,6 +1,8 @@
 package com.datastrcrew.libraryapi.classes;
 import java.util.HashMap;
 
+import com.google.cloud.firestore.annotation.Exclude;
+
 /**
  * @author yesimyalc
  * @author musosman
@@ -24,25 +26,24 @@ public class Task {
 			doneTask=false;
 	 }
 	 
-	 public Task() {
-		TaskName = "-";
-		doneTask=false;
-		 allTasks = new HashMap<String, String>();
+	public Task() {
+		this("Empty");
 	}
 
-
+	public Task(HashMap<String, String> allTasks, String iD, String taskName, boolean doneTask) {
+		this.allTasks = allTasks;
+		ID = iD;
+		TaskName = taskName;
+		this.doneTask = doneTask;
+	}
 
 	public HashMap<String, String> getAllTasks() {
 		return allTasks;
 	}
 
-
-
 	public void setAllTasks(HashMap<String, String> allTasks) {
 		this.allTasks = allTasks;
 	}
-
-
 
 	/**
 	  * Sets all the possible tasks that can be registered.
@@ -66,7 +67,7 @@ public class Task {
 	  */
 	 private void setTaskName(String ID)
 	 {
-		 String taskName=allTasks.get(ID);
+		 String taskName = allTasks.get(ID);
 		 if(taskName==null)
 			 throw new IllegalArgumentException();
 		 else {
@@ -115,18 +116,19 @@ public class Task {
      * Getter for doneTask
      * @return
      */
+	@Exclude
 	public boolean isDoneTask() 
 	{
 		return doneTask;
 	}
 
 	@Override
+	@Exclude
 	public String toString(){
 		String status;
 		if(doneTask) status = "Done";
 		else status = "Not-Done";
 		return "Task Name: " + TaskName + "\nTask ID: " + ID + "\nStatus:" + status;
 	}
-	
 
 }

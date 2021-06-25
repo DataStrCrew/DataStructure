@@ -11,7 +11,7 @@ import com.datastrcrew.libraryapi.service.Database;
 public class Admin extends User {
 	//Database gelince = Database.getLibraries() olacak.
     private final List<Library> libraries;
-    
+
     /**
      * Default constructor of Admin
      */
@@ -86,13 +86,13 @@ public class Admin extends User {
     	Library result = getLibrary(LibraryID);
     	if( result != null)
     	{
-    		if (result.getManager() != null) 
+    		if (result.getManager() != null)
     		{
                 result.setManager(null);
 				return true;
 			}
     	}
-    	return false;    	
+    	return false;
     }
     /**
      * To search library information in Data
@@ -164,7 +164,7 @@ public class Admin extends User {
     public Admin(AdminEntity entity) {
         super(entity.name, entity.surname, entity.password);
         libraries = Database.libraries;
-        // for (LibraryEntity lib : entity.getLibraries())           
+        // for (LibraryEntity lib : entity.getLibraries())
         //    Database.libraries.add(new Library(lib));
     }
 
@@ -175,9 +175,9 @@ public class Admin extends User {
     public AdminEntity getEntity(){
         AdminEntity entity = new AdminEntity(name, surname, password);
 
-        for (Library lib : libraries)           
-           entity.getLibraries().add(lib.getEntity());        
-        
+        for (Library lib : libraries)
+           entity.getLibraries().add(lib.getEntity());
+
         return entity;
     }
 

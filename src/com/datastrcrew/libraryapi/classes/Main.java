@@ -263,7 +263,7 @@ public class Main {
                     if (admin.removeManager(id))
                         System.out.println("Manager is successfully removed.");
                     else
-                        System.out.println("There is no such library.");
+                        System.out.println("There is no such library or library has no manager.");
                     break;
                 case 5:
                     for (Library lib : Database.libraries) {

@@ -14,10 +14,12 @@ import java.util.concurrent.ExecutionException;
 
 /**
  * The admin service for the database communication.
+ * 
+ * @author Kasim
  */
 public class GenericService<E extends HasID> {
+    /** Firestore database object. */
     private Firestore dbFirestore = FirestoreClient.getFirestore();
-
     /** Name of the collection in the database. */
     private String collection;
     /** Class of the element. */
@@ -27,7 +29,8 @@ public class GenericService<E extends HasID> {
 
     /**
      * Constructor of the class.
-     * @param clazz class of the element.
+     * 
+     * @param clazz      class of the element.
      * @param collection name of the collection in the database.
      */
     public GenericService(Class<E> clazz, String collection) {
@@ -139,25 +142,3 @@ public class GenericService<E extends HasID> {
         return true;
     }
 }
-
-
-//    /**
-//      * Removes the given array of elements from the database.
-//      * 
-//      * @param ids array of ids of the elements to be removed.
-//      * @return success message.
-//      * @throws ExecutionException   on error.
-//      * @throws InterruptedException on error.
-//      */
-//     public boolean deleteAll(ArrayList<String> ids) throws ExecutionException, InterruptedException {
-//         Firestore dbFirestore = FirestoreClient.getFirestore();
-//         Iterator<DocumentReference> documentRIterator = dbFirestore.collection(collection).listDocuments().iterator();
-//         while (documentRIterator.hasNext()) {
-//             DocumentReference documentReference = documentRIterator.next();
-//             documentReference.delete();
-//         }
-//         // for (String id : ids) {
-//         //     dbFirestore.collection(collection).document(id).delete();
-//         // }
-//         return true;
-//     }

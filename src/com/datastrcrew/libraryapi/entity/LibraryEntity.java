@@ -6,10 +6,12 @@ import com.datastrcrew.libraryapi.classes.Publication;
 
 /**
  * Entity class for the Library.
+ * 
+ * @author Kasim
  */
 public class LibraryEntity implements HasID {
     /** Name of the LibraryEntity. */
-	private String name;
+    private String name;
     /** address of the LibraryEntity. */
     private String address;
     /** ID of the LibraryEntity. */
@@ -33,22 +35,22 @@ public class LibraryEntity implements HasID {
 
     /**
      * Constructs a LibraryEntity.
-     * @param name LibraryEntity name.
-     * @param address LibraryEntity address.
-     * @param ID LibraryEntity ID.
-     * @param manager LibraryEntity manager.
-     * @param publications LibraryEntity publications.
+     * 
+     * @param name           LibraryEntity name.
+     * @param address        LibraryEntity address.
+     * @param ID             LibraryEntity ID.
+     * @param manager        LibraryEntity manager.
+     * @param publications   LibraryEntity publications.
      * @param upcomingEvents LibraryEntity upcomingEvents.
-     * @param demandedBooks LibraryEntity demandedBooks.
-     * @param pastEvents LibraryEntity pastEvents.
-     * @param offeredEvents LibraryEntity offeredEvents.
-     * @param librarians LibraryEntity librarians.
-     * @param janitors LibraryEntity janitors.
+     * @param demandedBooks  LibraryEntity demandedBooks.
+     * @param pastEvents     LibraryEntity pastEvents.
+     * @param offeredEvents  LibraryEntity offeredEvents.
+     * @param librarians     LibraryEntity librarians.
+     * @param janitors       LibraryEntity janitors.
      */
-    public LibraryEntity(String name, String address, String ID, String manager,
-            List<Publication> publications, List<Event> upcomingEvents,
-            List<Publication> demandedBooks, List<Event> pastEvents, List<Event> offeredEvents,
-            List<LibrarianEntity> librarians, List<JanitorEntity> janitors) {
+    public LibraryEntity(String name, String address, String ID, String manager, List<Publication> publications,
+            List<Event> upcomingEvents, List<Publication> demandedBooks, List<Event> pastEvents,
+            List<Event> offeredEvents, List<LibrarianEntity> librarians, List<JanitorEntity> janitors) {
         this.name = name;
         this.address = address;
         this.ID = ID;
@@ -76,6 +78,7 @@ public class LibraryEntity implements HasID {
 
     /**
      * Gets the name.
+     * 
      * @return the name.
      */
     public String getName() {
@@ -84,6 +87,7 @@ public class LibraryEntity implements HasID {
 
     /**
      * Sets the name.
+     * 
      * @param name LibraryEntity name.
      */
     public void setName(String name) {
@@ -92,7 +96,8 @@ public class LibraryEntity implements HasID {
 
     /**
      * Gets the address.
-     * @return 
+     * 
+     * @return
      */
     public String getAddress() {
         return address;
@@ -100,13 +105,16 @@ public class LibraryEntity implements HasID {
 
     /**
      * Sets tha address.
+     * 
      * @param address LibraryEntity address.
      */
     public void setAddress(String address) {
         this.address = address;
     }
 
-    /** Gets the ID
+    /**
+     * Gets the ID
+     * 
      * @return the ID.
      */
     public String getID() {
@@ -115,6 +123,7 @@ public class LibraryEntity implements HasID {
 
     /**
      * Sets the ID.
+     * 
      * @param iD LibraryEntity ID.
      */
     public void setID(String iD) {
@@ -123,6 +132,7 @@ public class LibraryEntity implements HasID {
 
     /**
      * Gets the manager.
+     * 
      * @return the manager.
      */
     public String getManager() {
@@ -131,6 +141,7 @@ public class LibraryEntity implements HasID {
 
     /**
      * Sets the manager.
+     * 
      * @param manager LibraryEntity manager.
      */
     public void setManager(String manager) {
@@ -139,6 +150,7 @@ public class LibraryEntity implements HasID {
 
     /**
      * Gets the Publications.
+     * 
      * @return the publications.
      */
     public List<Publication> getPublications() {
@@ -147,6 +159,7 @@ public class LibraryEntity implements HasID {
 
     /**
      * Sets the publications.
+     * 
      * @param publications LibraryEntity publications.
      */
     public void setPublications(List<Publication> publications) {
@@ -155,6 +168,7 @@ public class LibraryEntity implements HasID {
 
     /**
      * Gets the upcoming events.
+     * 
      * @return
      */
     public List<Event> getUpcomingEvents() {
@@ -163,6 +177,7 @@ public class LibraryEntity implements HasID {
 
     /**
      * Sets the upcoming events.
+     * 
      * @param upcomingEvents LibraryEntity upcoming events.
      */
     public void setUpcomingEvents(List<Event> upcomingEvents) {
@@ -171,6 +186,7 @@ public class LibraryEntity implements HasID {
 
     /**
      * Gets the demanded books.
+     * 
      * @return the demanded books.
      */
     public List<Publication> getDemandedBooks() {
@@ -179,6 +195,7 @@ public class LibraryEntity implements HasID {
 
     /**
      * Set demanded books.
+     * 
      * @param demandedBooks LibraryEntity demanded books.
      */
     public void setDemandedBooks(List<Publication> demandedBooks) {
@@ -187,6 +204,7 @@ public class LibraryEntity implements HasID {
 
     /**
      * Gets the past events.
+     * 
      * @return the past events.
      */
     public List<Event> getPastEvents() {
@@ -195,6 +213,7 @@ public class LibraryEntity implements HasID {
 
     /**
      * Sets the past events.
+     * 
      * @param pastEvents LibraryEntity past events.
      */
     public void setPastEvents(List<Event> pastEvents) {
@@ -203,6 +222,7 @@ public class LibraryEntity implements HasID {
 
     /**
      * Gets the offered events.
+     * 
      * @return the offered events.
      */
     public List<Event> getOfferedEvents() {
@@ -211,6 +231,7 @@ public class LibraryEntity implements HasID {
 
     /**
      * Sets the offered events.
+     * 
      * @param offeredEvents LibraryEntity offered events.
      */
     public void setOfferedEvents(List<Event> offeredEvents) {
@@ -219,6 +240,7 @@ public class LibraryEntity implements HasID {
 
     /**
      * Gets the librarians.
+     * 
      * @return the librarians.
      */
     public List<LibrarianEntity> getLibrarians() {
@@ -227,6 +249,7 @@ public class LibraryEntity implements HasID {
 
     /**
      * Sets the librarians.
+     * 
      * @param librarians LibraryEntity librarians.
      */
     public void setLibrarians(List<LibrarianEntity> librarians) {
@@ -235,6 +258,7 @@ public class LibraryEntity implements HasID {
 
     /**
      * Gets the janitors.
+     * 
      * @return the janitors.
      */
     public List<JanitorEntity> getJanitors() {
@@ -243,6 +267,7 @@ public class LibraryEntity implements HasID {
 
     /**
      * Sets the janitors.
+     * 
      * @param janitors LibraryEntity janitors.
      */
     public void setJanitors(List<JanitorEntity> janitors) {

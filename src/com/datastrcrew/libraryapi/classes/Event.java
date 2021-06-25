@@ -8,7 +8,6 @@ import java.util.List;
  */
 
 public class Event {
-
 	/** Name of Event */
 	private String name;
 	/** Date of Event */

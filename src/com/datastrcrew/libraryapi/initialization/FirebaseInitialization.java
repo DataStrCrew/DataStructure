@@ -7,8 +7,16 @@ import com.google.firebase.FirebaseOptions;
 import javax.annotation.PostConstruct;
 import java.io.FileInputStream;
 
+/**
+ * Firebase Initialization class.
+ * 
+ * @author Kasim
+ */
 public class FirebaseInitialization {
 
+    /**
+     * Initializes the Firebase App.
+     */
     @PostConstruct
     public void initialization() {
 
@@ -23,4 +31,3 @@ public class FirebaseInitialization {
         }
     }
 }
-

@@ -15,39 +15,61 @@ import com.datastrcrew.libraryapi.entity.LibrarianEntity;
 import com.datastrcrew.libraryapi.entity.LibraryEntity;
 import com.datastrcrew.libraryapi.entity.ManagerEntity;
 
+/**
+ * Database class.
+ * 
+ * @author Kasim
+ */
 public class Database {
-    /* Create Variables */
+    /** Libraries */
     public static ArrayList<Library> libraries = new ArrayList<>();
+    /** Admins */
     public static ArrayList<Admin> admins = new ArrayList<>();
+    /** Managers */
     public static ArrayList<Manager> managers = new ArrayList<>();
+    /** Librarians */
     public static ArrayList<Librarian> librarians = new ArrayList<>();
+    /** Janitors */
     public static ArrayList<Janitor> janitors = new ArrayList<>();
+    /** Standard Readers */
     public static ArrayList<StandartReader> SReaders = new ArrayList<>();
+    /** Premium Readers */
     public static ArrayList<PremiumReader> PReaders = new ArrayList<>();
 
-    /* Initialize Services */
+    /** Library Service */
     public static GenericService<LibraryEntity> libraryService = new GenericService<LibraryEntity>(LibraryEntity.class,
             "libraries");
+    /** Admin Service */
     public static GenericService<AdminEntity> adminService = new GenericService<AdminEntity>(AdminEntity.class,
             "admins");
+    /** Manager Service */
     public static GenericService<ManagerEntity> managerService = new GenericService<ManagerEntity>(ManagerEntity.class,
             "managers");
+    /** Librarian Service */
     public static GenericService<LibrarianEntity> librarianService = new GenericService<LibrarianEntity>(
             LibrarianEntity.class, "librarians");
+    /** Janitor Service */
     public static GenericService<JanitorEntity> janitorService = new GenericService<JanitorEntity>(JanitorEntity.class,
             "janitors");
+    /** Standart Reader Service */
     public static GenericService<StandartReader> standartReaderService = new GenericService<StandartReader>(
             StandartReader.class, "standard_readers");
+    /** Premium Reader Service */
     public static GenericService<PremiumReader> premiumReaderService = new GenericService<PremiumReader>(
             PremiumReader.class, "premium_readers");
 
-    /* Create Entities */
+    /** Library Entities */
     public static ArrayList<LibraryEntity> libraryEntities = new ArrayList<LibraryEntity>();
+    /** Admin Entities */
     public static ArrayList<AdminEntity> adminEntities = new ArrayList<AdminEntity>();
+    /** Manager Entities */
     public static ArrayList<ManagerEntity> managerEntities = new ArrayList<ManagerEntity>();
+    /** Librarian Entities */
     public static ArrayList<LibrarianEntity> librarianEntities = new ArrayList<LibrarianEntity>();
+    /** Janitor Entities */
     public static ArrayList<JanitorEntity> janitorEntities = new ArrayList<JanitorEntity>();
 
+    /** Initializes the Firestore Database and creates the local objects. */
     public static void Init() {
         try {
             libraryEntities = libraryService.getAll();
@@ -73,8 +95,8 @@ public class Database {
             janitors.add(new Janitor(adminEntity));
     }
 
+    /** Creates the starting data of the Database. */
     public static void createDummyData() {
-
         /* Create 3 Admins */
         admins.clear();
         admins.add(new Admin("Admin", "Account", "12345"));
@@ -86,7 +108,8 @@ public class Database {
         libraries.add(new Library("Kadikoy", "Sahil", "0001"));
         libraries.add(new Library("Nevmekan", "Uskudar Istanbul", "0002"));
         libraries.add(new Library("Beyazit Devlet", "Fatih Istanbul", "0003"));
-        libraries.add(new Library("Aziz Berker İlçe Halk Kütüphanesi", "Rasimpaşa, Nüzhet Efendi Sk. No:53, 34716 Kadıköy/İstanbul", "0004"));
+        libraries.add(new Library("Aziz Berker İlçe Halk Kütüphanesi",
+                "Rasimpaşa, Nüzhet Efendi Sk. No:53, 34716 Kadıköy/İstanbul", "0004"));
         libraries.add(new Library("Maltepe Library", "Maltepe", "0005"));
 
         /* Create 5 Managers */
@@ -137,6 +160,7 @@ public class Database {
         // managers.get(4).addTasks("Steve", "111");
     }
 
+    /** Clears the database. */
     public static void clearAll() {
         try {
             libraryService.deleteAll();
@@ -151,13 +175,21 @@ public class Database {
         }
     }
 
+    /**
+     * Safe zone for the database while database is clearing.
+     * 
+     * @return the counter.
+     */
     public static int async() {
         int k = 0;
-        for (int i = 0; i < 10000000; i++) {k++;}
+        for (int i = 0; i < 10000000; i++) {
+            k++;
+        }
         System.out.println("Saving...");
         return k;
     }
 
+    /** Saves the local database to the remote database. */
     public static void saveAll() {
         ArrayList<LibraryEntity> libsTmp = new ArrayList<>();
         for (Library i : libraries)

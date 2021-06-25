@@ -6,6 +6,7 @@ import com.datastrcrew.libraryapi.classes.User;
 
 /**
  * Entity for the Admin.
+ * 
  * @author Kasim
  */
 public class AdminEntity extends User {
@@ -14,8 +15,9 @@ public class AdminEntity extends User {
 
     /**
      * Constructs an AdminEntity.
-     * @param name Admin name.
-     * @param surname Admin surname.
+     * 
+     * @param name     Admin name.
+     * @param surname  Admin surname.
      * @param password Admin password.
      */
     public AdminEntity(String name, String surname, String password) {
@@ -25,6 +27,7 @@ public class AdminEntity extends User {
 
     /**
      * Gets the libraries.
+     * 
      * @return the libraries.
      */
     public List<LibraryEntity> getLibraries() {
@@ -33,6 +36,7 @@ public class AdminEntity extends User {
 
     /**
      * Sets the libraries.
+     * 
      * @param libraries libraries of the admin.
      */
     public void setLibraries(List<LibraryEntity> libraries) {
@@ -41,9 +45,10 @@ public class AdminEntity extends User {
 
     /**
      * Constructs an AdminEntity.
-     * @param name Admin name.
-     * @param surname Admin surname.
-     * @param password Admin password.
+     * 
+     * @param name      Admin name.
+     * @param surname   Admin surname.
+     * @param password  Admin password.
      * @param libraries Admin libraries.
      */
     public AdminEntity(String name, String surname, String password, List<LibraryEntity> libraries) {

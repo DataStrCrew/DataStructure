@@ -214,7 +214,7 @@ public class Main {
                     break;
                 case 2:
                     for (Library lib : Database.libraries)
-                        System.out.println(lib);
+                        System.out.println(lib + "\n");
                     System.out.println("Enter the ID of the library.");
                     id = input.nextLine();
                     boolean flag = true;
@@ -248,6 +248,7 @@ public class Main {
                         Manager m = new Manager(name, surname, pw, Database.libraries.get(libIndex));
                         Database.managers.add(m);
                         Database.libraries.get(libIndex).setManager(m.getID());
+                        System.out.println("Manager is successfully added.");
                     } catch (IndexOutOfBoundsException ex) {
                         System.out.println("Wrong input.");
                     }

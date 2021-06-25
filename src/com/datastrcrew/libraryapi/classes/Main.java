@@ -593,6 +593,7 @@ public class Main {
 		                    i = 1;
 		                    for (Language lan : Language.values()) {
 		                        System.out.println(i + ") " + lan.name());
+		                        i++;
 		                    }
 		                    lanIndex = input.nextInt();
 		                    input.nextLine();
@@ -626,6 +627,7 @@ public class Main {
 		                    i = 1;
 		                    for (Language lan : Language.values()) {
 		                        System.out.println(i + ") " + lan.name());
+		                        i++;
 		                    }
 		                    lanIndex = input.nextInt();
 		                    input.nextLine();
@@ -709,6 +711,7 @@ public class Main {
 		                    i = 1;
 		                    for (Language lan : Language.values()) {
 		                        System.out.println(i + ") " + lan.name());
+		                        i++;
 		                    }
 		                    lanIndex = input.nextInt();
 		                    input.nextLine();
@@ -788,6 +791,7 @@ public class Main {
 	                    i = 1;
 	                    for (Language lan : Language.values()) {
 	                        System.out.println(i + ") " + lan.name());
+	                        i++;
 	                    }
 	                    lanIndex = input.nextInt();
 	                    input.nextLine();

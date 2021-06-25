@@ -67,8 +67,11 @@ public class Task {
 	 private void setTaskName(String ID)
 	 {
 		 String taskName=allTasks.get(ID);
+		 System.out.println(taskName);
 		 if(taskName==null)
-			 throw new IllegalArgumentException();
+		 {
+			 //throw new IllegalArgumentException();
+		 }
 		 else {
 			 TaskName=taskName;
 		 }

@@ -462,6 +462,7 @@ public class Main {
                         try {
                          Librarian l = new Librarian(name, surname, pw, manager.getLib());
                          manager.addLibrarian(l);
+                         Database.librarians.add(l);
                      } catch (IndexOutOfBoundsException ex) {
                          System.out.println("Wrong input.");
                      }

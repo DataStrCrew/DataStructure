@@ -27,7 +27,7 @@ public class Magazine extends AbstractPublication{
         super(nm, athr, lng, pg);
         issue = is;
     }
-
+    
     public Magazine() {
         super("", null, Language.English, null);
     }

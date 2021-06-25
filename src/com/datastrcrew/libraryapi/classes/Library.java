@@ -400,7 +400,16 @@ public class Library {
 
     @Override
     public String toString(){
-       return "Name:" + name + "\nAddress: " + address;
+        String managerName=null;
+        for(Manager i : Database.managers){
+            if(i.getID().equals(manager)) {
+                managerName = i.getName() + " " + i.getSurname();
+                break;
+            }
+        }
+        if(managerName == null)
+            managerName = "No current Manager";
+       return "Name:" + name + "\nAddress: " + address + "\nManager: " + managerName + "\n Library ID: " + ID;
     }
 
            //-----------------------------------------ENTITY METHODS--------------------------

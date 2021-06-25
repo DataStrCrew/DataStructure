@@ -1,4 +1,4 @@
-/**
+package com.datastrcrew.libraryapi.classes; /**
  * This class has been made up to finding Destination
  * @author Mustafa Gurler
  */

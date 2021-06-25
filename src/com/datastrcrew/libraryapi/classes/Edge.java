@@ -1,3 +1,5 @@
+package com.datastrcrew.libraryapi.classes;
+
 /** An Edge represents a relationship between two
  *  vertices.
  *  @author Koffman and Wolfgang

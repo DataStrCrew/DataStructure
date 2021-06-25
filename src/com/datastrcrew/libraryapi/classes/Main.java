@@ -96,6 +96,7 @@ public class Main {
             default:
                 System.out.println("Redirecting to main menu.");
         }
+        System.out.println("Registration is successful.");
         // input.close();
     }
 

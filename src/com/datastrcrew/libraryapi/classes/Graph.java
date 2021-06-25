@@ -1,3 +1,5 @@
+package com.datastrcrew.libraryapi.classes;
+
 import java.util.*;
 
 /** Interface to specify a Graph ADT. A graph is a set

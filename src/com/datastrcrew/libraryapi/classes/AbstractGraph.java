@@ -1,3 +1,5 @@
+package com.datastrcrew.libraryapi.classes;
+
 import java.io.*;
 
 /** Abstract base class for graphs. A graph is a set

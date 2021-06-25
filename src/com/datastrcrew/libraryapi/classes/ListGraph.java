@@ -1,3 +1,5 @@
+package com.datastrcrew.libraryapi.classes;
+
 import java.util.*;
 import java.io.*;
 

@@ -12,25 +12,25 @@ public class PremiumReader extends StandartReader
         super(name, surname, pw, workingLib);
         borrowedBooks = new LinkedList<>();
     }
-    
+
     /**
 	 * demand book
 	 * @return true if the commenting is successful, false otherwise
 	 */
 	public boolean demandBook(Book book)
 	{
-		lib.getDemandedBooks().add(book);
+		getLibrary().getDemandedBooks().add(book);
 		return true;
 	}
 
-    
+
     /**
 	 * creating event request
 	 * @return true if the requesting is successful, false if it is not.
 	 */
 	public boolean request_event(Event event)
 	{
-		lib.getOfferedEvents().add(event);
+		getLibrary().getOfferedEvents().add(event);
 		return true;
 	}
 
@@ -49,7 +49,7 @@ public class PremiumReader extends StandartReader
      * Method to save PremiumReader data field to PremiumReaderEntity object.
      * @return PremiumReaderEntity object.
      *
-     
+
     public PremiumReaderEntity getEntity(){
 
         PremiumReaderEntity entity;
@@ -60,9 +60,9 @@ public class PremiumReader extends StandartReader
         entity.setPW(getPW());
         entity.setLib(getLib());
 
-        for (Publication book : getBorrowed())           
-          entity.getBorrowed().add(book);    
-        
+        for (Publication book : getBorrowed())
+          entity.getBorrowed().add(book);
+
         return entity;
 
     }

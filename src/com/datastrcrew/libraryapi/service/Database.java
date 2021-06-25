@@ -83,18 +83,17 @@ public class Database {
         libraries.add(new Library("Kadikoy", "Sahil", "0001"));
         libraries.add(new Library("Nevmekan", "Uskudar Istanbul", "0002"));
         libraries.add(new Library("Beyazit Devlet", "Fatih Istanbul", "0003"));
-        Library lib= new Library("Maltepe Library", "Maltepe", "1234567");
-        libraries.add(lib);
+        libraries.add(new Library("Maltepe Library", "Maltepe", "1234567"));
 
         /* Create 3 Managers */
         managers.add(new Manager("Big", "Boss", "123456", libraries.get(0)));
         managers.add(new Manager("Big", "Boss", "123456", libraries.get(1)));
         managers.add(new Manager("Big", "Boss", "123456", libraries.get(2)));
-        managers.add(new Manager("Jack", "Johnson", "12345", lib));
+        managers.add(new Manager("Jack", "Johnson", "12345", libraries.get(3)));
         
-        librarians.add(new Librarian("Jade", "Johnson", "12345", lib));
+        librarians.add(new Librarian("Jade", "Johnson", "12345", libraries.get(3)));
         
-        janitors.add(new Janitor("Karl", "Johnson", "12345", lib));
+        janitors.add(new Janitor("Karl", "Johnson", "12345", libraries.get(3)));
 
 
     }

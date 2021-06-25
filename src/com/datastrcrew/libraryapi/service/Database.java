@@ -151,13 +151,6 @@ public class Database {
         PReaders.add(new PremiumReader("Solo", "Sons", "12345", libraries.get(2)));
         PReaders.add(new PremiumReader("Frank", "Sons", "12345", libraries.get(3)));
         PReaders.add(new PremiumReader("Jr", "Sons", "12345", libraries.get(4)));
-
-        /* Add Tasks */
-        // managers.get(0).addTasks("Karl", "001");
-        // managers.get(1).addTasks("Swain", "011");
-        // managers.get(2).addTasks("John", "101");
-        // managers.get(3).addTasks("Bob", "010");
-        // managers.get(4).addTasks("Steve", "111");
     }
 
     /** Clears the database. */

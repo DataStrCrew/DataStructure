@@ -331,7 +331,7 @@ public class Main {
                     }
                     lanIndex = input.nextInt();
                     input.nextLine();
-                    language = Language.values()[lanIndex];
+                    language = Language.values()[lanIndex-1];
 
                     System.out.println("Enter author information:\n");
                     System.out.println("Name: ");
@@ -349,7 +349,7 @@ public class Main {
                         }
                         int genreIndex = input.nextInt();
                         input.nextLine();
-                        BookGenre genre = BookGenre.values()[genreIndex];
+                        BookGenre genre = BookGenre.values()[genreIndex-1];
                         pub = new Book(bookName, author, language, pg, genre);
                     } else if (pubType == 2) {
                         System.out.println("Enter encyclopedia sections: " +

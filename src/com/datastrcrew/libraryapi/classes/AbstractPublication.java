@@ -10,7 +10,6 @@ public class AbstractPublication implements Publication {
     private String name;
     private Author author;
     private String ID;
-    private static Integer nextID = 10000;
     private Language lang;
     private Integer page;
     private List<String> comments;
@@ -25,10 +24,14 @@ public class AbstractPublication implements Publication {
     public AbstractPublication(String nm,Author athr,Language lng, Integer pg){
         name = nm;
         author = athr;
-        ID = String.valueOf(nextID++); //id is automatically generated. First ID is 10000
+        ID = generateID();
         lang = lng;
         page = pg;
         comments = new ArrayList<>();
+    }
+
+    private String generateID(){
+        return org.apache.commons.codec.digest.DigestUtils.sha256Hex(name);
     }
 
     /**

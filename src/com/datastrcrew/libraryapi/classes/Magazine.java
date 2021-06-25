@@ -15,6 +15,12 @@ public class Magazine extends AbstractPublication{
         this.type = type;
     }
 
+    public Magazine(String nm, Author athr, Language lng, Integer pg, Integer issue, String type) {
+        super(nm, athr, lng, pg);
+        this.issue = issue;
+        this.type = type;
+    }
+
     /**
      * Constructor for Magazine.
      * @param nm Name of the publication.

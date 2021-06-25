@@ -63,7 +63,7 @@ public class Admin extends User {
      */
     public boolean addManager(Manager Manager, String LibraryID)
     {
-    	Library result = searchLibrary(LibraryID);
+    	Library result = getLibrary(LibraryID);
     	if( result != null)
     	{
     		if (result.getManager() != null) {
@@ -83,16 +83,13 @@ public class Admin extends User {
      */
     public boolean removeManager(String LibraryID)
     {
-    	Library result = searchLibrary(LibraryID);
+    	Library result = getLibrary(LibraryID);
     	if( result != null)
     	{
     		if (result.getManager() != null) 
     		{
-				return false;
-			}
-			else
-			{
-				result.setManager(null);
+                result.setManager(null);
+				return true;
 			}
     	}
     	return false;    	

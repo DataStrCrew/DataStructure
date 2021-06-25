@@ -15,14 +15,14 @@ public class Main {
         firebaseInitialization.initialization();
 
         Database.Init();
-        
-        // Database.clearAll();
 
-        // Database.async();
+        Database.clearAll();
 
-        // Database.createDummyData();
+        Database.async();
 
-        // Database.saveAll();
+        Database.createDummyData();
+
+        Database.saveAll();
 
         Scanner input = new Scanner(System.in);
         System.out.println("Welcome to the Library Automation System.");

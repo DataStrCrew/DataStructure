@@ -42,7 +42,6 @@ public class Encyclopedia extends AbstractPublication{
         sections = sec;
     }
 
-
     public Encyclopedia() {
         super("", null, Language.English, null);
     }

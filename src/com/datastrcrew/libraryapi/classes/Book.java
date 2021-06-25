@@ -5,13 +5,16 @@ package com.datastrcrew.libraryapi.classes;
  * @author gokbey_gazi_keskin
  */
 public class Book extends AbstractPublication {
-
     private BookGenre genre;
     private String comment;
     private String type = "Book";
 
     public String getType() {
         return type;
+    }
+
+    public Book(String nm, Author athr, Language lng, Integer pg) {
+        super(nm, athr, lng, pg);
     }
 
     public void setType(String type) {

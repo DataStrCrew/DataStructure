@@ -33,7 +33,7 @@ public class Magazine extends AbstractPublication{
      * @param pg Page amounr of the Publication.
      * @param issue Issue number of the magazine.
      */
-    public Magazine(String nm, Author athr, Language lng, Integer pg, Integer issue) {
+    public Magazine(String nm, Author athr, Language lng, Integer pg, Integer issue,String type) {
         super(nm, athr, lng, pg);
         this.issue = issue;
         this.type = type;

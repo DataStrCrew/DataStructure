@@ -59,6 +59,9 @@ public class BinaryTree<E> implements Serializable {
     /**
      * Constructs a new binary tree with data in its root,leftTree
      * as its left subtree and rightTree as its right subtree.
+     * @param data data object.
+     * @param leftTree left tree.
+     * @param rightTree right tree.
      */
     public BinaryTree(E data, BinaryTree<E> leftTree,
             BinaryTree<E> rightTree) {

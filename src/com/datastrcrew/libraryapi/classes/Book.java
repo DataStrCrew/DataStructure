@@ -5,27 +5,52 @@ package com.datastrcrew.libraryapi.classes;
  * @author gokbey_gazi_keskin
  */
 public class Book extends AbstractPublication {
+    /** Genre of book */
     private BookGenre genre;
+    /** Comment of book */
     private String comment;
+    /** Type of book */
     private String type = "Book";
 
+     /**
+     * Getter for type.
+     * @return Type of the book.
+     */
     public String getType() {
         return type;
     }
 
+     /**
+     * Book constructor
+     * @param nm name.
+     * @param athr author.
+     * @param lng language.
+     * @param pg page.
+     */
     public Book(String nm, Author athr, Language lng, Integer pg) {
         super(nm, athr, lng, pg);
     }
 
+    /**
+     * Setter for type.
+     * @param type Type of the book.
+     */
     public void setType(String type) {
         this.type = type;
     }
 
+    /**
+     * Default Book constructor
+     */
     public Book() {
         super(null, null, null, null);
         this.genre = null;
     }
-
+     /**
+     * Book constructor.
+     * @param nm name.
+     * @param lng language.
+     */
     public Book(String nm, Language lng) {
         super(nm, null, lng, null);
         this.genre = null;
@@ -54,7 +79,11 @@ public class Book extends AbstractPublication {
      * @return Genre of the book.
      */
     public BookGenre getGenre(){return genre;}
-
+    
+    /**
+     * Getter for comment.
+     * @return comment of the book.
+     */    
     public String getComment()
     {
         return comment;

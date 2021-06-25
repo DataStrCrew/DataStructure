@@ -8,10 +8,14 @@ import java.util.List;
  */
 
 public class Event {
-	
+
+	/** Name of Event */
 	private String name;
+	/** Date of Event */
 	private String date;
+	/** Participants of Event */
 	private final List<StandartReader>participants;
+	/** Votes of Event */
 	private ArrayList<Integer> votes = new ArrayList<>();
 	
 	

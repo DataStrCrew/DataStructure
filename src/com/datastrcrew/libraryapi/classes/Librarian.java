@@ -20,28 +20,54 @@ public class Librarian extends User {
 		return null;
 	}
 
+	/**
+     * Getter for Library.
+     * @return library.
+     */
 	public String getLib() {
 		return lib;
 	}
 
+	/**
+     * Setter for library.
+     * @param lib lib of the librarian.
+     */
 	public void setLib(String lib) {
 		this.lib = lib;
 	}
 
+	/**
+     * Setter for library.
+     * @param lib lib of the librarian.
+     */	
 	public void setLibrary(String lib){
 		this.lib = lib;
 	}
 
+	 /**
+     * Default Constructor of Janitor
+     */
 	public Librarian() {
 		super("name","surname","pw");
 		lib = "";
 	}
 
+	 /**
+     * Default Constructor of Janitor
+     * @param name
+     * @param surname
+     * @param pw
+     * @param workingLib
+     */
 	public Librarian(String name,String surname, String pw, Library workingLib) {
 		super(name,surname,pw);
 		lib = workingLib.getID();
 	}
 
+	/**
+     * Search library methof
+     * @return library.
+     */
 	private Library findLibrary() {
 		for (Library library : Database.libraries) {
 			if (library.getID().equals(lib)) {
@@ -51,7 +77,11 @@ public class Librarian extends User {
 		return null;
 	}
 
-
+	/**
+     * Search library methof
+     * @param ID id of library.
+     * @return library.
+     */
 	private Library findLibrary(String ID) {
 		for (Library library : Database.libraries) {
 			if (library.getID().equals(ID)) {
@@ -78,6 +108,8 @@ public class Librarian extends User {
 	
 	/**
 	 * Searches for a book in the library stock.
+	 * @param bookName name of book.
+	 * @param bookLanguage language of book.
 	 * @return the amount of the book in the library stock.
 	 */
 	public int demandBookStock(String bookName, Language bookLanguage)
@@ -90,6 +122,7 @@ public class Librarian extends User {
 	 * If the book is not in the stock demands the book. 
 	 * If the book is in the stock, successfuly lends the book to the customer.
 	 * @param givenBook is the book that will be lend.
+	 * @param reader standart reader.
 	 * @return the Book that is lend, null if no books is lend.
 	 */
 	public Publication lendBook(Publication givenBook, StandartReader reader)
@@ -111,7 +144,9 @@ public class Librarian extends User {
 	/**
 	 * Relends a book from a costumer.
 	 * Adds the returned book to the library stock.
-	 * If the book is not in borrowedBooks section of the customer then does not do anything. 
+	 * If the book is not in borrowedBooks section of the customer then does not do anything.
+	 * @param returnedBook returned book object.
+	 * @param customer standart reader.
 	 * @return true if relend is done, false if not.
 	 */
 	public boolean relendBook(Publication returnedBook, StandartReader customer)
@@ -128,6 +163,8 @@ public class Librarian extends User {
 	
 	/**
 	 * Searches for a specific book in the library stock.
+	 * @param searchedBook name og book.
+	 * @param bookLanguage language of book.
 	 * @return true if the book is found in the stock, false if not.
 	 */
 	public boolean searchBook(String searchedBook, Language bookLanguage)

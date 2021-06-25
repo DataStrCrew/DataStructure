@@ -10,28 +10,44 @@ import com.datastrcrew.libraryapi.service.Database;
  * @author ogulcan_kalafatoglu
  */
 public class Library {
+    /** Name of library */
 	private String name;
+    /** Address of library */
     private String address;
+    /** ID of library */
     private String ID;
+    /** manager of library */
     private String manager;
-
+    /** publications of library */
     private AVLTree<Publication> publications;
+    /** upcomingEvents of library */
     private PriorityQueue<Event> upcomingEvents;
-
+    /** demandedBooks of library */
     private List<Publication> demandedBooks;
-
+    /** pastEvents of library */
     private List<Event> pastEvents;
+    /** offeredEvents of library */
     private List<Event> offeredEvents;
-
+    /** librarians of library */
     private NavigableSet<Librarian> librarians;
+    /** janitors of library */
     private NavigableSet<Janitor> janitors;
+    /** graph of library */
     private LibraryGraph graph;
     // private static final SkipList<String> existingIDs = new SkipList<>();
 
+    /**
+     * Default Constructor of Library.
+     */
     public Library(){
         this("", "", "");
     }
-
+    /**
+     * Default Constructor of Library.
+     * @param name name of library.
+     * @param address address of library.
+     * @param id id of library.
+     */
     public Library(String name,String address,String id){
         this.name = name;
         this.address = address;
@@ -66,61 +82,114 @@ public class Library {
         graph = new LibraryGraph();
     }
 
+    /**
+     * Getter for publications.
+     * @return publications.
+     */
     public AVLTree<Publication> getPublications(){return publications;}
 
+    /**
+     * Getter for manager.
+     * @return manager.
+     */
     public String getManager() {
 		return manager;
 	}
 
+    /**
+     * Setter for manager.
+     * @param manager manager object.
+     */
 	public void setManager(String manager) {
 		this.manager = manager;
 	}
-
+    /**
+     * Getter for name.
+     * @return name.
+     */
     public String getName() {
 		return name;
 	}
 
+     /**
+     * Getter for offeredEvents.
+     * @return offeredEvents.
+     */
     public List<Event> getOfferedEvents()
     {
         return offeredEvents;
     }
 
+    /**
+     * Setter for name.
+     * @param name name.
+     */
 	public void setName(String name) {
 		this.name = name;
 	}
-
+    /**
+     * Getter for address.
+     * @return address.
+     */
 	public String getAddress() {
 		return address;
 	}
 
+    /**
+     * Setter for address.
+     * @param address address.
+     */
 	public void setAddress(String address) {
 		this.address = address;
 	}
 
+    /**
+     * Getter for ID.
+     * @return ID.
+     */
 	public String getID() {
 		return ID;
 	}
 
+     /**
+     * Setter for id.
+     * @param id id.
+     */
 	public void setID(String id) {
 		this.ID = id;
 	}
 
+     /**
+     * Getter for DemandedBooks.
+     * @return DemandedBooks.
+     */
     public List<Publication> getDemandedBooks()
     {
         return demandedBooks;
     }
 
+     /**
+     * Getter for PastEvents.
+     * @return PastEvents.
+     */
     public List<Event> getPastEvents()
     {
         return pastEvents;
     }
 
-
+   /**
+     * Getter for UpcomingEvents.
+     * @return UpcomingEvents.
+     */
     public PriorityQueue<Event> getUpcomingEvents()
     {
         return upcomingEvents;
     }
 
+     /**
+     * Getter for Janitors.
+     * @return Janitors.
+     */
     public NavigableSet<Janitor> getJanitors()
     {
         return janitors;
@@ -321,7 +390,6 @@ public class Library {
      * @param event
      * @return false if event is not in offeredEvents else true.
      */
-
     public boolean removeEvent(Event event){
         int index = offeredEvents.indexOf(event);
         if(index == -1) return false;
@@ -338,6 +406,9 @@ public class Library {
         return upcomingEvents.peek();
     }
 
+    /**
+     * Prints past events.
+     */
     public void printPastEvents()
     {
     	Iterator<Event> iter=pastEvents.iterator();
@@ -350,6 +421,9 @@ public class Library {
     	}
     }
 
+    /**
+     * Prints Upcoming Events.
+     */
     public void printUpcomingEvents()
     {
     	PriorityQueue<Event> temp=upcomingEvents;
@@ -406,6 +480,10 @@ public class Library {
 
     }
 
+     /**
+     * toString method for libarary.
+     * @return string representation.
+     */
     @Override
     public String toString(){
         String managerName=null;
@@ -420,6 +498,10 @@ public class Library {
        return "Name:" + name + "\nAddress: " + address + "\nManager: " + managerName + "\nLibrary ID: " + ID;
     }
 
+    /**
+     * Gettor for ClosestPath.
+     * @return ClosestPath.
+     */
     public void getClosestPath(){
         graph.getPath();
     }

@@ -10,13 +10,23 @@ import com.datastrcrew.libraryapi.service.Database;
  * @author yesimyalc
  */
 public class Manager extends User {
+	/** Libary object of lib*/
 	private Library lib;
 
+	 /**
+     * Default Constructor for Manager.
+     */
 	public Manager() {
 		super("name","surname","pw");
 		lib = null;
 	}
-
+	/**
+     * Constructor for Manager.
+     * @param name name of manager.
+     * @param surname surname of manager.
+     * @param pw password of manager.
+     * @param woringLib Library of manager.
+     */
 	public Manager(String name, String surname, String pw, Library workingLib) {
 		super(name,surname,pw);
 		lib = workingLib;
@@ -125,6 +135,7 @@ public class Manager extends User {
 
 	/**
 	 * Accepts and removes a book from demandedBooks list in the library. Stock is also updated.
+	 * @param demandedBook demanded book.
 	 * @return false if there is nothing to accept, true if a book is accepted.
 	 */
 	public boolean acceptBookDemand(Publication demandedBook)
@@ -221,7 +232,11 @@ public class Manager extends User {
 	{
 		return lib.addUpcomingEvent(newEvent);
 	}
-
+	/**
+	 * Declines an event and remvoe it to upcoming event list.
+	 * @param newEvent is the event that will be removed to the upcoming events list.
+	 * @return true if removed, false if not.
+	 */
 	public boolean declineEvent(Event newEvent)
 	{
 		return lib.removeEvent(newEvent);
@@ -262,21 +277,37 @@ public class Manager extends User {
 		return lib.isLibrarian(searchedLID) != -1;
 	}
 
+	/**
+	 * Searches for a Janitor
+	 * @param searchedJName is the ID of the searched Janitor
+	 */
 	public boolean searchJanitor(String searchedJName)
 	{
 		return lib.isJanitor(searchedJName) != -1;
 
 	}
 
+	/**
+	 * Getter for a library
+	 * @return library
+	 */
 	public Library getLib(){
 		return lib;
 	}
 
+	/**
+	 * Setter for a library
+	 * @param library
+	 */
 	public void setLib(Library lib){
 		this.lib = lib;
 		lib.setManager(ID);
 	}
 
+	 /**
+     * toString method for Manager.
+     * @return string representation.
+     */
 	@Override
 	public String toString(){
 		return name + " " + surname + "\nWorking Library: " + lib;

@@ -2,7 +2,6 @@ package com.datastrcrew.libraryapi.classes;
 
 import com.datastrcrew.libraryapi.entity.LibrarianEntity;
 import com.datastrcrew.libraryapi.service.Database;
-import com.google.cloud.firestore.annotation.Exclude;
 
 /**
  * Librarian of the library

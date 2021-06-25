@@ -73,6 +73,24 @@ public class Database {
             janitors.add(new Janitor(adminEntity));
     }
 
+    public static void createDummyData() {
+        /* Create 2 Admins */
+        admins.add(new Admin("Admin", "Account", "123456"));
+        admins.add(new Admin("Root", "Account", "123456"));
+
+        /* Create 3 Libraries */
+        libraries.add(new Library("Kadikoy", "Sahil", "0001"));
+        libraries.add(new Library("Nevmekan", "Uskudar Istanbul", "0002"));
+        libraries.add(new Library("Beyazit Devlet", "Fatih Istanbul", "0003"));
+
+        /* Create 3 Managers */
+        managers.add(new Manager("Big", "Boss", "123456", libraries.get(0)));
+        managers.add(new Manager("Big", "Boss", "123456", libraries.get(1)));
+        managers.add(new Manager("Big", "Boss", "123456", libraries.get(2)));
+
+        
+    }
+
     public static void clearAll() {
         try {
             libraryService.deleteAll();

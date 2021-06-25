@@ -2,6 +2,7 @@ package com.datastrcrew.libraryapi.classes;
 import java.util.*;
 
 import com.datastrcrew.libraryapi.entity.JanitorEntity;
+import com.datastrcrew.libraryapi.service.Database;
 
 /**
  * Janitor of the library
@@ -11,7 +12,7 @@ import com.datastrcrew.libraryapi.entity.JanitorEntity;
 public class Janitor extends User{
 
 	private Queue<Task> Tasks;
-	private Library lib;
+	private String lib;
     /**
      * Constructor of Task
      */
@@ -19,18 +20,37 @@ public class Janitor extends User{
     {
         super(name,surname,pw);
         Tasks = new ArrayDeque<Task>();
-        this.lib = lib;
+        this.lib = lib.getID();
     }
+
+    private Library findLibrary() {
+		for (Library library : Database.libraries) {
+			if (library.getID().equals(lib)) {
+				return library;
+			}
+		}
+		return null;
+	}
+
+	private Library findLibrary(String ID) {
+		for (Library library : Database.libraries) {
+			if (library.getID().equals(ID)) {
+				return library;
+			}
+		}
+		return null;
+	}
     
 	public Queue<Task> getTasks() {
 		return Tasks;
 	}
 	public Library getLib() {
-		return lib;
+        
+		return findLibrary();
 	}
     public void setLib(Library lib){
 
-        this.lib = lib;
+        this.lib = lib.getID();
     }
 	
     /**
@@ -79,17 +99,20 @@ public class Janitor extends User{
      */
     public Janitor(JanitorEntity entity){
         super(entity.name, entity.surname, entity.password);
-        this.lib = new Library(entity.getLib());
-        this.Tasks = entity.getTasks(); 
+        Tasks = new ArrayDeque<>();
+        this.lib = entity.getLib();
+        this.Tasks.addAll(entity.getTasks());
     }
 
     /**
      * Method to save Janitor data field to JanitorEntity object.
      * @return JanitorEntity object.
      */
-     
     public JanitorEntity getEntity(){
-        return new JanitorEntity(name, surname, ID, password, Tasks, lib.getEntity());
+        ArrayList<Task> tmpEvents = new ArrayList<Task>();
+        for (Task i : Tasks)
+            tmpEvents.add(i);
+        return new JanitorEntity(name, surname, ID, password, tmpEvents, lib);
     }
     
 }

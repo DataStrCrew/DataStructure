@@ -2,28 +2,27 @@ package com.datastrcrew.libraryapi.classes;
 import java.util.List;
 
 import com.datastrcrew.libraryapi.entity.ManagerEntity;
-import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+import com.datastrcrew.libraryapi.service.Database;
 
 /**
  * Manager of the library
  * @author Mustafa Gurler
  * @author yesimyalc
  */
-public class Manager extends User
-{
+public class Manager extends User {
 	private Library lib;
 
-	public Manager()
-	{
+	public Manager() {
 		super("name","surname","pw");
-		lib=null;
+		lib = null;
 	}
 
-	public Manager(String name, String surname, String pw, Library workingLib)
-	{
+	public Manager(String name, String surname, String pw, Library workingLib) {
 		super(name,surname,pw);
-		lib=workingLib;
+		lib = workingLib;
+		lib.setManager(ID);
 	}
+
 	/**
 	 * Adds a book to the library stock
 	 * @param addedBook is the book that will be added.
@@ -274,6 +273,7 @@ public class Manager extends User
 
 	public void setLib(Library lib){
 		this.lib = lib;
+		lib.setManager(ID);
 	}
 
 	@Override
@@ -290,6 +290,12 @@ public class Manager extends User
      */
     public Manager(ManagerEntity entity){
 		super(entity != null ? entity.name : "", entity != null ? entity.surname : "", entity != null ? entity.password : "");
+		for (Library l : Database.libraries) {
+			if (ID.equals(l.getManager())) {
+				lib = l;
+				return;
+			}
+		}
         this.lib = entity != null ? new Library(entity.getLib()) : null;
     }
 

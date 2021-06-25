@@ -1,9 +1,7 @@
 package com.datastrcrew.libraryapi.classes;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.datastrcrew.libraryapi.entity.AdminEntity;
-import com.datastrcrew.libraryapi.entity.LibraryEntity;
 import com.datastrcrew.libraryapi.service.Database;
 
 /**

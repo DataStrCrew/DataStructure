@@ -7,6 +7,16 @@ import java.util.*;
  */
 public class Encyclopedia extends AbstractPublication{
     private HashMap<String,String> sections; //page number-content
+    private String type = "Encyclopedia";
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     /**
      * Constructor for Encyclopedia.
      * @param nm Name of the publication.

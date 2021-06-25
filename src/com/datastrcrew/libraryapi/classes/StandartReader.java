@@ -6,18 +6,15 @@ import java.util.List;
  * Reader of the library
  * @author Mustafa Gurler
  */
-
-
 public class StandartReader extends User
 {
     /**Holds the information of the library that this StandartUser is a member of*/
     Library lib;
 	List<Publication> borrowedBooks;
 
-	public StandartReader()
-	{
+	public StandartReader() {
 		super("name","surname","pw");
-		lib=null;
+		lib = null;
         borrowedBooks = new LinkedList<>();
 	}
 
@@ -68,7 +65,7 @@ public class StandartReader extends User
 	 * @return true if the returning is successful, false otherwise
 	 */
 	public boolean returnTheBook(Publication returningBook)
-	{;
+	{
 		if(borrowedBooks.contains(returningBook))
 		{
 			borrowedBooks.remove(returningBook);

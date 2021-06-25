@@ -15,6 +15,7 @@ public class Main {
         firebaseInitialization.initialization();
 
         Database.Init();
+        
         // Database.clearAll();
 
         // Database.async();
@@ -986,14 +987,12 @@ public class Main {
 	                int vote = input.nextInt();
 	                Event event = sReader.getLibrary().getUpcomingEvents().peek();
 	                sReader.vote_event(vote, event);
-
 	                break;
 
 	            case 7:
 	                System.out.println(sReader.getLibrary().getUpcomingEvents().peek());
 	                event = sReader.getLibrary().getUpcomingEvents().peek();
 	                sReader.participate_event(event);
-
 	                break;
 
                 case 8:

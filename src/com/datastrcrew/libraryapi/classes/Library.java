@@ -459,6 +459,7 @@ public class Library {
         this.pastEvents = entity.getPastEvents();
         this.offeredEvents = entity.getOfferedEvents();
         this.upcomingEvents.addAll(entity.getUpcomingEvents());
+        this.graph = new LibraryGraph();
 
         for (LibrarianEntity librarianT : entity.getLibrarians())
             librarians.add(new Librarian(librarianT));

@@ -24,7 +24,7 @@ public class StandartReader extends User
     public StandartReader(String name,String surname,String pw, Library workingLib)
 	{
         super(name,surname,pw);
-		lib=workingLib.getID();
+		lib = workingLib.getID();
         borrowedBooks = new ArrayList<>();
     }
 

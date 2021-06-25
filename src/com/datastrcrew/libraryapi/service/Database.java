@@ -121,13 +121,13 @@ public class Database {
         SReaders.add(new StandartReader("Pike", "Sons", "12345", libraries.get(3)));
         SReaders.add(new StandartReader("Elsa", "Sons", "12345", libraries.get(4)));
 
-        // /* Add Standard Readers */
-        // PReaders.clear();
-        // PReaders.add(new PremiumReader("Eliz", "Sons", "12345", libraries.get(0)));
-        // PReaders.add(new PremiumReader("Han", "Sons", "12345", libraries.get(1)));
-        // PReaders.add(new PremiumReader("Solo", "Sons", "12345", libraries.get(2)));
-        // PReaders.add(new PremiumReader("Frank", "Sons", "12345", libraries.get(3)));
-        // PReaders.add(new PremiumReader("Jr", "Sons", "12345", libraries.get(4)));
+        /* Add Premium Readers */
+        PReaders.clear();
+        PReaders.add(new PremiumReader("Eliz", "Sons", "12345", libraries.get(0)));
+        PReaders.add(new PremiumReader("Han", "Sons", "12345", libraries.get(1)));
+        PReaders.add(new PremiumReader("Solo", "Sons", "12345", libraries.get(2)));
+        PReaders.add(new PremiumReader("Frank", "Sons", "12345", libraries.get(3)));
+        PReaders.add(new PremiumReader("Jr", "Sons", "12345", libraries.get(4)));
 
         /* Add Tasks */
         // managers.get(0).addTasks("Karl", "001");

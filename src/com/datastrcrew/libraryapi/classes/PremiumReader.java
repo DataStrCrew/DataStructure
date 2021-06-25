@@ -9,12 +9,10 @@ public class PremiumReader extends StandartReader {
     public PremiumReader(String name,String surname,String pw, Library workingLib)
 	{
         super(name, surname, pw, workingLib);
-        borrowedBooks = new LinkedList<>();
     }
 
     public PremiumReader() {
-        super("", "", "", null);
-        borrowedBooks = new LinkedList<>();
+        super();
     }
 
 

@@ -11,16 +11,27 @@ import java.util.List;
  */
 public class StandartReader extends User
 {
-    /**Holds the information of the library that this StandartUser is a member of*/
+    /** Holds the information of the library that this StandartUser is a member of */
     String lib;
+    /** Holds the borrowed books */
 	List<Publication> borrowedBooks;
 
+	 /**
+     * Constructor of StandartReader.
+     */
 	public StandartReader() {
 		super("name","surname","pw");
 		lib = null;
         borrowedBooks = new ArrayList<>();
 	}
 
+	/**
+     * Constructor of StandartReader.
+     * @param name name of reader.
+     * @param surname of reader.
+     * @param pw password of reader.
+     * @param workingLib working library of reader.
+     */
     public StandartReader(String name,String surname,String pw, Library workingLib)
 	{
         super(name,surname,pw);
@@ -28,14 +39,25 @@ public class StandartReader extends User
         borrowedBooks = new ArrayList<>();
     }
 
+    /**
+     * Getter of Library.
+     * @return library.
+     */
     public String getLib() {
 		return lib;
 	}
 
+	 /**
+     * Setter of Library.
+     * @param lib
+     */
 	public void setLib(String lib) {
 		this.lib = lib;
 	}
 
+	 /**
+     * Getter of Library.
+     */
 	@Exclude
     public Library getLibrary(){
         for(Library i: Database.libraries){
@@ -44,11 +66,17 @@ public class StandartReader extends User
         }
         return null;
     }
-
+   	/**
+     * Setter of Library.
+     * @param lib
+     */
     public void setLibrary(Library lib){
 	    this.lib = lib.getID();
     }
 
+    /**
+     * Getter of borrowedBooks.
+     */
 	public List<Publication> getBorrowed(){ return borrowedBooks; }
 
     /**

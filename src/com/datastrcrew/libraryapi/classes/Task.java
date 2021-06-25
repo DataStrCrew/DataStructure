@@ -8,13 +8,17 @@ import com.google.cloud.firestore.annotation.Exclude;
  * @author musosman
  */
 public class Task {
+	 /** Data field allTasks*/
 	 private HashMap<String, String> allTasks;
+	 /** Data field ID*/
 	 private String ID;
+	 /** Data field TaskName*/
 	 private String TaskName;
+	 /** Data field doneTask*/
 	 private boolean doneTask;
 	 
 	 /**
-	  * Constructor of janitor
+	  * Constructor of Task
 	  * @param ID
 	  */
 	 public Task(String ID)
@@ -24,11 +28,20 @@ public class Task {
 			setID(ID);
 			doneTask=false;
 	 }
-	 
+	  /**
+	  * Default Constructor of Task
+	  */
 	public Task() {
 		this("Empty");
 	}
 
+	 /**
+	  * Constructor of Task
+	  * @param iD id of task.
+	  * @param allTasks allTasks
+	  * @param taskName taskName
+	  * @param doneTask doneTask
+	  */
 	public Task(HashMap<String, String> allTasks, String iD, String taskName, boolean doneTask) {
 		this.allTasks = allTasks;
 		ID = iD;
@@ -36,10 +49,17 @@ public class Task {
 		this.doneTask = doneTask;
 	}
 
+	 /**
+	  * Getter of allTasks.
+	  * @return allTasks.
+	  */
 	public HashMap<String, String> getAllTasks() {
 		return allTasks;
 	}
-
+	 /**
+	  * Setter of allTasks.
+	  * @param allTasks allTasks
+	  */
 	public void setAllTasks(HashMap<String, String> allTasks) {
 		this.allTasks = allTasks;
 	}
@@ -123,6 +143,10 @@ public class Task {
 		return doneTask;
 	}
 
+	 /**
+     * toString method for Task.
+     * @return string representation.
+     */
 	@Override
 	@Exclude
 	public String toString(){

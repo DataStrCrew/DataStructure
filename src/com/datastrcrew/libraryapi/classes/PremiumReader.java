@@ -6,11 +6,22 @@ import java.util.LinkedList;
  * @author Mustafa Gurler
  */
 public class PremiumReader extends StandartReader {
+
+    /**
+     * Constructor of PremiumReader.
+     * @param name name of reader.
+     * @param surname of reader.
+     * @param pw password of reader.
+     * @param workingLib working library of reader.
+     */
     public PremiumReader(String name,String surname,String pw, Library workingLib)
 	{
         super(name, surname, pw, workingLib);
     }
 
+    /**
+     * Default Constructor of PremiumReader.
+     */
     public PremiumReader() {
         super();
     }
